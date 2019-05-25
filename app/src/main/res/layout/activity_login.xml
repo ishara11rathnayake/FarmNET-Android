@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-70dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="225dp"
+        android:layout_marginBottom="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_text_box"
+                android:textColor="@color/startcaption"
+                android:textSize="16dp"
+                android:paddingLeft="12dp"
+                android:drawableLeft="@drawable/eamil20"
+                android:drawablePadding="7dp"
+                android:inputType="textEmailAddress"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="10dp">
+            8c8585
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_text_box"
+                android:textColor="@color/startcaption"
+                android:textSize="16dp"
+                android:paddingLeft="12dp"
+                android:drawableLeft="@drawable/lock20"
+                android:drawablePadding="7dp"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.7"
+                android:fontFamily="@font/verdana"
+                android:gravity="right"
+                android:paddingTop="5dp"
+                android:text="@string/forgot"
+                android:textColor="@color/startcaption"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/verdana"
+                android:gravity="left"
+                android:paddingTop="5dp"
+                android:paddingLeft="7dp"
+                android:text="@string/password1"
+                android:textColor="@color/texthighlight"
+                android:textSize="16dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custome_button"
+                android:fontFamily="@font/ubunturegular"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/verdana"
+            android:gravity="center"
+            android:text="@string/or"
+            android:textAlignment="center"
+            android:textColor="@color/startcaption"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/facebooklogo"
+                android:layout_marginHorizontal="20dp"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/googlelogo"
+                android:layout_marginHorizontal="20dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/twitterlogo"
+                android:layout_marginHorizontal="20dp"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/verdana"
+                android:gravity="right|center"
+                android:paddingTop="5dp"
+                android:text="@string/create"
+                android:textColor="@color/startcaption"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/verdana"
+                android:gravity="left|center"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:text="@string/account"
+                android:textColor="@color/texthighlight"
+                android:textSize="16dp"
+                android:onClick="clickOnCreateAccount"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitEnd"
+        android:src="@drawable/backgrass" />
+
+</RelativeLayout>
