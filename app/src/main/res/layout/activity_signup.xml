@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".Activities.SignupActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="-85dp"
         android:scaleType="fitStart"
-        android:src="@drawable/back" />
+        android:src="@drawable/ic_backtop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,6 +163,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitEnd"
-        android:src="@drawable/backgrass" />
+        android:src="@drawable/ic_background_grass" />
 
 </RelativeLayout>
