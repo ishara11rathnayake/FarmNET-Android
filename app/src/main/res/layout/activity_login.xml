@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".Activities.LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="-85dp"
         android:scaleType="fitStart"
-        android:src="@drawable/back" />
+        android:src="@drawable/ic_backtop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:textColor="@color/startcaption"
                 android:textSize="16dp"
                 android:paddingLeft="12dp"
-                android:drawableLeft="@drawable/eamil20"
+                android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="7dp"
                 android:inputType="textEmailAddress"/>
         </LinearLayout>
@@ -54,7 +54,7 @@
                 android:textColor="@color/startcaption"
                 android:textSize="16dp"
                 android:paddingLeft="12dp"
-                android:drawableLeft="@drawable/lock20"
+                android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="7dp"
                 android:inputType="textPassword"/>
         </LinearLayout>
@@ -105,7 +105,8 @@
                 android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:onClick="clickOnLogin"/>
 
         </LinearLayout>
 
@@ -136,21 +137,21 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:background="@drawable/facebooklogo"
+                android:background="@drawable/ic_facebooklogo"
                 android:layout_marginHorizontal="20dp"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:background="@drawable/googlelogo"
+                android:background="@drawable/ic_googlelogorounded"
                 android:layout_marginHorizontal="20dp" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:background="@drawable/twitterlogo"
+                android:background="@drawable/ic_twitterlogorounded"
                 android:layout_marginHorizontal="20dp"/>
 
             <ImageView
@@ -199,6 +200,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitEnd"
-        android:src="@drawable/backgrass" />
+        android:src="@drawable/ic_background_grass" />
 
 </RelativeLayout>

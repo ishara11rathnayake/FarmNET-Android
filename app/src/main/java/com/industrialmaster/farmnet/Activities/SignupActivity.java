@@ -1,4 +1,4 @@
-package com.industrialmaster.farmnet;
+package com.industrialmaster.farmnet.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.industrialmaster.farmnet.Activities.LoginActivity;
+import com.industrialmaster.farmnet.R;
 
 public class SignupActivity extends AppCompatActivity {
 

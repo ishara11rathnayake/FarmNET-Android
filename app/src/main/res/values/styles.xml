@@ -17,4 +17,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BottomNavFont">
+        <item name="fontFamily">@font/ubuntubold</item>
+    </style>
+
+    <style name="BottomNavFontInnactive">
+        <item name="fontFamily">@font/ubunturegular</item>
+    </style>
+
 </resources>

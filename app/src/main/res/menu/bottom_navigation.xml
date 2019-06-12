@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/notification"
+        android:title="Notification"
+        android:icon="@drawable/ic_notification"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/question"
+        android:icon="@drawable/ic_qanda"
+        android:title="Q &amp; A"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/deals"
+        android:title="Deals"
+        android:icon="@drawable/ic_deals"
+        app:showAsAction="ifRoom"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <item
+        android:id="@+id/articles"
+        android:icon="@drawable/ic_articles"
+        android:title="Articles"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/advertisements"
+        android:title="Ads"
+        android:icon="@drawable/ic_ads"
+        app:showAsAction="ifRoom"/>
+
+
+
+</menu>

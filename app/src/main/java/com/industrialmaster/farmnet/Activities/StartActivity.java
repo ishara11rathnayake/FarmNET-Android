@@ -1,9 +1,12 @@
-package com.industrialmaster.farmnet;
+package com.industrialmaster.farmnet.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.industrialmaster.farmnet.Activities.SignupActivity;
+import com.industrialmaster.farmnet.R;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -14,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void clickOnletsGo(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
     }
 
