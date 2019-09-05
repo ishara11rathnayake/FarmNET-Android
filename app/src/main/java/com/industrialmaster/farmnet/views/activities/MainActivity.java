@@ -1,4 +1,4 @@
-package com.industrialmaster.farmnet.Activities;
+package com.industrialmaster.farmnet.views.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.industrialmaster.farmnet.Fragments.DealsFragment;
+import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 import com.industrialmaster.farmnet.R;
 
 public class MainActivity extends AppCompatActivity {

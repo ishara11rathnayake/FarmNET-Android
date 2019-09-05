@@ -1,11 +1,11 @@
-package com.industrialmaster.farmnet.Activities;
+package com.industrialmaster.farmnet.views.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.industrialmaster.farmnet.Activities.SignupActivity;
+import com.industrialmaster.farmnet.views.activities.SignupActivity;
 import com.industrialmaster.farmnet.R;
 
 public class StartActivity extends AppCompatActivity {

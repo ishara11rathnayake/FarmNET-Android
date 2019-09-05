@@ -1,4 +1,4 @@
-package com.industrialmaster.farmnet.Fragments;
+package com.industrialmaster.farmnet.views.fragments;
 
 
 import android.os.Bundle;
