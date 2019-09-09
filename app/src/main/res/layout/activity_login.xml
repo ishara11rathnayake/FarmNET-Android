@@ -35,6 +35,7 @@
                 android:textColor="@color/startcaption"
                 android:textSize="14sp"
                 android:paddingLeft="16dp"
+                android:fontFamily="@font/ubunturegular"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="16dp"
                 android:inputType="textEmailAddress"/>
@@ -54,6 +55,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
+                android:fontFamily="@font/ubunturegular"
                 android:textSize="14sp"
                 android:paddingLeft="16dp"
                 android:drawableLeft="@drawable/ic_lock"

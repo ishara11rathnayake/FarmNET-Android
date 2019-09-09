@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.industrialmaster.farmnet.presenters.AuthPresenter;
 import com.industrialmaster.farmnet.presenters.AuthPresenterImpl;
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     private DrawerLayout mDrawerlayout;
     private ImageView imgv_drawer_toggle;
+    private TextView txt_header_topic;
 
     BottomNavigationView bottom_navigation_view;
     ImageView imgv_logout;
@@ -42,6 +44,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         presenter.doCheckAlreadyLogin();
 
         imgv_logout = findViewById(R.id.imgvlogout);
+        txt_header_topic = findViewById(R.id.txtheadertopic);
 
         imgv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,14 +87,19 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 int id = menuItem.getItemId();
                 if(id == R.id.deals){
                     setFragment(dealsFragment);
+                    txt_header_topic.setText("Crop Deals");
                     return true;
                 } else if(id == R.id.notification){
+                    txt_header_topic.setText("Notification");
                     return true;
                 } else if(id == R.id.question){
+                    txt_header_topic.setText("Q & A");
                     return true;
                 } else if(id == R.id.articles){
+                    txt_header_topic.setText("Articles");
                     return true;
                 } else if(id == R.id.advertisements){
+                    txt_header_topic.setText("Ads");
                     return true;
                 }
                 return false;

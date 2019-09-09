@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.industrialmaster.farmnet.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -26,6 +25,9 @@ public class DealsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_deals, container, false);
-    }
 
+
+
+
+    }
 }

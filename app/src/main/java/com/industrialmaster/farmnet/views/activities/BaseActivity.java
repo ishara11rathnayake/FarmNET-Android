@@ -35,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                 alertDialogBuilder.create();
                 alertDialogBuilder.show();
+
     }
 
 }

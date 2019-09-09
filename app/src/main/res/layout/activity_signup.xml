@@ -36,6 +36,7 @@
                 android:textSize="16dp"
                 android:paddingHorizontal="5dp"
                 android:inputType="textEmailAddress"
+                android:fontFamily="@font/ubunturegular"
                 android:gravity="center"
                 android:hint="E-mail"/>
 
@@ -78,6 +79,7 @@
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
                 android:textSize="16dp"
+                android:fontFamily="@font/ubunturegular"
                 android:paddingHorizontal="5dp"
                 android:inputType="textPassword"
                 android:gravity="center"
@@ -102,6 +104,7 @@
                 android:paddingHorizontal="5dp"
                 android:inputType="textPassword"
                 android:gravity="center"
+                android:fontFamily="@font/ubunturegular"
                 android:hint="Re-type Password"/>
         </LinearLayout>
 
