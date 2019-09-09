@@ -2,10 +2,11 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="45dp"
     android:id="@+id/title_bar">
 
     <ImageView
+        android:id="@+id/imgvdrawertoggle"
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:src="@drawable/ic_side_menu_opener"
@@ -23,12 +24,31 @@
         android:textColor="@color/white"
         />
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_edit"
-        android:layout_alignParentRight="true"
-        android:paddingRight="16dp"
-        android:paddingTop="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_edit"
+            android:paddingRight="8dp"
+            android:paddingTop="10dp"/>
+
+        <ImageView
+            android:id="@+id/imgvlogout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_logout"
+            android:paddingTop="10dp"/>
+
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

@@ -21,8 +21,13 @@
     <string name="already">Already have an</string>
     <string name="account1">account?</string>
     <string name="signup">Signup</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="user_types">
         <item>Select user type</item>
         <item>Farmer</item>
@@ -30,7 +35,4 @@
         <item>Knowledge Provider</item>
         <item>Agri Service Provider</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

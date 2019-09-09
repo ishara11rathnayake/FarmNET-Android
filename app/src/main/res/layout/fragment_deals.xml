@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.fragments.DealsFragment">
+    tools:context=".views.fragments.DealsFragment"
+    android:background="@color/startcaption">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/title_bar"
-        android:layout_marginTop="6dp"
-        android:paddingLeft="15dp">
+   <android.support.constraint.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6.5"
-            android:layout_gravity="center"
-            android:paddingLeft="20dp"
-            android:drawableRight="@drawable/ic_search"
-            android:drawablePadding="7dp"
-            android:paddingRight="13dp"
-            android:paddingBottom="7dp"
-            android:background="@drawable/ic_search_background"/>
+       <EditText
+           android:id="@+id/editText"
+           android:layout_width="310dp"
+           android:layout_height="0dp"
+           android:layout_gravity="center"
+           android:layout_marginStart="16dp"
+           android:layout_marginLeft="16dp"
+           android:layout_marginTop="16dp"
+           android:layout_marginEnd="8dp"
+           android:layout_marginRight="8dp"
+           android:background="@drawable/ic_search_background"
+           android:drawableRight="@drawable/ic_search"
+           android:ems="10"
+           android:paddingLeft="20dp"
+           android:paddingRight="13dp"
+           android:paddingBottom="7dp"
+           app:layout_constraintEnd_toStartOf="@+id/imageView"
+           app:layout_constraintHorizontal_bias="0.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_filter"
-            android:layout_weight="1.5"
-            android:paddingRight="20dp"
-            android:scaleType="center" />
-
-    </LinearLayout>
+       <ImageView
+           android:id="@+id/imageView"
+           android:layout_width="30dp"
+           android:layout_height="30dp"
+           android:layout_marginTop="28dp"
+           android:layout_marginEnd="36dp"
+           android:layout_marginRight="36dp"
+           android:src="@drawable/ic_filter"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+   </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

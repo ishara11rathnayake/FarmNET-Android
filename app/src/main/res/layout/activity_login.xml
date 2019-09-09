@@ -181,6 +181,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/txtsignup"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -190,8 +191,7 @@
                 android:paddingTop="5dp"
                 android:text="@string/account"
                 android:textColor="@color/texthighlight"
-                android:textSize="16dp"
-                android:onClick="clickOnCreateAccount"/>
+                android:textSize="16dp" />
 
 
         </LinearLayout>

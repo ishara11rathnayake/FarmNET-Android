@@ -9,6 +9,5 @@ public class RetrofitException {
     public static final int HTTP_INTERNAL_ERROR = 500;
     public static final int HTTP_BAD_REQUEST = 400;
     public static final int HTTP_NOT_FOUND = 404;
-    public static final int API_STATUS_CODE_LOCAL_ERROR = 111;
 
 }

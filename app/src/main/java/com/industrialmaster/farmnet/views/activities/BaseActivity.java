@@ -23,17 +23,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void showAlertDialog(String title, String message, boolean setCanceble) {
+    public void showAlertDialog(String title, String message, boolean setCanceble, String positiveButtonText,
+                                DialogInterface.OnClickListener positiveListener, String negativeButtonText,
+                                DialogInterface.OnClickListener negativeListener) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
                 .setCancelable(setCanceble)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                .setPositiveButton(positiveButtonText, positiveListener)
+                .setNegativeButton(negativeButtonText, negativeListener);
 
-                    }
-                });
                 alertDialogBuilder.create();
                 alertDialogBuilder.show();
     }
