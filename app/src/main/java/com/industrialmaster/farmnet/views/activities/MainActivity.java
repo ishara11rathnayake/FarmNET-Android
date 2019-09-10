@@ -24,10 +24,13 @@ import com.industrialmaster.farmnet.views.AuthView;
 import com.industrialmaster.farmnet.views.FarmnetHomeView;
 import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.views.fragments.QandAFragment;
 
 public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     DealsFragment dealsFragment;
+    QandAFragment qandAFragment;
+
     AuthPresenter presenter = new AuthPresenterImpl(this, MainActivity.this );
 
     private DrawerLayout mDrawerlayout;
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         bottom_navigation_view = findViewById(R.id.bottom_nav);
         dealsFragment = new DealsFragment();
+        qandAFragment = new QandAFragment();
 
         imgv_drawer_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +97,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     txt_header_topic.setText("Notification");
                     return true;
                 } else if(id == R.id.question){
+                    setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
                     return true;
                 } else if(id == R.id.articles){

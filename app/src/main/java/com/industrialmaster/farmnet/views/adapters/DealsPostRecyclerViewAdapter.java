@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Deals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -23,15 +25,14 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
 
     private static final String TAG = "DealsPostRVAdapter";
 
-    private ArrayList<String> mIamges = new ArrayList<>();
-    private ArrayList<String> mUserName = new ArrayList<>();
-    private ArrayList<String> mUnitPrice = new ArrayList<>();
+    private List<Deals> mDeals = new ArrayList<>();
+//    private ArrayList<String> mIamges = new ArrayList<>();
+//    private ArrayList<String> mUserName = new ArrayList<>();
+//    private ArrayList<String> mUnitPrice = new ArrayList<>();
     private Context mContext;
 
-    public DealsPostRecyclerViewAdapter(Context mContext, ArrayList<String> mIamges, ArrayList<String> mUserName, ArrayList<String> mUnitPrice) {
-        this.mIamges = mIamges;
-        this.mUserName = mUserName;
-        this.mUnitPrice = mUnitPrice;
+    public DealsPostRecyclerViewAdapter(Context mContext, List<Deals> mDeals) {
+        this.mDeals = mDeals;
         this.mContext = mContext;
     }
 
@@ -49,26 +50,29 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(mIamges.get(i))
+                .load(mDeals.get(i).getProductImageUrl())
                 .centerCrop()
                 .into(viewHolder.imgv_product_pic);
 
-        viewHolder.tv_unit_price.setText(mUnitPrice.get(i));
-        viewHolder.tv_user_name.setText(mUserName.get(i));
+        viewHolder.tv_unit_price.setText(Double.toString(mDeals.get(i).getUnitPrice()));
+        viewHolder.tv_user_name.setText(mDeals.get(i).getUser().getEmail());
+        viewHolder.tv_description.setText(mDeals.get(i).getDescription());
+        viewHolder.tv_amount.setText(Double.toString(mDeals.get(i).getAmount()));
+        viewHolder.tv_location.setText(mDeals.get(i).getLocation());
 
         viewHolder.post_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mUserName.get(i));
+                Log.d(TAG, "onClick: clicked on: " + mDeals.get(i).getDealId());
 
-                Toast.makeText(mContext, mUserName.get(i), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mDeals.get(i).getDealId(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mUserName.size();
+        return mDeals.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -4,6 +4,11 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class User {
 
     @NonNull
@@ -11,27 +16,12 @@ public class User {
     private String userId;
 
     @NonNull
+    @SerializedName("email")
     private String email;
 
-    @NonNull
-    private String password;
-
-    public User(@NonNull String id, @NonNull String email, @NonNull String password) {
+    public User(@NonNull String id, @NonNull String email) {
         this.userId = id;
         this.email = email;
-        this.password = password;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
 }
