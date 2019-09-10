@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import retrofit2.HttpException;
 
-public abstract class BasePresenter {
+public abstract class BasePresenter implements Presenter{
 
     protected Activity activity;
     public static String FARMNET_PREFS_NAME = "FarmnetPrefsFile";

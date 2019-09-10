@@ -3,7 +3,7 @@ package com.industrialmaster.farmnet.presenters;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 
-public interface AuthPresenter {
+public interface AuthPresenter extends Presenter {
 
     void doLogin(LoginRequest loginRequest);
 

@@ -206,4 +206,24 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
         return true;
     }
+
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }
