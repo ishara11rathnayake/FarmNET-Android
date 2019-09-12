@@ -30,12 +30,22 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true">
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="33dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:src="@drawable/ic_edit"-->
+<!--            android:paddingTop="14dp"/>-->
+
+        <ImageButton
+            android:id="@+id/img_btn_new_deal"
             android:layout_width="0dp"
             android:layout_height="33dp"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_edit"
-            android:paddingTop="14dp"/>
+            android:paddingTop="14dp"
+            android:background="@null"/>
 
         <ImageView
             android:id="@+id/imgvlogout"

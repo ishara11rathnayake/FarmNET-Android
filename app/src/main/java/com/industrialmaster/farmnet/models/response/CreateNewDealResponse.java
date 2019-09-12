@@ -7,15 +7,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class SignUpResponse {
+public class CreateNewDealResponse {
 
     @SerializedName("message")
     private String message;
-
-    @SerializedName("token")
-    private String access_token;
-
-    @SerializedName("userId")
-    private String userId;
 
 }

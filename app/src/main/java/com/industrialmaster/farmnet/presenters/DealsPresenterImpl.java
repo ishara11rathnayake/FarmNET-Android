@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.views.DealsView;
@@ -31,6 +32,23 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
     @Override
     public void getAllDeals() {
         getAllDealsObservable().subscribe(getAllDealsSubscriber());
+    }
+
+    @Override
+    public void createNewDeal(CreateNewDealRequest createNewDealRequest) {
+        boolean isValidate = createDealFielsValidate(createNewDealRequest);
+    }
+
+    private boolean createDealFielsValidate(CreateNewDealRequest createNewDealRequest) {
+
+        String productName = createNewDealRequest.getProductName();
+        double productPrice = createNewDealRequest.getUnitPrice();
+        double productAmount = createNewDealRequest.getAmount();
+        String description = createNewDealRequest.getDescription();
+        String userId = createNewDealRequest.getUserId();
+        String location = createNewDealRequest.getLocation();
+
+        return true;
     }
 
     public Observable<ProductDealResponse> getAllDealsObservable() {

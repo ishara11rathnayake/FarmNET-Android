@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     private ImageView imgv_drawer_toggle;
     private TextView txt_header_topic;
 
+    private ImageButton img_btn_create_new_deal;
+
     BottomNavigationView bottom_navigation_view;
     ImageView imgv_logout;
 
@@ -48,6 +51,15 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         imgv_logout = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
+
+        img_btn_create_new_deal = findViewById(R.id.img_btn_new_deal);
+
+        img_btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CreateNewDealActivity.class));
+            }
+        });
 
         imgv_logout.setOnClickListener(new View.OnClickListener() {
             @Override

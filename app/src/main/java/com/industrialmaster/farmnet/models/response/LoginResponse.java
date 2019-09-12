@@ -15,7 +15,7 @@ public class LoginResponse {
     @SerializedName("message")
     private String message;
 
-//    @SerializedName("userId")
-//    private String userId;
+    @SerializedName("userId")
+    private String userId;
 
 }

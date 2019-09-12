@@ -33,8 +33,6 @@ public class DealsFragment extends BaseFragment implements DealsView {
 
     DealsPresenter dealsPresenter;
 
-    private List<Deals> mDeals = new ArrayList<>();
-
     View rootView;
 
     public DealsFragment() {
@@ -59,9 +57,8 @@ public class DealsFragment extends BaseFragment implements DealsView {
     @Override
     public void showDeals(List<Deals> deals) {
         setLoading(false);
-        mDeals.addAll(deals);
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerview_product_post);
-        DealsPostRecyclerViewAdapter adapter = new DealsPostRecyclerViewAdapter(getActivity(), mDeals);
+        DealsPostRecyclerViewAdapter adapter = new DealsPostRecyclerViewAdapter(getActivity(), deals);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
