@@ -4,26 +4,44 @@ import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
+import com.industrialmaster.farmnet.presenters.DealsPresenter;
+import com.industrialmaster.farmnet.presenters.DealsPresenterImpl;
+import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
+import com.industrialmaster.farmnet.utils.FarmnetConstants;
+import com.industrialmaster.farmnet.views.CreateNewDealView;
 
-public class CreateNewDealActivity extends BaseActivity {
+public class CreateNewDealActivity extends BaseActivity implements CreateNewDealView {
+
+    DealsPresenter presenter;
 
     ImageView imgv_product_pic;
-    ImageButton btn_add_image_from_gallery;
-    ImageButton btn_add_image_from_camera;
+    ImageButton btn_add_image_from_gallery, btn_add_image_from_camera, img_btn_close;
+    Button btn_create_new_deal;
+
+    //fiels of UI
+    TextInputEditText et_product_name, et_unit_price,
+            et_amount, et_description, et_locaton;
 
     Uri image_uri;
+    boolean hasImage = false;
+    Uri imageFilePath;
 
     private static final int IMAGE_PIK_CODE = 1000;
     private static final int GALLERY_PERMISSION_CODE = 1001;
@@ -36,10 +54,60 @@ public class CreateNewDealActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_deal);
 
+        //initialize presenter
+        presenter = new DealsPresenterImpl(this, CreateNewDealActivity.this);
+
         //Views
         imgv_product_pic = findViewById(R.id.imgv_product_pic);
         btn_add_image_from_gallery = findViewById(R.id.add_image_from_gallery);
         btn_add_image_from_camera = findViewById(R.id.add_image_from_camera);
+        img_btn_close = findViewById(R.id.img_btn_close);
+        btn_create_new_deal = findViewById(R.id.btn_create_new_deal);
+
+        et_product_name = findViewById(R.id.et_product_name);
+        et_unit_price = findViewById(R.id.et_unit_price);
+        et_amount = findViewById(R.id.et_amount);
+        et_description = findViewById(R.id.et_desc);
+        et_locaton = findViewById(R.id.et_location);
+
+        //close create new deal activity
+        img_btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+                showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {
+                    startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
+                    finish();
+                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            }
+        });
+
+        //save new deal
+        btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String realFilePath;
+                System.out.println("###############################################################################################################################");
+
+                CreateNewDealRequest createNewDealRequest = new CreateNewDealRequest();
+
+                if(hasImage == true) {
+                    realFilePath = convertMediaUriToPath(imageFilePath);
+                    createNewDealRequest.setProductImage(realFilePath);
+                }
+
+                createNewDealRequest.setProductName(et_product_name.getText().toString());
+                createNewDealRequest.setUnitPrice(et_unit_price.getText().toString());
+                createNewDealRequest.setAmount(et_amount.getText().toString());
+                createNewDealRequest.setDescription(et_description.getText().toString());
+                createNewDealRequest.setLocation(et_locaton.getText().toString());
+                createNewDealRequest.setHasImage(hasImage);
+
+                presenter.createNewDeal(createNewDealRequest);
+
+            }
+        });
 
         //handle btn_add_image_from_gallery button click
         btn_add_image_from_gallery.setOnClickListener(new View.OnClickListener() {
@@ -158,9 +226,45 @@ public class CreateNewDealActivity extends BaseActivity {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PIK_CODE){
             //set image to image view
             imgv_product_pic.setImageURI(data.getData());
+            imageFilePath = data.getData();
+            hasImage = true;
         } else if(resultCode == RESULT_OK && requestCode == IMAGE_CAPTURE_CODE){
             //set captured image to image view
             imgv_product_pic.setImageURI(image_uri);
+            imageFilePath = image_uri;
+            hasImage = true;
         }
+    }
+
+    @Override
+    public void onSuccess(String message) {
+        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> dialog.dismiss());
+    }
+
+    @Override
+    public void onError(String message) {
+        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> dialog.dismiss());
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
+
+    }
+
+    public String convertMediaUriToPath(Uri uri) {
+        String [] proj={MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, proj,  null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String path = cursor.getString(column_index);
+        cursor.close();
+        return path;
     }
 }

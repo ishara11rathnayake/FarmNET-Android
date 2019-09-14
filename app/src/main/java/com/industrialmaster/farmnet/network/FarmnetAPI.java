@@ -33,16 +33,16 @@ public interface FarmnetAPI {
     Observable<ProductDealResponse> getAllDeals();
 
     @Multipart
-    @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(UrlManager.CREATE_NEW_DEAL)
     Observable<CreateNewDealResponse> createNewPost(
-            @Header("Authorization") RequestBody authorization,
+            @Header("Authorization") String authorization,
             @Part("name") RequestBody productName,
             @Part("price") RequestBody unitPrice,
             @Part("amount") RequestBody amount,
             @Part("description") RequestBody description,
             @Part("userId") RequestBody userId,
-            @Part("location") RequestBody location,
-            @Part MultipartBody.Part productImage);
+            @Part MultipartBody.Part productImage,
+            @Part("location") RequestBody location);
+
 
 }

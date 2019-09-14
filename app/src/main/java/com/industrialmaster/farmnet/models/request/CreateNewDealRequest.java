@@ -1,5 +1,7 @@
 package com.industrialmaster.farmnet.models.request;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
@@ -13,10 +15,10 @@ public class CreateNewDealRequest {
     private String productName;
 
     @SerializedName("price")
-    private double unitPrice;
+    private String unitPrice;
 
     @SerializedName("amount")
-    private double amount;
+    private String amount;
 
     @SerializedName("description")
     private String description;
@@ -26,5 +28,10 @@ public class CreateNewDealRequest {
 
     @SerializedName("location")
     private String location;
+
+    private boolean hasImage;
+
+    @SerializedName("productImage")
+    private String productImage;
 
 }

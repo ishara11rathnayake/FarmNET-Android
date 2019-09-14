@@ -2,6 +2,8 @@ package com.industrialmaster.farmnet.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,4 +36,7 @@ public class Deals {
 
     @SerializedName("productImage")
     private String productImageUrl;
+
+    @SerializedName("date")
+    private Date date;
 }

@@ -14,6 +14,8 @@ public class ErrorMessageHelper {
     public static final String UNEXPECTED_ERROR = "Unexpected error occurred!";
     public static final String CHECK_INTERNET_CONNECTION = "Please check your internet connection";
     public static final String LOGOUT_CONFIRMATION = "Are you sure you want to logout?";
+    public static final String DISCARD_CONFIRMATION = "Are you sure you want to discard?";
+
 
 
 }
