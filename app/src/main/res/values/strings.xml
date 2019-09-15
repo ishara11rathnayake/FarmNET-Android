@@ -24,13 +24,16 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-<!--Create Deals-->
+    <!--Create Deals-->
     <string name="product_name">Product Name</string>
     <string name="unit_price">Unit Price</string>
     <string name="amount">Amount</string>
     <string name="description">Description</string>
     <string name="location">Location</string>
     <string name="post">Post</string>
+
+    <!--Profile-->
+    <string name="save">Save</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

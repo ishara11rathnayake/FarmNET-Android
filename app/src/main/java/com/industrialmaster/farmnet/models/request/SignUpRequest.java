@@ -12,6 +12,9 @@ public class SignUpRequest {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("name")
+    private String name;
+
     @SerializedName("password")
     private String password;
 

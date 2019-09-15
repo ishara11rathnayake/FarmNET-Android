@@ -9,6 +9,7 @@ import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
+import com.industrialmaster.farmnet.network.RetrofitException;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.AuthView;
@@ -20,6 +21,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -55,7 +57,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
     @Override
     public void doSignup(SignUpRequest signUpRequest, String retypePassword) {
 
-        boolean isValidate = signUpFieldsValidate(signUpRequest.getEmail(), signUpRequest.getPassword(),
+        boolean isValidate = signUpFieldsValidate(signUpRequest.getEmail(), signUpRequest.getName(), signUpRequest.getPassword(),
                 signUpRequest.getUser_type(), retypePassword);
 
         if(isValidate == false){
@@ -157,7 +159,11 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
             @Override
             public void onError(Throwable e) {
                 try {
-                    authView.onError(handleApiError(e));
+                    if(((HttpException) e).code() == RetrofitException.CONFLICT){
+                        authView.onError("Email already used");
+                    } else {
+                        authView.onError(handleApiError(e));
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -188,11 +194,12 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
     }
 
-    private boolean signUpFieldsValidate(String email, String password, String userType, String retypePassword){
+    private boolean signUpFieldsValidate(String email, String name, String password, String userType, String retypePassword){
         final String regex_email = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         final String regex_password = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
 
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || userType.equals("Select user type") || TextUtils.isEmpty(retypePassword)){
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(name) || TextUtils.isEmpty(password) ||
+                userType.equals("Select user type") || TextUtils.isEmpty(retypePassword)){
             errorMessage = ErrorMessageHelper.FILL_ALL_THE_FIELDS;
             return false;
         } else if(!email.matches(regex_email)){

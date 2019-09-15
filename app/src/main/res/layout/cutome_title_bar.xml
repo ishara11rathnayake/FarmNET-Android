@@ -43,7 +43,7 @@
             android:layout_height="33dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_edit"
+            android:src="@drawable/ic_create_new"
             android:paddingTop="14dp"
             android:background="@null"/>
 

@@ -19,6 +19,9 @@ public class User {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("name")
+    private String name;
+
     public User(@NonNull String id, @NonNull String email) {
         this.userId = id;
         this.email = email;

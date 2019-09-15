@@ -28,7 +28,7 @@ public class SignupActivity extends BaseActivity implements AuthView {
     AuthPresenter presenter;
 
     Spinner spinner;
-    EditText et_email, et_password, et_retype_password;
+    EditText et_email, et_password, et_retype_password, et_name;
     Button btn_signup;
     TextView txt_login;
 
@@ -42,6 +42,7 @@ public class SignupActivity extends BaseActivity implements AuthView {
 
         spinner = findViewById(R.id.spinnerusertype);
         et_email = findViewById(R.id.etsignupemail);
+        et_name = findViewById(R.id.etusername);
         et_password = findViewById(R.id.etsignuppassword);
         et_retype_password = findViewById(R.id.etsignupretypepassword);
         btn_signup = findViewById(R.id.btnsignup);
@@ -57,12 +58,14 @@ public class SignupActivity extends BaseActivity implements AuthView {
             @Override
             public void onClick(View v) {
                 String email = et_email.getText().toString().trim();
+                String name = et_name.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
                 String retypePassword = et_retype_password.getText().toString().trim();
                 String userType = spinner.getSelectedItem().toString().trim();
 
                 SignUpRequest signUpRequest = new SignUpRequest();
                 signUpRequest.setEmail(email);
+                signUpRequest.setName(name);
                 signUpRequest.setPassword(password);
                 signUpRequest.setUser_type(userType);
 

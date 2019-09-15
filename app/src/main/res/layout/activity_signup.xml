@@ -49,6 +49,28 @@
             android:paddingHorizontal="40dp"
             android:paddingVertical="10dp">
 
+            <EditText
+                android:id="@+id/etusername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_text_box"
+                android:textColor="@color/startcaption"
+                android:textSize="16dp"
+                android:paddingHorizontal="5dp"
+                android:inputType="text"
+                android:fontFamily="@font/ubunturegular"
+                android:gravity="center"
+                android:hint="Name"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="10dp">
+
             <Spinner
                 android:id="@+id/spinnerusertype"
                 style="@style/Widget.AppCompat.Spinner"
