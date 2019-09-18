@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:layout_margin="10dp"
+    android:id="@+id/cradview_question">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"
+                    android:id="@+id/cimageview_profilepic"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Ishara Rathnayake"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/ubunturegular"
+                        android:textColor="@color/colorPrimary"
+                        android:paddingLeft="10dp"
+                        android:gravity="bottom"
+                        android:id="@+id/tv_name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textSize="12dp"
+                        android:text="September 18, 2019"
+                        android:fontFamily="@font/ubunturegular"
+                        android:textColor="@color/colorPrimary"
+                        android:paddingLeft="10dp"
+                        android:gravity="top"
+                        android:id="@+id/tv_date"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_answer"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntubold"
+            android:textSize="22dp"
+            android:text="How to get rid of weeds without using weedicides?"/>
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubunturegular"
+            android:textSize="18dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu elit ac ante consequat venenatis. Nam a scelerisque libero, id interdum erat. Maecenas facilisis turpis eget est rhoncus, a pulvinar arcu luctus." />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_hashtags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/tv_no_of_answers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntubold"
+            android:text="11 answers"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

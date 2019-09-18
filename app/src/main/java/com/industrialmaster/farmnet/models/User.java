@@ -22,6 +22,9 @@ public class User {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("profileImage")
+    private String profilePicUrl;
+
     public User(@NonNull String id, @NonNull String email) {
         this.userId = id;
         this.email = email;

@@ -28,10 +28,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
 
     private static final String TAG = "DealsPostRVAdapter";
 
-    private List<Deals> mDeals = new ArrayList<>();
-//    private ArrayList<String> mIamges = new ArrayList<>();
-//    private ArrayList<String> mUserName = new ArrayList<>();
-//    private ArrayList<String> mUnitPrice = new ArrayList<>();
+    private List<Deals> mDeals;
     private Context mContext;
 
     public DealsPostRecyclerViewAdapter(Context mContext, List<Deals> mDeals) {
@@ -60,6 +57,14 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
                 .load(mDeals.get(i).getProductImageUrl())
                 .centerCrop()
                 .into(viewHolder.imgv_product_pic);
+
+        if(!mDeals.get(i).getUser().getProfilePicUrl().isEmpty() && mDeals.get(i).getUser().getProfilePicUrl() != null) {
+            Glide.with(mContext)
+                    .asBitmap()
+                    .load(mDeals.get(i).getUser().getProfilePicUrl())
+                    .centerCrop()
+                    .into(viewHolder.circleImageView_profile_pic);
+        }
 
         viewHolder.tv_unit_price.setText(Double.toString(mDeals.get(i).getUnitPrice()));
         viewHolder.tv_user_name.setText(mDeals.get(i).getUser().getName());
