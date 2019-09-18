@@ -1,6 +1,8 @@
 package com.industrialmaster.farmnet.views.adapters;
 
+import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
@@ -66,7 +68,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
         if(mQuestions.get(i).getDescription().isEmpty() || mQuestions.get(i).getDescription() == null){
             viewHolder.tv_description.setVisibility(View.GONE);
         } else {
-            viewHolder.tv_question.setText(mQuestions.get(i).getQuetion());
+            viewHolder.tv_description.setText(mQuestions.get(i).getDescription());
         }
 
         viewHolder.tv_no_of_answers.setText(Integer.toString(mQuestions.get(i).getNumberOfAnswers())+" Answers");
@@ -81,6 +83,13 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
                 final TextView rowTextView = new TextView(mContext);
                 rowTextView.setText("#" + hastags[x]);
                 viewHolder.linear_layout_hashtags.addView(rowTextView);
+
+                Typeface typeface = ResourcesCompat.getFont(mContext, R.font.ubunturegular);
+                rowTextView.setTypeface(typeface);
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+                params.setMargins(5,0,5,0);
+                rowTextView.setLayoutParams(params);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     rowTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

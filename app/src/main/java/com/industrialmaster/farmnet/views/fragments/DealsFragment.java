@@ -65,7 +65,8 @@ public class DealsFragment extends BaseFragment implements DealsView {
     @Override
     public void onError(String error) {
         setLoading(false);
-        showAlertDialog("Success", error,false, FarmnetConstants.OK , (dialog, which) -> {},"", (dialog, which) -> dialog.dismiss());
+        showAlertDialog("Error", error,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> dialog.dismiss());
     }
 
     @Override

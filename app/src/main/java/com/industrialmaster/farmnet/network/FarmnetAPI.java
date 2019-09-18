@@ -5,6 +5,7 @@ import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
+import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.utils.UrlManager;
 
@@ -44,5 +45,7 @@ public interface FarmnetAPI {
             @Part MultipartBody.Part productImage,
             @Part("location") RequestBody location);
 
+    @GET(UrlManager.GET_ALL_QUESTIONS)
+    Observable<QuestionsResponse> getAllQuestions();
 
 }

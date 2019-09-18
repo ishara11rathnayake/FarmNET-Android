@@ -43,7 +43,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Ishara Rathnayake"
+                        android:text=" "
                         android:textSize="18dp"
                         android:fontFamily="@font/ubunturegular"
                         android:textColor="@color/colorPrimary"
@@ -56,7 +56,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:textSize="12dp"
-                        android:text="September 18, 2019"
+                        android:text=" "
                         android:fontFamily="@font/ubunturegular"
                         android:textColor="@color/colorPrimary"
                         android:paddingLeft="10dp"
@@ -84,28 +84,30 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntubold"
             android:textSize="22dp"
-            android:text="How to get rid of weeds without using weedicides?"/>
+            android:text=" "/>
 
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubunturegular"
-            android:textSize="18dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu elit ac ante consequat venenatis. Nam a scelerisque libero, id interdum erat. Maecenas facilisis turpis eget est rhoncus, a pulvinar arcu luctus." />
+            android:textSize="16dp"
+            android:text=" " />
 
         <LinearLayout
             android:id="@+id/linear_layout_hashtags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/tv_no_of_answers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntubold"
-            android:text="11 answers"/>
+            android:text=" "/>
 
     </LinearLayout>
 
