@@ -43,7 +43,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text=" "
+                        android:text="@string/sample_text"
                         android:textSize="18dp"
                         android:fontFamily="@font/ubunturegular"
                         android:textColor="@color/colorPrimary"
@@ -56,7 +56,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:textSize="12dp"
-                        android:text=" "
+                        android:text="@string/sample_text"
                         android:fontFamily="@font/ubunturegular"
                         android:textColor="@color/colorPrimary"
                         android:paddingLeft="10dp"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntubold"
             android:textSize="22dp"
-            android:text=" "/>
+            android:text="@string/sample_text"/>
 
         <TextView
             android:id="@+id/tv_description"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubunturegular"
             android:textSize="16dp"
-            android:text=" " />
+            android:text="@string/sample_text" />
 
         <LinearLayout
             android:id="@+id/linear_layout_hashtags"
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntubold"
-            android:text=" "/>
+            android:text="@string/sample_text"/>
 
     </LinearLayout>
 

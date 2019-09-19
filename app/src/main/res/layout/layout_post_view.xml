@@ -13,6 +13,7 @@
         android:orientation="vertical"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
+        android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
         <LinearLayout
@@ -56,12 +57,12 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:textSize="12dp"
-                        android:text="Ibbagamuwa"
+                        android:text="September 19, 2019"
                         android:fontFamily="@font/ubunturegular"
                         android:textColor="@color/colorPrimary"
                         android:paddingLeft="10dp"
                         android:gravity="top"
-                        android:id="@+id/tv_location"/>
+                        android:id="@+id/tv_date"/>
 
                 </LinearLayout>
 
@@ -69,11 +70,21 @@
 
         </LinearLayout>
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Located in Kurunegala and owend by Mr.Rathnayake"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/ubuntubold"
+            android:textSize="17dp"
+            android:layout_marginVertical="5dp"
+            android:id="@+id/tv_description"/>
+
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/ic_backtop"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:layout_marginBottom="8dp"
             android:layout_marginVertical="5dp"
             android:id="@+id/imgv_product_pic"/>
@@ -135,31 +146,6 @@
                     android:fontFamily="@font/ubunturegular"
                     android:textSize="14dp"
                     android:id="@+id/tv_amount"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Description :"
-                    android:gravity="center_vertical"
-                    android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Located in Kurunegala and owend by Mr.Rathnayake"
-                    android:gravity="center_vertical"
-                    android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"
-                    android:id="@+id/tv_description"/>
 
             </LinearLayout>
 

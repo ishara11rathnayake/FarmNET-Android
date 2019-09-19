@@ -66,11 +66,11 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
                     .into(viewHolder.circleImageView_profile_pic);
         }
 
-        viewHolder.tv_unit_price.setText(Double.toString(mDeals.get(i).getUnitPrice()));
+        viewHolder.tv_unit_price.setText("Rs. "+Double.toString(mDeals.get(i).getUnitPrice()));
         viewHolder.tv_user_name.setText(mDeals.get(i).getUser().getName());
         viewHolder.tv_description.setText(mDeals.get(i).getDescription());
-        viewHolder.tv_amount.setText(Double.toString(mDeals.get(i).getAmount()));
-        viewHolder.tv_location.setText(formattedDate);
+        viewHolder.tv_amount.setText(Double.toString(mDeals.get(i).getAmount())+"Kg");
+        viewHolder.tv_date.setText(formattedDate);
 
         viewHolder.post_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +92,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         CardView post_card_view;
         CircleImageView circleImageView_profile_pic;
         TextView tv_user_name;
-        TextView tv_location;
+        TextView tv_date;
         ImageView imgv_product_pic;
         TextView tv_unit_price;
         TextView tv_amount;
@@ -102,7 +102,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
             super(itemView);
             circleImageView_profile_pic = itemView.findViewById(R.id.cimageview_profilepic);
             tv_user_name = itemView.findViewById(R.id.tv_name);
-            tv_location = itemView.findViewById(R.id.tv_location);
+            tv_date = itemView.findViewById(R.id.tv_date);
             imgv_product_pic = itemView.findViewById(R.id.imgv_product_pic);
             tv_unit_price = itemView.findViewById(R.id.tv_unit_price);
             tv_amount = itemView.findViewById(R.id.tv_amount);

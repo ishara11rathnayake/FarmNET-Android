@@ -3,6 +3,7 @@ package com.industrialmaster.farmnet.network;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
+import com.industrialmaster.farmnet.models.response.AdvertisementsResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewQuestionResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
@@ -54,5 +55,8 @@ public interface FarmnetAPI {
     Observable<CreateNewQuestionResponse> createNewQuestion(
             @Header("Authorization") String authorization,
             @Body CreateNewQuestionRequest createNewQuestionRequest);
+
+    @GET(UrlManager.GET_ALL_ADVERTISEMENTS)
+    Observable<AdvertisementsResponse> getAllAdvertisements();
 
 }

@@ -21,6 +21,7 @@ import com.industrialmaster.farmnet.presenters.AuthPresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.FarmnetHomeView;
+import com.industrialmaster.farmnet.views.fragments.AdvertisementFragment;
 import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.views.fragments.QandAFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     DealsFragment dealsFragment;
     QandAFragment qandAFragment;
+    AdvertisementFragment advertisementFragment;
 
     AuthPresenter presenter = new AuthPresenterImpl(this, MainActivity.this );
 
@@ -90,6 +92,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         bottom_navigation_view = findViewById(R.id.bottom_nav);
         dealsFragment = new DealsFragment();
         qandAFragment = new QandAFragment();
+        advertisementFragment = new AdvertisementFragment();
 
         drawer_navigation_view = findViewById(R.id.drawer_nav);
 
@@ -103,7 +106,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         bottom_navigation_view.setSelectedItemId(R.id.deals);
         setFragment(dealsFragment);
 
-        //bottom navigation item selecting
+        //bottom navigation item selecting (change fragments)
         bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -116,18 +119,21 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     return true;
                 } else if(id == R.id.notification){
                     txt_header_topic.setText("Notification");
+                    img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.question){
                     setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
-                    imgv_qanda_edit.setVisibility(View.VISIBLE);
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.articles){
                     txt_header_topic.setText("Articles");
+                    img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.advertisements){
+                    setFragment(advertisementFragment);
                     txt_header_topic.setText("Ads");
+                    img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 }
                 return false;
