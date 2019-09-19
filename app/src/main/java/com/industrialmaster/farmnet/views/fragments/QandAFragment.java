@@ -1,15 +1,18 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import com.industrialmaster.farmnet.presenters.QandAPresenter;
 import com.industrialmaster.farmnet.presenters.QandAPresenterImpl;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.QandAView;
+import com.industrialmaster.farmnet.views.activities.CreateNewQuestionActivity;
 import com.industrialmaster.farmnet.views.adapters.DealsPostRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.QuestionRecyclerViewAdapter;
 
@@ -38,6 +42,8 @@ public class QandAFragment extends BaseFragment implements QandAView {
 
     QandAPresenter qandAPresenter;
 
+    EditText et_new_question;
+
     public QandAFragment() {
         // Required empty public constructor
     }
@@ -52,18 +58,14 @@ public class QandAFragment extends BaseFragment implements QandAView {
         qandAPresenter.getAllQuestions();
         setLoading(true);
 
-//        List<Question> questions = new ArrayList<>();
-//        String[] hastags = {"pestiside", "bed bugs", "paddy"};
-//        User user = new User("5d7de926013cc200044110d0", "ish@gmail.com");
-//        user.setProfilePicUrl("https://farmnet-bucket.storage.googleapis.com/profile/156864762827336222932_2352322344791425_8535627277457686528_o.jpg");
-//        user.setName("Ishara Rathnayake");
-//
-//        Question question = new Question("5d822ae70b1e8833f44743cf", "assd", "aasd", hastags,
-//                new Date(), user, 0);
-//
-//        questions.add(question);
+        et_new_question = rootView.findViewById(R.id.et_question);
 
-
+        et_new_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CreateNewQuestionActivity.class));
+            }
+        });
 
         return rootView;
     }

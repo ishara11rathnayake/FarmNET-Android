@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -75,7 +74,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
             @Override
             public void onClick(View v) {
                 String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-                showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {
+                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
                     startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
                     finish();
                 },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
@@ -88,7 +87,6 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
             public void onClick(View v) {
 
                 String realFilePath;
-                System.out.println("###############################################################################################################################");
 
                 CreateNewDealRequest createNewDealRequest = new CreateNewDealRequest();
 

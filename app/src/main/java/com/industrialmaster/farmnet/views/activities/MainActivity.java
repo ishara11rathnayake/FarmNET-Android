@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     private DrawerLayout mDrawerlayout;
     private ImageView imgv_drawer_toggle;
     private TextView txt_header_topic;
+    private ImageView imgv_qanda_edit;
 
     private ImageButton img_btn_create_new_deal;
 
@@ -50,6 +51,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         imgv_logout = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
+        imgv_qanda_edit =findViewById(R.id.qanda_edit);
 
         img_btn_create_new_deal = findViewById(R.id.img_btn_new_deal);
 
@@ -109,6 +111,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 if(id == R.id.deals){
                     setFragment(dealsFragment);
                     txt_header_topic.setText("Crop Deals");
+                    imgv_qanda_edit.setVisibility(View.GONE);
+                    img_btn_create_new_deal.setVisibility(View.VISIBLE);
                     return true;
                 } else if(id == R.id.notification){
                     txt_header_topic.setText("Notification");
@@ -116,6 +120,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 } else if(id == R.id.question){
                     setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
+                    imgv_qanda_edit.setVisibility(View.VISIBLE);
+                    img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.articles){
                     txt_header_topic.setText("Articles");

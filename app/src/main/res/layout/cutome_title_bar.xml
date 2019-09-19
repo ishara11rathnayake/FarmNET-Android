@@ -30,12 +30,14 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true">
 
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="33dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:src="@drawable/ic_edit"-->
-<!--            android:paddingTop="14dp"/>-->
+        <ImageView
+            android:id="@+id/qanda_edit"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_edit"
+            android:paddingTop="14dp"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/img_btn_new_deal"

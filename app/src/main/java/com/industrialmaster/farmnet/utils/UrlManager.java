@@ -8,5 +8,6 @@ public class UrlManager {
     public static final String GET_ALL_DEALS = "products";
     public static final String CREATE_NEW_DEAL = "products";
     public static final String GET_ALL_QUESTIONS = "questions";
+    public static final String CREATE_NEW_QUESTION = "questions";
 
 }
