@@ -16,6 +16,7 @@ public class ErrorMessageHelper {
     public static final String LOGOUT_CONFIRMATION = "Are you sure you want to logout?";
     public static final String DISCARD_CONFIRMATION = "Are you sure you want to discard?";
     public static final String FILL_QUESTION_TITLE = "You need fill at least question title.";
+    public static final String FILL_ADS_FIELDS = "You must fill title, description, contact number and image.";
 
 
 

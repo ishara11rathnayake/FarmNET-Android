@@ -26,6 +26,14 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
+    <!--Edit Profile-->
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="nic">NIC</string>
+    <string name="dob">DOB</string>
+
     <!--Create Deals-->
     <string name="product_name">Product Name</string>
     <string name="unit_price">Unit Price</string>
@@ -34,14 +42,17 @@
     <string name="location">Location</string>
     <string name="post">Post</string>
 
-    <!--Profile-->
-    <string name="save">Save</string>
-
     <!--Create Question-->
     <string name="question_title">Question Title</string>
     <string name="question_body">Question Body</string>
     <string name="tags">Tags</string>
 
+    <!--create advertisement-->
+    <string name="ads_title">Advertisement Title</string>
+    <string name="price">Price</string>
+    <string name="contact_number">Contact Number</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->

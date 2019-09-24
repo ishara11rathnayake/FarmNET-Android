@@ -22,8 +22,10 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.FarmnetHomeView;
 import com.industrialmaster.farmnet.views.fragments.AdvertisementFragment;
+import com.industrialmaster.farmnet.views.fragments.ArticleFragment;
 import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.views.fragments.NotificationFragment;
 import com.industrialmaster.farmnet.views.fragments.QandAFragment;
 
 public class MainActivity extends BaseActivity implements FarmnetHomeView {
@@ -31,13 +33,15 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     DealsFragment dealsFragment;
     QandAFragment qandAFragment;
     AdvertisementFragment advertisementFragment;
+    NotificationFragment notificationFragment;
+    ArticleFragment articleFragment;
 
     AuthPresenter presenter = new AuthPresenterImpl(this, MainActivity.this );
 
     private DrawerLayout mDrawerlayout;
     private ImageView imgv_drawer_toggle;
     private TextView txt_header_topic;
-    private ImageView imgv_qanda_edit;
+    private ImageView img_btn_new_question;
 
     private ImageButton img_btn_create_new_deal;
 
@@ -53,7 +57,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         imgv_logout = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
-        imgv_qanda_edit =findViewById(R.id.qanda_edit);
+        img_btn_new_question =findViewById(R.id.img_btn_new_question);
 
         img_btn_create_new_deal = findViewById(R.id.img_btn_new_deal);
 
@@ -93,6 +97,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         dealsFragment = new DealsFragment();
         qandAFragment = new QandAFragment();
         advertisementFragment = new AdvertisementFragment();
+        notificationFragment = new NotificationFragment();
+        articleFragment = new ArticleFragment();
 
         drawer_navigation_view = findViewById(R.id.drawer_nav);
 
@@ -114,25 +120,31 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 if(id == R.id.deals){
                     setFragment(dealsFragment);
                     txt_header_topic.setText("Crop Deals");
-                    imgv_qanda_edit.setVisibility(View.GONE);
+                    img_btn_new_question.setVisibility(View.GONE);
                     img_btn_create_new_deal.setVisibility(View.VISIBLE);
                     return true;
                 } else if(id == R.id.notification){
+                    setFragment(notificationFragment);
                     txt_header_topic.setText("Notification");
                     img_btn_create_new_deal.setVisibility(View.GONE);
+                    img_btn_new_question.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.question){
                     setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
                     img_btn_create_new_deal.setVisibility(View.GONE);
+                    img_btn_new_question.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.articles){
+                    setFragment(articleFragment);
                     txt_header_topic.setText("Articles");
                     img_btn_create_new_deal.setVisibility(View.GONE);
+                    img_btn_new_question.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.advertisements){
                     setFragment(advertisementFragment);
                     txt_header_topic.setText("Ads");
+                    img_btn_new_question.setVisibility(View.VISIBLE);
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     return true;
                 }

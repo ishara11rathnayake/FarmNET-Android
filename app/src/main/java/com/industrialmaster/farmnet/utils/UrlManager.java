@@ -10,5 +10,7 @@ public class UrlManager {
     public static final String GET_ALL_QUESTIONS = "questions";
     public static final String CREATE_NEW_QUESTION = "questions";
     public static final String GET_ALL_ADVERTISEMENTS = "advertisements";
+    public static final String CREATE_NEW_ADVERTISEMENTS = "advertisements";
+    public static final String GET_USER_DETAILS = "user/{userId}";
 
 }

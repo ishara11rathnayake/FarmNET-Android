@@ -31,11 +31,11 @@
         android:layout_alignParentRight="true">
 
         <ImageView
-            android:id="@+id/qanda_edit"
+            android:id="@+id/img_btn_new_question"
             android:layout_width="0dp"
             android:layout_height="33dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_edit"
+            android:src="@drawable/ic_create_new"
             android:paddingTop="14dp"
             android:visibility="gone"/>
 

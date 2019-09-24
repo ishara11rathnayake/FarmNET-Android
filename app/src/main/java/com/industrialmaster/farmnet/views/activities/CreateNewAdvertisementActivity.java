@@ -10,8 +10,10 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,55 +21,80 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.industrialmaster.farmnet.R;
-import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
-import com.industrialmaster.farmnet.presenters.DealsPresenter;
-import com.industrialmaster.farmnet.presenters.DealsPresenterImpl;
+import com.industrialmaster.farmnet.models.request.CreateNewAdvertisementRequest;
+import com.industrialmaster.farmnet.presenters.AdvertisementPresenter;
+import com.industrialmaster.farmnet.presenters.AdvertisementsPresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
-import com.industrialmaster.farmnet.views.CreateNewDealView;
+import com.industrialmaster.farmnet.views.CreateNewAdsView;
 
-public class CreateNewDealActivity extends BaseActivity implements CreateNewDealView {
+public class CreateNewAdvertisementActivity extends BaseActivity implements CreateNewAdsView {
 
-    DealsPresenter presenter;
+    AdvertisementPresenter presenter;
 
-    ImageView imgv_product_pic;
+    ImageView imgv_ads_image;
     ImageButton btn_add_image_from_gallery, btn_add_image_from_camera, img_btn_close;
-    Button btn_create_new_deal;
+    Button btn_create_new_ads;
 
-    //fiels of UI
-    TextInputEditText et_product_name, et_unit_price,
-            et_amount, et_description, et_locaton;
+    TextInputEditText et_ads_title, et_ads_description, et_contact_number, et_price, et_tags;
 
-    Uri image_uri;
+    Uri image_uri, imageFilePath;
     boolean hasImage = false;
-    Uri imageFilePath;
 
     private static final int IMAGE_PIK_CODE = 1000;
     private static final int GALLERY_PERMISSION_CODE = 1001;
     private static final int CAMERA_PERMISSION_CODE = 1002;
     private static final int IMAGE_CAPTURE_CODE = 1003;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_deal);
+        setContentView(R.layout.activity_create_new_advertisement);
 
-        //initialize presenter
-        presenter = new DealsPresenterImpl(this, CreateNewDealActivity.this);
+        presenter = new AdvertisementsPresenterImpl(this, CreateNewAdvertisementActivity.this);
 
-        //Views
-        imgv_product_pic = findViewById(R.id.imgv_product_pic);
+        imgv_ads_image = findViewById(R.id.imgv_ads_pic);
+        img_btn_close = findViewById(R.id.img_btn_close);
         btn_add_image_from_gallery = findViewById(R.id.add_image_from_gallery);
         btn_add_image_from_camera = findViewById(R.id.add_image_from_camera);
-        img_btn_close = findViewById(R.id.img_btn_close);
-        btn_create_new_deal = findViewById(R.id.btn_create_new_deal);
+        btn_create_new_ads = findViewById(R.id.btn_create_new_ads);
 
-        et_product_name = findViewById(R.id.et_product_name);
-        et_unit_price = findViewById(R.id.et_unit_price);
-        et_amount = findViewById(R.id.et_amount);
-        et_description = findViewById(R.id.et_desc);
-        et_locaton = findViewById(R.id.et_location);
+        et_ads_title = findViewById(R.id.et_ads_title);
+        et_ads_description = findViewById(R.id.et_desc);
+        et_contact_number = findViewById(R.id.et_phone);
+        et_price = findViewById(R.id.et_price);
+        et_tags =findViewById(R.id.et_tags);
+
+        btn_create_new_ads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String realFilePath;
+
+                CreateNewAdvertisementRequest newAdsRequest = new CreateNewAdvertisementRequest();
+
+                newAdsRequest.setAdTitle(et_ads_title.getText().toString());
+                newAdsRequest.setAdDescription(et_ads_description.getText().toString());
+                newAdsRequest.setContactNumber(et_contact_number.getText().toString());
+
+                if(!TextUtils.isEmpty(et_contact_number.getText().toString())) {
+                    newAdsRequest.setPrice(Double.parseDouble(et_contact_number.getText().toString()));
+                }
+
+                if(hasImage == true) {
+                    realFilePath = convertMediaUriToPath(imageFilePath);
+                    newAdsRequest.setAdsImage(realFilePath);
+                }
+
+                String tagString = et_tags.getText().toString();
+                String[] tags = tagString.split(" ");
+                newAdsRequest.setTags(tags);
+
+                newAdsRequest.setHasImage(hasImage);
+
+                setLoading(true);
+                presenter.createNewAdvertisement(newAdsRequest);
+            }
+        });
 
         //close create new deal activity
         img_btn_close.setOnClickListener(new View.OnClickListener() {
@@ -75,35 +102,8 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
             public void onClick(View v) {
                 String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
                 showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
                     finish();
                 },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
-        });
-
-        //save new deal
-        btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String realFilePath;
-
-                CreateNewDealRequest createNewDealRequest = new CreateNewDealRequest();
-
-                if(hasImage == true) {
-                    realFilePath = convertMediaUriToPath(imageFilePath);
-                    createNewDealRequest.setProductImage(realFilePath);
-                }
-
-                createNewDealRequest.setProductName(et_product_name.getText().toString());
-                createNewDealRequest.setUnitPrice(et_unit_price.getText().toString());
-                createNewDealRequest.setAmount(et_amount.getText().toString());
-                createNewDealRequest.setDescription(et_description.getText().toString());
-                createNewDealRequest.setLocation(et_locaton.getText().toString());
-                createNewDealRequest.setHasImage(hasImage);
-
-                presenter.createNewDeal(createNewDealRequest);
-
             }
         });
 
@@ -149,8 +149,8 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
             }
         });
 
-        //pick image from gallery clicking image view
-        imgv_product_pic.setOnClickListener(new View.OnClickListener() {
+        //pick image from gallery clecking image view
+        imgv_ads_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //check runtime permission
@@ -223,12 +223,12 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PIK_CODE){
             //set image to image view
-            imgv_product_pic.setImageURI(data.getData());
+            imgv_ads_image.setImageURI(data.getData());
             imageFilePath = data.getData();
             hasImage = true;
         } else if(resultCode == RESULT_OK && requestCode == IMAGE_CAPTURE_CODE){
             //set captured image to image view
-            imgv_product_pic.setImageURI(image_uri);
+            imgv_ads_image.setImageURI(image_uri);
             imageFilePath = image_uri;
             hasImage = true;
         }
@@ -236,12 +236,14 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
     @Override
     public void onSuccess(String message) {
+        setLoading(false);
         showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
                 "", (dialog, which) -> dialog.dismiss());
     }
 
     @Override
     public void onError(String message) {
+        setLoading(false);
         showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
                 "", (dialog, which) -> dialog.dismiss());
     }

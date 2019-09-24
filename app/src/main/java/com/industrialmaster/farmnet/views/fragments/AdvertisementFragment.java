@@ -1,6 +1,7 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Advertisement;
@@ -15,6 +17,7 @@ import com.industrialmaster.farmnet.presenters.AdvertisementPresenter;
 import com.industrialmaster.farmnet.presenters.AdvertisementsPresenterImpl;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.AdvertisementView;
+import com.industrialmaster.farmnet.views.activities.CreateNewAdvertisementActivity;
 import com.industrialmaster.farmnet.views.adapters.AdvertisementRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.QuestionRecyclerViewAdapter;
 
@@ -30,6 +33,8 @@ public class AdvertisementFragment extends BaseFragment implements Advertisement
 
     AdvertisementPresenter presenter;
 
+    EditText et_search_ads;
+
     public AdvertisementFragment() {
         // Required empty public constructor
     }
@@ -44,6 +49,14 @@ public class AdvertisementFragment extends BaseFragment implements Advertisement
         presenter = new AdvertisementsPresenterImpl(getActivity(), AdvertisementFragment.this);
         presenter.getAllAdvertisements();
         setLoading(true);
+
+        et_search_ads = rootView.findViewById(R.id.et_search_ads);
+        et_search_ads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CreateNewAdvertisementActivity.class));
+            }
+        });
 
         return rootView;
     }

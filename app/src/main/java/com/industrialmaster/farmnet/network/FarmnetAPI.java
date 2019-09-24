@@ -4,12 +4,14 @@ import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.AdvertisementsResponse;
+import com.industrialmaster.farmnet.models.response.CreateNewAdsResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewQuestionResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
+import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.utils.UrlManager;
 
 import java.util.List;
@@ -24,6 +26,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface FarmnetAPI {
 
@@ -58,5 +61,22 @@ public interface FarmnetAPI {
 
     @GET(UrlManager.GET_ALL_ADVERTISEMENTS)
     Observable<AdvertisementsResponse> getAllAdvertisements();
+
+    @Multipart
+    @POST(UrlManager.CREATE_NEW_ADVERTISEMENTS)
+    Observable<CreateNewAdsResponse> createNewAdvertisement(
+            @Header("Authorization") String authorization,
+            @Part("adTitle") RequestBody adTitle,
+            @Part("adDescription") RequestBody adDescription,
+            @Part("contactNumber") RequestBody contactNumber,
+            @Part("price") RequestBody price,
+            @Part List<MultipartBody.Part> tags,
+            @Part("userId") RequestBody userId,
+            @Part MultipartBody.Part adsImage
+    );
+
+    @GET(UrlManager.GET_USER_DETAILS)
+    Observable<UserDetailsResponse> getUserDetails(@Path("userId") String userId);
+
 
 }
