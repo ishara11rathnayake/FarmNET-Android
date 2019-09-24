@@ -76,7 +76,9 @@ public interface FarmnetAPI {
     );
 
     @GET(UrlManager.GET_USER_DETAILS)
-    Observable<UserDetailsResponse> getUserDetails(@Path("userId") String userId);
+    Observable<UserDetailsResponse> getUserDetails(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId);
 
 
 }

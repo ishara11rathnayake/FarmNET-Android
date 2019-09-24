@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/ubuntubold"
-        android:text="Ishara Rathnayake"
+        android:text="@string/sample_text"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:max="5"
+        android:isIndicator="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -98,7 +99,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="18dp"
         android:fontFamily="@font/ubunturegular"
-        android:text="ishara11rathnayake@gmail.com"
+        android:text="@string/sample_text"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/imgv_email"
         app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -111,7 +112,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="22dp"
         android:fontFamily="@font/ubunturegular"
-        android:text="+94779282474"
+        android:text="@string/sample_text"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/imgv_contac_number"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
@@ -159,7 +160,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="22dp"
         android:fontFamily="@font/ubunturegular"
-        android:text="Subuthipura, Baththaramulla"
+        android:text="@string/sample_text"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/imgv_address"
         app:layout_constraintTop_toBottomOf="@+id/tv_contact_number" />

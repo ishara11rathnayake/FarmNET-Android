@@ -32,10 +32,10 @@ import static android.support.constraint.Constraints.TAG;
 
 public class AdvertisementsPresenterImpl extends BasePresenter implements AdvertisementPresenter {
 
-    AdvertisementView advertisementView;
-    CreateNewAdsView createNewAdsView;
+    private AdvertisementView advertisementView;
+    private CreateNewAdsView createNewAdsView;
 
-    String errorMessage;
+    private String errorMessage;
 
     public AdvertisementsPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
@@ -81,7 +81,7 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
         }
     }
 
-    public Observable<AdvertisementsResponse> getAllAdvertisementsObservable() {
+    private Observable<AdvertisementsResponse> getAllAdvertisementsObservable() {
         try {
             return getRetrofitClient().getAllAdvertisements()
                     .subscribeOn(Schedulers.io())
@@ -93,7 +93,7 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
         return null;
     }
 
-    public Observer<AdvertisementsResponse> getAllAdvertisementsSubscriber(){
+    private Observer<AdvertisementsResponse> getAllAdvertisementsSubscriber(){
         return new Observer<AdvertisementsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -122,9 +122,9 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
         };
     }
 
-    public Observable<CreateNewAdsResponse> createNewAdsObservable(String authorization, RequestBody adTitle, RequestBody adDescription,
-                                                                   RequestBody contactNumber, RequestBody price, List<MultipartBody.Part> tags,
-                                                                   RequestBody userId, MultipartBody.Part adsImage ){
+    private Observable<CreateNewAdsResponse> createNewAdsObservable(String authorization, RequestBody adTitle, RequestBody adDescription,
+                                                                    RequestBody contactNumber, RequestBody price, List<MultipartBody.Part> tags,
+                                                                    RequestBody userId, MultipartBody.Part adsImage){
         try {
             return getRetrofitClient().createNewAdvertisement(authorization, adTitle, adDescription, contactNumber, price, tags, userId, adsImage)
                     .subscribeOn(Schedulers.io())
@@ -136,7 +136,7 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
         return null;
     }
 
-    public Observer<CreateNewAdsResponse> createNewAdsSubscriber(){
+    private Observer<CreateNewAdsResponse> createNewAdsSubscriber(){
         return new Observer<CreateNewAdsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
