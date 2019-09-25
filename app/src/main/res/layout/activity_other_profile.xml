@@ -4,42 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.ProfileActivity">
+    android:id="@+id/cl_other_profile"
+    tools:context=".views.activities.OtherProfileActivity">
 
     <RelativeLayout
         android:id="@+id/linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
-            android:padding="7dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_close"
             android:background="@null"
-            />
-
-        <ImageButton
-            android:id="@+id/img_btn_edit"
-            android:layout_width="35dp"
             android:padding="7dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_edit"
-            android:background="@null"
-            android:textColor="@color/white"
-            android:gravity="right|center_vertical"
-            android:layout_alignParentRight="true"/>
+            android:src="@drawable/ic_close" />
 
     </RelativeLayout>
 
@@ -95,6 +82,52 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btn_rate_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:background="@null"
+                        android:drawableStart="@drawable/ic_star"
+                        android:drawableLeft="@drawable/ic_star"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/ubuntubold"
+                        android:text="Rate User"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_report_user"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_report_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@null"
+                        android:drawableStart="@drawable/ic_report"
+                        android:drawableLeft="@drawable/ic_report"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/ubuntubold"
+                        android:text="Report User"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/btn_rate_user"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
@@ -236,10 +269,50 @@
                         android:textSize="18sp"
                         tools:ignore="UnusedAttribute"/>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerview_abstract_deal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp">
+
+                            <ImageView
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/ic_launcher" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:fontFamily="@font/ubunturegular"
+                                android:text="@string/sample_text"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:fontFamily="@font/ubunturegular"
+                                android:text="View More>>"
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginVertical="5dp"
+                                android:background="#c0c0c0" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
 
                 </LinearLayout>
 
@@ -248,15 +321,5 @@
         </ScrollView>
 
     </LinearLayout>
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_other_profile"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:text="Button"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </android.support.constraint.ConstraintLayout>

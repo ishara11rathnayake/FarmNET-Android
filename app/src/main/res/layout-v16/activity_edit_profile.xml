@@ -26,7 +26,8 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
             android:background="@null"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            tools:ignore="ContentDescription" />
 
         <Button
             android:id="@+id/img_btn_edit"
@@ -35,12 +36,14 @@
             android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            android:fontFamily="@font/ubuntubold"
             android:background="@null"
             android:textColor="@color/white"
             android:gravity="end|center_vertical"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginEnd="10dp"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

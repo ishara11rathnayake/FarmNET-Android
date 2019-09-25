@@ -3,12 +3,14 @@ package com.industrialmaster.farmnet.presenters;
 import android.app.Activity;
 import android.util.Log;
 
+import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.ProfileView;
 import com.industrialmaster.farmnet.views.View;
 
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.Observable;
@@ -60,7 +62,8 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onNext(UserDetailsResponse userDetailsResponse) {
-                profileView.showUserDetails(userDetailsResponse.getUser());
+                List<Deals> deals = userDetailsResponse.getDeals();
+                profileView.showUserDetails(userDetailsResponse.getUser(), deals);
             }
 
             @Override

@@ -3,19 +3,26 @@ package com.industrialmaster.farmnet.views.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.presenters.ProfilePresenter;
 import com.industrialmaster.farmnet.presenters.ProfilePresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.ProfileView;
+import com.industrialmaster.farmnet.views.adapters.DealsGridViewRecyclerViewAdapter;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -23,11 +30,12 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     ProfilePresenter presenter;
 
-    CardView cv_all_product;
     TextView tv_address, tv_contact_number, tv_name, tv_email;
     RatingBar rating_bar_profile;
     ImageButton img_btn_edit, img_btn_close;
     CircleImageView cimageview_profilepic;
+
+    Button btn_other_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +54,6 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         img_btn_edit = findViewById(R.id.img_btn_edit);
         img_btn_close = findViewById(R.id.img_btn_close);
 
-        cv_all_product = findViewById(R.id.card_view_all_products);
-
         setLoading(true);
         presenter.getUserDetails();
 
@@ -63,10 +69,18 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
             }
         });
+
+//        btn_other_profile = findViewById(R.id.btn_other_profile);
+//        btn_other_profile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ProfileActivity.this, OtherProfileActivity.class));
+//            }
+//        });
     }
 
     @Override
-    public void showUserDetails(User user) {
+    public void showUserDetails(User user, List<Deals> deals) {
         setLoading(false);
         tv_name.setText(user.getName());
         rating_bar_profile.setRating((float) user.getRating());
@@ -79,6 +93,11 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 .load(user.getProfilePicUrl())
                 .centerInside()
                 .into(cimageview_profilepic);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
+        DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
