@@ -1,6 +1,7 @@
 package com.industrialmaster.farmnet.views.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<DealsGridViewRecyclerViewAdapter.ViewHolder>{
@@ -44,6 +48,17 @@ public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<Deals
                 .load(mDeals.get(i).getProductImageUrl())
                 .centerCrop()
                 .into(viewHolder.imageview_product_image);
+
+        viewHolder.tv_more_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DisplayProductActivity.class);
+                Gson gson = new Gson();
+                String deal = gson.toJson(mDeals.get(i));
+                intent.putExtra("deal", deal);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

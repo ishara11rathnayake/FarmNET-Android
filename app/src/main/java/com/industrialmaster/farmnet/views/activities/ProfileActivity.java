@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -87,12 +88,13 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
         tv_address.setText(user.getAddress());
-
-        Glide.with(this)
-                .asBitmap()
-                .load(user.getProfilePicUrl())
-                .centerInside()
-                .into(cimageview_profilepic);
+        if(!TextUtils.isEmpty(user.getProfilePicUrl())){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(user.getProfilePicUrl())
+                    .centerInside()
+                    .into(cimageview_profilepic);
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
         DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);

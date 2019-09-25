@@ -41,6 +41,8 @@
     <string name="description">Description</string>
     <string name="location">Location</string>
     <string name="post">Post</string>
+    <string name="owner">Owner</string>
+    <string name="published_date">Published Date</string>
 
     <!--Create Question-->
     <string name="question_title">Question Title</string>
