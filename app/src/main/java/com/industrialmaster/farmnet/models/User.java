@@ -50,4 +50,6 @@ public class User {
         this.email = email;
     }
 
+    public  User(){}
+
 }

@@ -4,6 +4,7 @@ import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.AdvertisementsResponse;
+import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewAdsResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewQuestionResponse;
@@ -24,6 +25,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -80,5 +82,17 @@ public interface FarmnetAPI {
             @Header("Authorization") String authorization,
             @Path("userId") String userId);
 
+    @Multipart
+    @PATCH(UrlManager.UPDATE_USER_DETAILS)
+    Observable<CommonMessageResponse> updateUserDetails(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId,
+            @Part MultipartBody.Part profileImage,
+            @Part("address") RequestBody address,
+            @Part("contactNumber") RequestBody contactNumber,
+            @Part("nic") RequestBody nic,
+            @Part("dob") RequestBody dob,
+            @Part("name") RequestBody name
+    );
 
 }

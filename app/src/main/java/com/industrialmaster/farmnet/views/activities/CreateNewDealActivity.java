@@ -38,9 +38,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
     TextInputEditText et_product_name, et_unit_price,
             et_amount, et_description, et_locaton;
 
-    Uri image_uri;
     boolean hasImage = false;
-    Uri imageFilePath;
 
     private static final int IMAGE_PIK_CODE = 1000;
     private static final int GALLERY_PERMISSION_CODE = 1001;

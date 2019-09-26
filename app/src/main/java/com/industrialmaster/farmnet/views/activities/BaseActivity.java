@@ -23,7 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Presenter presenter;
 
     Uri image_uri, imageFilePath;
-    boolean hasImage = false;
 
     protected static final int IMAGE_PIK_CODE = 1000;
     protected static final int GALLERY_PERMISSION_CODE = 1001;
