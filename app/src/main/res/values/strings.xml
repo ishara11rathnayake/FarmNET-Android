@@ -33,6 +33,9 @@
     <string name="save">Save</string>
     <string name="nic">NIC</string>
     <string name="dob">DOB</string>
+    <string name="report_now">Report Now</string>
+    <string name="type_complaint">Write your complaint here...</string>
+    <string name="rate_now">Rate Now</string>
 
     <!--Create Deals-->
     <string name="product_name">Product Name</string>

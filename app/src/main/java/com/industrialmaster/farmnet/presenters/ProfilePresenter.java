@@ -17,4 +17,6 @@ public interface ProfilePresenter extends Presenter {
     void getRatedUserRating(String userId);
 
     void rateUser(String userId, float rating);
+
+    void reportUser(String userId, String content);
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
+import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.models.response.UserRatingResponse;
@@ -109,6 +110,20 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
         String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
         String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         rateUserObservable(accessToken, userId, ratedUserId, rating).subscribe(rateUserSubscriber());
+    }
+
+    @Override
+    public void reportUser(String userId, String content) {
+        String reportedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+
+        ComplaintRequest complaintRequest = new ComplaintRequest();
+        complaintRequest.setComplainedUserId(reportedUserId);
+        complaintRequest.setUserId(userId);
+        complaintRequest.setContent(content);
+
+        reportUserObservable(accessToken, complaintRequest).subscribe(reportUserSubscriber());
+
     }
 
     @Override
@@ -306,6 +321,47 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
     }
 
     private Observer<CommonMessageResponse> rateUserSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                profileView.showMessage(commonMessageResponse.getMessage());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                try {
+                    profileView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> reportUserObservable(String accessToken, ComplaintRequest complaintRequest) {
+        try {
+            return getRetrofitClient().reportUser(accessToken, complaintRequest)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> reportUserSubscriber(){
         return new Observer<CommonMessageResponse>() {
             @Override
             public void onSubscribe(Disposable d) {

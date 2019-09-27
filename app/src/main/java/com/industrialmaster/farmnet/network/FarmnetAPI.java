@@ -1,5 +1,6 @@
 package com.industrialmaster.farmnet.network;
 
+import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
@@ -116,4 +117,12 @@ public interface FarmnetAPI {
             @Path("ratedUserId") String ratedUserId,
             @Path("ratingScore") float ratingScore
     );
+
+    @POST(UrlManager.REPORT_USER)
+    Observable<CommonMessageResponse> reportUser(
+            @Header("Authorization") String authorization,
+            @Body ComplaintRequest complaintRequest);
+
+
+
 }

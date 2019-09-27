@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
@@ -46,10 +47,11 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
     private Context mContext;
     private Activity mActivity;
 
-    private ConstraintLayout mRateUserConstraintLayout;
-    private Button mRateUserButton;
+    private ConstraintLayout mRateUserConstraintLayout, mReportConstraintLayout;
+    private Button mRateUserButton, mReportButton;
 
     private PopupWindow mRateUserPopupWindow;
+    private PopupWindow mReportUserPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,60 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
         // Get the widgets reference from XML layout
         mRateUserConstraintLayout = findViewById(R.id.cl_other_profile);
         mRateUserButton = findViewById(R.id.btn_rate_user);
+        mReportButton = findViewById(R.id.btn_report_user);
+
+        // Set a click listener for the mReportButton
+        mReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                // Inflate the custom layout/view
+                @SuppressLint("InflateParams") View customView = inflater.inflate(R.layout.layout_report_user_popup, null);
+
+                // Initialize a new instance of popup window
+                mReportUserPopupWindow = new PopupWindow(customView, ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+                if(Build.VERSION.SDK_INT>=21){
+                    mReportUserPopupWindow.setElevation(5.0f);
+                }
+
+                // Get a reference for the custom view close button
+                ImageButton btn_close = customView.findViewById(R.id.btn_close);
+
+                // Set a click listener for the popup window close button
+                btn_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Dismiss the popup window
+                        mReportUserPopupWindow.dismiss();
+                    }
+                });
+
+                // Finally, show the popup window at the center location of root relative layout
+                mReportUserPopupWindow.showAtLocation(mRateUserConstraintLayout, Gravity.CENTER,0,0);
+                mReportUserPopupWindow.setFocusable(true);
+                mReportUserPopupWindow.update();
+
+                EditText et_report_user = customView.findViewById(R.id.et_report_user);
+
+                // Get a reference for the custom view rate button
+                Button btn_report_user = customView.findViewById(R.id.btn_report_user_popup);
+
+                // Set a click listener for the popup window rate button
+                btn_report_user.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLoading(true);
+                        String content = et_report_user.getText().toString();
+                        String userId = tv_user_id.getText().toString();
+                        presenter.reportUser(userId, content);
+                        mReportUserPopupWindow.dismiss();
+                    }
+                });
+            }
+        });
 
         // Set a click listener for the mRateUserButton
         mRateUserButton.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +235,7 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                 float rating = rating_bar_profile.getRating();
                 String userId = tv_user_id.getText().toString();
                 presenter.rateUser(userId, rating);
+                mRateUserPopupWindow.dismiss();
             }
         });
 
