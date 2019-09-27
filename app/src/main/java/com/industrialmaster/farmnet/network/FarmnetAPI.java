@@ -102,4 +102,18 @@ public interface FarmnetAPI {
             @Path("userId") String userId
     );
 
+    @GET(UrlManager.GET_RATED_USER_RATING)
+    Observable<UserRatingResponse> getRatedUserRating(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId,
+            @Path("ratedUserId") String ratedUserId
+    );
+
+    @POST(UrlManager.RATE_USER)
+    Observable<CommonMessageResponse> rateUser(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId,
+            @Path("ratedUserId") String ratedUserId,
+            @Path("ratingScore") float ratingScore
+    );
 }

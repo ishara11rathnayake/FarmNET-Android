@@ -38,7 +38,7 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
 
     ProfilePresenter presenter;
 
-    TextView tv_address, tv_contact_number, tv_name, tv_email;
+    TextView tv_address, tv_contact_number, tv_name, tv_email, tv_user_id;
     RatingBar rating_bar_profile;
     ImageButton img_btn_close;
     CircleImageView cimageview_profilepic;
@@ -64,12 +64,14 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
         tv_email = findViewById(R.id.tv_email);
         tv_address = findViewById(R.id.tv_address);
         tv_contact_number = findViewById(R.id.tv_contact_number);
+        tv_user_id = findViewById(R.id.tv_user_id);
 
         img_btn_close = findViewById(R.id.img_btn_close);
 
         setLoading(true);
         String userId = getIntent().getStringExtra("userId");
         presenter.getOtherUserDetails(userId);
+        presenter.getOtherUserRating(userId);
 
         //close create new deal activity
         img_btn_close.setOnClickListener(new View.OnClickListener() {
@@ -93,34 +95,7 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
         mRateUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-                // Inflate the custom layout/view
-                @SuppressLint("InflateParams") View customView = inflater.inflate(R.layout.layout_custom_popup, null);
-
-                // Initialize a new instance of popup window
-                mRateUserPopupWindow = new PopupWindow(customView, ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-                if(Build.VERSION.SDK_INT>=21){
-                    mRateUserPopupWindow.setElevation(5.0f);
-                }
-
-                // Get a reference for the custom view close button
-                ImageButton btn_close = customView.findViewById(R.id.btn_close);
-
-                // Set a click listener for the popup window close button
-                btn_close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Dismiss the popup window
-                        mRateUserPopupWindow.dismiss();
-                    }
-                });
-
-                // Finally, show the popup window at the center location of root relative layout
-                mRateUserPopupWindow.showAtLocation(mRateUserConstraintLayout, Gravity.CENTER,0,0);
-
+                presenter.getRatedUserRating(userId);
             }
         });
     }
@@ -129,10 +104,10 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
     public void showUserDetails(User user, List<Deals> deals) {
         setLoading(false);
         tv_name.setText(user.getName());
-//        rating_bar_profile.setRating((float) user.getRating());
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
         tv_address.setText(user.getAddress());
+        tv_user_id.setText(user.getUserId());
         if(!TextUtils.isEmpty(user.getProfilePicUrl())){
             Glide.with(this)
                     .asBitmap()
@@ -155,12 +130,65 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
 
     @Override
     public void showUserrating(float rating) {
+        setLoading(false);
         rating_bar_profile.setRating(rating);
     }
 
     @Override
-    public void showMessage(String message) {
+    public void showRatingInRatePopup(float rating) {
 
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        // Inflate the custom layout/view
+        @SuppressLint("InflateParams") View customView = inflater.inflate(R.layout.layout_custom_popup, null);
+
+        // Initialize a new instance of popup window
+        mRateUserPopupWindow = new PopupWindow(customView, ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+        if(Build.VERSION.SDK_INT>=21){
+            mRateUserPopupWindow.setElevation(5.0f);
+        }
+
+        // Get a reference for the custom view close button
+        ImageButton btn_close = customView.findViewById(R.id.btn_close);
+
+        // Set a click listener for the popup window close button
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Dismiss the popup window
+                mRateUserPopupWindow.dismiss();
+            }
+        });
+
+        // Finally, show the popup window at the center location of root relative layout
+        mRateUserPopupWindow.showAtLocation(mRateUserConstraintLayout, Gravity.CENTER,0,0);
+
+        RatingBar rating_bar_profile = customView.findViewById(R.id.rating_bar_profile);
+        rating_bar_profile.setRating(rating);
+
+        // Get a reference for the custom view rate button
+        Button btn_rate_user = customView.findViewById(R.id.btn_rate_user);
+
+        // Set a click listener for the popup window rate button
+        btn_rate_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoading(true);
+                float rating = rating_bar_profile.getRating();
+                String userId = tv_user_id.getText().toString();
+                presenter.rateUser(userId, rating);
+            }
+        });
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+        setLoading(false);
+        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> {dialog.dismiss();});
     }
 
     @Override

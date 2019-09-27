@@ -36,8 +36,6 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     ImageButton img_btn_edit, img_btn_close;
     CircleImageView cimageview_profilepic;
 
-    Button btn_other_profile;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,21 +69,12 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
             }
         });
-
-//        btn_other_profile = findViewById(R.id.btn_other_profile);
-//        btn_other_profile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(ProfileActivity.this, OtherProfileActivity.class));
-//            }
-//        });
     }
 
     @Override
     public void showUserDetails(User user, List<Deals> deals) {
         setLoading(false);
         tv_name.setText(user.getName());
-//        rating_bar_profile.setRating((float) user.getRating());
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
         tv_address.setText(user.getAddress());
@@ -112,6 +101,11 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     @Override
     public void showUserrating(float rating) {
         rating_bar_profile.setRating(rating);
+    }
+
+    @Override
+    public void showRatingInRatePopup(float rating) {
+
     }
 
     @Override

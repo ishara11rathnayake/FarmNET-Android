@@ -12,4 +12,6 @@ public interface ProfileView extends View {
     void onError(String message);
 
     void showUserrating(float rating);
+
+    void showRatingInRatePopup(float rating);
 }

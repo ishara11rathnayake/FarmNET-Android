@@ -8,7 +8,13 @@ public interface ProfilePresenter extends Presenter {
 
     void updateUserDetails(User user);
 
+    void getOtherUserDetails(String userId);
+
     void getUserRating();
 
-    void getOtherUserDetails(String userId);
+    void getOtherUserRating(String userId);
+
+    void getRatedUserRating(String userId);
+
+    void rateUser(String userId, float rating);
 }

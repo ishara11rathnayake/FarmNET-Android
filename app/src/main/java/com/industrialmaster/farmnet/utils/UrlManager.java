@@ -14,5 +14,7 @@ public class UrlManager {
     public static final String GET_USER_DETAILS = "user/{userId}";
     public static final String UPDATE_USER_DETAILS = "user/{userId}";
     public static final String GET_USER_RATING = "ratings/{userId}";
+    public static final String GET_RATED_USER_RATING = "ratings/userrating/{userId}&{ratedUserId}";
+    public static final String RATE_USER = "ratings/{userId}&{ratedUserId}&{ratingScore}";
 
 }

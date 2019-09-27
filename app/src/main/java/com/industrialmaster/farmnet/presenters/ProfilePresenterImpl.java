@@ -92,6 +92,26 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
     }
 
     @Override
+    public void getOtherUserRating(String userId) {
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+        getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
+    }
+
+    @Override
+    public void getRatedUserRating(String userId) {
+        String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+        getRatedUserRatingObservable(accessToken, userId, ratedUserId).subscribe(getRatedUserRatingSubscriber());
+    }
+
+    @Override
+    public void rateUser(String userId, float rating) {
+        String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+        rateUserObservable(accessToken, userId, ratedUserId, rating).subscribe(rateUserSubscriber());
+    }
+
+    @Override
     public void getOtherUserDetails(String userId) {
         String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         Objects.requireNonNull(getUserDetailsObservable(accessToken, userId)).subscribe(getUserDetailsSubscriber());
@@ -213,6 +233,88 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
             @Override
             public void onNext(UserRatingResponse userRatingResponse) {
                 profileView.showUserrating(userRatingResponse.getRatingScore());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                try {
+                    profileView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<UserRatingResponse> getRatedUserRatingObservable(String accessToken, String userId, String ratedUserId) {
+        try {
+            return getRetrofitClient().getRatedUserRating(accessToken, userId, ratedUserId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<UserRatingResponse> getRatedUserRatingSubscriber(){
+        return new Observer<UserRatingResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(UserRatingResponse userRatingResponse) {
+                profileView.showRatingInRatePopup(userRatingResponse.getRatingScore());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                try {
+                    profileView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> rateUserObservable(String accessToken, String userId, String ratedUserId, float rating) {
+        try {
+            return getRetrofitClient().rateUser(accessToken, userId, ratedUserId, rating)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> rateUserSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                profileView.showMessage(commonMessageResponse.getMessage());
             }
 
             @Override
