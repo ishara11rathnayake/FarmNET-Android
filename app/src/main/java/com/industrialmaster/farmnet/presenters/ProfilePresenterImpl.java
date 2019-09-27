@@ -8,6 +8,7 @@ import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
+import com.industrialmaster.farmnet.models.response.UserRatingResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.ProfileView;
@@ -26,7 +27,6 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.Multipart;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -81,6 +81,20 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
         updateUserDetailsObservable(accessToken, userId,profileImagePart, addressPart,
                 phonePart, nicPart, dobPart, namePart).subscribe(updateUserDetailsSubscriber());
+
+    }
+
+    @Override
+    public void getUserRating() {
+        String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+        getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
+    }
+
+    @Override
+    public void getOtherUserDetails(String userId) {
+        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+        Objects.requireNonNull(getUserDetailsObservable(accessToken, userId)).subscribe(getUserDetailsSubscriber());
 
     }
 
@@ -165,6 +179,47 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
                 e.printStackTrace();
                 try {
                     updateUserView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<UserRatingResponse> getUserRatingObservable(String accessToken, String userId) {
+        try {
+            return getRetrofitClient().getUserRating(accessToken, userId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<UserRatingResponse> getUserRatingSubscriber(){
+        return new Observer<UserRatingResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(UserRatingResponse userRatingResponse) {
+                profileView.showUserrating(userRatingResponse.getRatingScore());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                try {
+                    profileView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -13,6 +13,7 @@ import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
+import com.industrialmaster.farmnet.models.response.UserRatingResponse;
 import com.industrialmaster.farmnet.utils.UrlManager;
 
 import java.util.List;
@@ -93,6 +94,12 @@ public interface FarmnetAPI {
             @Part("nic") RequestBody nic,
             @Part("dob") RequestBody dob,
             @Part("name") RequestBody name
+    );
+
+    @GET(UrlManager.GET_USER_RATING)
+    Observable<UserRatingResponse> getUserRating(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId
     );
 
 }

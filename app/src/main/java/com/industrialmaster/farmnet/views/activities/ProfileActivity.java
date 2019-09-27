@@ -57,6 +57,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
         setLoading(true);
         presenter.getUserDetails();
+        presenter.getUserRating();
 
         img_btn_edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
 
@@ -84,7 +85,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     public void showUserDetails(User user, List<Deals> deals) {
         setLoading(false);
         tv_name.setText(user.getName());
-        rating_bar_profile.setRating((float) user.getRating());
+//        rating_bar_profile.setRating((float) user.getRating());
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
         tv_address.setText(user.getAddress());
@@ -106,6 +107,11 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     public void onError(String message) {
         showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
                 "", (dialog, which) -> dialog.dismiss());
+    }
+
+    @Override
+    public void showUserrating(float rating) {
+        rating_bar_profile.setRating(rating);
     }
 
     @Override

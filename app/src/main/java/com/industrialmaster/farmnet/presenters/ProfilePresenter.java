@@ -7,4 +7,8 @@ public interface ProfilePresenter extends Presenter {
     void getUserDetails();
 
     void updateUserDetails(User user);
+
+    void getUserRating();
+
+    void getOtherUserDetails(String userId);
 }

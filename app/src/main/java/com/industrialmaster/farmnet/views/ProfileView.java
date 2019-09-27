@@ -10,4 +10,6 @@ public interface ProfileView extends View {
     void showUserDetails(User user, List<Deals> deals);
 
     void onError(String message);
+
+    void showUserrating(float rating);
 }

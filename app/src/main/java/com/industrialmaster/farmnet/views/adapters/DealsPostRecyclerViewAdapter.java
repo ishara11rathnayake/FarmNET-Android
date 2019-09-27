@@ -1,6 +1,7 @@
 package com.industrialmaster.farmnet.views.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -72,12 +74,12 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         viewHolder.tv_amount.setText(Double.toString(mDeals.get(i).getAmount())+"Kg");
         viewHolder.tv_date.setText(formattedDate);
 
-        viewHolder.post_card_view.setOnClickListener(new View.OnClickListener() {
+        viewHolder.tv_user_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mDeals.get(i).getDealId());
-
-                Toast.makeText(mContext, mDeals.get(i).getDealId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, OtherProfileActivity.class);
+                intent.putExtra("userId", mDeals.get(i).getUser().getUserId());
+                mContext.startActivity(intent);
             }
         });
     }

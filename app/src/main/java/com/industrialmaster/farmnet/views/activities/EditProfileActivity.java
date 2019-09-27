@@ -182,11 +182,12 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
         et_address.setText(user.getAddress());
         et_phone.setText(user.getContactNumber());
         et_nic.setText(user.getNic());
-
-        Date date = user.getDob();
-        DateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = targetDateFormat.format(date);
-        et_dob.setText(formattedDate);
+        if(user.getDob() != null){
+            Date date = user.getDob();
+            DateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate = targetDateFormat.format(date);
+            et_dob.setText(formattedDate);
+        }
     }
 
     @Override

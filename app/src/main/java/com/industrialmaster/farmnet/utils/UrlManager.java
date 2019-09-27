@@ -13,5 +13,6 @@ public class UrlManager {
     public static final String CREATE_NEW_ADVERTISEMENTS = "advertisements";
     public static final String GET_USER_DETAILS = "user/{userId}";
     public static final String UPDATE_USER_DETAILS = "user/{userId}";
+    public static final String GET_USER_RATING = "ratings/{userId}";
 
 }
