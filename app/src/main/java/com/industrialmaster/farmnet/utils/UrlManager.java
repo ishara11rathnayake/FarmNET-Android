@@ -17,5 +17,6 @@ public class UrlManager {
     public static final String GET_RATED_USER_RATING = "ratings/userrating/{userId}&{ratedUserId}";
     public static final String RATE_USER = "ratings/{userId}&{ratedUserId}&{ratingScore}";
     public static final String REPORT_USER = "complaints";
+    public static final String GET_ARTICLE_THUMBNAIL = "articles/thumbnails";
 
 }

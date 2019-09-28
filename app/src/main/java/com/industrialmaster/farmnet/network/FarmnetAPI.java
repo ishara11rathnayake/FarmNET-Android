@@ -13,6 +13,7 @@ import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
+import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.models.response.UserRatingResponse;
 import com.industrialmaster.farmnet.utils.UrlManager;
@@ -122,6 +123,13 @@ public interface FarmnetAPI {
     Observable<CommonMessageResponse> reportUser(
             @Header("Authorization") String authorization,
             @Body ComplaintRequest complaintRequest);
+
+    @Multipart
+    @POST(UrlManager.GET_ARTICLE_THUMBNAIL)
+    Observable<ThumnailUrlResponse> getThumnailUrl(
+            @Header("Authorization") String authorization,
+            @Part MultipartBody.Part thumbnail
+    );
 
 
 

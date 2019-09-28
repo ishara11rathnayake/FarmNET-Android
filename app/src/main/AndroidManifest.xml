@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.DisplayProductActivity"></activity>
+        <activity android:name=".views.activities.ArticleReaderActivity"></activity>
+        <activity android:name=".views.activities.CreateNewArticleActivity" />
+        <activity android:name=".views.activities.DisplayProductActivity" />
         <activity android:name=".views.activities.OtherProfileActivity" />
         <activity android:name=".views.activities.EditProfileActivity" />
         <activity android:name=".views.activities.CreateNewAdvertisementActivity" />
@@ -30,10 +32,10 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

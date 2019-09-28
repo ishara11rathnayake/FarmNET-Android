@@ -39,15 +39,13 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     AuthPresenter presenter = new AuthPresenterImpl(this, MainActivity.this );
 
     private DrawerLayout mDrawerlayout;
-    private ImageView imgv_drawer_toggle;
+    private ImageView imgv_drawer_toggle, img_btn_new_question, imgv_logout;
     private TextView txt_header_topic;
-    private ImageView img_btn_new_question;
 
-    private ImageButton img_btn_create_new_deal;
+    private ImageButton img_btn_create_new_deal, img_btn_new_article;
 
     BottomNavigationView bottom_navigation_view;
     NavigationView drawer_navigation_view;
-    ImageView imgv_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +58,20 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         img_btn_new_question =findViewById(R.id.img_btn_new_question);
 
         img_btn_create_new_deal = findViewById(R.id.img_btn_new_deal);
+        img_btn_new_article = findViewById(R.id.img_btn_new_article);
 
         //click on create new deal button
         img_btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CreateNewDealActivity.class));
+            }
+        });
+
+        img_btn_new_article.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CreateNewArticleActivity.class));
             }
         });
 
@@ -122,30 +128,35 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     txt_header_topic.setText("Crop Deals");
                     img_btn_new_question.setVisibility(View.GONE);
                     img_btn_create_new_deal.setVisibility(View.VISIBLE);
+                    img_btn_new_article.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.notification){
                     setFragment(notificationFragment);
                     txt_header_topic.setText("Notification");
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
+                    img_btn_new_article.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.question){
                     setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
+                    img_btn_new_article.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.articles){
                     setFragment(articleFragment);
                     txt_header_topic.setText("Articles");
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
+                    img_btn_new_article.setVisibility(View.VISIBLE);
                     return true;
                 } else if(id == R.id.advertisements){
                     setFragment(advertisementFragment);
                     txt_header_topic.setText("Ads");
                     img_btn_new_question.setVisibility(View.VISIBLE);
                     img_btn_create_new_deal.setVisibility(View.GONE);
+                    img_btn_new_article.setVisibility(View.GONE);
                     return true;
                 }
                 return false;
