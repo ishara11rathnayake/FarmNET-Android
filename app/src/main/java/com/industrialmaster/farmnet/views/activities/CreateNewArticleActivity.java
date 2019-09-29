@@ -19,6 +19,7 @@ import com.github.irshulx.Editor;
 import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorTextStyle;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
 import com.industrialmaster.farmnet.network.FarmnetAPI;
 import com.industrialmaster.farmnet.network.RetrofitClient;
@@ -48,8 +49,9 @@ import top.defaults.colorpicker.ColorPickerPopup;
 public class CreateNewArticleActivity extends BaseActivity implements CreateArticleView {
 
     private static final String TAG = "MAIN_ACTIVITY";
-    Button btn_create_new_deal;
+    Button btn_create_new_article;
     Editor editor;
+    EditText et_article_title;
 
     ArticlePresenter presenter;
 
@@ -62,7 +64,8 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
         setContentView(R.layout.activity_create_new_article);
 
         editor = findViewById(R.id.editor);
-        btn_create_new_deal = findViewById(R.id.btn_create_new_deal);
+        btn_create_new_article = findViewById(R.id.btn_create_new_article);
+        et_article_title = findViewById(R.id.et_article_title);
 
         presenter = new ArticlePresenterImpl(this, this);
 
@@ -228,14 +231,22 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
 
         editor.render();
 
-        btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
+        btn_create_new_article.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = editor.getContentAsSerialized();
-                String text1 = editor.getContentAsHTML();
-                Intent intent = new Intent(CreateNewArticleActivity.this, ArticleReaderActivity.class);
-                intent.putExtra("article", text);
-                startActivity(intent);
+                String content = editor.getContentAsSerialized();
+                String articleTitle = et_article_title.getText().toString();
+
+                CreateNewArticleRequest createNewArticleRequest = new CreateNewArticleRequest();
+                createNewArticleRequest.setContent(content);
+                createNewArticleRequest.setArticleTitle(articleTitle);
+
+                presenter.createNewArticle(createNewArticleRequest);
+
+//                String text1 = editor.getContentAsHTML();
+//                Intent intent = new Intent(CreateNewArticleActivity.this, ArticleReaderActivity.class);
+//                intent.putExtra("article", text);
+//                startActivity(intent);
             }
         });
     }

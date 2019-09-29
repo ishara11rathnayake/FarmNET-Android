@@ -7,6 +7,7 @@ public class FarmnetConstants {
     public static final String LOGOUT = "LOGOUT";
     public static final String CANCEL = "CANCEL";
     public static final String USER_ID = "user_id";
+    public static final String THUMBNAIL_URL_PRES_KEY= "thumbnail_url";
 
 
     public class CheckUserLogin {

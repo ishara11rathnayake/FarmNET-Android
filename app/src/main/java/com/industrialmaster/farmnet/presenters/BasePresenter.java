@@ -64,7 +64,7 @@ public abstract class BasePresenter implements Presenter{
     protected void saveSharedPreferences(String prefsKey, String prefsValue){
         SharedPreferences.Editor editor = getSharedPreferences(FARMNET_PREFS_NAME).edit();
         editor.putString(prefsKey, prefsValue);
-        editor.commit();
+        editor.apply();
     }
 
     protected String readSharedPreferences(String prefsKey, String prefsDefaultValue){

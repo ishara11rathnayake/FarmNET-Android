@@ -1,10 +1,13 @@
 package com.industrialmaster.farmnet.network;
 
+import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
+import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.AdvertisementsResponse;
+import com.industrialmaster.farmnet.models.response.ArticleResponse;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewAdsResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
@@ -130,6 +133,14 @@ public interface FarmnetAPI {
             @Header("Authorization") String authorization,
             @Part MultipartBody.Part thumbnail
     );
+
+    @POST(UrlManager.CREATE_NEW_ARTICLE)
+    Observable<CommonMessageResponse> createNewArticle(
+            @Header("Authorization") String authorization,
+            @Body CreateNewArticleRequest createNewArticleRequest);
+
+    @GET(UrlManager.GET_ALL_ARTICLE)
+    Observable<ArticleResponse> getAllArticles();
 
 
 

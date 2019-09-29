@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btn_create_new_deal"
+            android:id="@+id/btn_create_new_article"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
