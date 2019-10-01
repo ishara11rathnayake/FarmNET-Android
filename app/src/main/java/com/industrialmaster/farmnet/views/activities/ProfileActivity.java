@@ -33,7 +33,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     TextView tv_address, tv_contact_number, tv_name, tv_email;
     RatingBar rating_bar_profile;
-    ImageButton img_btn_edit, img_btn_close;
+    ImageButton img_btn_edit, img_btn_close, img_btn_timeline_list;
     CircleImageView cimageview_profilepic;
 
     @Override
@@ -52,6 +52,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
         img_btn_edit = findViewById(R.id.img_btn_edit);
         img_btn_close = findViewById(R.id.img_btn_close);
+        img_btn_timeline_list = findViewById(R.id.img_btn_timeline_list);
 
         setLoading(true);
         presenter.getUserDetails();
@@ -63,10 +64,15 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         img_btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = ErrorMessageHelper.CANCEL_CONFIRMATION;
-                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    finish();
-                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+                finish();
+            }
+        });
+
+        //directed to timeline list activity
+        img_btn_timeline_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, ProductTimelineListActivity.class));
             }
         });
     }

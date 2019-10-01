@@ -3,6 +3,7 @@ package com.industrialmaster.farmnet.presenters;
 import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.industrialmaster.farmnet.models.Question;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
@@ -22,6 +23,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 import static android.support.constraint.Constraints.TAG;
 

@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
 
 import java.text.DateFormat;
@@ -81,6 +83,17 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, OtherProfileActivity.class);
                 intent.putExtra("userId", mDeals.get(i).getUser().getUserId());
+                mContext.startActivity(intent);
+            }
+        });
+
+        viewHolder.imgv_product_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DisplayProductActivity.class);
+                Gson gson = new Gson();
+                String deal = gson.toJson(mDeals.get(i));
+                intent.putExtra("deal", deal);
                 mContext.startActivity(intent);
             }
         });

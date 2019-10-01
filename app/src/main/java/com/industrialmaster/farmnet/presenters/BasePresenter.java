@@ -32,6 +32,9 @@ public abstract class BasePresenter implements Presenter{
 
     protected String handleApiError(Throwable e){
 
+        HttpException error=(HttpException)e;
+        String message = error.response().message();
+
         if(e instanceof HttpException){
             switch (((HttpException) e).code()) {
                 case RetrofitException.HTTP_UNAUTHORIZED:
@@ -47,7 +50,7 @@ public abstract class BasePresenter implements Presenter{
                     apiErrorMessage = ErrorMessageHelper.BAD_REQUEST;
                     break;
                 default:
-                    apiErrorMessage = ErrorMessageHelper.UNEXPECTED_ERROR;
+                    apiErrorMessage = message;
 
             }
         } else if(e instanceof IOException){

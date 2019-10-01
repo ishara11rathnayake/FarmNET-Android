@@ -17,6 +17,7 @@ import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
+import com.industrialmaster.farmnet.models.response.TimelineResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.models.response.UserRatingResponse;
 import com.industrialmaster.farmnet.utils.UrlManager;
@@ -142,6 +143,10 @@ public interface FarmnetAPI {
     @GET(UrlManager.GET_ALL_ARTICLE)
     Observable<ArticleResponse> getAllArticles();
 
-
+    @GET(UrlManager.GET_TIMELINES_BY_USER)
+    Observable<TimelineResponse> getTimelinesByUser(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId
+    );
 
 }

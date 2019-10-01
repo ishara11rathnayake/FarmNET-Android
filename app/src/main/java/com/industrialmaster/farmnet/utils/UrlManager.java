@@ -20,5 +20,6 @@ public class UrlManager {
     public static final String GET_ARTICLE_THUMBNAIL = "articles/thumbnails";
     public static final String CREATE_NEW_ARTICLE = "articles";
     public static final String GET_ALL_ARTICLE = "articles";
+    public static final String GET_TIMELINES_BY_USER = "timelines/{userId}";
 
 }
