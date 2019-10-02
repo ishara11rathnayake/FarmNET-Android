@@ -34,4 +34,7 @@ public class CreateNewDealRequest {
     @SerializedName("productImage")
     private String productImage;
 
+    @SerializedName("timelineId")
+    private String timelineId;
+
 }

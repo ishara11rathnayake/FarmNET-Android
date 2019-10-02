@@ -30,7 +30,7 @@
             android:tint="@color/color_black" />
 
         <ImageButton
-            android:id="@+id/img_btn_add_new_task"
+            android:id="@+id/img_btn_add_new_timeline"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class TimelineListRecyclerViewAdapter extends RecyclerView.Adapter<TimelineListRecyclerViewAdapter.ViewHolder>{
 
-    private static final String TAG = "AdvertisementRVAdapter";
+    private static final String TAG = "TimelineListRVAdapter";
 
     private Context mContext;
     private List<Timeline> mTimeline;

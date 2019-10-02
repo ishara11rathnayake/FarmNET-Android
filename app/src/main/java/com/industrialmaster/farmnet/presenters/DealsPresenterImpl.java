@@ -64,6 +64,11 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getUnitPrice());
             RequestBody amountPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getAmount());
 
+            RequestBody timelineIdPart = null;
+            if(!TextUtils.isEmpty(createNewDealRequest.getTimelineId())){
+                timelineIdPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getTimelineId());
+            }
+
             File file = new File(createNewDealRequest.getProductImage());
             RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
@@ -74,16 +79,16 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userID);
 
             createNewDealObservable(accessToken, productNamePart, descriptionPart, locationPart,
-                    unitPricePart, amountPart, productImagePart, userIdPart).subscribe(createNewDealSubscriber());
+                    unitPricePart, amountPart, productImagePart, userIdPart, timelineIdPart).subscribe(createNewDealSubscriber());
         }
     }
 
     public Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
                                                                      RequestBody location, RequestBody unitPrice, RequestBody amount,
-                                                                     MultipartBody.Part productImage, RequestBody userId) {
+                                                                     MultipartBody.Part productImage, RequestBody userId, RequestBody timelineId) {
         try {
             return getRetrofitClient().createNewPost(accessToken,
-                    productName, unitPrice, amount, descrption, userId, productImage, location)
+                    productName, unitPrice, amount, descrption, userId, productImage, location, timelineId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
 

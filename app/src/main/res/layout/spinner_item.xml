@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/text1"
     style="?attr/spinnerDropDownItemStyle"
     android:textColor="#909090"
     android:singleLine="true"
-    android:gravity="center"
+    android:textSize="18sp"
+    android:hint="@string/select_timeline"
     android:fontFamily="@font/ubunturegular"
-    android:hint="Select use type"
     android:layout_width="match_parent"
     android:layout_height="?attr/dropdownListPreferredItemHeight"
     android:background="@drawable/abc_spinner_mtrl_am_alpha"
-    android:backgroundTint="@color/texthighlight"
-    android:ellipsize="marquee" />
+    android:backgroundTint="#808080"
+    android:ellipsize="marquee"
+    tools:ignore="PrivateResource,RtlSymmetry" />

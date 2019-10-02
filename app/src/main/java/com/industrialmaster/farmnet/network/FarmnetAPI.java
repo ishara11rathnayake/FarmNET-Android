@@ -4,6 +4,7 @@ import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
+import com.industrialmaster.farmnet.models.request.CreateNewTimelineRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.AdvertisementsResponse;
@@ -58,7 +59,8 @@ public interface FarmnetAPI {
             @Part("description") RequestBody description,
             @Part("userId") RequestBody userId,
             @Part MultipartBody.Part productImage,
-            @Part("location") RequestBody location);
+            @Part("location") RequestBody location,
+            @Part("timelineId") RequestBody timelineId);
 
     @GET(UrlManager.GET_ALL_QUESTIONS)
     Observable<QuestionsResponse> getAllQuestions();
@@ -148,5 +150,18 @@ public interface FarmnetAPI {
             @Header("Authorization") String authorization,
             @Path("userId") String userId
     );
+
+    @POST(UrlManager.CREATE_NEW_TIMELINE)
+    Observable<CommonMessageResponse> createNewTimeline(
+            @Header("Authorization") String authorization,
+            @Body CreateNewTimelineRequest createNewTimelineRequest);
+
+    @Multipart
+    @PATCH(UrlManager.CREATE_NEW_TIMELINE_TASK)
+    Observable<CommonMessageResponse> createNewTimelineTask(
+            @Header("Authorization") String authorization,
+            @Path("timelineId") String timelineId,
+            @Part("content") RequestBody content,
+            @Part MultipartBody.Part timelineImage);
 
 }

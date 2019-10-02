@@ -21,5 +21,7 @@ public class UrlManager {
     public static final String CREATE_NEW_ARTICLE = "articles";
     public static final String GET_ALL_ARTICLE = "articles";
     public static final String GET_TIMELINES_BY_USER = "timelines/{userId}";
+    public static final String CREATE_NEW_TIMELINE = "timelines";
+    public static final String CREATE_NEW_TIMELINE_TASK = "timelines/tasks/{timelineId}";
 
 }

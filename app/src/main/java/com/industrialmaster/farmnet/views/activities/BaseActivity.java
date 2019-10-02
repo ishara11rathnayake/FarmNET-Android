@@ -36,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("Its loading.......");
                 progressDialog.setTitle("Please Wait....");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
             }
         } else {

@@ -2,7 +2,6 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     android:textColor="#909090"
-    android:textAlignment="center"
     android:fontFamily="@font/ubunturegular"
     android:background="@color/white"
     style="?attr/spinnerDropDownItemStyle"

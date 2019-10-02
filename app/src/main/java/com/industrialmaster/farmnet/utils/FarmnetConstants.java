@@ -15,4 +15,10 @@ public class FarmnetConstants {
         public static final String ALREADY_LOGGED_USER = "LOGIN_USER";
         public static final String LOGOUT_USER = "LOGOUT";
     }
+
+    public static final int ONLY_TEXT_ITEM_VIEW = 0;
+    public static final int IMAGE_ITEM_VIEW = 1;
+
+    public static  final String DEFAULT = "default";
+
 }
