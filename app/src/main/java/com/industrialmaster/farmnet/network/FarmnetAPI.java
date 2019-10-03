@@ -1,6 +1,5 @@
 package com.industrialmaster.farmnet.network;
 
-import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
@@ -18,6 +17,7 @@ import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
+import com.industrialmaster.farmnet.models.response.TimelineByIdResponse;
 import com.industrialmaster.farmnet.models.response.TimelineResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.models.response.UserRatingResponse;
@@ -31,7 +31,6 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -163,5 +162,11 @@ public interface FarmnetAPI {
             @Path("timelineId") String timelineId,
             @Part("content") RequestBody content,
             @Part MultipartBody.Part timelineImage);
+
+    @GET(UrlManager.GET_TIMELINE_BY_ID)
+    Observable<TimelineByIdResponse> getTimelineById(
+            @Header("Authorization") String authorization,
+            @Path("timelineId") String timelineId
+    );
 
 }

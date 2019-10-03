@@ -1,5 +1,6 @@
 package com.industrialmaster.farmnet.views.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -99,7 +100,7 @@ public class TimelineTaskRecyclerViewAdapter extends RecyclerView.Adapter<Timeli
                     .into(cimgv_profile_image);
 
             Date date = task.getDate();
-            DateFormat targetDateFormat = new SimpleDateFormat("MM/dd");
+            @SuppressLint("SimpleDateFormat") DateFormat targetDateFormat = new SimpleDateFormat("MM/dd");
             String formattedDate = targetDateFormat.format(date);
             tv_timiline_date.setText(formattedDate);
 

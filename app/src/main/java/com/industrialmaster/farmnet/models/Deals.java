@@ -39,4 +39,7 @@ public class Deals {
 
     @SerializedName("date")
     private Date date;
+
+    @SerializedName("timelineId")
+    private String timelineId;
 }

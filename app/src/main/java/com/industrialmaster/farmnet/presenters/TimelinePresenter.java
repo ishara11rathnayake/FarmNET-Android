@@ -10,4 +10,6 @@ public interface TimelinePresenter extends Presenter {
     void createNewTimeline(CreateNewTimelineRequest createNewTimelineRequest);
 
     void createNewTimelineTask(CreateNewTimelineTaskRequest createNewTimelineTaskRequest);
+
+    void getTimelineById(String timelineId);
 }

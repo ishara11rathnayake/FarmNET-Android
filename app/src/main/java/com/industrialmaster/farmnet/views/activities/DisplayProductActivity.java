@@ -1,7 +1,7 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,17 +12,24 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.models.Timeline;
+import com.industrialmaster.farmnet.presenters.TimelinePresenter;
+import com.industrialmaster.farmnet.presenters.TimelnePresenterImpl;
+import com.industrialmaster.farmnet.utils.FarmnetConstants;
+import com.industrialmaster.farmnet.views.DisplayProductView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DisplayProductActivity extends AppCompatActivity {
+public class DisplayProductActivity extends BaseActivity implements DisplayProductView {
+
+    TimelinePresenter timelinePresenter;
 
     ImageView image_view_product;
     TextView tv_product_name, tv_description, tv_unit_price, tv_amount, tv_location,
             tv_owner, tv_published_date;
-    ImageButton img_btn_close;
+    ImageButton img_btn_close, img_btn_view_timeline;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -30,10 +37,13 @@ public class DisplayProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_product);
 
+        timelinePresenter = new TimelnePresenterImpl(this, DisplayProductActivity.this);
+
         Gson gson = new Gson();
         Deals deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         img_btn_close = findViewById(R.id.img_btn_close);
+        img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);
 
         image_view_product = findViewById(R.id.imgv_product_image);
         tv_product_name = findViewById(R.id.tv_product_name);
@@ -69,5 +79,40 @@ public class DisplayProductActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        img_btn_view_timeline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLoading(true);
+                timelinePresenter.getTimelineById(deal.getTimelineId());
+            }
+        });
+    }
+
+    @Override
+    public void setTimelineData(Timeline timeline) {
+        setLoading(false);
+        Intent intent = new Intent(this, TimelineActivity.class);
+        Gson gson = new Gson();
+        String timelineText = gson.toJson(timeline);
+        intent.putExtra("timeline", timelineText);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onError(String message) {
+        setLoading(false);
+        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> dialog.dismiss());
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
+
     }
 }

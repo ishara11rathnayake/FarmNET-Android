@@ -186,7 +186,10 @@
                 android:fontFamily="@font/ubunturegular"
                 android:gravity="center_vertical"/>
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/img_btn_comment"
+                android:background="@null"
+                android:padding="5dp"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"

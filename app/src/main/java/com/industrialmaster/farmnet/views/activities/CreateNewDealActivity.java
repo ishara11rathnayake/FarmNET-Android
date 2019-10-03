@@ -84,16 +84,6 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
         timelinePresenter.getTimelinesByUser();
 
-//        mTimelines = new ArrayList<>();
-//        Timeline t1 = new Timeline();
-//        t1.setProductName("Tomato");
-//        t1.setTimelineId("1");
-//        Timeline t2 = new Timeline();
-//        t2.setProductName("Potato");
-//        t2.setTimelineId("2");
-//        mTimelines.add(t1);
-//        mTimelines.add(t2);
-
         mTimelineNames = new ArrayList<>();
         mTimelineNames.add("Select Timeline");
 
@@ -104,7 +94,6 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timelineId = mTimelineValues.get(position);
-                Toast.makeText(CreateNewDealActivity.this, timelineId, Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -8,10 +8,13 @@ import com.industrialmaster.farmnet.models.Timeline;
 import com.industrialmaster.farmnet.models.request.CreateNewTimelineRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewTimelineTaskRequest;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
+import com.industrialmaster.farmnet.models.response.TimelineByIdResponse;
 import com.industrialmaster.farmnet.models.response.TimelineResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
+import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateNewDealView;
+import com.industrialmaster.farmnet.views.DisplayProductView;
 import com.industrialmaster.farmnet.views.TimelineListView;
 import com.industrialmaster.farmnet.views.TimelineView;
 import com.industrialmaster.farmnet.views.View;
@@ -35,6 +38,7 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
     private TimelineListView timelineListView;
     private TimelineView timelineView;
     private CreateNewDealView createNewDealView;
+    private DisplayProductView displayProductView;
 
     private View view;
 
@@ -51,6 +55,8 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
         } else if (view instanceof CreateNewDealView){
             createNewDealView = (CreateNewDealView) view;
             this.view = view;
+        } else if (view instanceof DisplayProductView) {
+            displayProductView = (DisplayProductView) view;
         }
     }
 
@@ -78,6 +84,15 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
 
         createNewTimelineTaskObservable(accessToken, createNewTimelineTaskRequest.getTimelineId(),
                 contentPart, timelineImagePart).subscribe(createNewTimelineTaskSubscriber());
+    }
+
+    @Override
+    public void getTimelineById(String timelineId) {
+        if(TextUtils.isEmpty(timelineId)){
+            displayProductView.onError(ErrorMessageHelper.NO_TIMELINE_ATTACHED);
+        } else {
+            getTimelineByIdObservable(accessToken, timelineId).subscribe(getTimelineByIdSubscriber());
+        }
     }
 
     public Observable<TimelineResponse> getTimelinesByUserObservable(String accesToken, String userId) {
@@ -200,6 +215,46 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
             public void onError(Throwable e) {
                 try {
                     timelineView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    public Observable<TimelineByIdResponse> getTimelineByIdObservable(String accesToken, String timelineId) {
+        try {
+            return getRetrofitClient().getTimelineById(accesToken, timelineId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    public Observer<TimelineByIdResponse> getTimelineByIdSubscriber(){
+        return new Observer<TimelineByIdResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(TimelineByIdResponse timelineByIdResponse) {
+                displayProductView.setTimelineData(timelineByIdResponse.getTimeline());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    displayProductView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
