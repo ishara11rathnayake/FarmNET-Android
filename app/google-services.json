@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1283502824",
+    "firebase_url": "https://farmnet-b8cc1.firebaseio.com",
+    "project_id": "farmnet-b8cc1",
+    "storage_bucket": "farmnet-b8cc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1283502824:android:cffa04b65730e490cb8f5d",
+        "android_client_info": {
+          "package_name": "com.industrialmaster.farmnet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1283502824-fvi5b6finet33lkevquo4dvffq4k2rfc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.industrialmaster.farmnet",
+            "certificate_hash": "ff0425fb01c4e6ff4227243fadaef8f64400a6cd"
+          }
+        },
+        {
+          "client_id": "1283502824-1r579j0esv4flvbaiaoel3tu9heo6tlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP1uG0y7baxql2txLWTasfUcQUlcT3Wig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1283502824-1r579j0esv4flvbaiaoel3tu9heo6tlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

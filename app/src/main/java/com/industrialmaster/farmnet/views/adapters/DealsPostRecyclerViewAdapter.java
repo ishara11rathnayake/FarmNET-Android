@@ -105,7 +105,11 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         viewHolder.mCommentImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, CommentActivity.class));
+                Intent intent = new Intent(mContext, CommentActivity.class);
+                Gson gson = new Gson();
+                String deal = gson.toJson(mDeals.get(i));
+                intent.putExtra("deal", deal);
+                mContext.startActivity(intent);
             }
         });
     }

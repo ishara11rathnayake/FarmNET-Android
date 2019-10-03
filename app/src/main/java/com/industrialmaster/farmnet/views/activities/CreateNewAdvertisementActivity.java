@@ -171,53 +171,6 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
         });
     }
 
-//    private void openCamera() {
-//        ContentValues values = new ContentValues();
-//        values.put(MediaStore.Images.Media.TITLE,  "New Picture");
-//        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
-//        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-//
-//        //camera intent
-//        Intent cameraIntent = new Intent((MediaStore.ACTION_IMAGE_CAPTURE));
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-//        startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
-//    }
-
-//    public void pickImageFromGallery() {
-//        //intent to pick image
-//        Intent intent = new Intent((Intent.ACTION_PICK));
-//        intent.setType("image/*");
-//        startActivityForResult(intent, IMAGE_PIK_CODE);
-//    }
-
-//    //handle results of runtime permission
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        //this method is called when user presses Allow or Deny from permission request popup
-//        switch (requestCode) {
-//            case GALLERY_PERMISSION_CODE: {
-//                if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-//                    //permission was granted
-//                    pickImageFromGallery();
-//                } else {
-//                    //permission was denied
-//                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            case CAMERA_PERMISSION_CODE: {
-//                if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-//                    //permission was granted
-//                    openCamera();
-//                } else {
-//                    //permission was denied
-//                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        }
-//    }
-
     //handle result of picked image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -258,13 +211,4 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
 
     }
 
-//    public String convertMediaUriToPath(Uri uri) {
-//        String [] proj={MediaStore.Images.Media.DATA};
-//        Cursor cursor = getContentResolver().query(uri, proj,  null, null, null);
-//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//        cursor.moveToFirst();
-//        String path = cursor.getString(column_index);
-//        cursor.close();
-//        return path;
-//    }
 }
