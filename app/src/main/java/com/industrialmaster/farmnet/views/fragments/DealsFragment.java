@@ -1,14 +1,19 @@
 package com.industrialmaster.farmnet.views.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
@@ -34,17 +39,43 @@ public class DealsFragment extends BaseFragment implements DealsView {
     DealsPresenter dealsPresenter;
 
     View rootView;
+    EditText mSearchEditText;
 
     public DealsFragment() {
         // Required empty public constructor
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_deals, container, false);
+
+        mSearchEditText = rootView.findViewById(R.id.etsearchdeals);
+        mSearchEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (mSearchEditText.getRight() - mSearchEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        setLoading(true);
+                        String searchText = mSearchEditText.getText().toString();
+
+                        if(!TextUtils.isEmpty(searchText)){
+                            dealsPresenter.searchProduct(searchText);
+                            return true;
+                        }else {
+                            dealsPresenter.getAllDeals();
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        });
 
         dealsPresenter = new DealsPresenterImpl(getActivity(), DealsFragment.this);
         dealsPresenter.getAllDeals();

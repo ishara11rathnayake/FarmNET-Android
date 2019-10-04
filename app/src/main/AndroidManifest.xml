@@ -31,7 +31,7 @@
         <activity android:name=".views.activities.CreateNewDealActivity" />
         <activity android:name=".views.activities.SignupActivity" />
         <activity android:name=".views.activities.LoginActivity" />
-        <activity android:name=".views.activities.MainActivity">
+        <activity android:name=".views.activities.MainActivity" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

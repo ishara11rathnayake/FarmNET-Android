@@ -1,5 +1,5 @@
 
-lsquid:S2068	"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(¤¨€+
 msquid:S2068"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(àÆ¦¡
+lsquid:S2068	"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(¤¨€+
 msquid:S2068"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(ÃÄ«õ
 Vsquid:S1118":Add a private constructor to hide the implicit public one.(È³¾ıÿÿÿÿ

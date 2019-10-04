@@ -1,5 +1,6 @@
 package com.industrialmaster.farmnet.views.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 
 import java.io.Serializable;
@@ -55,8 +57,10 @@ public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<Deals
                 Intent intent = new Intent(mContext, DisplayProductActivity.class);
                 Gson gson = new Gson();
                 String deal = gson.toJson(mDeals.get(i));
+                intent.putExtra("activity", FarmnetConstants.Profile);
                 intent.putExtra("deal", deal);
                 mContext.startActivity(intent);
+                ((Activity)mContext).finish();
             }
         });
     }

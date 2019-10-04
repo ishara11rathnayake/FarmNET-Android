@@ -1,20 +1,26 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.Timeline;
+import com.industrialmaster.farmnet.presenters.DealsPresenter;
+import com.industrialmaster.farmnet.presenters.DealsPresenterImpl;
 import com.industrialmaster.farmnet.presenters.TimelinePresenter;
 import com.industrialmaster.farmnet.presenters.TimelnePresenterImpl;
+import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.DisplayProductView;
 
@@ -25,11 +31,16 @@ import java.util.Date;
 public class DisplayProductActivity extends BaseActivity implements DisplayProductView {
 
     TimelinePresenter timelinePresenter;
+    DealsPresenter dealsPresenter;
+    public static String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
 
     ImageView image_view_product;
     TextView tv_product_name, tv_description, tv_unit_price, tv_amount, tv_location,
             tv_owner, tv_published_date;
     ImageButton img_btn_close, img_btn_view_timeline;
+    ImageButton mDeleteImageButton;
+
+    String callingActivity;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,12 +49,33 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         setContentView(R.layout.activity_display_product);
 
         timelinePresenter = new TimelnePresenterImpl(this, DisplayProductActivity.this);
+        dealsPresenter = new DealsPresenterImpl(this, this);
 
         Gson gson = new Gson();
         Deals deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
+        callingActivity = getIntent().getStringExtra("activity");
+
         img_btn_close = findViewById(R.id.img_btn_close);
         img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);
+        mDeleteImageButton = findViewById(R.id.img_btn_delete);
+
+        String currentUserId = getSharedPreferences(FARMNET_PREFS_NAME, Context.MODE_PRIVATE).getString(FarmnetConstants.USER_ID, "");
+
+        if(!deal.getUser().getUserId().equals(currentUserId)){
+            mDeleteImageButton.setVisibility(View.INVISIBLE);
+        }
+
+        mDeleteImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialog("Warning", ErrorMessageHelper.DELETE_CONFIRMATION,false, FarmnetConstants.OK ,
+                        (dialog, which) -> {
+                            dealsPresenter.deleteProduct(deal.getDealId());
+                        },
+                        FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            }
+        });
 
         image_view_product = findViewById(R.id.imgv_product_image);
         tv_product_name = findViewById(R.id.tv_product_name);
@@ -103,6 +135,21 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     public void onError(String message) {
         setLoading(false);
         showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
+                "", (dialog, which) -> dialog.dismiss());
+    }
+
+    @Override
+    public void onSuccess(String message) {
+        setLoading(false);
+        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
+                (dialog, which) -> {
+                    finish();
+                    if(callingActivity.equals(FarmnetConstants.HOME)){
+                        startActivity(new Intent(DisplayProductActivity.this, MainActivity.class));
+                    } else if (callingActivity.equals(FarmnetConstants.Profile)){
+                        startActivity(new Intent(DisplayProductActivity.this, ProfileActivity.class));
+                    }
+                },
                 "", (dialog, which) -> dialog.dismiss());
     }
 

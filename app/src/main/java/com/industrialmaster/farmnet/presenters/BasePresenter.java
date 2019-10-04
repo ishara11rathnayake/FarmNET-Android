@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.Toast;
 
 import com.industrialmaster.farmnet.network.FarmnetAPI;
 import com.industrialmaster.farmnet.network.RetrofitClient;
 import com.industrialmaster.farmnet.network.RetrofitException;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -62,7 +65,7 @@ public abstract class BasePresenter implements Presenter{
 
     protected SharedPreferences getSharedPreferences(String prefsName){
         return activity.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-    }
+}
 
     protected void saveSharedPreferences(String prefsKey, String prefsValue){
         SharedPreferences.Editor editor = getSharedPreferences(FARMNET_PREFS_NAME).edit();

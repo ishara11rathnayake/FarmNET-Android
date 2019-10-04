@@ -7,4 +7,8 @@ public interface DealsPresenter extends Presenter {
     void getAllDeals();
 
     void createNewDeal(CreateNewDealRequest createNewDealRequest);
+
+    void searchProduct(String searchText);
+
+    void deleteProduct(String productId);
 }

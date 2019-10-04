@@ -29,6 +29,7 @@ import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -173,6 +174,18 @@ public interface FarmnetAPI {
     Observable<UserDetailsResponse> getUserById(
             @Header("Authorization") String authorization,
             @Path("userId") String userId
+    );
+
+    @GET(UrlManager.SEARCH_PRODUCT)
+    Observable<ProductDealResponse> searchProducts(
+            @Header("Authorization") String authorization,
+            @Path("searchText") String searchText
+    );
+
+    @DELETE(UrlManager.DELETE_PRODUCT)
+    Observable<CommonMessageResponse> deleteProduct(
+            @Header("Authorization") String authorization,
+            @Path("productId") String productId
     );
 
 }

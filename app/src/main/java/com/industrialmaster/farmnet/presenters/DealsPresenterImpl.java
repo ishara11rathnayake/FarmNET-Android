@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
+import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
@@ -13,6 +14,7 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateNewDealView;
 import com.industrialmaster.farmnet.views.DealsView;
+import com.industrialmaster.farmnet.views.DisplayProductView;
 import com.industrialmaster.farmnet.views.View;
 
 import java.io.File;
@@ -31,10 +33,16 @@ import static android.support.constraint.Constraints.TAG;
 
 public class DealsPresenterImpl extends BasePresenter implements DealsPresenter {
 
-    DealsView dealsView;
-    CreateNewDealView createNewDealView;
+    private static final  String TAG = "DealsPresenterImpl";
 
-    String errorMessage;
+    private DealsView dealsView;
+    private CreateNewDealView createNewDealView;
+    private DisplayProductView displayProductView;
+
+    private String errorMessage;
+
+    private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+    private String userID = readSharedPreferences(FarmnetConstants.USER_ID, "");
 
     public DealsPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
@@ -42,6 +50,8 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             dealsView = (DealsView) view;
         } else if(view instanceof CreateNewDealView){
             createNewDealView = (CreateNewDealView) view;
+        } else if(view instanceof  DisplayProductView){
+            displayProductView = (DisplayProductView) view;
         }
     }
 
@@ -73,14 +83,23 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
 
-            String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-            String userID = readSharedPreferences(FarmnetConstants.USER_ID, "");
-
             RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userID);
 
             createNewDealObservable(accessToken, productNamePart, descriptionPart, locationPart,
                     unitPricePart, amountPart, productImagePart, userIdPart, timelineIdPart).subscribe(createNewDealSubscriber());
         }
+    }
+
+    @Override
+    public void searchProduct(String searchText) {
+
+        searchDealsObservable(accessToken, searchText).subscribe(searchDealsSubscriber());
+
+    }
+
+    @Override
+    public void deleteProduct(String productId) {
+        deleteDealsObservable(accessToken, productId).subscribe(deleteDealsSubscriber());
     }
 
     public Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
@@ -113,9 +132,9 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             @Override
             public void onError(Throwable e) {
                 try {
-                    createNewDealView.onError(e.toString());
+                    createNewDealView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -175,6 +194,87 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
                     dealsView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<ProductDealResponse> searchDealsObservable(String accessToken, String searchText) {
+        try {
+            return getRetrofitClient().searchProducts(accessToken, searchText)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<ProductDealResponse> searchDealsSubscriber(){
+        return new Observer<ProductDealResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(ProductDealResponse productDealResponses) {
+                List<Deals> productDeals = productDealResponses.getProducts();
+                dealsView.showDeals(productDeals);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    dealsView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> deleteDealsObservable(String accessToken, String dealId) {
+        try {
+            return getRetrofitClient().deleteProduct(accessToken, dealId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> deleteDealsSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                displayProductView.onSuccess(commonMessageResponse.getMessage());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    displayProductView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
                 }
             }
 

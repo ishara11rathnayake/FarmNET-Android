@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.activities.CommentActivity;
 import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
@@ -97,6 +98,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
                 Intent intent = new Intent(mContext, DisplayProductActivity.class);
                 Gson gson = new Gson();
                 String deal = gson.toJson(mDeals.get(i));
+                intent.putExtra("activity", FarmnetConstants.HOME);
                 intent.putExtra("deal", deal);
                 mContext.startActivity(intent);
             }

@@ -226,7 +226,11 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {finish();},
+        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
+                (dialog, which) -> {
+                    finish();
+                    startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
+                },
                 "", (dialog, which) -> dialog.dismiss());
     }
 

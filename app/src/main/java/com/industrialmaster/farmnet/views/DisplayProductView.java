@@ -8,4 +8,6 @@ public interface DisplayProductView extends View{
 
     void onError(String message);
 
+    void onSuccess(String message);
+
 }
