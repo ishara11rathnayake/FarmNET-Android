@@ -169,4 +169,10 @@ public interface FarmnetAPI {
             @Path("timelineId") String timelineId
     );
 
+    @GET(UrlManager.GET_USER_BY_ID)
+    Observable<UserDetailsResponse> getUserById(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId
+    );
+
 }

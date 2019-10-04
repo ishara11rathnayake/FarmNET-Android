@@ -35,7 +35,10 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
     private ProfileView profileView;
     private UpdateUserView updateUserView;
-    View mView;
+    private View mCommanView;
+    private String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
+    private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+
 
     public ProfilePresenterImpl(Activity activityContext, View view) {
         super(activityContext);
@@ -44,23 +47,16 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
         }else if(view instanceof UpdateUserView){
             updateUserView = (UpdateUserView) view;
         }
-        this.mView = view;
+        this.mCommanView = view;
     }
 
     @Override
     public void getUserDetails() {
-
-        String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-
         Objects.requireNonNull(getUserDetailsObservable(accessToken, userId)).subscribe(getUserDetailsSubscriber());
     }
 
     @Override
     public void updateUserDetails(User user) {
-        String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-
         RequestBody namePart = RequestBody.create(MultipartBody.FORM, user.getName());
         RequestBody addressPart = RequestBody.create(MultipartBody.FORM, user.getAddress());
         RequestBody phonePart = RequestBody.create(MultipartBody.FORM, user.getContactNumber());
@@ -87,48 +83,39 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
     @Override
     public void getUserRating() {
-        String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
     }
 
     @Override
     public void getOtherUserRating(String userId) {
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
     }
 
     @Override
     public void getRatedUserRating(String userId) {
         String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         getRatedUserRatingObservable(accessToken, userId, ratedUserId).subscribe(getRatedUserRatingSubscriber());
     }
 
     @Override
     public void rateUser(String userId, float rating) {
         String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         rateUserObservable(accessToken, userId, ratedUserId, rating).subscribe(rateUserSubscriber());
     }
 
     @Override
     public void reportUser(String userId, String content) {
         String reportedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-
         ComplaintRequest complaintRequest = new ComplaintRequest();
         complaintRequest.setComplainedUserId(reportedUserId);
         complaintRequest.setUserId(userId);
         complaintRequest.setContent(content);
 
-        reportUserObservable(accessToken, complaintRequest).subscribe(reportUserSubscriber());
-
+        Objects.requireNonNull(reportUserObservable(accessToken, complaintRequest)).subscribe(reportUserSubscriber());
     }
 
     @Override
     public void getOtherUserDetails(String userId) {
-        String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
         Objects.requireNonNull(getUserDetailsObservable(accessToken, userId)).subscribe(getUserDetailsSubscriber());
 
     }
@@ -154,10 +141,10 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onNext(UserDetailsResponse userDetailsResponse) {
-                if(mView instanceof ProfileView){
+                if(mCommanView instanceof ProfileView){
                     List<Deals> deals = userDetailsResponse.getDeals();
                     profileView.showUserDetails(userDetailsResponse.getUser(), deals);
-                } else if(mView instanceof UpdateUserView){
+                } else if(mCommanView instanceof UpdateUserView){
                     updateUserView.showUserDetails(userDetailsResponse.getUser());
                 }
             }
@@ -166,9 +153,9 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
             public void onError(Throwable e) {
                 e.printStackTrace();
                 try {
-                    if(mView instanceof ProfileView) {
+                    if(mCommanView instanceof ProfileView) {
                         profileView.onError(handleApiError(e));
-                    } else if(mView instanceof UpdateUserView){
+                    } else if(mCommanView instanceof UpdateUserView){
                         updateUserView.onError(handleApiError(e));
                     }
                 } catch (Exception ex) {

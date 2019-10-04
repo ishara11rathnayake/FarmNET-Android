@@ -39,7 +39,6 @@ public class CommentActivity extends BaseActivity implements CommentView {
     EditText mWriteCommentEditText;
     String postId;
     Deals deal;
-    private DatabaseReference commentRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class CommentActivity extends BaseActivity implements CommentView {
         setContentView(R.layout.activity_comment);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        commentRef = database.getReference("comments");
+        DatabaseReference commentRef = database.getReference("comments");
 
         commentPresenter = new CommentPresenterImpl(this, this);
 
@@ -63,12 +62,7 @@ public class CommentActivity extends BaseActivity implements CommentView {
         mSendImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Comment comment = new Comment();
-                comment.setUser(deal.getUser());
-                comment.setDate(new Date());
-                comment.setContent(mWriteCommentEditText.getText().toString());
-
-                commentPresenter.addNewComment(postId, comment);
+                commentPresenter.getCommentingUserDetails();
             }
         });
 
@@ -118,6 +112,16 @@ public class CommentActivity extends BaseActivity implements CommentView {
         setLoading(false);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         mWriteCommentEditText.getText().clear();
+    }
+
+    @Override
+    public void saveComment(User user) {
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setDate(new Date());
+        comment.setContent(mWriteCommentEditText.getText().toString());
+
+        commentPresenter.addNewComment(postId, comment);
     }
 
     @Override

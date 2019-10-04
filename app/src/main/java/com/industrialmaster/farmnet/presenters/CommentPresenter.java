@@ -6,6 +6,6 @@ public interface CommentPresenter extends Presenter{
 
     void addNewComment(String postId, Comment comment);
 
-    void getComment(String postId);
+    void getCommentingUserDetails();
 
 }

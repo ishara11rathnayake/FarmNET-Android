@@ -5,11 +5,11 @@ import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.industrialmaster.farmnet.models.Comment;
+import com.industrialmaster.farmnet.models.Answer;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
-import com.industrialmaster.farmnet.views.CommentView;
+import com.industrialmaster.farmnet.views.AnswerView;
 import com.industrialmaster.farmnet.views.View;
 
 import io.reactivex.Observable;
@@ -18,35 +18,35 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static android.support.constraint.Constraints.TAG;
+public class AnswerPresenterImpl extends BasePresenter implements AnswerPresenter {
 
-public class CommentPresenterImpl extends BasePresenter implements CommentPresenter {
+    private static final String TAG = "AnswerPresenterImpl";
+    AnswerView answerView;
 
-    private CommentView commentView;
-
-    private DatabaseReference commentRef;
+    private DatabaseReference answerRef;
 
     private String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
     private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
 
-    public CommentPresenterImpl(Activity activityContext, View view) {
+
+    public AnswerPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
-        if(view instanceof CommentView) {
-            commentView = (CommentView) view;
+        if(view instanceof  AnswerView){
+            answerView = (AnswerView) view;
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        commentRef = database.getReference("comments");
+        answerRef = database.getReference("answers");
     }
 
     @Override
-    public void addNewComment(String postId, Comment comment) {
-        commentRef.child(postId).push().setValue(comment);
-        commentView.onSuccess("Successfully commented");
+    public void addNewAnswer(String questionId, Answer answer) {
+        answerRef.child(questionId).push().setValue(answer);
+        answerView.onSuccess("Successfully answered");
     }
 
     @Override
-    public void getCommentingUserDetails() {
+    public void getAnsweringUserDetails() {
         getUserByIdObservable(accessToken, userId).subscribe(getUserByIdSubscriber());
     }
 
@@ -91,13 +91,13 @@ public class CommentPresenterImpl extends BasePresenter implements CommentPresen
 
             @Override
             public void onNext(UserDetailsResponse userDetailsResponse) {
-                commentView.saveComment(userDetailsResponse.getUser());
+                answerView.saveAnswer(userDetailsResponse.getUser());
             }
 
             @Override
             public void onError(Throwable e) {
                 try {
-                    commentView.onError(handleApiError(e));
+                    answerView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     Log.e(TAG, ex.toString());
                 }

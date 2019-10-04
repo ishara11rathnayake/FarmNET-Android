@@ -2,6 +2,7 @@ package com.industrialmaster.farmnet.views.adapters;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -12,13 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Question;
+import com.industrialmaster.farmnet.views.activities.AnswerActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -105,12 +109,14 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
 
         }
 
-        viewHolder.question_card_view.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mAnswerImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mQuestions.get(i).getQuestionId());
-
-                Toast.makeText(mContext, mQuestions.get(i).getQuestionId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, AnswerActivity.class);
+                Gson gson = new Gson();
+                String question = gson.toJson(mQuestions.get(i));
+                intent.putExtra("question", question);
+                mContext.startActivity(intent);
             }
         });
 
@@ -131,6 +137,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
         TextView tv_description;
         LinearLayout linear_layout_hashtags;
         TextView tv_no_of_answers;
+        ImageButton mAnswerImageButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -142,6 +149,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
             tv_description = itemView.findViewById(R.id.tv_description);
             linear_layout_hashtags = itemView.findViewById(R.id.linear_layout_hashtags);
             tv_no_of_answers = itemView.findViewById(R.id.tv_no_of_answers);
+            mAnswerImageButton = itemView.findViewById(R.id.img_btn_answer);
         }
     }
 }

@@ -24,6 +24,7 @@ public class UrlManager {
     public static final String CREATE_NEW_TIMELINE = "timelines";
     public static final String CREATE_NEW_TIMELINE_TASK = "timelines/tasks/{timelineId}";
     public static final String GET_TIMELINE_BY_ID = "timelines/timeline/{timelineId}";
+    public static final String GET_USER_BY_ID = "user/user/{userId}";
 
 
 }
