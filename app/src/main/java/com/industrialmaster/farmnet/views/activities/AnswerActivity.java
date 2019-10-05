@@ -129,9 +129,4 @@ public class AnswerActivity extends BaseActivity implements AnswerView {
     public void showMessage(String message) {
 
     }
-
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

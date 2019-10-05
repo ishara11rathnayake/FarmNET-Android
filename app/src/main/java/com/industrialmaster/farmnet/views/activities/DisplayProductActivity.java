@@ -152,9 +152,4 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     public void showMessage(String message) {
 
     }
-
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

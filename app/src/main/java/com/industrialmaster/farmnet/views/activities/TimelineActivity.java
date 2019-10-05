@@ -15,8 +15,10 @@ import com.industrialmaster.farmnet.views.adapters.TimelineTaskRecyclerViewAdapt
 
 public class TimelineActivity extends BaseActivity {
 
-    TextView mProductNameTextView, mDescriptionTextView;
-    ImageButton mCloseImageButton, mCreateNewTaskImageButton;
+    TextView mProductNameTextView;
+    TextView mDescriptionTextView;
+    ImageButton mCloseImageButton;
+    ImageButton mCreateNewTaskImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

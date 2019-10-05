@@ -129,8 +129,4 @@ public class CommentActivity extends BaseActivity implements CommentView {
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

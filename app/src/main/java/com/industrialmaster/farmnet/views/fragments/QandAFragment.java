@@ -91,8 +91,4 @@ public class QandAFragment extends BaseFragment implements QandAView {
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

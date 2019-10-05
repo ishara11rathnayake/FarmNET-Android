@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.industrialmaster.farmnet.presenters.Presenter;
 
+import java.util.Objects;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog = null;
@@ -110,9 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public String convertMediaUriToPath(Uri uri) {
         String [] proj={MediaStore.Images.Media.DATA};
         Cursor cursor = getContentResolver().query(uri, proj,  null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        int columnIndex = Objects.requireNonNull(cursor).getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-        String path = cursor.getString(column_index);
+        String path = cursor.getString(columnIndex);
         cursor.close();
         return path;
     }

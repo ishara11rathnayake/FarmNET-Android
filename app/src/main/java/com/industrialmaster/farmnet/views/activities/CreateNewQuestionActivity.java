@@ -86,8 +86,4 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

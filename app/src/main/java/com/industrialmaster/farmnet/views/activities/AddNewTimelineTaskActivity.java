@@ -116,11 +116,6 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
-
     //handle result of picked image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

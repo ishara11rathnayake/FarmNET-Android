@@ -17,22 +17,21 @@ import com.github.irshulx.models.EditorContent;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Article;
-import com.industrialmaster.farmnet.models.Deals;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ArticleReaderActivity extends AppCompatActivity {
 
-    private String mSerialized;
-
     ImageButton mCloseImageButton;
 
-    TextView mArticleTitleTextView, mAuthorNameTextView, mDateTextView;
+    TextView mArticleTitleTextView;
+    TextView mAuthorNameTextView;
+    TextView mDateTextView;
     CircleImageView mProfileImageCircleImageView;
 
     @Override
@@ -53,7 +52,7 @@ public class ArticleReaderActivity extends AppCompatActivity {
         mAuthorNameTextView.setText(article.getUser().getName());
 
         Date date = article.getDate();
-        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
         String formattedDate = targetDateFormat.format(date);
         mDateTextView.setText(formattedDate);
 
@@ -67,22 +66,26 @@ public class ArticleReaderActivity extends AppCompatActivity {
 
         Editor renderer= findViewById(R.id.renderer);
 
-        mSerialized = article.getContent();
+        String mSerialized = article.getContent();
 
         renderer.setDividerLayout(R.layout.tmpl_divider_layout);
         renderer.setEditorImageLayout(R.layout.tmpl_image_view);
         renderer.setListItemLayout(R.layout.tmpl_list_item);
         String content= mSerialized;
-        EditorContent Deserialized= renderer.getContentDeserialized(content);
+        EditorContent deserialized = renderer.getContentDeserialized(content);
         renderer.setEditorListener(new EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
-
+                /**
+                 * override methods
+                 * **/
             }
 
             @Override
             public void onUpload(Bitmap image, String uuid) {
-
+                /**
+                 * override methods
+                 * **/
             }
 
             @Override
@@ -90,7 +93,7 @@ public class ArticleReaderActivity extends AppCompatActivity {
                 return null;
             }
         });
-        renderer.render(Deserialized);
+        renderer.render(deserialized);
 
         mCloseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -68,8 +68,4 @@ public class ArticleFragment extends BaseFragment implements ArticleView {
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

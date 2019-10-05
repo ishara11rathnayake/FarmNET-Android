@@ -206,9 +206,4 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
-
 }

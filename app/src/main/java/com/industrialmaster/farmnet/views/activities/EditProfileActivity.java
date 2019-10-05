@@ -85,7 +85,7 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
                 user.setContactNumber(et_phone.getText().toString());
 
                 String date = et_dob.getText().toString();
-                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                 Date dob;
                 try {
                     dob = format.parse(date);
@@ -147,7 +147,7 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                et_dob.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                et_dob.setText(String.format(Locale.ENGLISH,"%d/%d/%d", dayOfMonth, monthOfYear + 1, year));
                             }
                         }, year, month, day);
                 picker.show();
@@ -184,7 +184,7 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
         et_nic.setText(user.getNic());
         if(user.getDob() != null){
             Date date = user.getDob();
-            DateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
             String formattedDate = targetDateFormat.format(date);
             et_dob.setText(formattedDate);
         }
@@ -210,8 +210,4 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

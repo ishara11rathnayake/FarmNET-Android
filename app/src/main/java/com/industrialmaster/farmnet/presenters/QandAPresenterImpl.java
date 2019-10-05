@@ -29,10 +29,13 @@ import static android.support.constraint.Constraints.TAG;
 
 public class QandAPresenterImpl extends BasePresenter implements QandAPresenter {
 
-    QandAView qandAView;
-    CreateNewQuestionView createNewQuestionView;
+    private QandAView qandAView;
+    private CreateNewQuestionView createNewQuestionView;
 
-    String errorMessage;
+    private String errorMessage;
+
+    private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+
 
     public QandAPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
@@ -57,10 +60,13 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
             String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
             createNewQuestionRequest.setUserId(userId);
 
-            String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-
             createNewQuestionObservable(accessToken, createNewQuestionRequest).subscribe(createNewQuestionSubscriber());
         }
+    }
+
+    @Override
+    public void searchQuestions(String searchText) {
+        searchQuestionsObservable(accessToken, searchText).subscribe(searchQuestionsSubscriber());
     }
 
     public Observable<QuestionsResponse> getAllQuestionsObservable() {
@@ -135,6 +141,47 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
                     createNewQuestionView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<QuestionsResponse> searchQuestionsObservable(String accessToken, String searchText) {
+        try {
+            return getRetrofitClient().searchQuestions(accessToken, searchText)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<QuestionsResponse> searchQuestionsSubscriber(){
+        return new Observer<QuestionsResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(QuestionsResponse questionsResponse) {
+                List<Question> questions = questionsResponse.getQuestions();
+                qandAView.showQuestions(questions);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    qandAView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
                 }
             }
 

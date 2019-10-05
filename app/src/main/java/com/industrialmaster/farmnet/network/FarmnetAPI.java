@@ -194,4 +194,16 @@ public interface FarmnetAPI {
             @Path("questionId") String questionId
     );
 
+    @GET(UrlManager.SEARCH_ADVERTISEMENT)
+    Observable<AdvertisementsResponse> searchAdvertisement(
+            @Header("Authorization") String authorization,
+            @Path("searchText") String searchText
+    );
+
+    @GET(UrlManager.SEARCH_QUESTIONS)
+    Observable<QuestionsResponse> searchQuestions(
+            @Header("Authorization") String authorization,
+            @Path("searchText") String searchText
+    );
+
 }

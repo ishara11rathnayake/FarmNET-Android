@@ -51,6 +51,17 @@
             android:background="@null"/>
 
         <ImageButton
+            android:id="@+id/img_btn_new_ads"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_create_new"
+            android:paddingTop="14dp"
+            android:background="@null"/>
+
+        <ImageButton
             android:id="@+id/img_btn_new_deal"
             android:layout_width="0dp"
             android:layout_height="33dp"

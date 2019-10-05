@@ -8,44 +8,29 @@
     tools:context=".views.fragments.AdvertisementFragment">
 
     <EditText
+        android:textColor="@color/color_black"
+        android:drawableTint="@color/color_black"
         android:id="@+id/et_search_ads"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/ic_search_background"
-        android:drawableRight="@drawable/ic_search"
-        android:ems="10"
+        android:drawableEnd="@drawable/ic_search"
         android:fontFamily="@font/ubunturegular"
         android:maxLength="26"
         android:maxLines="1"
-        android:paddingLeft="25dp"
-        android:paddingRight="15dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="15dp"
         android:paddingBottom="7dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@null"
-        android:src="@drawable/ic_filter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/etsearchdeals"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_ads"

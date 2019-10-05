@@ -77,9 +77,4 @@ public class CreateTimelineActivity extends BaseActivity implements TimelineView
     public void showMessage(String message) {
 
     }
-
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

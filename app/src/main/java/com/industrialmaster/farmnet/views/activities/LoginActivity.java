@@ -87,9 +87,4 @@ public class LoginActivity extends BaseActivity implements AuthView {
     public void showMessage(String message) {
 
     }
-
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

@@ -1,12 +1,15 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -33,13 +36,14 @@ public class AdvertisementFragment extends BaseFragment implements Advertisement
 
     AdvertisementPresenter presenter;
 
-    EditText et_search_ads;
+    EditText mSearchEditText;
 
     public AdvertisementFragment() {
         // Required empty public constructor
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,13 +54,31 @@ public class AdvertisementFragment extends BaseFragment implements Advertisement
         presenter.getAllAdvertisements();
         setLoading(true);
 
-        et_search_ads = rootView.findViewById(R.id.et_search_ads);
-        et_search_ads.setOnClickListener(new View.OnClickListener() {
+        mSearchEditText = rootView.findViewById(R.id.et_search_ads);
+        mSearchEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CreateNewAdvertisementActivity.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (mSearchEditText.getRight() - mSearchEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        setLoading(true);
+                        String searchText = mSearchEditText.getText().toString();
+
+                        if (!TextUtils.isEmpty(searchText)) {
+                            presenter.searchAdvertisement(searchText);
+                            return true;
+                        } else {
+                            presenter.getAllAdvertisements();
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
         });
+
+
 
         return rootView;
     }
@@ -82,8 +104,4 @@ public class AdvertisementFragment extends BaseFragment implements Advertisement
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

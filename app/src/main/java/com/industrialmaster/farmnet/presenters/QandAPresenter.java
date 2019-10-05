@@ -7,4 +7,6 @@ public interface QandAPresenter extends Presenter {
     void getAllQuestions();
 
     void createNewQuestion(CreateNewQuestionRequest createNewQuestionRequest);
+
+    void searchQuestions(String searchText);
 }

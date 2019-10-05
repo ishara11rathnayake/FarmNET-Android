@@ -8,4 +8,6 @@ public interface AdvertisementPresenter extends Presenter {
 
     void createNewAdvertisement(CreateNewAdvertisementRequest createNewAdvertisementRequest);
 
+    void searchAdvertisement(String searchText);
+
 }

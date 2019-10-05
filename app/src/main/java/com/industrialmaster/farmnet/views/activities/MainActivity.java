@@ -36,13 +36,14 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     NotificationFragment notificationFragment;
     ArticleFragment articleFragment;
 
-    AuthPresenter presenter = new AuthPresenterImpl(this, MainActivity.this );
+    AuthPresenter authPresenter = new AuthPresenterImpl(this, MainActivity.this );
 
     private DrawerLayout mDrawerlayout;
     private ImageView imgv_drawer_toggle, img_btn_new_question, imgv_logout;
     private TextView txt_header_topic;
 
     private ImageButton img_btn_create_new_deal, img_btn_new_article;
+    private ImageButton mNewAdsImageButton;
 
     BottomNavigationView bottom_navigation_view;
     NavigationView drawer_navigation_view;
@@ -51,12 +52,12 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter.doCheckAlreadyLogin();
+        authPresenter.doCheckAlreadyLogin();
 
         imgv_logout = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
         img_btn_new_question =findViewById(R.id.img_btn_new_question);
-
+        mNewAdsImageButton = findViewById(R.id.img_btn_new_ads);
         img_btn_create_new_deal = findViewById(R.id.img_btn_new_deal);
         img_btn_new_article = findViewById(R.id.img_btn_new_article);
 
@@ -72,6 +73,13 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CreateNewArticleActivity.class));
+            }
+        });
+
+        mNewAdsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CreateNewAdvertisementActivity.class));
             }
         });
 
@@ -125,38 +133,43 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 int id = menuItem.getItemId();
                 if(id == R.id.deals){
                     setFragment(dealsFragment);
-                    txt_header_topic.setText("Crop Deals");
+                    txt_header_topic.setText(getResources().getString(R.string.crop_deals));
                     img_btn_new_question.setVisibility(View.GONE);
                     img_btn_create_new_deal.setVisibility(View.VISIBLE);
                     img_btn_new_article.setVisibility(View.GONE);
+                    mNewAdsImageButton.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.notification){
                     setFragment(notificationFragment);
-                    txt_header_topic.setText("Notification");
-                    img_btn_create_new_deal.setVisibility(View.GONE);
+                    txt_header_topic.setText(getResources().getString(R.string.notification));
+                    img_btn_create_new_deal.setVisibility(View.INVISIBLE);
                     img_btn_new_question.setVisibility(View.GONE);
                     img_btn_new_article.setVisibility(View.GONE);
+                    mNewAdsImageButton.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.question){
                     setFragment(qandAFragment);
                     txt_header_topic.setText("Q & A");
-                    img_btn_create_new_deal.setVisibility(View.GONE);
-                    img_btn_new_question.setVisibility(View.GONE);
-                    img_btn_new_article.setVisibility(View.GONE);
+                    img_btn_create_new_deal.setVisibility(View.INVISIBLE);
+                    img_btn_new_question.setVisibility(View.INVISIBLE);
+                    img_btn_new_article.setVisibility(View.INVISIBLE);
+                    mNewAdsImageButton.setVisibility(View.INVISIBLE);
                     return true;
                 } else if(id == R.id.articles){
                     setFragment(articleFragment);
-                    txt_header_topic.setText("Articles");
+                    txt_header_topic.setText(getResources().getString(R.string.articles));
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
                     img_btn_new_article.setVisibility(View.VISIBLE);
+                    mNewAdsImageButton.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.advertisements){
                     setFragment(advertisementFragment);
-                    txt_header_topic.setText("Ads");
-                    img_btn_new_question.setVisibility(View.VISIBLE);
+                    txt_header_topic.setText(getResources().getString(R.string.ads));
+                    mNewAdsImageButton.setVisibility(View.VISIBLE);
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_article.setVisibility(View.GONE);
+                    img_btn_new_question.setVisibility(View.GONE);
                     return true;
                 }
                 return false;
@@ -187,7 +200,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         showAlertDialog("Logout", message, true, FarmnetConstants.LOGOUT, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                presenter.doLogout();
+                authPresenter.doLogout();
             }
         }, FarmnetConstants.CANCEL, new DialogInterface.OnClickListener() {
             @Override
@@ -214,11 +227,10 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     @Override
     public void showMessage(String message) {
-
+        /**
+         * nothing to do with this function
+         * need to remove
+         * **/
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

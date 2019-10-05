@@ -85,7 +85,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
 
             for (int x = 0; x < hastags.length; x++) {
                 final TextView rowTextView = new TextView(mContext);
-                rowTextView.setText("#" + hastags[x]);
+                rowTextView.setText(String.format("#%s", hastags[x]));
                 viewHolder.linear_layout_hashtags.addView(rowTextView);
 
                 Typeface typeface = ResourcesCompat.getFont(mContext, R.font.ubunturegular);
@@ -101,9 +101,9 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
 
                 rowTextView.setPadding(10, 5, 10, 5);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    rowTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.custom_text_box, null));
-                }
+                rowTextView.setTextColor(mContext.getResources().getColor(R.color.white));
+
+                rowTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.tags_bg, null));
                 myTextViews[i] = rowTextView;
             }
 

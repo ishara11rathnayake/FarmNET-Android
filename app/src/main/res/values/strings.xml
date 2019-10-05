@@ -74,6 +74,10 @@
     <string name="ad_email">Email :</string>
     <string name="ad_telephone">Telephone :</string>
     <string name="contact_us">Contact Us:</string>
+    <string name="notification">Notification</string>
+    <string name="crop_deals">Crop Deals</string>
+    <string name="articles">Articles</string>
+    <string name="ads">Ads</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="user_types">

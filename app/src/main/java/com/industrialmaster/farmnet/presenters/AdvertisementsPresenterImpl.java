@@ -37,6 +37,9 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
 
     private String errorMessage;
 
+    private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+    private String userID = readSharedPreferences(FarmnetConstants.USER_ID, "");
+
     public AdvertisementsPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
 
@@ -71,14 +74,16 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
             RequestBody adsImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part adsImagePart = MultipartBody.Part.createFormData("adsImage", file.getName(), adsImageReqBody);
 
-            String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
-            String userID = readSharedPreferences(FarmnetConstants.USER_ID, "");
-
             RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userID);
 
             createNewAdsObservable(accessToken, adsTitlePart, descriptionPart, contactNumberPart, pricePart,
                     tagListPart, userIdPart, adsImagePart).subscribe(createNewAdsSubscriber());
         }
+    }
+
+    @Override
+    public void searchAdvertisement(String searchText) {
+        searchAdvertisementsObservable(accessToken, searchText).subscribe(searchAdvertisementsSubscriber());
     }
 
     private Observable<AdvertisementsResponse> getAllAdvertisementsObservable() {
@@ -111,7 +116,7 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
                 try {
                     advertisementView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, e.toString());
                 }
             }
 
@@ -154,7 +159,49 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
                 try {
                     createNewAdsView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, e.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<AdvertisementsResponse> searchAdvertisementsObservable(String accessToken,
+                                                                              String searchText) {
+        try {
+            return getRetrofitClient().searchAdvertisement(accessToken, searchText)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<AdvertisementsResponse> searchAdvertisementsSubscriber(){
+        return new Observer<AdvertisementsResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(AdvertisementsResponse advertisementsResponse) {
+                List<Advertisement> advertisements = advertisementsResponse.getAdvertisements();
+                advertisementView.showAdvertisements(advertisements);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    advertisementView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
                 }
             }
 

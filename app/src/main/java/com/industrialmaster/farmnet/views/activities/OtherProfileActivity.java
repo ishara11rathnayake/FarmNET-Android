@@ -248,8 +248,4 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                 "", (dialog, which) -> {dialog.dismiss();});
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

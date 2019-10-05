@@ -77,8 +77,4 @@ public class ProductTimelineListActivity extends BaseActivity implements Timelin
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

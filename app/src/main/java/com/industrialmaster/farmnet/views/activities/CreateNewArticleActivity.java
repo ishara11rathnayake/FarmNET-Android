@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -20,30 +19,18 @@ import com.github.irshulx.EditorListener;
 import com.github.irshulx.models.EditorTextStyle;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
-import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
-import com.industrialmaster.farmnet.network.FarmnetAPI;
-import com.industrialmaster.farmnet.network.RetrofitClient;
 import com.industrialmaster.farmnet.presenters.ArticlePresenter;
 import com.industrialmaster.farmnet.presenters.ArticlePresenterImpl;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateArticleView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class CreateNewArticleActivity extends BaseActivity implements CreateArticleView {
@@ -218,7 +205,6 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
                 mUuid = uuid;
                 presenter.getThumbnailUrl(realFilePath);
 
-//                 editor.onImageUploadFailed(uuid);
             }
 
             @Override
@@ -243,10 +229,6 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
 
                 presenter.createNewArticle(createNewArticleRequest);
 
-//                String text1 = editor.getContentAsHTML();
-//                Intent intent = new Intent(CreateNewArticleActivity.this, ArticleReaderActivity.class);
-//                intent.putExtra("article", text);
-//                startActivity(intent);
             }
         });
     }
@@ -309,8 +291,4 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

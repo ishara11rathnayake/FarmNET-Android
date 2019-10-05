@@ -106,8 +106,4 @@ public class DealsFragment extends BaseFragment implements DealsView {
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }

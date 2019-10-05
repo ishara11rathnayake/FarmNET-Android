@@ -126,8 +126,4 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     }
 
-    @Override
-    public void showErrorMessage(String calledMethod, String error, String errorDescription) {
-
-    }
 }
