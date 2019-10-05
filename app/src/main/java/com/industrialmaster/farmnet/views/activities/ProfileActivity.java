@@ -78,6 +78,13 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
+    @Override
     public void showUserDetails(User user, List<Deals> deals) {
         setLoading(false);
         tv_name.setText(user.getName());

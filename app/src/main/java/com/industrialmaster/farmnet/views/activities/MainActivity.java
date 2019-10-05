@@ -172,6 +172,10 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 } else if(id == R.id.logout){
                     showLogoutAlert(ErrorMessageHelper.LOGOUT_CONFIRMATION);
+                } else if(id == R.id.home){
+                    startActivity(getIntent());
+                } else  if(id == R.id.my_questions){
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 }
                 return false;
             }

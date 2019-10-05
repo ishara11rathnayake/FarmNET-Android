@@ -144,11 +144,6 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         showAlertDialog("Success", message,false, FarmnetConstants.OK ,
                 (dialog, which) -> {
                     finish();
-                    if(callingActivity.equals(FarmnetConstants.HOME)){
-                        startActivity(new Intent(DisplayProductActivity.this, MainActivity.class));
-                    } else if (callingActivity.equals(FarmnetConstants.Profile)){
-                        startActivity(new Intent(DisplayProductActivity.this, ProfileActivity.class));
-                    }
                 },
                 "", (dialog, which) -> dialog.dismiss());
     }

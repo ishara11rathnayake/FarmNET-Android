@@ -27,6 +27,7 @@ public class UrlManager {
     public static final String GET_USER_BY_ID = "user/user/{userId}";
     public static final String SEARCH_PRODUCT = "products/search/{searchText}";
     public static final String DELETE_PRODUCT = "products/{productId}";
+    public static final String UPDATE_NO_OF_ANSWERS = "questions/answer/{questionId}";
 
 
 }

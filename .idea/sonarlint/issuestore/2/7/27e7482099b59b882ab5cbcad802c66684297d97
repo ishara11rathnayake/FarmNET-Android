@@ -1,7 +1,5 @@
 
-¥squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôÃ¾£üÿÿÿÿ8éŞó”Ù-
-psquid:UselessImportCheck"ERemove this unused import 'com.industrialmaster.farmnet.models.User'.(®…‚„8û‹ñ”Ù-
-wsquid:S1450*"YRemove the "commentRef" field and declare it as a local variable in the relevant methods.(Úà¡¯8Àúé•Ù-
-¤squid:S1186_"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ïòæ•Ù-
-Ÿsquid:S1186|"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8éŞó”Ù-
+ squid:S1186€"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8éŞó”Ù-
 lsquid:MaximumInheritanceDepth "<This class has 6 parents which is greater than 5 authorized.(úûäí8¨Ş§ƒÙ-
+¥squid:S1186…"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôÃ¾£üÿÿÿÿ8éŞó”Ù-
+¤squid:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ïòæ•Ù-

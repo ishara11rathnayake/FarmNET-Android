@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.industrialmaster.farmnet.models.Answer;
+import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
@@ -42,6 +43,7 @@ public class AnswerPresenterImpl extends BasePresenter implements AnswerPresente
     @Override
     public void addNewAnswer(String questionId, Answer answer) {
         answerRef.child(questionId).push().setValue(answer);
+        updateNoOfAnswersObservable(accessToken, questionId).subscribe();
         answerView.onSuccess("Successfully answered");
     }
 
@@ -70,7 +72,7 @@ public class AnswerPresenterImpl extends BasePresenter implements AnswerPresente
 
     }
 
-    public Observable<UserDetailsResponse> getUserByIdObservable(String accesToken, String userId) {
+    private Observable<UserDetailsResponse> getUserByIdObservable(String accesToken, String userId) {
         try {
             return getRetrofitClient().getUserById(accesToken, userId)
                     .subscribeOn(Schedulers.io())
@@ -82,7 +84,7 @@ public class AnswerPresenterImpl extends BasePresenter implements AnswerPresente
         return null;
     }
 
-    public Observer<UserDetailsResponse> getUserByIdSubscriber(){
+    private Observer<UserDetailsResponse> getUserByIdSubscriber(){
         return new Observer<UserDetailsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -108,5 +110,17 @@ public class AnswerPresenterImpl extends BasePresenter implements AnswerPresente
 
             }
         };
+    }
+
+    private Observable<CommonMessageResponse> updateNoOfAnswersObservable(String accesToken, String questionId) {
+        try {
+            return getRetrofitClient().updateNoOfAnswers(accesToken, questionId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
     }
 }

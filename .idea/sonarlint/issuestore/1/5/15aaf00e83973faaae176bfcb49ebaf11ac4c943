@@ -1,0 +1,10 @@
+
+wsquid:S00116M"ZRename this field "tv_more_details" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ
+usquid:S1488)"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
+}squid:S00116K"`Rename this field "cardview_absract_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑäÄ¾úÿÿÿÿ
+zsquid:S00116L"bRename this field "imageview_product_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úƒ™û
+Zsquid:UselessImportCheck"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ
+.squid:S2176I"Rename this class.(Â×žÖúÿÿÿÿ
+wsquid:S00116M"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ
+Isquid:S1659M"-Declare "tv_more_details" on a separate line.(¨³ÓÛøÿÿÿÿ
+>squid:S1068"'Remove this unused "TAG" private field.(¿­™æ

@@ -84,6 +84,7 @@ public class DealsFragment extends BaseFragment implements DealsView {
         return rootView;
     }
 
+
     @Override
     public void showDeals(List<Deals> deals) {
         setLoading(false);

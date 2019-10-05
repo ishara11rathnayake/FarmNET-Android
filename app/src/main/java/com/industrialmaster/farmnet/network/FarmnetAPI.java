@@ -188,4 +188,10 @@ public interface FarmnetAPI {
             @Path("productId") String productId
     );
 
+    @PATCH(UrlManager.UPDATE_NO_OF_ANSWERS)
+    Observable<CommonMessageResponse> updateNoOfAnswers(
+            @Header("Authorization") String authorization,
+            @Path("questionId") String questionId
+    );
+
 }

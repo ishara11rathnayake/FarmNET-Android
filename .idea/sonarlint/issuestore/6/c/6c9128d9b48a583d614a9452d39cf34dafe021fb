@@ -1,16 +1,16 @@
 
-tsquid:S00116"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåşÄüÿÿÿÿ
+ksquid:S00116‚"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
 Zsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
-[squid:UselessImportCheck"0Remove this unused import 'org.w3c.dom.Comment'.(‰³Ôã8¬ÄÚ„Ù-
-~squid:S00116~"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
-usquid:S14885"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
-ysquid:S00116"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
-rsquid:S00116ƒ"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ÊÓÛûÿÿÿÿ
-[squid:UselessImportCheck"2Remove this unused import 'android.widget.Filter'.(ëªôÍùÿÿÿÿ
-Tsquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-qsquid:S00116}"YRename this field "post_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç”ÎŒ
-ksquid:S00116€"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
-qsquid:S00116‚"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÇ¿
 Ysquid:UselessImportCheck"6Remove this unused import 'android.widget.Filterable'.(ô…éJ
-.squid:S2176{"Rename this class.(Â×Öúÿÿÿÿ
-rsquid:S00116„"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
+[squid:UselessImportCheck"2Remove this unused import 'android.widget.Filter'.(ëªôÍùÿÿÿÿ
+usquid:S14886"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
+qsquid:S00116„"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÇ¿
+rsquid:S00116†"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
+squid:S00116€"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
+.squid:S2176}"Rename this class.(Â×Öúÿÿÿÿ
+[squid:UselessImportCheck"0Remove this unused import 'org.w3c.dom.Comment'.(‰³Ôã8¬ÄÚ„Ù-
+ysquid:S00116ƒ"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
+qsquid:S00116"YRename this field "post_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç”ÎŒ
+rsquid:S00116…"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ÊÓÛûÿÿÿÿ
+usquid:S00116"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåşÄüÿÿÿÿ
+Tsquid:UselessImportCheck "0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
