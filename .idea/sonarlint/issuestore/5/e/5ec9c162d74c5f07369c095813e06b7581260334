@@ -1,0 +1,7 @@
+
+™squid:UselessImportCheck"iRemove this unused import 'com.industrialmaster.farmnet.views.activities.CreateNewAdvertisementActivity'.(ÉßÁ´ÿÿÿÿÿ8ƒ¦ıãÙ-
+Tsquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8ƒ¦ıãÙ-
+Msquid:S1066@"/Merge this if statement with the enclosing one.(„Øü8‰ÿŒäÙ-
+Ÿsquid:S1186g"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8†²äÙ-
+ˆsquid:UselessImportCheck"dRemove this unused import 'com.industrialmaster.farmnet.views.adapters.QuestionRecyclerViewAdapter'.(ñÛ¦

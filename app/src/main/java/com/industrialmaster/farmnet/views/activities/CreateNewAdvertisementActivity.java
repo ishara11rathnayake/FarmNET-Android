@@ -30,7 +30,7 @@ import com.industrialmaster.farmnet.views.CreateNewAdsView;
 
 public class CreateNewAdvertisementActivity extends BaseActivity implements CreateNewAdsView {
 
-    AdvertisementPresenter presenter;
+    AdvertisementPresenter advertisementPresenter;
 
     ImageView imgv_ads_image;
     ImageButton btn_add_image_from_gallery, btn_add_image_from_camera, img_btn_close;
@@ -92,7 +92,7 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
                 newAdsRequest.setHasImage(hasImage);
 
                 setLoading(true);
-                presenter.createNewAdvertisement(newAdsRequest);
+                advertisementPresenter.createNewAdvertisement(newAdsRequest);
             }
         });
 

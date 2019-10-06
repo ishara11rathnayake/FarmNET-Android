@@ -1,0 +1,19 @@
+
+@squid:S1659")Declare "et_password" on a separate line.(†‘âï
+<squid:S1659"%Declare "et_name" on a separate line.(†‘âï
+esquid:UselessImportCheck"<Remove this unused import 'android.content.DialogInterface'.(Š­›¨şÿÿÿÿ
+\squid:UselessImportCheck"3Remove this unused import 'android.text.TextUtils'.(û˜½Õøÿÿÿÿ
+nsquid:UselessImportCheck"ERemove this unused import 'android.support.v7.app.AppCompatActivity'.(«Û®ûüÿÿÿÿ
+Qsquid:S2387"5"presenter" is the name of a field in "BaseActivity".(ç¶ªõÿÿÿÿÿ
+usquid:S00116"]Rename this field "et_retype_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†‘âï
+jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(İÀãıÿÿÿÿ
+ysquid:UselessImportCheck"URemove this unused import 'com.industrialmaster.farmnet.models.request.LoginRequest'.(¤®
+nsquid:S00116"VRename this field "et_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†‘âï
+rsquid:S00116 "URename this field "btn_signup" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ç„çøÿÿÿÿ
+Gsquid:S1659"0Declare "et_retype_password" on a separate line.(†‘âï
+}squid:UselessImportCheck"TRemove this unnecessary import: same package classes are always implicitly imported.(™õ÷øøÿÿÿÿ
+ksquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†‘âï
+Vsquid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ
+qsquid:S00116!"TRename this field "txt_login" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ßŞœÿÿÿÿÿ
+˜squid:S1186m"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+jsquid:S00116"RRename this field "et_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†‘âï

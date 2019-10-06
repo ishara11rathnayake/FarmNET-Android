@@ -20,18 +20,21 @@
                 android:id="@+id/linear_layout_top"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp"
+                android:elevation="5dp">
 
                 <ImageButton
+                    android:tint="@color/color_black"
                     android:id="@+id/img_btn_close"
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@null"
                     android:padding="7dp"
                     android:scaleType="fitCenter"
@@ -39,18 +42,10 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:layout_height="wrap_content">
-            </LinearLayout>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" "
+                android:text=""
                 android:gravity="center_vertical"
                 android:fontFamily="@font/ubuntubold"
                 android:textSize="24sp"

@@ -1,0 +1,9 @@
+
+jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Á­Ñ¿úÿÿÿÿ
+˜squid:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+Qsquid:S2387"5"presenter" is the name of a field in "BaseActivity".(«ÍÉøÿÿÿÿ
+]squid:UselessImportCheck	"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ
+Nsquid:S1659"2Declare "mDescriptionEditText" on a separate line.(ÏÑó‹ýÿÿÿÿ
+Csquid:S16026",Remove useless curly braces around statement(…´¾à
+Bsquid:S1602F",Remove useless curly braces around statement(¾ÜÀv
+nsquid:UselessImportCheck"ERemove this unused import 'android.support.v7.app.AppCompatActivity'.(«Û®ûüÿÿÿÿ

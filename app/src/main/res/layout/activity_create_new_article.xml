@@ -10,7 +10,8 @@
         android:id="@+id/linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
+        android:elevation="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +29,11 @@
             android:paddingRight="15dp"
             android:text="@string/post"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/color_black"
             android:textSize="18sp" />
 
         <ImageButton
+            android:tint="@color/color_black"
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
@@ -96,11 +98,12 @@
                         android:layout_marginRight="8dp">
 
                         <android.support.design.widget.TextInputEditText
+                            android:textColor="@color/color_black"
                             android:id="@+id/et_article_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ubuntubold"
-                            android:hint="Article Title" />
+                            android:hint="@string/article_title" />
                     </android.support.design.widget.TextInputLayout>
 
                     <com.github.irshulx.Editor
@@ -123,18 +126,5 @@
         </RelativeLayout>
 
     </android.support.constraint.ConstraintLayout>
-
-
-
-    <!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/white">&ndash;&gt;-->
-
-
-
-
-
-<!--    </RelativeLayout>-->
 
 </android.support.constraint.ConstraintLayout>

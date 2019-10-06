@@ -6,6 +6,7 @@ public class ErrorMessageHelper {
     public static final String INVALID_EMAIL = "Please enter your email address in format: yourname@example.com.";
     public static final String PASSWORD_CONFIRMATION = "Password does not match confirmation.";
     public static final String FILL_ALL_THE_FIELDS = "You must fill in all the fields.";
+    public static final String FILL_TITLE_AND_CONTENT = "You can not create article without title and content ";
     public static final String INVALID_PASSWORD = "Your password must be at least 8 characters long, contain at least one number and one special character and have a mixture of uppercase and lowercase letters.";
     public static final String UNAUTHORIZED_USER = "Unauthorised user";
     public static final String FORBIDDEN = "Forbidden";

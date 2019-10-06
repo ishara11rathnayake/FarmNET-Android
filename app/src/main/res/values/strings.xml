@@ -78,6 +78,7 @@
     <string name="crop_deals">Crop Deals</string>
     <string name="articles">Articles</string>
     <string name="ads">Ads</string>
+    <string name="article_title">Article Title</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="user_types">

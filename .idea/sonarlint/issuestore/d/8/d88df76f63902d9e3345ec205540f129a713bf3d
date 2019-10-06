@@ -1,31 +1,33 @@
 
-{squid:S00116-"^Rename this field "btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÒĞÿÿÿÿÿ
->squid:S16592"'Declare "et_amount" on a separate line.(Š§ä
-xsquid:S00116+"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
-rsquid:S001161"ZRename this field "et_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ëªß
-?squid:S16592"(Declare "et_locaton" on a separate line.(Š§ä
-Zsquid:S2259Ø"BA "NullPointerException" could be thrown; "data" is nullable here.(ïõÏ«
-bsquid:UselessImportCheck"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß
-msquid:S001162"URename this field "et_locaton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
-Zsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
-?squid:S1125~"(Remove the literal "true" boolean value.(ÒİÎĞ
-esquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(À‚È°
-‚squid:S00116,"eRename this field "btn_add_image_from_gallery" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÓ»şùÿÿÿÿ
-qsquid:S001162"YRename this field "et_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
-usquid:S00116."]Rename this field "spinner_timelineId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÁ×²
-Csquid:S16592",Declare "et_description" on a separate line.(Š§ä
-^squid:UselessImportCheck":Remove this unused import 'android.content.ContentValues'.(å’µŞ
-Gsquid:S1659,"+Declare "img_btn_close" on a separate line.(şÓ»şùÿÿÿÿ
-hsquid:CommentedOutCodeLineŠ"<This block of commented-out lines of code should be removed.(Š±”€ûÿÿÿÿ
-squid:S1186†"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôÃ¾£üÿÿÿÿ
-psquid:S001161"XRename this field "et_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ëªß
-Bsquid:S16591"+Declare "et_unit_price" on a separate line.(‹Ëªß
-lsquid:S001162"TRename this field "et_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
-™squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
-nsquid:S3776?"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¨Œşÿÿÿÿ
-squid:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×şÿÿÿÿ
 Ssquid:S1659,"7Declare "btn_add_image_from_camera" on a separate line.(şÓ»şùÿÿÿÿ
+\squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8ª”½éÙ-
+Bsquid:S16591"+Declare "et_unit_price" on a separate line.(‹Ëªß
+Csquid:S16592",Declare "et_description" on a separate line.(Š§ä
+csquid:UselessImportCheck
+"8Remove this unused import 'android.provider.MediaStore'.(ãçšş8ª”½éÙ-
+xsquid:S00116+"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
+‚squid:S00116,"eRename this field "btn_add_image_from_gallery" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÓ»şùÿÿÿÿ
+{squid:S00116-"^Rename this field "btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÒĞÿÿÿÿÿ
+?squid:S1125~"(Remove the literal "true" boolean value.(ÒİÎĞ
 Qsquid:S2387("5"presenter" is the name of a field in "BaseActivity".(šÏÜ¦ıÿÿÿÿ
-Dsquid:S16596"-Declare "mTimelineValues" on a separate line.(ğ“­Ó
-squid:S00116,"dRename this field "btn_add_image_from_camera" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÓ»şùÿÿÿÿ
+squid:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×şÿÿÿÿ
+usquid:S00116."]Rename this field "spinner_timelineId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÁ×²
+Zsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
 usquid:S00116,"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÓ»şùÿÿÿÿ
+lsquid:S001162"TRename this field "et_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
+bsquid:UselessImportCheck"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß
+?squid:S16592"(Declare "et_locaton" on a separate line.(Š§ä
+™squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+psquid:S001161"XRename this field "et_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ëªß
+msquid:S001162"URename this field "et_locaton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
+esquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(À‚È°
+Dsquid:S16596"-Declare "mTimelineValues" on a separate line.(ğ“­Ó
+Gsquid:S1659,"+Declare "img_btn_close" on a separate line.(şÓ»şùÿÿÿÿ
+Zsquid:S2259Ø"BA "NullPointerException" could be thrown; "data" is nullable here.(ïõÏ«
+^squid:UselessImportCheck":Remove this unused import 'android.content.ContentValues'.(å’µŞ
+qsquid:S001162"YRename this field "et_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š§ä
+dsquid:UselessImportCheck"4Remove this unused import 'android.database.Cursor'.(Ôäåúÿÿÿÿ8ª”½éÙ-
+squid:S00116,"dRename this field "btn_add_image_from_camera" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÓ»şùÿÿÿÿ
+rsquid:S001161"ZRename this field "et_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ëªß
+nsquid:S3776?"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¨Œşÿÿÿÿ
+>squid:S16592"'Declare "et_amount" on a separate line.(Š§ä

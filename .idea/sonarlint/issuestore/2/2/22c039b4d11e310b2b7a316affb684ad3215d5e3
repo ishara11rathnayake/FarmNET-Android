@@ -1,27 +1,27 @@
 
-ksquid:S00116'"SRename this field "tv_owner" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢÷‚†
 esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(É€›
-Bsquid:S1659&"+Declare "tv_unit_price" on a separate line.(Úàºô
-{squid:S3008#"]Rename this field "FARMNET_PREFS_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«†ÁÜ8ð×í¾Ù-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8×Óû¿Ù-
-qsquid:S00116&"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
-usquid:S00116%"]Rename this field "image_view_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó«æÍ
-Isquid:S1602I",Remove useless curly braces around statement(¾ÜÀv8÷ñ»ÀÙ-
-Fsquid:S1659'"/Declare "tv_published_date" on a separate line.(¢÷‚†
-žsquid:S1186¢"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôÃ¾£üÿÿÿÿ
-psquid:S00116&"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
-lsquid:S00116&"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
-\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8×¶ƒ¿Ù-
-Osquid:S1659("3Declare "img_btn_view_timeline" on a separate line.(Þ³¬Âûÿÿÿÿ
-“"squid:ClassVariableVisibilityCheck#"^Make FARMNET_PREFS_NAME a static final constant or non-public and provide accessors if needed.(«†ÁÜ8ð×í¾Ù-
-rsquid:S00116&"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
-™squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
-nsquid:S00116&"VRename this field "tv_location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
-tsquid:S00116'"\Rename this field "tv_published_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢÷‚†
->squid:S1659&"'Declare "tv_amount" on a separate line.(Úàºô
-usquid:S00116("XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ³¬Âûÿÿÿÿ
-}squid:S00116("`Rename this field "img_btn_view_timeline" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ³¬Âûÿÿÿÿ
-=squid:S1659'"&Declare "tv_owner" on a separate line.(¢÷‚†
-Vsquid:S1444#"8Make this "public static FARMNET_PREFS_NAME" field final(«†ÁÜ8ð×í¾Ù-
-Csquid:S1659&",Declare "tv_description" on a separate line.(Úàºô
 @squid:S1659&")Declare "tv_location" on a separate line.(Úàºô
+{squid:S3008#"]Rename this field "FARMNET_PREFS_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«†ÁÜ8ð×í¾Ù-
+tsquid:S00116'"\Rename this field "tv_published_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢÷‚†
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8×Óû¿Ù-
+Fsquid:S1659'"/Declare "tv_published_date" on a separate line.(¢÷‚†
+™squid:S1186˜"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+Jsquid:S1602‘",Remove useless curly braces around statement(¾ÜÀv8ñÌÀÚÙ-
+psquid:S00116&"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
+ksquid:S00116'"SRename this field "tv_owner" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢÷‚†
+“"squid:ClassVariableVisibilityCheck#"^Make FARMNET_PREFS_NAME a static final constant or non-public and provide accessors if needed.(«†ÁÜ8ð×í¾Ù-
+lsquid:S00116&"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
+Isquid:S1602I",Remove useless curly braces around statement(¾ÜÀv8÷ñ»ÀÙ-
+=squid:S1659'"&Declare "tv_owner" on a separate line.(¢÷‚†
+}squid:S00116("`Rename this field "img_btn_view_timeline" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ³¬Âûÿÿÿÿ
+Bsquid:S1659&"+Declare "tv_unit_price" on a separate line.(Úàºô
+usquid:S00116%"]Rename this field "image_view_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó«æÍ
+qsquid:S00116&"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
+rsquid:S00116&"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô
+>squid:S1659&"'Declare "tv_amount" on a separate line.(Úàºô
+Csquid:S1659&",Declare "tv_description" on a separate line.(Úàºô
+Osquid:S1659("3Declare "img_btn_view_timeline" on a separate line.(Þ³¬Âûÿÿÿÿ
+\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8ìÂçÚÙ-
+usquid:S00116("XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ³¬Âûÿÿÿÿ
+Vsquid:S1444#"8Make this "public static FARMNET_PREFS_NAME" field final(«†ÁÜ8ð×í¾Ù-
+nsquid:S00116&"VRename this field "tv_location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úàºô

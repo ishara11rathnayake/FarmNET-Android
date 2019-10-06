@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.github.irshulx.Editor;
@@ -21,6 +22,7 @@ import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.presenters.ArticlePresenter;
 import com.industrialmaster.farmnet.presenters.ArticlePresenterImpl;
+import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateArticleView;
 
@@ -35,12 +37,13 @@ import top.defaults.colorpicker.ColorPickerPopup;
 
 public class CreateNewArticleActivity extends BaseActivity implements CreateArticleView {
 
-    private static final String TAG = "MAIN_ACTIVITY";
-    Button btn_create_new_article;
+    private static final String TAG = "NewArticleActivity";
+    ImageButton mCloseButton;
+    Button mNewArticleButton;
     Editor editor;
-    EditText et_article_title;
+    EditText mArticleTitleEditText;
 
-    ArticlePresenter presenter;
+    ArticlePresenter articlePresenter;
 
     String realFilePath;
     String mUuid;
@@ -50,136 +53,67 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_article);
 
+        articlePresenter = new ArticlePresenterImpl(this, this);
+
         editor = findViewById(R.id.editor);
-        btn_create_new_article = findViewById(R.id.btn_create_new_article);
-        et_article_title = findViewById(R.id.et_article_title);
+        mNewArticleButton = findViewById(R.id.btn_create_new_article);
+        mArticleTitleEditText = findViewById(R.id.et_article_title);
 
-        presenter = new ArticlePresenterImpl(this, this);
-
-        findViewById(R.id.action_h1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.H1);
-            }
+        mCloseButton = findViewById(R.id.img_btn_close);
+        mCloseButton.setOnClickListener(v -> {
+            String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
         });
 
-        findViewById(R.id.action_h2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.H2);
-            }
-        });
+        findViewById(R.id.action_h1).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H1));
 
-        findViewById(R.id.action_h3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.H3);
-            }
-        });
+        findViewById(R.id.action_h2).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H2));
 
-        findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.BOLD);
-            }
-        });
+        findViewById(R.id.action_h3).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H3));
 
-        findViewById(R.id.action_Italic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.ITALIC);
-            }
-        });
+        findViewById(R.id.action_bold).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.BOLD));
 
-        findViewById(R.id.action_indent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.INDENT);
-            }
-        });
+        findViewById(R.id.action_Italic).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.ITALIC));
 
-        findViewById(R.id.action_outdent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.OUTDENT);
-            }
-        });
+        findViewById(R.id.action_indent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.INDENT));
 
-        findViewById(R.id.action_bulleted).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertList(false);
-            }
-        });
+        findViewById(R.id.action_outdent).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.OUTDENT));
 
-        findViewById(R.id.action_color).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new ColorPickerPopup.Builder(CreateNewArticleActivity.this)
-                        .initialColor(Color.RED) // Set initial color
-                        .enableAlpha(true) // Enable alpha slider or not
-                        .okTitle("Choose")
-                        .cancelTitle("Cancel")
-                        .showIndicator(true)
-                        .showValue(true)
-                        .build()
-                        .show(findViewById(android.R.id.content), new ColorPickerPopup.ColorPickerObserver() {
-                            @Override
-                            public void onColorPicked(int color) {
-                                Toast.makeText(CreateNewArticleActivity.this, "picked" + colorHex(color), Toast.LENGTH_LONG).show();
-                                editor.updateTextColor(colorHex(color));
-                            }
+        findViewById(R.id.action_bulleted).setOnClickListener(v -> editor.insertList(false));
 
-                            @Override
-                            public void onColor(int color, boolean fromUser) {
+        findViewById(R.id.action_color).setOnClickListener(v -> new ColorPickerPopup.Builder(CreateNewArticleActivity.this)
+                .initialColor(Color.RED) // Set initial color
+                .enableAlpha(true) // Enable alpha slider or not
+                .okTitle("Choose")
+                .cancelTitle("Cancel")
+                .showIndicator(true)
+                .showValue(true)
+                .build()
+                .show(findViewById(android.R.id.content), new ColorPickerPopup.ColorPickerObserver() {
+                    @Override
+                    public void onColorPicked(int color) {
+                        Toast.makeText(CreateNewArticleActivity.this, "picked" + colorHex(color), Toast.LENGTH_LONG).show();
+                        editor.updateTextColor(colorHex(color));
+                    }
 
-                            }
-                        });
-            }
-        });
+                    @Override
+                    public void onColor(int color, boolean fromUser) {
 
-        findViewById(R.id.action_unordered_numbered).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertList(true);
-            }
-        });
+                    }
+                }));
 
-        findViewById(R.id.action_hr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertDivider();
-            }
-        });
+        findViewById(R.id.action_unordered_numbered).setOnClickListener(v -> editor.insertList(true));
 
-        findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.openImagePicker();
-            }
-        });
+        findViewById(R.id.action_hr).setOnClickListener(v -> editor.insertDivider());
 
-        findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.insertLink();
-            }
-        });
+        findViewById(R.id.action_insert_image).setOnClickListener(v -> editor.openImagePicker());
+
+        findViewById(R.id.action_insert_link).setOnClickListener(v -> editor.insertLink());
 
 
-        findViewById(R.id.action_erase).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.clearAllContents();
-            }
-        });
+        findViewById(R.id.action_erase).setOnClickListener(v -> editor.clearAllContents());
 
-        findViewById(R.id.action_blockquote).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.updateTextStyle(EditorTextStyle.BLOCKQUOTE);
-            }
-        });
+        findViewById(R.id.action_blockquote).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.BLOCKQUOTE));
 
         editor.setDividerLayout(R.layout.tmpl_divider_layout);
         editor.setEditorImageLayout(R.layout.tmpl_image_view);
@@ -188,7 +122,9 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
         editor.setEditorListener(new EditorListener() {
             @Override
             public void onTextChanged(EditText editText, Editable text) {
-                // Toast.makeText(EditorTestActivity.this, text, Toast.LENGTH_SHORT).show();
+                /**
+                 * functions when onTextChanged
+                 * **/
             }
 
             @Override
@@ -203,31 +139,30 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
                 realFilePath = convertMediaUriToPath(uri);
 
                 mUuid = uuid;
-                presenter.getThumbnailUrl(realFilePath);
+                articlePresenter.getThumbnailUrl(realFilePath);
 
             }
 
             @Override
             public View onRenderMacro(String name, Map<String, Object> props, int index) {
-                View view = getLayoutInflater().inflate(R.layout.layout_authored_by, null);
-                return view;
+                return getLayoutInflater().inflate(R.layout.layout_authored_by, null);
             }
 
         });
 
         editor.render();
 
-        btn_create_new_article.setOnClickListener(new View.OnClickListener() {
+        mNewArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String content = editor.getContentAsSerialized();
-                String articleTitle = et_article_title.getText().toString();
+                String articleTitle = mArticleTitleEditText.getText().toString();
 
                 CreateNewArticleRequest createNewArticleRequest = new CreateNewArticleRequest();
                 createNewArticleRequest.setContent(content);
                 createNewArticleRequest.setArticleTitle(articleTitle);
 
-                presenter.createNewArticle(createNewArticleRequest);
+                articlePresenter.createNewArticle(createNewArticleRequest);
 
             }
         });
@@ -244,7 +179,7 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
                 editor.insertImage(bitmap);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             //Write your code if there's no result

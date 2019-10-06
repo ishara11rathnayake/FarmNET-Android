@@ -1,0 +1,9 @@
+
+Esquid:S1659")Declare "et_password" on a separate line.(ÖìæÎøÿÿÿÿ
+Qsquid:S2387"5"presenter" is the name of a field in "BaseActivity".(ç¶ªõÿÿÿÿÿ
+esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(²Ú’Ì
+psquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖìæÎøÿÿÿÿ
+msquid:S00116"URename this field "txt_signup" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨û°ì
+qsquid:S00116"TRename this field "btn_login" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ÷Úçüÿÿÿÿ
+˜squid:S1186W"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+ssquid:S00116"VRename this field "et_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖìæÎøÿÿÿÿ

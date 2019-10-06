@@ -1,0 +1,10 @@
+
+isquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ
+qsquid:S00116"TRename this field "image_uri" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûë§¤øÿÿÿÿ
+Isquid:S1199X"-Extract this nested code block into a method.(â¨Œøüÿÿÿÿ
+Dsquid:S1199b"-Extract this nested code block into a method.(§´âÀ
+gsquid:S1301W"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
+U"squid:SwitchLastCaseIsDefaultCheckW""Add a default case to this switch.(×ö³–úÿÿÿÿ
+Gsquid:S1659"+Declare "imageFilePath" on a separate line.(Ûë§¤øÿÿÿÿ
+g
+squid:S128X"LEnd this switch case with an unconditional break, return or throw statement.(â¨Œøüÿÿÿÿ

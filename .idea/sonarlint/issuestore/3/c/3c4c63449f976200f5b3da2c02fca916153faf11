@@ -1,12 +1,12 @@
 
-zsquid:S14882"^Immediately return this expression instead of assigning it to the temporary variable "holder".(Šåª„üÿÿÿÿ
-{squid:S00116„"]Rename this field "question_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·–Øãÿÿÿÿÿ
-rsquid:S00116‰"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
-/squid:S2176‚"Rename this class.(Â×žÖúÿÿÿÿ
-tsquid:S00116ˆ"VRename this field "tv_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œæ£ºþÿÿÿÿ
-tsquid:S00116‹"[Rename this field "tv_no_of_answers" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Éƒï
-ksquid:S00116‡"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8É­ç­Ù-
-squid:S00116…"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
-squid:S00116Š"aRename this field "linear_layout_hashtags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ÅÌìüÿÿÿÿ
 usquid:S00116†"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåþÄüÿÿÿÿ
+tsquid:S00116‹"[Rename this field "tv_no_of_answers" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Éƒï
+/squid:S2176‚"Rename this class.(Â×žÖúÿÿÿÿ
+zsquid:S14882"^Immediately return this expression instead of assigning it to the temporary variable "holder".(Šåª„üÿÿÿÿ
+rsquid:S00116‰"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
+squid:S00116Š"aRename this field "linear_layout_hashtags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ÅÌìüÿÿÿÿ
+ksquid:S00116‡"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
+{squid:S00116„"]Rename this field "question_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·–Øãÿÿÿÿÿ
+squid:S00116…"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8É­ç­Ù-
+tsquid:S00116ˆ"VRename this field "tv_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œæ£ºþÿÿÿÿ
