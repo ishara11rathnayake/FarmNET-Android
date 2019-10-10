@@ -7,10 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Comment {
+public class Notification {
 
-    private String commentId;
-    private User user;
+    private String id;
     private String content;
     private Date date;
+    private User user;
+
 }

@@ -187,3 +187,16 @@ Z
 Sapp/src/main/java/com/industrialmaster/farmnet/presenters/ArticlePresenterImpl.java,8\1\815c0f9e417b1df812b066db63b6894e595637e0
 ç
 ]app/src/main/java/com/industrialmaster/farmnet/views/activities/CreateNewArticleActivity.java,1\c\1cc89ee8d9913a5909bf329aab3f531b528ec1e0
+c
+3app/src/main/res/layout/activity_article_reader.xml,2\7\2798cd091731e82811cd6a7260d3ee07ebf492c6
+g
+7app/src/main/res/layout/activity_create_new_article.xml,5\a\5aefc4ab5f3871c5e6267fd05c69215ad54b952d
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+á
+Wapp/src/main/java/com/industrialmaster/farmnet/models/response/ProductDealResponse.java,a\2\a2e54a6f36a97c63a0831427f675ae025f523199
+â
+Yapp/src/main/java/com/industrialmaster/farmnet/models/response/CreateNewDealResponse.java,7\c\7cce7bdb104cdea1a5efb6bb916e3d3c653832e4
+Ö
+Uapp/src/main/java/com/industrialmaster/farmnet/services/FarmnetMessangingService.java,b\8\b8835c171141237f1f81cbc9503127a57f8c6a94

@@ -38,6 +38,7 @@ public class CommentActivity extends BaseActivity implements CommentView {
     RecyclerView mCommentRecyclerView;
     EditText mWriteCommentEditText;
     String postId;
+    String userId;
     Deals deal;
 
     @Override
@@ -54,6 +55,7 @@ public class CommentActivity extends BaseActivity implements CommentView {
         deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         postId = deal.getDealId();
+        userId = deal.getUser().getUserId();
 
         mCommentRecyclerView = findViewById(R.id.recyclerview_comment);
         mWriteCommentEditText = findViewById(R.id.et_write_comment);
@@ -121,7 +123,7 @@ public class CommentActivity extends BaseActivity implements CommentView {
         comment.setDate(new Date());
         comment.setContent(mWriteCommentEditText.getText().toString());
 
-        commentPresenter.addNewComment(postId, comment);
+        commentPresenter.addNewComment(userId, postId, comment);
     }
 
     @Override

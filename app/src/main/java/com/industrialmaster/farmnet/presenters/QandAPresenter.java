@@ -9,4 +9,10 @@ public interface QandAPresenter extends Presenter {
     void createNewQuestion(CreateNewQuestionRequest createNewQuestionRequest);
 
     void searchQuestions(String searchText);
+
+    void deleteQuestion(String questionId);
+
+    void getQuestionByUserId();
+
+    void updateQuestion(CreateNewQuestionRequest updateQuestionRequest, String questionId);
 }

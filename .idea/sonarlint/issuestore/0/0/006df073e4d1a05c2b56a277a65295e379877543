@@ -1,15 +1,19 @@
 
-rsquid:S2259`"TA "NullPointerException" could be thrown; "searchDealsObservable()" can return null.(â¯¯¿8Õ¢Ü¿Ù-
- squid:S1186ò"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8Þ¡–¹Ù-
-™squid:S1186Ž"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ
-Tsquid:S00107i"<Method has 9 parameters, which is greater than 7 authorized.(·Óœ»
-Fsquid:S1125Ÿ")Remove the literal "false" boolean value.(À×Õÿÿÿÿÿ
-žsquid:S1186°"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ýßéàúÿÿÿÿ
-žsquid:S1186«"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ
-™squid:S1186É"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ
-qsquid:UselessImportCheck "GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8 ø¥¹Ù-
- squid:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8ÏÕÝ¿Ù-
-™squid:S1186¡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢ŽÈ
-qsquid:S2259f"TA "NullPointerException" could be thrown; "deleteDealsObservable()" can return null.(†õ§8—Ñö¿Ù-
-;squid:S1148Ä"#Use a logger to log this exception.(Ç’Çê
-žsquid:S1186¦"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõýÿÿÿÿ
+rsquid:S2259o"TA "NullPointerException" could be thrown; "searchDealsObservable()" can return null.(â¯¯¿8¾îýÚ-
+¥squid:S1186À"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõýÿÿÿÿ8¾îýÚ-
+Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ8î† ýÚ-
+ squid:S1186Œ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8¾îýÚ-
+`squid:UselessImportCheck"0Remove this unused import 'org.json.JSONObject'.(œÖ´üþÿÿÿÿ8…‹ýÚ-
+¥squid:S1186Å"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ8¾îýÚ-
+Msquid:S1125¹")Remove the literal "false" boolean value.(À×Õÿÿÿÿÿ8¾îýÚ-
+Bsquid:S1148Þ"#Use a logger to log this exception.(Ç’Çê8¾îýÚ-
+qsquid:S2259u"TA "NullPointerException" could be thrown; "deleteDealsObservable()" can return null.(†õ§8¾îýÚ-
+ squid:S1186¨"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8¾îýÚ-
+¥squid:S1186Ê"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ýßéàúÿÿÿÿ8¾îýÚ-
+ squid:S1186´"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8¾îýÚ-
+ squid:S1186»"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢ŽÈ8¾îýÚ-
+qsquid:UselessImportCheck+"GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8¾îýÚ-
+[squid:S00107x"<Method has 9 parameters, which is greater than 7 authorized.(·Óœ»8¾îýÚ-
+^squid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8½€¤ýÚ-
+csquid:UselessImportCheck"3Remove this unused import 'org.json.JSONException'.(¹Ó·úÿÿÿÿ8Š¯“ýÚ-
+ squid:S1186ã"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8¾îýÚ-

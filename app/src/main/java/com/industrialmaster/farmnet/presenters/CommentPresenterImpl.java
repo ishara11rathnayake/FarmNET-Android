@@ -1,16 +1,24 @@
 package com.industrialmaster.farmnet.presenters;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Comment;
 import com.industrialmaster.farmnet.models.response.UserDetailsResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CommentView;
 import com.industrialmaster.farmnet.views.View;
+import com.industrialmaster.farmnet.views.activities.MainActivity;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -26,6 +34,7 @@ public class CommentPresenterImpl extends BasePresenter implements CommentPresen
 
     private DatabaseReference commentRef;
 
+
     private String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
     private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
 
@@ -40,7 +49,16 @@ public class CommentPresenterImpl extends BasePresenter implements CommentPresen
     }
 
     @Override
-    public void addNewComment(String postId, Comment comment) {
+    public void addNewComment(String userId, String postId, Comment comment) {
+
+        FirebaseMessaging.getInstance().subscribeToTopic(userId)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+
         commentRef.child(postId).push().setValue(comment);
         commentView.onSuccess("Successfully commented");
     }

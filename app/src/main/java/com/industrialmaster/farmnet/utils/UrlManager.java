@@ -30,6 +30,7 @@ public class UrlManager {
     public static final String UPDATE_NO_OF_ANSWERS = "questions/answer/{questionId}";
     public static final String SEARCH_ADVERTISEMENT = "advertisements/search/{searchText}";
     public static final String SEARCH_QUESTIONS = "questions/search/{searchText}";
-
+    public static final String GET_QUESTIONS_BY_USER_ID = "questions/byUser/{userId}";
+    public static final String DELETE_QUESTION = "questions/{questionId}/{userId}";
 
 }

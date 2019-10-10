@@ -1,7 +1,11 @@
 package com.industrialmaster.farmnet.views.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +13,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +33,8 @@ import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.views.fragments.NotificationFragment;
 import com.industrialmaster.farmnet.views.fragments.QandAFragment;
 
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     DealsFragment dealsFragment;
@@ -35,6 +42,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     AdvertisementFragment advertisementFragment;
     NotificationFragment notificationFragment;
     ArticleFragment articleFragment;
+
+    String mUserType;
 
     AuthPresenter authPresenter = new AuthPresenterImpl(this, MainActivity.this );
 
@@ -53,6 +62,9 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         super.onCreate(savedInstanceState);
 
         authPresenter.doCheckAlreadyLogin();
+
+        mUserType = getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.USER_TYPE, "");
 
         imgv_logout = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
@@ -104,6 +116,23 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         setContentView(R.layout.content_main);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            String channelId  = getString(R.string.default_notification_channel_id);
+            String channelName = getString(R.string.default_notification_channel_name);
+            NotificationManager notificationManager =
+                    getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW));
+        }
+
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+                Log.d(TAG, "Key: " + key + " Value: " + value);
+            }
+        }
+
         mDrawerlayout = findViewById(R.id.drawernavigation);
         imgv_drawer_toggle = findViewById(R.id.imgvdrawertoggle);
 
@@ -135,7 +164,11 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     setFragment(dealsFragment);
                     txt_header_topic.setText(getResources().getString(R.string.crop_deals));
                     img_btn_new_question.setVisibility(View.GONE);
-                    img_btn_create_new_deal.setVisibility(View.VISIBLE);
+                    if(mUserType.equals(FarmnetConstants.UserTypes.FARMER)){
+                        img_btn_create_new_deal.setVisibility(View.VISIBLE);
+                    } else {
+                        img_btn_create_new_deal.setVisibility(View.INVISIBLE);
+                    }
                     img_btn_new_article.setVisibility(View.GONE);
                     mNewAdsImageButton.setVisibility(View.GONE);
                     return true;
@@ -160,13 +193,21 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                     txt_header_topic.setText(getResources().getString(R.string.articles));
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
-                    img_btn_new_article.setVisibility(View.VISIBLE);
+                    if(mUserType.equals(FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER)){
+                        img_btn_new_article.setVisibility(View.VISIBLE);
+                    } else {
+                        img_btn_new_article.setVisibility(View.INVISIBLE);
+                    }
                     mNewAdsImageButton.setVisibility(View.GONE);
                     return true;
                 } else if(id == R.id.advertisements){
                     setFragment(advertisementFragment);
                     txt_header_topic.setText(getResources().getString(R.string.ads));
-                    mNewAdsImageButton.setVisibility(View.VISIBLE);
+                    if(mUserType.equals(FarmnetConstants.UserTypes.SERVICE_PROVIDER)){
+                        mNewAdsImageButton.setVisibility(View.VISIBLE);
+                    } else {
+                        mNewAdsImageButton.setVisibility(View.INVISIBLE);
+                    }
                     img_btn_create_new_deal.setVisibility(View.GONE);
                     img_btn_new_article.setVisibility(View.GONE);
                     img_btn_new_question.setVisibility(View.GONE);
@@ -188,7 +229,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
                 } else if(id == R.id.home){
                     startActivity(getIntent());
                 } else  if(id == R.id.my_questions){
-                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    startActivity(new Intent(MainActivity.this, MyQuestionActivity.class));
                 }
                 return false;
             }

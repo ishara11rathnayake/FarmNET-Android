@@ -206,4 +206,17 @@ public interface FarmnetAPI {
             @Path("searchText") String searchText
     );
 
+    @GET(UrlManager.GET_QUESTIONS_BY_USER_ID)
+    Observable<QuestionsResponse> getQuestionsByUserId(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId
+    );
+
+    @DELETE(UrlManager.DELETE_QUESTION)
+    Observable<CommonMessageResponse> deleteQuestion(
+            @Header("Authorization") String authorization,
+            @Path("questionId") String questionId,
+            @Path("userId") String userId
+    );
+
 }

@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.industrialmaster.farmnet.models.Deals;
+import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewDealResponse;
@@ -17,14 +20,22 @@ import com.industrialmaster.farmnet.views.DealsView;
 import com.industrialmaster.farmnet.views.DisplayProductView;
 import com.industrialmaster.farmnet.views.View;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import lombok.Getter;
+import lombok.Setter;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,6 +49,8 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
     private DealsView dealsView;
     private CreateNewDealView createNewDealView;
     private DisplayProductView displayProductView;
+
+    private DatabaseReference dealsRef;
 
     private String errorMessage;
 
@@ -53,6 +66,8 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         } else if(view instanceof  DisplayProductView){
             displayProductView = (DisplayProductView) view;
         }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        dealsRef = database.getReference("deals");
     }
 
     @Override
@@ -126,6 +141,17 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
             @Override
             public void onNext(CreateNewDealResponse createNewDealResponse) {
+
+                DealsPresenterImpl.FirebaseDeal deal = new DealsPresenterImpl.FirebaseDeal();
+
+                deal.setDealId(createNewDealResponse.getProductId());
+                deal.setProductName(createNewDealResponse.getProductName());
+                deal.setUserId(createNewDealResponse.getUserId());
+                deal.setDate(createNewDealResponse.getDate());
+                deal.setUser(createNewDealResponse.getUser());
+
+                dealsRef.child(createNewDealResponse.getUserId()).push()
+                        .setValue(deal);
                 createNewDealView.onSuccess(createNewDealResponse.getMessage());
             }
 
@@ -303,5 +329,15 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
     @Override
     public void onDestroy() {
 
+    }
+
+    @Getter
+    @Setter
+    public static class FirebaseDeal {
+        private String dealId;
+        private String productName;
+        private String userId;
+        private Date date;
+        private User user;
     }
 }

@@ -1,17 +1,20 @@
 
-~squid:S001160"aRename this field "bottom_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î¶‰ïúÿÿÿÿ
-qsquid:S1450*"ZRemove the "imgv_logout" field and declare it as a local variable in the relevant methods.(ûÄñ
-wsquid:S00116*"_Rename this field "img_btn_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
-~squid:S001161"aRename this field "drawer_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’É§øÿÿÿÿ
-Hsquid:S1659-"1Declare "img_btn_new_article" on a separate line.(Æ·ëƒ
-vsquid:S00116-"^Rename this field "img_btn_new_article" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ
-?squid:S1604‚"(Make this anonymous inner class a lambda(™Ìî\
-esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(¾˜Ÿú
-Esquid:S1604´"(Make this anonymous inner class a lambda(®²ŸÌÿÿÿÿÿ
-nsquid:S00116*"VRename this field "imgv_logout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
-xsquid:S00116+"[Rename this field "txt_header_topic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹‘øşÿÿÿÿ
-usquid:S00116*"]Rename this field "imgv_drawer_toggle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
-zsquid:S00116-"bRename this field "img_btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ
-@squid:S1659*")Declare "imgv_logout" on a separate line.(ûÄñ
-Isquid:S1659*"2Declare "img_btn_new_question" on a separate line.(ûÄñ
-xsquid:S1450*"aRemove the "imgv_drawer_toggle" field and declare it as a local variable in the relevant methods.(ûÄñ
+esquid:MaximumInheritanceDepth("<This class has 6 parents which is greater than 5 authorized.(¾˜Ÿú
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8¿¿Û-
+Isquid:S16593"2Declare "img_btn_new_question" on a separate line.(ûÄñ
+xsquid:S14503"aRemove the "imgv_drawer_toggle" field and declare it as a local variable in the relevant methods.(ûÄñ
+zsquid:S001166"bRename this field "img_btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ
+~squid:S00116:"aRename this field "drawer_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’É§øÿÿÿÿ
+Hsquid:S16596"1Declare "img_btn_new_article" on a separate line.(Æ·ëƒ
+wsquid:S001163"_Rename this field "img_btn_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
+xsquid:S001164"[Rename this field "txt_header_topic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹‘øşÿÿÿÿ
+vsquid:S001166"^Rename this field "img_btn_new_article" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ
+qsquid:S14503"ZRemove the "imgv_logout" field and declare it as a local variable in the relevant methods.(ûÄñ
+Fsquid:S1604œ"(Make this anonymous inner class a lambda(™Ìî\8÷ƒÛ-
+Lsquid:S1604Î"(Make this anonymous inner class a lambda(®²ŸÌÿÿÿÿÿ8÷ƒÛ-
+nsquid:S001163"VRename this field "imgv_logout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
+~squid:S001169"aRename this field "bottom_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î¶‰ïúÿÿÿÿ
+@squid:S16593")Declare "imgv_logout" on a separate line.(ûÄñ
+isquid:UselessImportCheck">Remove this unused import 'android.content.BroadcastReceiver'.(Ãğõğ8¿¿Û-
+usquid:S001163"]Rename this field "imgv_drawer_toggle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
+isquid:UselessImportCheck	"9Remove this unused import 'android.content.IntentFilter'.(ò³ñ£ÿÿÿÿÿ8³À¿Û-

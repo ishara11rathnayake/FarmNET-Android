@@ -3,16 +3,17 @@ package com.industrialmaster.farmnet.presenters;
 import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.industrialmaster.farmnet.models.Question;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
+import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.CreateNewQuestionResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateNewQuestionView;
+import com.industrialmaster.farmnet.views.MyQuestionsView;
 import com.industrialmaster.farmnet.views.QandAView;
 import com.industrialmaster.farmnet.views.View;
 
@@ -23,7 +24,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.HttpException;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -31,9 +31,11 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
 
     private QandAView qandAView;
     private CreateNewQuestionView createNewQuestionView;
+    private MyQuestionsView myQuestionsView;
 
     private String errorMessage;
 
+    private String userId = readSharedPreferences(FarmnetConstants.USER_ID, "");
     private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
 
 
@@ -43,6 +45,8 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
             qandAView = (QandAView) view;
         } else if(view instanceof  CreateNewQuestionView) {
             createNewQuestionView = (CreateNewQuestionView) view;
+        } else if(view instanceof MyQuestionsView){
+            myQuestionsView = (MyQuestionsView) view;
         }
     }
 
@@ -67,6 +71,21 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
     @Override
     public void searchQuestions(String searchText) {
         searchQuestionsObservable(accessToken, searchText).subscribe(searchQuestionsSubscriber());
+    }
+
+    @Override
+    public void deleteQuestion(String questionId) {
+        deleteQuestionObservable(accessToken, userId, questionId).subscribe(deleteQuestionSubscriber());
+    }
+
+    @Override
+    public void getQuestionByUserId() {
+        getQuestionByUserIdObservable(accessToken, userId).subscribe(getQuestionByUserIdSubscriber());
+    }
+
+    @Override
+    public void updateQuestion(CreateNewQuestionRequest updateQuestionRequest, String questionId) {
+
     }
 
     public Observable<QuestionsResponse> getAllQuestionsObservable() {
@@ -180,6 +199,88 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
             public void onError(Throwable e) {
                 try {
                     qandAView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<QuestionsResponse> getQuestionByUserIdObservable(String accessToken, String userId) {
+        try {
+            return getRetrofitClient().getQuestionsByUserId(accessToken, userId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<QuestionsResponse> getQuestionByUserIdSubscriber(){
+        return new Observer<QuestionsResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(QuestionsResponse questionsResponse) {
+                List<Question> questions = questionsResponse.getQuestions();
+                myQuestionsView.showMyQuestions(questions);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    myQuestionsView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> deleteQuestionObservable(String accessToken, String userId,
+                                                                       String questionId) {
+        try {
+            return getRetrofitClient().deleteQuestion(accessToken, questionId, userId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> deleteQuestionSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                myQuestionsView.onSuccess(commonMessageResponse.getMessage());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    myQuestionsView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     Log.e(TAG, ex.toString());
                 }

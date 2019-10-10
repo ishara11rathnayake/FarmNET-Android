@@ -7,6 +7,7 @@ public class FarmnetConstants {
     public static final String LOGOUT = "LOGOUT";
     public static final String CANCEL = "CANCEL";
     public static final String USER_ID = "user_id";
+    public static final String USER_TYPE = "user_type";
     public static final String THUMBNAIL_URL_PRES_KEY= "thumbnail_url";
     public static final String HOME = "home";
     public static final String PROFILE = "profile";
@@ -21,5 +22,12 @@ public class FarmnetConstants {
     public static final int IMAGE_ITEM_VIEW = 1;
 
     public static  final String DEFAULT = "default";
+
+    public class UserTypes {
+        public static final String FARMER = "Farmer";
+        public static final String BUYER = "Buyer";
+        public static final String SERVICE_PROVIDER = "Agri Service Provider";
+        public static final String KNOWLEDGE_PROVIDER = "Knowledge Provider";
+    }
 
 }

@@ -14,7 +14,31 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.DetailAdvertisementActivity"></activity>
+        <activity android:name=".views.activities.MyQuestionActivity"></activity>
+        <!--
+            Set custom default icon. This is used when no icon is set for incoming notification messages.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo" />
+        <!--
+            Set color used with incoming notification messages. This is used when no color is set for the incoming
+            notification message.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <service
+            android:name=".services.FarmnetMessangingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".views.activities.DetailAdvertisementActivity" />
         <activity android:name=".views.activities.AnswerActivity" />
         <activity android:name=".views.activities.CommentActivity" />
         <activity android:name=".views.activities.AddNewTimelineTaskActivity" />

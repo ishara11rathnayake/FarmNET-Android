@@ -118,6 +118,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         btn_create_new_deal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setLoading(true);
 
                 String realFilePath;
 
@@ -226,6 +227,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
     @Override
     public void onSuccess(String message) {
+        setLoading(false);
         showAlertDialog("Success", message,false, FarmnetConstants.OK ,
                 (dialog, which) -> {
                     finish();
@@ -236,6 +238,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
     @Override
     public void onError(String message) {
+        setLoading(false);
         showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
                 "", (dialog, which) -> dialog.dismiss());
     }

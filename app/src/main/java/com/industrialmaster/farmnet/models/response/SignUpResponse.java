@@ -18,4 +18,7 @@ public class SignUpResponse {
     @SerializedName("userId")
     private String userId;
 
+    @SerializedName("userType")
+    private String userType;
+
 }

@@ -28,6 +28,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -56,7 +57,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
         Log.d(TAG, "onBindViewHolder: called");
 
         Date date = mQuestions.get(i).getDate();
-        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
         String formattedDate = targetDateFormat.format(date);
 
         Glide.with(mContext)
@@ -75,7 +76,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
             viewHolder.tv_description.setText(mQuestions.get(i).getDescription());
         }
 
-        viewHolder.tv_no_of_answers.setText(Integer.toString(mQuestions.get(i).getNumberOfAnswers())+" Answers");
+        viewHolder.tv_no_of_answers.setText(String.format("%s Answers", Integer.toString(mQuestions.get(i).getNumberOfAnswers())));
 
         String[] hastags = mQuestions.get(i).getHashtags();
 
@@ -83,16 +84,16 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
 
             final TextView[] myTextViews = new TextView[hastags.length];
 
-            for (int x = 0; x < hastags.length; x++) {
+            for (String hastag : hastags) {
                 final TextView rowTextView = new TextView(mContext);
-                rowTextView.setText(String.format("#%s", hastags[x]));
+                rowTextView.setText(String.format("#%s", hastag));
                 viewHolder.linear_layout_hashtags.addView(rowTextView);
 
                 Typeface typeface = ResourcesCompat.getFont(mContext, R.font.ubunturegular);
                 rowTextView.setTypeface(typeface);
 
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-                params.setMargins(5,0,5,0);
+                params.setMargins(5, 0, 5, 0);
                 rowTextView.setLayoutParams(params);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

@@ -18,4 +18,7 @@ public class LoginResponse {
     @SerializedName("userId")
     private String userId;
 
+    @SerializedName("userType")
+    private String userType;
+
 }

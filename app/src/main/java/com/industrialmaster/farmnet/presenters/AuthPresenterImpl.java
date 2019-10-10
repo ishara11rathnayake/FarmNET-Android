@@ -109,6 +109,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
             public void onNext(LoginResponse loginResponse) {
                 saveSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, loginResponse.getAccess_token());
                 saveSharedPreferences(FarmnetConstants.USER_ID, loginResponse.getUserId());
+                saveSharedPreferences(FarmnetConstants.USER_TYPE, loginResponse.getUserType());
                 authView.onSuccess(loginResponse.getMessage());
             }
 
@@ -153,6 +154,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
             public void onNext(SignUpResponse signUpResponse) {
                 saveSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, signUpResponse.getAccess_token());
                 saveSharedPreferences(FarmnetConstants.USER_ID, signUpResponse.getUserId());
+                saveSharedPreferences(FarmnetConstants.USER_TYPE, signUpResponse.getUserType());
                 authView.onSuccess(signUpResponse.getMessage());
             }
 
