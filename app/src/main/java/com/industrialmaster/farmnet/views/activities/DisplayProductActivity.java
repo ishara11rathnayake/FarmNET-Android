@@ -27,6 +27,7 @@ import com.industrialmaster.farmnet.views.DisplayProductView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DisplayProductActivity extends BaseActivity implements DisplayProductView {
 
@@ -39,6 +40,7 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
             tv_owner, tv_published_date;
     ImageButton img_btn_close, img_btn_view_timeline;
     ImageButton mDeleteImageButton;
+    ImageButton mUpdateImageButton;
 
     String callingActivity;
 
@@ -59,11 +61,13 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         img_btn_close = findViewById(R.id.img_btn_close);
         img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);
         mDeleteImageButton = findViewById(R.id.img_btn_delete);
+        mUpdateImageButton = findViewById(R.id.img_btn_update);
 
         String currentUserId = getSharedPreferences(FARMNET_PREFS_NAME, Context.MODE_PRIVATE).getString(FarmnetConstants.USER_ID, "");
 
         if(!deal.getUser().getUserId().equals(currentUserId)){
             mDeleteImageButton.setVisibility(View.INVISIBLE);
+            mUpdateImageButton.setVisibility(View.INVISIBLE);
         }
 
         mDeleteImageButton.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +104,7 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         tv_owner.setText(": " + deal.getUser().getName());
 
         Date date = deal.getDate();
-        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
         String formattedDate = targetDateFormat.format(date);
 
         tv_published_date.setText(": " + formattedDate);
@@ -117,6 +121,15 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
             public void onClick(View v) {
                 setLoading(true);
                 timelinePresenter.getTimelineById(deal.getTimelineId());
+            }
+        });
+
+        mUpdateImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DisplayProductActivity.this, CreateNewDealActivity.class);
+                intent.putExtra("deal", getIntent().getStringExtra("deal"));
+                startActivity(intent);
             }
         });
     }

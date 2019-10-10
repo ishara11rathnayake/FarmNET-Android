@@ -2,7 +2,6 @@ package com.industrialmaster.farmnet.views.activities;
 
 
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,7 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
 
     QandAPresenter presenter;
 
-    ImageButton btn_img_close;
+    ImageButton mCloseImageButton;
     Button btn_create_new_question;
 
     TextInputEditText et_question_title, et_question_body, et_tags;
@@ -37,7 +36,7 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
         Gson gson = new Gson();
         Question question = gson.fromJson(getIntent().getStringExtra("question"), Question.class);
 
-        btn_img_close = findViewById(R.id.img_btn_close);
+        mCloseImageButton = findViewById(R.id.img_btn_close);
         btn_create_new_question = findViewById(R.id.btn_create_new_question);
 
         et_question_title = findViewById(R.id.et_question_title);
@@ -54,7 +53,7 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
             }
         }
 
-        btn_img_close.setOnClickListener(new View.OnClickListener() {
+        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String message = ErrorMessageHelper.DISCARD_CONFIRMATION;

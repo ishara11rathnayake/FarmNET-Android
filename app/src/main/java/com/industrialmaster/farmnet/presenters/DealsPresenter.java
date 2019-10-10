@@ -11,4 +11,6 @@ public interface DealsPresenter extends Presenter {
     void searchProduct(String searchText);
 
     void deleteProduct(String productId);
+
+    void updateDeal(CreateNewDealRequest createNewDealRequest, String dealId);
 }

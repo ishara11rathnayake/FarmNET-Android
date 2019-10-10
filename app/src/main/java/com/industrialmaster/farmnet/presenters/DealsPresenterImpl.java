@@ -117,6 +117,32 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         deleteDealsObservable(accessToken, productId).subscribe(deleteDealsSubscriber());
     }
 
+    @Override
+    public void updateDeal(CreateNewDealRequest createNewDealRequest, String dealId) {
+        RequestBody productNamePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getProductName());
+        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getDescription());
+        RequestBody locationPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getLocation());
+        RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getUnitPrice());
+        RequestBody amountPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getAmount());
+
+        RequestBody timelineIdPart = null;
+        if(!TextUtils.isEmpty(createNewDealRequest.getTimelineId())){
+            timelineIdPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getTimelineId());
+        }
+
+        MultipartBody.Part productImagePart = null;
+        if(!TextUtils.isEmpty(createNewDealRequest.getProductImage())){
+            File file = new File(createNewDealRequest.getProductImage());
+            RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+            productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
+
+        }
+
+        updateDealObservable(accessToken, productNamePart, descriptionPart, locationPart,
+                unitPricePart, amountPart, productImagePart, timelineIdPart, dealId).subscribe(updateDealSubscriber());
+
+    }
+
     public Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
                                                                      RequestBody location, RequestBody unitPrice, RequestBody amount,
                                                                      MultipartBody.Part productImage, RequestBody userId, RequestBody timelineId) {
@@ -299,6 +325,49 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             public void onError(Throwable e) {
                 try {
                     displayProductView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> updateDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
+                                                                     RequestBody location, RequestBody unitPrice, RequestBody amount,
+                                                                     MultipartBody.Part productImage, RequestBody timelineId, String dealId) {
+        try {
+            return getRetrofitClient().updateDeal(accessToken,
+                    productName, unitPrice, amount, descrption, productImage, location, timelineId, dealId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> updateDealSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                createNewDealView.onSuccess(commonMessageResponse.getMessage());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    createNewDealView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     Log.e(TAG, ex.toString());
                 }

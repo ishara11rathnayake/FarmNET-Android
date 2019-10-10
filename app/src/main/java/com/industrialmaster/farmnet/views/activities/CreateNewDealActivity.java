@@ -21,7 +21,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.Timeline;
 import com.industrialmaster.farmnet.models.request.CreateNewDealRequest;
 import com.industrialmaster.farmnet.presenters.DealsPresenter;
@@ -58,6 +61,8 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
     private static final int CAMERA_PERMISSION_CODE = 1002;
     private static final int IMAGE_CAPTURE_CODE = 1003;
 
+    private Deals deal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,9 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         //initialize presenter
         presenter = new DealsPresenterImpl(this, CreateNewDealActivity.this);
         timelinePresenter = new TimelnePresenterImpl(this, CreateNewDealActivity.this);
+
+        Gson gson = new Gson();
+        deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         //Views
         imgv_product_pic = findViewById(R.id.imgv_product_pic);
@@ -89,6 +97,21 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
         mTimelineValues = new ArrayList<>();
         mTimelineValues.add("default");
+
+        if(deal != null){
+            et_product_name.setText(deal.getProductName());
+
+            Glide.with(this)
+                    .asBitmap()
+                    .load(deal.getProductImageUrl())
+                    .centerCrop()
+                    .into(imgv_product_pic);
+
+            et_unit_price.setText(String.valueOf(deal.getUnitPrice()));
+            et_amount.setText(String.valueOf(deal.getAmount()));
+            et_description.setText(deal.getDescription());
+            et_locaton.setText(deal.getLocation());
+        }
 
         spinner_timelineId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -140,7 +163,11 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
                     createNewDealRequest.setTimelineId(timelineId);
                 }
 
-                presenter.createNewDeal(createNewDealRequest);
+                if(deal != null){
+                    presenter.updateDeal(createNewDealRequest, deal.getDealId());
+                } else {
+                    presenter.createNewDeal(createNewDealRequest);
+                }
 
             }
         });

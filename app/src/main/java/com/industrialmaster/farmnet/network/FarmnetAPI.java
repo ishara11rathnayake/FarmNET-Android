@@ -1,5 +1,7 @@
 package com.industrialmaster.farmnet.network;
 
+import android.app.VoiceInteractor;
+
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
@@ -224,6 +226,20 @@ public interface FarmnetAPI {
             @Header("Authorization") String authorization,
             @Path("questionId") String questionId,
             @Body CreateNewQuestionRequest createNewQuestionRequest
+    );
+
+    @Multipart
+    @PATCH(UrlManager.UPDATE_PRODUCT)
+    Observable<CommonMessageResponse> updateDeal(
+            @Header("Authorization") String authorization,
+            @Part("name") RequestBody productName,
+            @Part("price") RequestBody unitPrice,
+            @Part("amount") RequestBody amount,
+            @Part("description") RequestBody description,
+            @Part MultipartBody.Part productImage,
+            @Part("location") RequestBody location,
+            @Part("timelineId") RequestBody timelineId,
+            @Path("productId") String productId
     );
 
 }
