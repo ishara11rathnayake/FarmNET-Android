@@ -219,4 +219,11 @@ public interface FarmnetAPI {
             @Path("userId") String userId
     );
 
+    @PATCH(UrlManager.UPDATE_QUESTION)
+    Observable<CommonMessageResponse> updateQuestion(
+            @Header("Authorization") String authorization,
+            @Path("questionId") String questionId,
+            @Body CreateNewQuestionRequest createNewQuestionRequest
+    );
+
 }

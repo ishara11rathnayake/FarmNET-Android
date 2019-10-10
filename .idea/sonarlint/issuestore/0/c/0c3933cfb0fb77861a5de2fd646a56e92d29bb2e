@@ -1,0 +1,10 @@
+
+usquid:S1488'"^Immediately return this expression instead of assigning it to the temporary variable "holder".(½öâ±
+Hsquid:S1659J",Declare "tv_description" on a separate line.(µÄÅüÿÿÿÿÿ
+Asquid:S1659J"%Declare "tv_date" on a separate line.(µÄÅüÿÿÿÿÿ
+.squid:S2176H"Rename this class.(Â×Öúÿÿÿÿ
+wsquid:S00116J"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÄÅüÿÿÿÿÿ
+vsquid:S00116J"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÄÅüÿÿÿÿÿ
+osquid:S00116J"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÄÅüÿÿÿÿÿ
+‡squid:S00116K"jRename this field "constraint_layout_timeline_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜´À’ıÿÿÿÿ
+Csquid:S1068"'Remove this unused "TAG" private field.(°±Æüÿÿÿÿ

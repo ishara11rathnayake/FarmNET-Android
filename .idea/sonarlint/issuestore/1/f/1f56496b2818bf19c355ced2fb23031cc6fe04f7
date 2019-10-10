@@ -1,0 +1,10 @@
+
+zsquid:S1488'"^Immediately return this expression instead of assigning it to the temporary variable "holder".(ð»©µÿÿÿÿÿ
+asquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ
+Jsquid:S1659O".Declare "tv_article_title" on a separate line.(Çá¤Âþÿÿÿÿ
+.squid:S2176K"Rename this class.(Â×žÖúÿÿÿÿ
+|squid:S00116M"dRename this field "cardview_abstract_article" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì³™Í
+~squid:S00116N"aRename this field "imgv_article_thumbnail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëù×Úøÿÿÿÿ
+vsquid:S00116O"YRename this field "tv_author_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çá¤Âþÿÿÿÿ
+xsquid:S00116O"[Rename this field "tv_article_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çá¤Âþÿÿÿÿ
+Csquid:S1068"'Remove this unused "TAG" private field.(î’®ˆùÿÿÿÿ

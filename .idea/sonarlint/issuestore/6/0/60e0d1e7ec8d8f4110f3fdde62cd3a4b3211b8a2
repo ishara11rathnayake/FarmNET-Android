@@ -1,13 +1,17 @@
 
-Wsquid:UselessImportCheck"4Remove this unused import 'retrofit2.HttpException'.(Ë×–1
-™squid:S1186”"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ
-squid:S1186İ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İßéàúÿÿÿÿ
-squid:S1186Ø"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ
- squid:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8Â“ÏâÙ-
-Zsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
-squid:S1186Ó"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ
-{squid:S2259E"XA "NullPointerException" could be thrown; "searchQuestionsObservable()" can return null.(„ÀÒªûÿÿÿÿ8·ÌçâÙ-
-;squid:S1148"#Use a logger to log this exception.(Ç’Çê
-™squid:S1186Î"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢È
-:squid:S1148f"#Use a logger to log this exception.(Ç’Çê
-˜squid:S1186k"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ
+ squid:S1186Ğ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8Â“ÏâÙ-
+¤squid:S1186W"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢ßùÿÿÿÿ8†ûã¯Û-
+:squid:S1148y"#Use a logger to log this exception.(Ç’Çê
+;squid:S1148¢"#Use a logger to log this exception.(Ç’Çê
+˜squid:S1186~"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ
+™squid:S1186³"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢È
+squid:S2259S"\A "NullPointerException" could be thrown; "getQuestionByUserIdObservable()" can return null.(¾äş§øÿÿÿÿ8³¾·°Û-
+{squid:S2259I"XA "NullPointerException" could be thrown; "searchQuestionsObservable()" can return null.(„ÀÒªûÿÿÿÿ8·ÌçâÙ-
+™squid:S1186§"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ
+squid:S1186¸"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ
+squid:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ
+ squid:S1186ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8õŸ¤±Û-
+zsquid:S2259N"WA "NullPointerException" could be thrown; "deleteQuestionObservable()" can return null.(¶ôğªşÿÿÿÿ8Ù»²Û-
+ squid:S1186¢"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8»Â¤±Û-
+squid:S1186Â"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İßéàúÿÿÿÿ
+csquid:HiddenFieldCheck@":Rename "userId" which hides the field declared at line 38.(Ôå²•8•„³°Û-

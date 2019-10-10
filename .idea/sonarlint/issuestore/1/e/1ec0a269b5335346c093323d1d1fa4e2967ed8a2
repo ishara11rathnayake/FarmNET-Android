@@ -1,23 +1,23 @@
 
-jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ñûŽçøÿÿÿÿ
-Ksquid:S1659""/Declare "tv_contact_number" on a separate line.(ôÐ£Àùÿÿÿÿ
-Asquid:S1659""%Declare "tv_name" on a separate line.(ôÐ£Àùÿÿÿÿ
-osquid:S00116""RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
-psquid:S00116""SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
-tsquid:S00116$"WRename this field "img_btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
-zsquid:S00116#"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
-ysquid:S00116""\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
-rsquid:S00116""URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
-}squid:S00116%"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
-usquid:S00116$"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
-Bsquid:S1659""&Declare "tv_email" on a separate line.(ôÐ£Àùÿÿÿÿ
-vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ý§ô
-˜squid:S1186}"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
-Osquid:S1659$"3Declare "img_btn_timeline_list" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
-Gsquid:S1659$"+Declare "img_btn_close" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
-hsquid:UselessImportCheck"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æþÿÿÿÿ
-}squid:S00116$"`Rename this field "img_btn_timeline_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
 [squid:UselessImportCheck
 "2Remove this unused import 'android.widget.Button'.(²òžýÿÿÿÿ
-squid:S1186x"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(äÜ„îüÿÿÿÿ
+˜squid:S1186}"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+Gsquid:S1659$"+Declare "img_btn_close" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
 Lsquid:S2387 "5"presenter" is the name of a field in "BaseActivity".(ýÑ¹°
+ysquid:S00116""\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
+squid:S1186x"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(äÜ„îüÿÿÿÿ
+tsquid:S00116$"WRename this field "img_btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+zsquid:S00116#"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
+}squid:S00116$"`Rename this field "img_btn_timeline_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+rsquid:S00116""URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
+Ksquid:S1659""/Declare "tv_contact_number" on a separate line.(ôÐ£Àùÿÿÿÿ
+Osquid:S1659$"3Declare "img_btn_timeline_list" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
+}squid:S00116%"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
+osquid:S00116""RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
+Asquid:S1659""%Declare "tv_name" on a separate line.(ôÐ£Àùÿÿÿÿ
+Bsquid:S1659""&Declare "tv_email" on a separate line.(ôÐ£Àùÿÿÿÿ
+psquid:S00116""SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÐ£Àùÿÿÿÿ
+usquid:S00116$"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ñûŽçøÿÿÿÿ
+hsquid:UselessImportCheck"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æþÿÿÿÿ
+vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ý§ô

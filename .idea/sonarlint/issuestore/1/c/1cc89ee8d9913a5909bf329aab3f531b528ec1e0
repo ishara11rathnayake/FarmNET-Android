@@ -1,6 +1,6 @@
 
-esquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(ò†ûö
-¤squid:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·•ôüÿÿÿÿ8ìœêÙ-
 jsquid:CommentedOutCodeLine»"<This block of commented-out lines of code should be removed.(¾‡ß8Ú•’êÙ-
+esquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(ò†ûö
  squid:S1186á"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8Ú•’êÙ-
 osquid:CommentedOutCodeLine¯"<This block of commented-out lines of code should be removed.(ÚºŽ¼üÿÿÿÿ8Ú•’êÙ-
+¤squid:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·•ôüÿÿÿÿ8ìœêÙ-

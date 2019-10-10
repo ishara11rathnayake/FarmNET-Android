@@ -1,13 +1,13 @@
 
-qsquid:UselessImportCheck"HRemove this unused import 'android.support.constraint.ConstraintLayout'.(›×âıÿÿÿÿ
-rsquid:UselessImportCheck"IRemove this unused import 'com.industrialmaster.farmnet.models.Timeline'.(ƒ‚Âøÿÿÿÿ
 xsquid:S00116w"[Rename this field "tv_timiline_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÊÕ«ÿÿÿÿÿ
-Dsquid:S1659w"(Declare "tv_content" on a separate line.(¹ÊÕ«ÿÿÿÿÿ
-vsquid:S00116x"^Rename this field "cimgv_profile_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Ô¬Ë
 Csquid:S1068"'Remove this unused "TAG" private field.(°±Æüÿÿÿÿ
+qsquid:UselessImportCheck"HRemove this unused import 'android.support.constraint.ConstraintLayout'.(›×âıÿÿÿÿ
+vsquid:S00116x"^Rename this field "cimgv_profile_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Ô¬Ë
+rsquid:UselessImportCheck"IRemove this unused import 'com.industrialmaster.farmnet.models.Timeline'.(ƒ‚Âøÿÿÿÿ
 rsquid:S00116w"URename this field "tv_content" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÊÕ«ÿÿÿÿÿ
-Dsquid:S1659Y"(Declare "tv_content" on a separate line.(¹ÊÕ«ÿÿÿÿÿ
-vsquid:S00116Z"^Rename this field "cimgv_profile_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Ô¬Ë
-xsquid:S00116Y"[Rename this field "tv_timiline_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÊÕ«ÿÿÿÿÿ
 rsquid:S00116y"ZRename this field "imgv_task_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì¥¯Ê
+xsquid:S00116Y"[Rename this field "tv_timiline_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÊÕ«ÿÿÿÿÿ
+vsquid:S00116Z"^Rename this field "cimgv_profile_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Ô¬Ë
+Dsquid:S1659w"(Declare "tv_content" on a separate line.(¹ÊÕ«ÿÿÿÿÿ
+Dsquid:S1659Y"(Declare "tv_content" on a separate line.(¹ÊÕ«ÿÿÿÿÿ
 rsquid:S00116Y"URename this field "tv_content" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÊÕ«ÿÿÿÿÿ

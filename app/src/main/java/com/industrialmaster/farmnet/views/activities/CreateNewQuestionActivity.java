@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Question;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
 import com.industrialmaster.farmnet.presenters.QandAPresenter;
 import com.industrialmaster.farmnet.presenters.QandAPresenterImpl;
@@ -32,12 +34,25 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
 
         presenter = new QandAPresenterImpl(this, CreateNewQuestionActivity.this);
 
+        Gson gson = new Gson();
+        Question question = gson.fromJson(getIntent().getStringExtra("question"), Question.class);
+
         btn_img_close = findViewById(R.id.img_btn_close);
         btn_create_new_question = findViewById(R.id.btn_create_new_question);
 
         et_question_title = findViewById(R.id.et_question_title);
         et_question_body = findViewById(R.id.et_question_body);
         et_tags = findViewById(R.id.et_question_tags);
+
+        if(question != null){
+            et_question_title.setText(question.getQuetion());
+            et_question_body.setText(question.getDescription());
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                String tags = String.join(" ", question.getHashtags());
+                et_tags.setText(tags);
+            }
+        }
 
         btn_img_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +76,11 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
 
                 newQuestionRequest.setHashtags(tagsArray);
 
-                presenter.createNewQuestion(newQuestionRequest);
+                if(question != null){
+                    presenter.updateQuestion(newQuestionRequest, question.getQuestionId());
+                } else {
+                    presenter.createNewQuestion(newQuestionRequest);
+                }
             }
         });
     }

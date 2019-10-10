@@ -85,7 +85,7 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
 
     @Override
     public void updateQuestion(CreateNewQuestionRequest updateQuestionRequest, String questionId) {
-
+        updateQuestionObservable(accessToken, questionId, updateQuestionRequest).subscribe(updateQuestionSubscriber());
     }
 
     public Observable<QuestionsResponse> getAllQuestionsObservable() {
@@ -281,6 +281,47 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
             public void onError(Throwable e) {
                 try {
                     myQuestionsView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> updateQuestionObservable(String accessToken, String questionId,
+                                                                       CreateNewQuestionRequest newQuestionRequest) {
+        try {
+            return getRetrofitClient().updateQuestion(accessToken, questionId, newQuestionRequest)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> updateQuestionSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                createNewQuestionView.onSuccess(commonMessageResponse.getMessage());
+        }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    createNewQuestionView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     Log.e(TAG, ex.toString());
                 }
