@@ -12,6 +12,7 @@ public class Notification {
     private String id;
     private String content;
     private Date date;
-    private User user;
+    private String username;
+    private String profilePic;
 
 }

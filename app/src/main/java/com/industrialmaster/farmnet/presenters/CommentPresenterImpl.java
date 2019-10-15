@@ -55,7 +55,7 @@ public class CommentPresenterImpl extends BasePresenter implements CommentPresen
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
+                        Log.d("check_sub","sub");
                     }
                 });
 

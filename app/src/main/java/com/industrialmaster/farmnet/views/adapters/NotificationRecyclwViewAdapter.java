@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -45,10 +46,10 @@ public class NotificationRecyclwViewAdapter extends  RecyclerView.Adapter<Notifi
         String time;
         DateFormat targetDateFormat;
 
-        if(!TextUtils.isEmpty(notification.getUser().getProfilePicUrl())){
+        if(!TextUtils.isEmpty(notification.getProfilePic())){
             Glide.with(mContext)
                     .asBitmap()
-                    .load(notification.getUser().getProfilePicUrl())
+                    .load(notification.getProfilePic())
                     .centerCrop()
                     .into(notificationViewHolder.mProfileImageCircleImageView);
         }
@@ -57,10 +58,10 @@ public class NotificationRecyclwViewAdapter extends  RecyclerView.Adapter<Notifi
         notificationViewHolder.mContentTextView.setText(Html.fromHtml(content));
 
         Date date = notification.getDate();
-        targetDateFormat = new SimpleDateFormat("MM/dd");
+        targetDateFormat = new SimpleDateFormat("MM/dd", Locale.ENGLISH);
         formattedDate = targetDateFormat.format(date);
 
-        targetDateFormat = new SimpleDateFormat("HH:mm");
+        targetDateFormat = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
         time = targetDateFormat.format(date);
 
         notificationViewHolder.mDateTextView.setText(formattedDate);

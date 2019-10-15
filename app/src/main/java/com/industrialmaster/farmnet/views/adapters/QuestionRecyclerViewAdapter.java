@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
@@ -48,8 +46,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_question_view, viewGroup,false);
-        QuestionRecyclerViewAdapter.ViewHolder holder = new QuestionRecyclerViewAdapter.ViewHolder(view);
-        return holder;
+        return new QuestionRecyclerViewAdapter.ViewHolder(view);
     }
 
     @Override
@@ -105,7 +102,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRe
                 rowTextView.setTextColor(mContext.getResources().getColor(R.color.white));
 
                 rowTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.tags_bg, null));
-                myTextViews[i] = rowTextView;
+//                myTextViews[i] = rowTextView;
             }
 
         }

@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Comment;
+import com.industrialmaster.farmnet.models.Notification;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.activities.MainActivity;
@@ -35,16 +38,29 @@ public class FarmnetMessangingService extends FirebaseMessagingService {
 
     public static final String TAG = "FarmnetMSGService";
 
-    private DatabaseReference notificationRef;
-    private SharedPreferences prefs = getApplicationContext().getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE);
-    private String userId = prefs.getString(FarmnetConstants.USER_ID, "");
-
     public FarmnetMessangingService() {
+
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        SharedPreferences prefs = getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE);
+        String userId = prefs.getString(FarmnetConstants.USER_ID, "");
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference notificationRef = database.getReference("notification");
+
+        String username = remoteMessage.getData().get("userName");
+        String profilePic = remoteMessage.getData().get("profilePicUrl");
+
+        Notification notification = new Notification();
+        String content = "<b>" + username + "</b> " + "added a new deal";
+        notification.setContent(content);
+        notification.setProfilePic(profilePic);
+        notification.setUsername(username);
+        notification.setDate(new Date());
+
+        notificationRef.child(userId).push().setValue(notification);
 
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 

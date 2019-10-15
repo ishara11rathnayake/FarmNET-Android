@@ -1,14 +1,12 @@
 
-Isquid:S1602R",Remove useless curly braces around statement(¾ÜÀv8ïÌ‚´Û-
-jsquid:S00116"RRename this field "et_tags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
-Lsquid:S2387"5"presenter" is the name of a field in "BaseActivity".(•ÎÐË
-tsquid:S00116"\Rename this field "et_question_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
-jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Ç¨Ýåþÿÿÿÿ
-Ÿsquid:S1186_"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8ïÌ‚´Û-
-usquid:S00116"XRename this field "btn_img_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î‹Ïèøÿÿÿÿ
-nsquid:UselessImportCheck"ERemove this unused import 'android.support.v7.app.AppCompatActivity'.(«Û®ûüÿÿÿÿ
-<squid:S1659"%Declare "et_tags" on a separate line.(ƒ‡´”
-Esquid:S1659".Declare "et_question_body" on a separate line.(ƒ‡´”
-zsquid:S00116"bRename this field "btn_create_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï—ºô
-ssquid:S00116"[Rename this field "et_question_body" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
-Jsquid:S16028",Remove useless curly braces around statement(…´¾à8ïÌ‚´Û-
+Ÿsquid:S1186g"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8ïÌ‚´Û-
+zsquid:S00116"bRename this field "btn_create_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï—ºô
+<squid:S1659"%Declare "et_tags" on a separate line.(ƒ‡´”
+jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Ç¨Ýåþÿÿÿÿ
+ssquid:S00116"[Rename this field "et_question_body" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
+Jsquid:S1602<",Remove useless curly braces around statement(…´¾à8ïÌ‚´Û-
+jsquid:S00116"RRename this field "et_tags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
+Esquid:S1659".Declare "et_question_body" on a separate line.(ƒ‡´”
+tsquid:S00116"\Rename this field "et_question_title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‡´”
+Isquid:S1602Z",Remove useless curly braces around statement(¾ÜÀv8ïÌ‚´Û-
+Lsquid:S2387"5"presenter" is the name of a field in "BaseActivity".(•ÎÐË

@@ -46,20 +46,10 @@ public class NotificationFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.fragment_notification, container, false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference notificationRef = database.getReference("notifications");
+        DatabaseReference notificationRef = database.getReference("notification");
 
         String mUserId = rootView.getContext().getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
                 .getString(FarmnetConstants.USER_ID, "");
-
-//        Notification notification = new Notification();
-//        String content = "<b>" + "Oprah Winfrey" + "</b> " + "added a new post";
-//        notification.setContent(content);
-//        notification.setDate(new Date());
-//        notification.setId("123456");
-//        User user = new User();
-//        user.setProfilePicUrl("https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/03/07/15/gettyimages-924711442.jpg");
-//        notification.setUser(user);
-//        notifications.add(notification);
 
         notificationRef.child(mUserId).addValueEventListener(new ValueEventListener() {
             @Override
