@@ -143,6 +143,11 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
     }
 
+    @Override
+    public void filterDeals(int minPrice, int maxPrice, int minAmount, int maxAmount) {
+        filterDealsObservable(accessToken, minPrice, maxPrice, minAmount, maxAmount).subscribe(filterDealsSubscriber());
+    }
+
     public Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
                                                                      RequestBody location, RequestBody unitPrice, RequestBody amount,
                                                                      MultipartBody.Part productImage, RequestBody userId, RequestBody timelineId) {
@@ -368,6 +373,48 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
             public void onError(Throwable e) {
                 try {
                     createNewDealView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<ProductDealResponse> filterDealsObservable(String accessToken, int minPrice, int maxPrice,
+                                                                  int minAmount, int maxAmount) {
+        try {
+            return getRetrofitClient().filterProduct(accessToken, minPrice, maxPrice, minAmount, maxAmount)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<ProductDealResponse> filterDealsSubscriber(){
+        return new Observer<ProductDealResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(ProductDealResponse productDealResponses) {
+                List<Deals> productDeals = productDealResponses.getProducts();
+                dealsView.showDeals(productDeals);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    dealsView.onError(handleApiError(e));
                 } catch (Exception ex) {
                     Log.e(TAG, ex.toString());
                 }

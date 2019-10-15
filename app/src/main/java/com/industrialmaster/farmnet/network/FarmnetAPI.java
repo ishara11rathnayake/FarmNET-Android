@@ -39,6 +39,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface FarmnetAPI {
 
@@ -242,4 +243,12 @@ public interface FarmnetAPI {
             @Path("productId") String productId
     );
 
+    @GET(UrlManager.FILTER_PRODUCT)
+    Observable<ProductDealResponse> filterProduct(
+            @Header("Authorization") String authorization,
+            @Query("minprice") int minPrice,
+            @Query("maxprice") int maxPrice,
+            @Query("minAmount") int minAmount,
+            @Query("maxAmount") int maxAmount
+    );
 }

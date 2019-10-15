@@ -106,7 +106,7 @@ public class MyQuestionRecyclerViewAdapter extends RecyclerView.Adapter<MyQuesti
                 rowTextView.setTextColor(mContext.getResources().getColor(R.color.white));
 
                 rowTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.tags_bg, null));
-                myTextViews[i] = rowTextView;
+//                myTextViews[i] = rowTextView;
             }
 
         }

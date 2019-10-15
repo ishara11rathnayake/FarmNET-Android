@@ -43,6 +43,7 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     ImageButton mUpdateImageButton;
 
     String callingActivity;
+    int mPosition;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,6 +58,8 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         Deals deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         callingActivity = getIntent().getStringExtra("activity");
+
+//        mPosition = Integer.parseInt(getIntent().getStringExtra("position"));
 
         img_btn_close = findViewById(R.id.img_btn_close);
         img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);

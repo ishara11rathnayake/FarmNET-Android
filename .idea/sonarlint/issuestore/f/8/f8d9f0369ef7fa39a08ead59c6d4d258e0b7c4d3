@@ -1,6 +1,6 @@
 
 hsquid:UselessImportCheck"8Remove this unused import 'android.app.VoiceInteractor'.(âÅŠ¡ûÿÿÿÿ8Ÿü€¹Û-
-Tsquid:S001078"<Method has 9 parameters, which is greater than 7 authorized.(îì¦Œ
 Ysquid:S00107P"<Method has 8 parameters, which is greater than 7 authorized.(¢¼”Óüÿÿÿÿ
-\squid:S00107é"<Method has 9 parameters, which is greater than 7 authorized.(ŽõÅ 8¥„ý¸Û-
+Tsquid:S001078"<Method has 9 parameters, which is greater than 7 authorized.(îì¦Œ
 Ysquid:S00107b"<Method has 8 parameters, which is greater than 7 authorized.(…Ôú…ùÿÿÿÿ
+\squid:S00107é"<Method has 9 parameters, which is greater than 7 authorized.(ŽõÅ 8¥„ý¸Û-

@@ -10,32 +10,31 @@
 
 
     <EditText
-        android:textColor="@color/color_black"
-        android:drawableTint="@color/color_black"
         android:id="@+id/etsearchdeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:background="@drawable/ic_search_background"
         android:drawableEnd="@drawable/ic_search"
+        android:drawableTint="@color/color_black"
         android:ems="10"
-        android:textSize="14sp"
         android:fontFamily="@font/ubunturegular"
         android:maxLength="26"
         android:maxLines="1"
         android:paddingStart="25dp"
         android:paddingEnd="15dp"
         android:paddingBottom="7dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        android:textColor="@color/color_black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/image_button_filter"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/image_button_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -51,14 +50,177 @@
         app:layout_constraintStart_toEndOf="@+id/etsearchdeals"
         app:layout_constraintTop_toTopOf="parent"/>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_product_post"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etsearchdeals" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_filter" />
+
+    <android.support.constraint.ConstraintLayout
+        android:visibility="gone"
+        android:background="@color/white"
+        android:id="@+id/constraint_layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/etsearchdeals">
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/ubunturegular"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            android:textColor="@color/color_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_prce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/price_range"
+            android:textColor="@color/color_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_search" />
+
+        <TextView
+            android:id="@+id/text_view_max_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text=""
+            android:textColor="@color/color_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_view_prce" />
+
+        <TextView
+            android:id="@+id/text_view_min_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text=""
+            android:textColor="@color/color_black"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_divider"
+            app:layout_constraintTop_toTopOf="@+id/text_view_prce" />
+
+        <TextView
+            android:id="@+id/text_view_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/range_divider"
+            android:textColor="@color/color_black"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_max_price"
+            app:layout_constraintTop_toTopOf="@+id/text_view_prce" />
+
+        <com.appyvet.materialrangebar.RangeBar
+            android:id="@+id/seekbar_price_range"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_prce"
+            app:mrb_barWeight="1dp"
+            app:mrb_connectingLineWeight="4dp"
+            app:mrb_leftSelectorColor="@color/color_black"
+            app:mrb_pinColor="@color/color_black"
+            app:mrb_pinMaxFont="15sp"
+            app:mrb_pinMinFont="12sp"
+            app:mrb_pinRadius="14dp"
+            app:mrb_pinTextColor="@color/white"
+            app:mrb_rangeBar="true"
+            app:mrb_rangeBarPaddingBottom="20dp"
+            app:mrb_rangeBar_rounded="true"
+            app:mrb_rightSelectorColor="@color/color_black"
+            app:mrb_selectorBoundarySize="2dp"
+            app:mrb_selectorSize="10dp"
+            app:mrb_tickDefaultLabel="label"
+            app:mrb_tickEnd="3000"
+            app:mrb_tickStart="0" />
+
+        <TextView
+            android:id="@+id/text_view_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/amount"
+            android:textColor="@color/color_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_price_range" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_amount_min"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/color_black"
+            app:boxStrokeColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_input_amount_max"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_amount">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_amount_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubunturegular"
+                android:hint="@string/min"
+                android:inputType="number"
+                android:textColor="@color/color_black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_amount_max"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/color_black"
+            app:boxStrokeColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_input_amount_min"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_amount">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_amount_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubunturegular"
+                android:hint="@string/max"
+                android:inputType="number"
+                android:textColor="@color/color_black" />
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

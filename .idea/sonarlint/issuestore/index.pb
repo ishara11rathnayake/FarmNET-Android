@@ -228,3 +228,5 @@ g
 `app/src/main/java/com/industrialmaster/farmnet/views/adapters/MyQuestionRecyclerViewAdapter.java,4\8\48548aed501c7b36f4bce28c4bce6b16c4c49bf1
 ‡
 Wapp/src/main/java/com/industrialmaster/farmnet/views/activities/MyQuestionActivity.java,4\6\46b50a6fdf34940e69e63194d21e37f908883569
+ˆ
+Xapp/src/main/java/com/industrialmaster/farmnet/views/activities/FilterDealsActivity.java,7\7\77d04a780dd2a7e507bdb3eb8ff946bae408de59

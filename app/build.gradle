@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.industrialmaster.farmnet"
-        minSdkVersion 17
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -66,6 +66,10 @@ dependencies {
 
     //color picker
     implementation 'com.github.duanhong169:colorpicker:1.1.1'
+
+    //range seekbar
+//    implementation 'me.bendik.simplerangeview:simplerangeview:0.2.0'
+    implementation 'com.appyvet:materialrangebar:1.4.6'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -101,6 +101,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
                 String deal = gson.toJson(mDeals.get(i));
                 intent.putExtra("activity", FarmnetConstants.HOME);
                 intent.putExtra("deal", deal);
+//                intent.putExtra("position", String.valueOf(i));
                 mContext.startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
 
-^squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ8Ë€Î¯Û-
 lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(¢ÃØÞ8¤û¯¯Û-
 Ÿsquid:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8×¢í²Û-
+^squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ8Ë€Î¯Û-
