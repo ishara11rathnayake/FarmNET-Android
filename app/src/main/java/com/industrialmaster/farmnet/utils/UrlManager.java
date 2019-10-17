@@ -35,5 +35,6 @@ public class UrlManager {
     public static final String UPDATE_QUESTION = "questions/{questionId}";
     public static final String UPDATE_PRODUCT = "products/{productId}";
     public static final String FILTER_PRODUCT = "products/filter/bypriceandamount";
+    public static final String CHANGE_PASSWORD = "user/password/{userId}";
 
 }

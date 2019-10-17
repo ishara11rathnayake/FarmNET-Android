@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -108,7 +109,7 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
     @Override
     public void searchProduct(String searchText) {
 
-        searchDealsObservable(accessToken, searchText).subscribe(searchDealsSubscriber());
+        Objects.requireNonNull(searchDealsObservable(accessToken, searchText)).subscribe(searchDealsSubscriber());
 
     }
 
@@ -220,7 +221,7 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         return true;
     }
 
-    public Observable<ProductDealResponse> getAllDealsObservable() {
+    private Observable<ProductDealResponse> getAllDealsObservable() {
         try {
             return getRetrofitClient().getAllDeals()
                     .subscribeOn(Schedulers.io())
@@ -232,11 +233,11 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         return null;
     }
 
-    public Observer<ProductDealResponse> getAllDealsSubscriber(){
+    private Observer<ProductDealResponse> getAllDealsSubscriber(){
         return new Observer<ProductDealResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.add(d);
+
             }
 
             @Override
@@ -425,26 +426,6 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
             }
         };
-    }
-
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
     }
 
     @Getter

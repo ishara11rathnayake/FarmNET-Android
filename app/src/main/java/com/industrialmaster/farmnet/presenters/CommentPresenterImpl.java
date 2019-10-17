@@ -68,25 +68,6 @@ public class CommentPresenterImpl extends BasePresenter implements CommentPresen
         getUserByIdObservable(accessToken, userId).subscribe(getUserByIdSubscriber());
     }
 
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 
     public Observable<UserDetailsResponse> getUserByIdObservable(String accesToken, String userId) {
         try {

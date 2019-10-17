@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.industrialmaster.farmnet.models.request.ChangePasswordRequest;
 import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
+import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
@@ -13,8 +15,11 @@ import com.industrialmaster.farmnet.network.RetrofitException;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.AuthView;
+import com.industrialmaster.farmnet.views.ChangePasswordView;
 import com.industrialmaster.farmnet.views.FarmnetHomeView;
 import com.industrialmaster.farmnet.views.View;
+
+import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -23,14 +28,21 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 
-import static android.support.constraint.Constraints.TAG;
-
 public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
-    AuthView authView;
-    FarmnetHomeView homeView;
+    private static final String TAG = AuthPresenterImpl.class.getSimpleName();
 
-    String errorMessage;
+    private static final String REGEX_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String REGEX_PASSWRD = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+
+    private String accessToken = "Bearer " + readSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, FarmnetConstants.CheckUserLogin.LOGOUT_USER);
+    private String userID = readSharedPreferences(FarmnetConstants.USER_ID, "");
+
+    private AuthView authView;
+    private FarmnetHomeView homeView;
+    private ChangePasswordView changePasswordView;
+
+    private String errorMessage;
 
     public AuthPresenterImpl(Activity activityContext, View view) {
         super(activityContext);
@@ -38,6 +50,8 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
             authView = (AuthView) view;
         } else if(view instanceof FarmnetHomeView){
             homeView = (FarmnetHomeView) view;
+        } else if( view instanceof  ChangePasswordView){
+            changePasswordView = (ChangePasswordView) view;
         }
     }
 
@@ -46,10 +60,10 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
         boolean isValidate = loginFieldsValidate(loginRequest.getEmail(), loginRequest.getPassword());
 
-        if(isValidate == false) {
+        if(!isValidate) {
             authView.onError(errorMessage);
         } else {
-            doLoginObservable(loginRequest).subscribe(doLoginSubscriber());
+            Objects.requireNonNull(doLoginObservable(loginRequest)).subscribe(doLoginSubscriber());
         }
 
     }
@@ -60,10 +74,10 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         boolean isValidate = signUpFieldsValidate(signUpRequest.getEmail(), signUpRequest.getName(), signUpRequest.getPassword(),
                 signUpRequest.getUser_type(), retypePassword);
 
-        if(isValidate == false){
+        if(!isValidate){
             authView.onError(errorMessage);
         } else {
-            doSignUpObservable(signUpRequest).subscribe(doSignUpSubscriber());
+            Objects.requireNonNull(doSignUpObservable(signUpRequest)).subscribe(doSignUpSubscriber());
         }
 
     }
@@ -86,7 +100,18 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         homeView.setStarterScreen(FarmnetConstants.CheckUserLogin.LOGOUT_USER);
     }
 
-    public Observable<LoginResponse> doLoginObservable(LoginRequest loginRequest) {
+    @Override
+    public void changePassword(ChangePasswordRequest changePasswordRequest, String confirmPassword) {
+        boolean isValidate = validatePassword(changePasswordRequest.getNewPassword(), confirmPassword);
+
+        if(!isValidate){
+            changePasswordView.onError(errorMessage);
+        } else {
+            Objects.requireNonNull(changePasswordObservable(changePasswordRequest)).subscribe(changePasswordSubscriber());
+        }
+    }
+
+    private Observable<LoginResponse> doLoginObservable(LoginRequest loginRequest) {
         try {
             return getRetrofitClient().doLogin(loginRequest)
                     .subscribeOn(Schedulers.io())
@@ -98,7 +123,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         return null;
     }
 
-    public Observer<LoginResponse> doLoginSubscriber(){
+    private Observer<LoginResponse> doLoginSubscriber(){
         return new Observer<LoginResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -118,7 +143,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
                 try {
                     authView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
 
             }
@@ -130,7 +155,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         };
     }
 
-    public Observable<SignUpResponse> doSignUpObservable(SignUpRequest signUpRequest) {
+    private Observable<SignUpResponse> doSignUpObservable(SignUpRequest signUpRequest) {
         try {
             return getRetrofitClient().doSignup(signUpRequest)
                     .subscribeOn(Schedulers.io())
@@ -143,7 +168,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         return null;
     }
 
-    public Observer<SignUpResponse> doSignUpSubscriber(){
+    private Observer<SignUpResponse> doSignUpSubscriber(){
         return new Observer<SignUpResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -167,9 +192,53 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
                         authView.onError(handleApiError(e));
                     }
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
+            }
 
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    private Observable<CommonMessageResponse> changePasswordObservable(ChangePasswordRequest changePasswordRequest) {
+        try {
+            return getRetrofitClient().changePassword(accessToken, userID, changePasswordRequest)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<CommonMessageResponse> changePasswordSubscriber(){
+        return new Observer<CommonMessageResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(CommonMessageResponse commonMessageResponse) {
+                if(commonMessageResponse.getStatusCode().equals("200")){
+                    changePasswordView.onSuccess(commonMessageResponse.getMessage());
+                } else if(commonMessageResponse.getStatusCode().equals("409")){
+                    changePasswordView.onError(commonMessageResponse.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    changePasswordView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
             }
 
             @Override
@@ -181,13 +250,10 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
 
     private boolean loginFieldsValidate(String email, String password){
-        final String regex_email = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
             errorMessage = ErrorMessageHelper.ENTER_EMAIL_AND_PASSWORD;
             return false;
-        }
-        else if(!email.matches(regex_email)){
+        } else if(!email.matches(REGEX_EMAIL)){
             errorMessage = ErrorMessageHelper.INVALID_EMAIL;
             return false;
         }
@@ -197,20 +263,24 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
     }
 
     private boolean signUpFieldsValidate(String email, String name, String password, String userType, String retypePassword){
-        final String regex_email = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        final String regex_password = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(name) || TextUtils.isEmpty(password) ||
                 userType.equals("Select user type") || TextUtils.isEmpty(retypePassword)){
             errorMessage = ErrorMessageHelper.FILL_ALL_THE_FIELDS;
             return false;
-        } else if(!email.matches(regex_email)){
+        } else if(!email.matches(REGEX_EMAIL)){
             errorMessage = ErrorMessageHelper.INVALID_EMAIL;
             return false;
-        } else if (!password.matches(regex_password)) {
+        } else return validatePassword(password, retypePassword);
+
+    }
+
+    private boolean validatePassword (String password, String confirmPassword) {
+
+        if (!password.matches(REGEX_PASSWRD)) {
             errorMessage = ErrorMessageHelper.INVALID_PASSWORD;
             return false;
-        } else if(!password.equals(retypePassword)){
+        } else if(!password.equals(confirmPassword)){
             errorMessage = ErrorMessageHelper.PASSWORD_CONFIRMATION;
             return false;
         }
@@ -218,23 +288,6 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         return true;
     }
 
-    @Override
-    public void onCreate() {
 
-    }
 
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }

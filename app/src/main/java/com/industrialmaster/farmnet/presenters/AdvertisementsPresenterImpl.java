@@ -221,24 +221,4 @@ public class AdvertisementsPresenterImpl extends BasePresenter implements Advert
 
         return true;
     }
-
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }

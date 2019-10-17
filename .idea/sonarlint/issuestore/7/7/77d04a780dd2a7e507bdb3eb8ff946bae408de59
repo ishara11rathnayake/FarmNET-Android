@@ -1,3 +1,8 @@
 
-nsquid:CommentedOutCodeLine+"<This block of commented-out lines of code should be removed.(åÏÈùÿÿÿÿ8çý§üÜ-
-isquid:CommentedOutCodeLine-"<This block of commented-out lines of code should be removed.(É£À8çý§üÜ-
+qsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Âõ‰µøÿÿÿÿ8ð¥Ý„Ý-
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8“¥ç„Ý-
+‚squid:UselessImportCheck"WRemove this unused import 'com.industrialmaster.farmnet.presenters.DealsPresenterImpl'.(ð´§¶8…†è„Ý-
+psquid:UselessImportCheck"FRemove this unused import 'com.industrialmaster.farmnet.models.Deals'.(¬°Øf8“¥ç„Ý-
+Ÿsquid:S1186A"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8üÖ„„Ý-
+^squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ8Ôšé„Ý-
+usquid:UselessImportCheck"ERemove this unused import 'android.support.v7.app.AppCompatActivity'.(«Û®ûüÿÿÿÿ8ð¥Ý„Ý-

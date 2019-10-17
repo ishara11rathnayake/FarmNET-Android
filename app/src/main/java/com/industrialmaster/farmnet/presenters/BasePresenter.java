@@ -20,7 +20,7 @@ import retrofit2.HttpException;
 public abstract class BasePresenter implements Presenter{
 
     protected Activity activity;
-    public static String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
+    public static final String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
     protected String apiErrorMessage;
 
     protected View mView;

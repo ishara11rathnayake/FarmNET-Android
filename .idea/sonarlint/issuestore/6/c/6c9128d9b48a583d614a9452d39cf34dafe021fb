@@ -1,18 +1,18 @@
 
-qsquid:S00116†"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÇ¿
-[squid:UselessImportCheck"0Remove this unused import 'org.w3c.dom.Comment'.(‰³Ôã8¬ÄÚ„Ù-
-usquid:S14887"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
-Ysquid:UselessImportCheck"6Remove this unused import 'android.widget.Filterable'.(ô…éJ
-rsquid:S00116ˆ"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
-usquid:S00116ƒ"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåşÄüÿÿÿÿ
-rsquid:S00116‡"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ÊÓÛûÿÿÿÿ
 ksquid:S00116„"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
-ysquid:S00116…"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
-\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8¤Í³ÚÙ-
-[squid:UselessImportCheck"2Remove this unused import 'android.widget.Filter'.(ëªôÍùÿÿÿÿ
-Tsquid:UselessImportCheck!"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-.squid:S2176"Rename this class.(Â×Öúÿÿÿÿ
 Zsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
+Tsquid:UselessImportCheck!"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+rsquid:S00116‡"TRename this field "tv_amount" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ÊÓÛûÿÿÿÿ
+rsquid:S00116ˆ"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
 rsquid:S00116"YRename this field "post_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç”ÎŒ
-squid:S00116‚"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
+Ysquid:UselessImportCheck"6Remove this unused import 'android.widget.Filterable'.(ô…éJ
 isquid:CommentedOutCodeLineh"<This block of commented-out lines of code should be removed.(Úû¨Õ8Ÿ÷Ü-
+ysquid:S00116…"[Rename this field "imgv_product_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–åâÿÿÿÿÿ
+[squid:UselessImportCheck"0Remove this unused import 'org.w3c.dom.Comment'.(‰³Ôã8¬ÄÚ„Ù-
+\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8¤Í³ÚÙ-
+usquid:S00116ƒ"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåşÄüÿÿÿÿ
+squid:S00116‚"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
+qsquid:S00116†"XRename this field "tv_unit_price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÇ¿
+[squid:UselessImportCheck"2Remove this unused import 'android.widget.Filter'.(ëªôÍùÿÿÿÿ
+usquid:S14887"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
+.squid:S2176"Rename this class.(Â×Öúÿÿÿÿ

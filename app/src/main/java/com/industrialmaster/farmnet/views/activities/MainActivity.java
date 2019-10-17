@@ -37,6 +37,8 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
+    AuthPresenter authPresenter;
+
     DealsFragment dealsFragment;
     QandAFragment qandAFragment;
     AdvertisementFragment advertisementFragment;
@@ -45,10 +47,10 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
     String mUserType;
 
-    AuthPresenter authPresenter = new AuthPresenterImpl(this, MainActivity.this );
-
     private DrawerLayout mDrawerlayout;
-    private ImageView imgv_drawer_toggle, img_btn_new_question, imgv_logout;
+    private ImageView imgv_drawer_toggle;
+    private ImageView img_btn_new_question;
+    private ImageView mLogoutImageView;
     private TextView txt_header_topic;
 
     private ImageButton img_btn_create_new_deal, img_btn_new_article;
@@ -61,12 +63,14 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        authPresenter = new AuthPresenterImpl(this, MainActivity.this );
+
         authPresenter.doCheckAlreadyLogin();
 
         mUserType = getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
                 .getString(FarmnetConstants.USER_TYPE, "");
 
-        imgv_logout = findViewById(R.id.imgvlogout);
+        mLogoutImageView = findViewById(R.id.imgvlogout);
         txt_header_topic = findViewById(R.id.txtheadertopic);
         img_btn_new_question =findViewById(R.id.img_btn_new_question);
         mNewAdsImageButton = findViewById(R.id.img_btn_new_ads);
@@ -96,7 +100,7 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         });
 
         //click on logout button
-        imgv_logout.setOnClickListener(new View.OnClickListener() {
+        mLogoutImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLogoutAlert(ErrorMessageHelper.LOGOUT_CONFIRMATION);
@@ -145,94 +149,86 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         drawer_navigation_view = findViewById(R.id.drawer_nav);
 
-        imgv_drawer_toggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawerlayout.openDrawer(Gravity.LEFT);
-            }
-        });
+        imgv_drawer_toggle.setOnClickListener(v -> mDrawerlayout.openDrawer(Gravity.LEFT));
 
         bottom_navigation_view.setSelectedItemId(R.id.deals);
         setFragment(dealsFragment);
 
         //bottom navigation item selecting (change fragments)
-        bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                if(id == R.id.deals){
-                    setFragment(dealsFragment);
-                    txt_header_topic.setText(getResources().getString(R.string.crop_deals));
-                    img_btn_new_question.setVisibility(View.GONE);
-                    if(mUserType.equals(FarmnetConstants.UserTypes.FARMER)){
-                        img_btn_create_new_deal.setVisibility(View.VISIBLE);
-                    } else {
-                        img_btn_create_new_deal.setVisibility(View.INVISIBLE);
-                    }
-                    img_btn_new_article.setVisibility(View.GONE);
-                    mNewAdsImageButton.setVisibility(View.GONE);
-                    return true;
-                } else if(id == R.id.notification){
-                    setFragment(notificationFragment);
-                    txt_header_topic.setText(getResources().getString(R.string.notification));
+        bottom_navigation_view.setOnNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if(id == R.id.deals){
+                setFragment(dealsFragment);
+                txt_header_topic.setText(getResources().getString(R.string.crop_deals));
+                img_btn_new_question.setVisibility(View.GONE);
+                if(mUserType.equals(FarmnetConstants.UserTypes.FARMER)){
+                    img_btn_create_new_deal.setVisibility(View.VISIBLE);
+                } else {
                     img_btn_create_new_deal.setVisibility(View.INVISIBLE);
-                    img_btn_new_question.setVisibility(View.GONE);
-                    img_btn_new_article.setVisibility(View.GONE);
-                    mNewAdsImageButton.setVisibility(View.GONE);
-                    return true;
-                } else if(id == R.id.question){
-                    setFragment(qandAFragment);
-                    txt_header_topic.setText("Q & A");
-                    img_btn_create_new_deal.setVisibility(View.INVISIBLE);
-                    img_btn_new_question.setVisibility(View.INVISIBLE);
-                    img_btn_new_article.setVisibility(View.INVISIBLE);
-                    mNewAdsImageButton.setVisibility(View.INVISIBLE);
-                    return true;
-                } else if(id == R.id.articles){
-                    setFragment(articleFragment);
-                    txt_header_topic.setText(getResources().getString(R.string.articles));
-                    img_btn_create_new_deal.setVisibility(View.GONE);
-                    img_btn_new_question.setVisibility(View.GONE);
-                    if(mUserType.equals(FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER)){
-                        img_btn_new_article.setVisibility(View.VISIBLE);
-                    } else {
-                        img_btn_new_article.setVisibility(View.INVISIBLE);
-                    }
-                    mNewAdsImageButton.setVisibility(View.GONE);
-                    return true;
-                } else if(id == R.id.advertisements){
-                    setFragment(advertisementFragment);
-                    txt_header_topic.setText(getResources().getString(R.string.ads));
-                    if(mUserType.equals(FarmnetConstants.UserTypes.SERVICE_PROVIDER)){
-                        mNewAdsImageButton.setVisibility(View.VISIBLE);
-                    } else {
-                        mNewAdsImageButton.setVisibility(View.INVISIBLE);
-                    }
-                    img_btn_create_new_deal.setVisibility(View.GONE);
-                    img_btn_new_article.setVisibility(View.GONE);
-                    img_btn_new_question.setVisibility(View.GONE);
-                    return true;
                 }
-                return false;
+                img_btn_new_article.setVisibility(View.GONE);
+                mNewAdsImageButton.setVisibility(View.GONE);
+                return true;
+            } else if(id == R.id.notification){
+                setFragment(notificationFragment);
+                txt_header_topic.setText(getResources().getString(R.string.notification));
+                img_btn_create_new_deal.setVisibility(View.INVISIBLE);
+                img_btn_new_question.setVisibility(View.GONE);
+                img_btn_new_article.setVisibility(View.GONE);
+                mNewAdsImageButton.setVisibility(View.GONE);
+                return true;
+            } else if(id == R.id.question){
+                setFragment(qandAFragment);
+                txt_header_topic.setText("Q & A");
+                img_btn_create_new_deal.setVisibility(View.INVISIBLE);
+                img_btn_new_question.setVisibility(View.INVISIBLE);
+                img_btn_new_article.setVisibility(View.INVISIBLE);
+                mNewAdsImageButton.setVisibility(View.INVISIBLE);
+                return true;
+            } else if(id == R.id.articles){
+                setFragment(articleFragment);
+                txt_header_topic.setText(getResources().getString(R.string.articles));
+                img_btn_create_new_deal.setVisibility(View.GONE);
+                img_btn_new_question.setVisibility(View.GONE);
+                if(mUserType.equals(FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER)){
+                    img_btn_new_article.setVisibility(View.VISIBLE);
+                } else {
+                    img_btn_new_article.setVisibility(View.INVISIBLE);
+                }
+                mNewAdsImageButton.setVisibility(View.GONE);
+                return true;
+            } else if(id == R.id.advertisements){
+                setFragment(advertisementFragment);
+                txt_header_topic.setText(getResources().getString(R.string.ads));
+                if(mUserType.equals(FarmnetConstants.UserTypes.SERVICE_PROVIDER)){
+                    mNewAdsImageButton.setVisibility(View.VISIBLE);
+                } else {
+                    mNewAdsImageButton.setVisibility(View.INVISIBLE);
+                }
+                img_btn_create_new_deal.setVisibility(View.GONE);
+                img_btn_new_article.setVisibility(View.GONE);
+                img_btn_new_question.setVisibility(View.GONE);
+                return true;
             }
+            return false;
         });
 
         //navigation drawer item selecting
-        drawer_navigation_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                if(id == R.id.profile){
-                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                } else if(id == R.id.logout){
-                    showLogoutAlert(ErrorMessageHelper.LOGOUT_CONFIRMATION);
-                } else if(id == R.id.home){
-                    startActivity(getIntent());
-                } else  if(id == R.id.my_questions){
-                    startActivity(new Intent(MainActivity.this, MyQuestionActivity.class));
-                }
-                return false;
+        drawer_navigation_view.setNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if(id == R.id.profile){
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            } else if(id == R.id.logout){
+                showLogoutAlert(ErrorMessageHelper.LOGOUT_CONFIRMATION);
+            } else if(id == R.id.home){
+                finish();
+                startActivity(getIntent());
+            } else  if(id == R.id.my_questions){
+                startActivity(new Intent(MainActivity.this, MyQuestionActivity.class));
+            } else if(id == R.id.change_password){
+                startActivity(new Intent(MainActivity.this, ChangePasswordActivity.class));
             }
+            return false;
         });
 
     }

@@ -52,26 +52,6 @@ public class AnswerPresenterImpl extends BasePresenter implements AnswerPresente
         getUserByIdObservable(accessToken, userId).subscribe(getUserByIdSubscriber());
     }
 
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
-
     private Observable<UserDetailsResponse> getUserByIdObservable(String accesToken, String userId) {
         try {
             return getRetrofitClient().getUserById(accesToken, userId)

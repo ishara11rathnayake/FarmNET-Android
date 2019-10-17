@@ -230,3 +230,7 @@ g
 Wapp/src/main/java/com/industrialmaster/farmnet/views/activities/MyQuestionActivity.java,4\6\46b50a6fdf34940e69e63194d21e37f908883569
 ˆ
 Xapp/src/main/java/com/industrialmaster/farmnet/views/activities/FilterDealsActivity.java,7\7\77d04a780dd2a7e507bdb3eb8ff946bae408de59
+a
+1app/src/main/res/layout/activity_filter_deals.xml,3\6\36f5fc566fbf957484dc7e6cf648b07f3378cfde
+}
+Mapp/src/main/java/com/industrialmaster/farmnet/network/DisposableManager.java,a\d\ad0663d47a947d21f6bba5f813fb8bd3488a856d

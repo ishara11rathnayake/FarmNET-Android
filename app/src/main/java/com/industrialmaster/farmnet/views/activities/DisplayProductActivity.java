@@ -1,7 +1,6 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -33,7 +31,7 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
 
     TimelinePresenter timelinePresenter;
     DealsPresenter dealsPresenter;
-    public static String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
+    public static final String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
 
     ImageView image_view_product;
     TextView tv_product_name, tv_description, tv_unit_price, tv_amount, tv_location,
@@ -43,7 +41,6 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     ImageButton mUpdateImageButton;
 
     String callingActivity;
-    int mPosition;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -58,8 +55,6 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         Deals deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         callingActivity = getIntent().getStringExtra("activity");
-
-//        mPosition = Integer.parseInt(getIntent().getStringExtra("position"));
 
         img_btn_close = findViewById(R.id.img_btn_close);
         img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);
@@ -112,28 +107,17 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
 
         tv_published_date.setText(": " + formattedDate);
 
-        img_btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        img_btn_close.setOnClickListener(v -> finish());
+
+        img_btn_view_timeline.setOnClickListener(v -> {
+            setLoading(true);
+            timelinePresenter.getTimelineById(deal.getTimelineId());
         });
 
-        img_btn_view_timeline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLoading(true);
-                timelinePresenter.getTimelineById(deal.getTimelineId());
-            }
-        });
-
-        mUpdateImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DisplayProductActivity.this, CreateNewDealActivity.class);
-                intent.putExtra("deal", getIntent().getStringExtra("deal"));
-                startActivity(intent);
-            }
+        mUpdateImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DisplayProductActivity.this, CreateNewDealActivity.class);
+            intent.putExtra("deal", getIntent().getStringExtra("deal"));
+            startActivity(intent);
         });
     }
 

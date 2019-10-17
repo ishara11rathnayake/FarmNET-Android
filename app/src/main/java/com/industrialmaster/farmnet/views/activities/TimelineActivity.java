@@ -1,5 +1,6 @@
 package com.industrialmaster.farmnet.views.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +12,14 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Timeline;
+import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.adapters.TimelineTaskRecyclerViewAdapter;
 
+import java.util.Objects;
+
 public class TimelineActivity extends BaseActivity {
+
+    public static final String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
 
     TextView mProductNameTextView;
     TextView mDescriptionTextView;
@@ -25,6 +31,8 @@ public class TimelineActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        String mCurrentUserId = getSharedPreferences(FARMNET_PREFS_NAME, Context.MODE_PRIVATE).getString(FarmnetConstants.USER_ID, "");
+
         Gson gson = new Gson();
         Timeline timeline = gson.fromJson(getIntent().getStringExtra("timeline"), Timeline.class);
 
@@ -33,20 +41,16 @@ public class TimelineActivity extends BaseActivity {
         mCloseImageButton = findViewById(R.id.img_btn_close);
         mCreateNewTaskImageButton = findViewById(R.id.img_btn_add_new_task);
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        if(!Objects.requireNonNull(mCurrentUserId).equals(timeline.getUser().getUserId())){
+            mCreateNewTaskImageButton.setVisibility(View.INVISIBLE);
+        }
 
-        mCreateNewTaskImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TimelineActivity.this, AddNewTimelineTaskActivity.class);
-                intent.putExtra("timelineId", timeline.getTimelineId());
-                startActivity(intent);
-            }
+        mCloseImageButton.setOnClickListener(v -> finish());
+
+        mCreateNewTaskImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TimelineActivity.this, AddNewTimelineTaskActivity.class);
+            intent.putExtra("timelineId", timeline.getTimelineId());
+            startActivity(intent);
         });
 
         mProductNameTextView.setText(timeline.getProductName());

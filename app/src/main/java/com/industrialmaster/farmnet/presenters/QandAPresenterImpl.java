@@ -344,23 +344,4 @@ public class QandAPresenterImpl extends BasePresenter implements QandAPresenter 
         return true;
     }
 
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }

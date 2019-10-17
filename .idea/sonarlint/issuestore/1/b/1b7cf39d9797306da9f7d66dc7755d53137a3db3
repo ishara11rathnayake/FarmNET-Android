@@ -1,18 +1,14 @@
 
-Psquid:S16593"2Declare "img_btn_new_question" on a separate line.(ûÄñ8àş£§Û-
-~squid:S001163"_Rename this field "img_btn_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ8àş£§Û-
-squid:S14503"aRemove the "imgv_drawer_toggle" field and declare it as a local variable in the relevant methods.(ûÄñ8àş£§Û-
-xsquid:S14503"ZRemove the "imgv_logout" field and declare it as a local variable in the relevant methods.(ûÄñ8àş£§Û-
-Fsquid:S1604Ÿ"(Make this anonymous inner class a lambda(™Ìî\8àş£§Û-
-usquid:S3776s"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(úîÁûÿÿÿÿ8ÇÈ§Û-
-~squid:S001169"aRename this field "bottom_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î¶‰ïúÿÿÿÿ
-lsquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(¾˜Ÿú8àş£§Û-
-Gsquid:S16593")Declare "imgv_logout" on a separate line.(ûÄñ8àş£§Û-
-Osquid:S16596"1Declare "img_btn_new_article" on a separate line.(Æ·ëƒ8àş£§Û-
-squid:S001166"bRename this field "img_btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ8àş£§Û-
-}squid:S001166"^Rename this field "img_btn_new_article" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ8àş£§Û-
-…squid:S00116:"aRename this field "drawer_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’É§øÿÿÿÿ8àş£§Û-
-usquid:S001163"VRename this field "imgv_logout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ8àş£§Û-
-Lsquid:S1604İ"(Make this anonymous inner class a lambda(®²ŸÌÿÿÿÿÿ8àş£§Û-
-usquid:S001163"]Rename this field "imgv_drawer_toggle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÄñ
-squid:S001164"[Rename this field "txt_header_topic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹‘øşÿÿÿÿ8àş£§Û-
+}squid:S001168"^Rename this field "img_btn_new_article" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ8àş£§Û-
+usquid:S3776u"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(úîÁûÿÿÿÿ8ÇÈ§Û-
+squid:S001168"bRename this field "img_btn_create_new_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ·ëƒ8àş£§Û-
+Lsquid:S1604×"(Make this anonymous inner class a lambda(®²ŸÌÿÿÿÿÿ8àş£§Û-
+squid:S001166"[Rename this field "txt_header_topic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹‘øşÿÿÿÿ8àş£§Û-
+…squid:S00116<"aRename this field "drawer_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’É§øÿÿÿÿ8àş£§Û-
+zsquid:S14502"\Remove the "mDrawerlayout" field and declare it as a local variable in the relevant methods.(½‘—°8³î°ªİ-
+}squid:S14505"_Remove the "mLogoutImageView" field and declare it as a local variable in the relevant methods.(†ş½¹8ŒÆ¸ªİ-
+squid:S14503"aRemove the "imgv_drawer_toggle" field and declare it as a local variable in the relevant methods.(Ù«œµ8àş£§Û-
+Osquid:S16598"1Declare "img_btn_new_article" on a separate line.(Æ·ëƒ8àş£§Û-
+ƒsquid:S001164"_Rename this field "img_btn_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É±˜ÿÿÿÿÿ8àş£§Û-
+usquid:S001163"]Rename this field "imgv_drawer_toggle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù«œµ
+~squid:S00116;"aRename this field "bottom_navigation_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î¶‰ïúÿÿÿÿ

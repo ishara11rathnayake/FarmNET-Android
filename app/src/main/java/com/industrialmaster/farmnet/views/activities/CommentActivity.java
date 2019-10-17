@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -59,22 +58,12 @@ public class CommentActivity extends BaseActivity implements CommentView {
 
         mCommentRecyclerView = findViewById(R.id.recyclerview_comment);
         mWriteCommentEditText = findViewById(R.id.et_write_comment);
-
-        mSendImageButton = findViewById(R.id.img_btn_send);
-        mSendImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                commentPresenter.getCommentingUserDetails();
-            }
-        });
-
         mCloseImageButton = findViewById(R.id.img_btn_close);
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mSendImageButton = findViewById(R.id.img_btn_send);
+
+        mSendImageButton.setOnClickListener(v -> commentPresenter.getCommentingUserDetails());
+
+        mCloseImageButton.setOnClickListener(v -> finish());
 
         commentRef.child(postId).addValueEventListener(new ValueEventListener() {
             @Override

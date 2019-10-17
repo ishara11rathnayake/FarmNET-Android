@@ -376,24 +376,4 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
             }
         };
     }
-
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }

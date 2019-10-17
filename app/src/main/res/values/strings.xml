@@ -86,8 +86,14 @@
     <string name="price_range">Price (Max:3000)</string>
     <string name="range_divider">-</string>
     <string name="min">Min</string>
-    <string name="max">max</string>
+    <string name="max">Max</string>
     <string name="name_of_farmer">Name of farmer</string>
+    <string name="change_password">Change Password</string>
+    <string name="find_user">Find User</string>
+    <string name="reset">Reset</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm New Password</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="user_types">

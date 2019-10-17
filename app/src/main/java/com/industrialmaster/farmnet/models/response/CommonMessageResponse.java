@@ -12,4 +12,8 @@ public class CommonMessageResponse {
     @SerializedName("message")
     private String message;
 
+    @SerializedName("statusCode")
+    private String statusCode;
+
+
 }

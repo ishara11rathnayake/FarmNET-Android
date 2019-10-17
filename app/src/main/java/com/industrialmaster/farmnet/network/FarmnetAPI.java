@@ -2,6 +2,7 @@ package com.industrialmaster.farmnet.network;
 
 import android.app.VoiceInteractor;
 
+import com.industrialmaster.farmnet.models.request.ChangePasswordRequest;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewQuestionRequest;
@@ -251,4 +252,11 @@ public interface FarmnetAPI {
             @Query("minAmount") int minAmount,
             @Query("maxAmount") int maxAmount
     );
+
+    @PATCH(UrlManager.CHANGE_PASSWORD)
+    Observable<CommonMessageResponse> changePassword(
+            @Header("Authorization") String authorization,
+            @Path("userId") String userId,
+            @Body ChangePasswordRequest changePasswordRequest
+            );
 }

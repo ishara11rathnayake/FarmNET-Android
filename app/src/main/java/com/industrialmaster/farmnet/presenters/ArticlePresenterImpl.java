@@ -198,23 +198,4 @@ public class ArticlePresenterImpl extends  BasePresenter implements ArticlePrese
                 !TextUtils.isEmpty(newArticleRequest.getContent());
     }
 
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }

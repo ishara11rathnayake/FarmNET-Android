@@ -25,4 +25,9 @@
         <item name="fontFamily">@font/ubunturegular</item>
     </style>
 
+    <style name="TextInputLayoutHintText">
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

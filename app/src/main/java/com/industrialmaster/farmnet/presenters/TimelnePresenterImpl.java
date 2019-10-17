@@ -266,24 +266,4 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
             }
         };
     }
-
-    @Override
-    public void onCreate() {
-
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
 }
