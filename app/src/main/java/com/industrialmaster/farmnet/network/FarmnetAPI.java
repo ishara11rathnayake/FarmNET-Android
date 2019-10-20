@@ -64,7 +64,9 @@ public interface FarmnetAPI {
             @Part("userId") RequestBody userId,
             @Part MultipartBody.Part productImage,
             @Part("location") RequestBody location,
-            @Part("timelineId") RequestBody timelineId);
+            @Part("timelineId") RequestBody timelineId,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude);
 
     @GET(UrlManager.GET_ALL_QUESTIONS)
     Observable<QuestionsResponse> getAllQuestions();
@@ -241,6 +243,8 @@ public interface FarmnetAPI {
             @Part MultipartBody.Part productImage,
             @Part("location") RequestBody location,
             @Part("timelineId") RequestBody timelineId,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
             @Path("productId") String productId
     );
 

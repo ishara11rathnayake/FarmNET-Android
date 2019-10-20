@@ -1,8 +1,4 @@
 
-Ÿsquid:S11868"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢È8ïÄ¾³Ù-
 xsquid:S2259."ZA "NullPointerException" could be thrown; "updateNoOfAnswersObservable()" can return null.(ã‹Á¸8ÎÀØÙ-
-¤squid:S1186G"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İßéàúÿÿÿÿ8ïÄ¾³Ù-
-¤squid:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ8ïÄ¾³Ù-
-¤squid:S1186B"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ8ïÄ¾³Ù-
-Ÿsquid:S1186m"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8™íÈ³Ù-
+Ÿsquid:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8™íÈ³Ù-
 wsquid:S22594"TA "NullPointerException" could be thrown; "getUserByIdObservable()" can return null.(ŞüÒÁşÿÿÿÿ8İÌ¸ØÙ-

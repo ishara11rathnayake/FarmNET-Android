@@ -234,15 +234,16 @@
 
                     <TextView
                         android:id="@+id/tv_location_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
                         android:fontFamily="@font/ubunturegular"
                         android:padding="5dp"
                         android:text="@string/sample_text"
                         android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toBottomOf="@+id/tv_amount_value" />
 
@@ -251,14 +252,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/ubunturegular"
                         android:padding="5dp"
                         android:text="@string/owner"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_location_value" />
 
                     <TextView
                         android:id="@+id/tv_owner_value"
@@ -279,7 +279,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/ubunturegular"
                         android:padding="5dp"
@@ -308,6 +307,21 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_begin="150dp" />
+
+                    <fragment
+                        android:id="@+id/google_map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
                 </android.support.constraint.ConstraintLayout>
 

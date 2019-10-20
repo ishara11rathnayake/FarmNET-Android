@@ -1,25 +1,21 @@
 
- squid:S1186ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8µé¢ºÛ-
-`squid:UselessImportCheck"0Remove this unused import 'org.json.JSONObject'.(œÖ´üşÿÿÿÿ8…‹ıÚ-
-qsquid:UselessImportCheck,"GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8¾îıÚ-
-Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8î† ıÚ-
-Bsquid:S1148ş"#Use a logger to log this exception.(Ç’Çê8¾îıÚ-
-¥squid:S1186¿"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İßéàúÿÿÿÿ8¾îıÚ-
- squid:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
 xsquid:S2259•"TA "NullPointerException" could be thrown; "filterDealsObservable()" can return null.(ôê¤°şÿÿÿÿ8¯Ã¸†İ-
-¥squid:S1186º"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(º£”úÿÿÿÿ8¾îıÚ-
-rsquid:S2259"SA "NullPointerException" could be thrown; "updateDealObservable()" can return null.(ËêË¡8¸§ËºÛ-
+Bsquid:S1148ş"#Use a logger to log this exception.(Ç’Çê8¾îıÚ-
 qsquid:S2259v"TA "NullPointerException" could be thrown; "deleteDealsObservable()" can return null.(†õ§8¾îıÚ-
-^squid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8½€¤ıÚ-
-\squid:S00107˜"<Method has 9 parameters, which is greater than 7 authorized.(·Óœ»8¾îıÚ-
-csquid:UselessImportCheck"3Remove this unused import 'org.json.JSONException'.(¹Ó·úÿÿÿÿ8Š¯“ıÚ-
-rsquid:S2259L"TA "NullPointerException" could be thrown; "getAllDealsObservable()" can return null.(‰—’¦8ğ•’«İ-
- squid:S1186©"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8†ä­†İ-
- squid:S1186¬"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
- squid:S1186°"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Î¢È8¾îıÚ-
- squid:S1186È"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
-asquid:S00107Ú"<Method has 9 parameters, which is greater than 7 authorized.(üñ‘´şÿÿÿÿ8µé¢ºÛ-
 Msquid:S1125Ù")Remove the literal "false" boolean value.(À×Õÿÿÿÿÿ8¾îıÚ-
+ squid:S1186¬"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+rsquid:S2259"SA "NullPointerException" could be thrown; "updateDealObservable()" can return null.(ËêË¡8¸§ËºÛ-
+Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8î† ıÚ-
  squid:S1186Ô"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
-¥squid:S1186µ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ8¾îıÚ-
+ squid:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+ squid:S1186ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8µé¢ºÛ-
+ squid:S1186©"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8†ä­†İ-
+ squid:S1186È"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+`squid:UselessImportCheck"0Remove this unused import 'org.json.JSONObject'.(œÖ´üşÿÿÿÿ8…‹ıÚ-
+\squid:S00107˜"<Method has 9 parameters, which is greater than 7 authorized.(·Óœ»8¾îıÚ-
  squid:S1186ï"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8¢›“«İ-
+csquid:UselessImportCheck"3Remove this unused import 'org.json.JSONException'.(¹Ó·úÿÿÿÿ8Š¯“ıÚ-
+^squid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8½€¤ıÚ-
+rsquid:S2259L"TA "NullPointerException" could be thrown; "getAllDealsObservable()" can return null.(‰—’¦8ğ•’«İ-
+qsquid:UselessImportCheck,"GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8¾îıÚ-
+asquid:S00107Ú"<Method has 9 parameters, which is greater than 7 authorized.(üñ‘´şÿÿÿÿ8µé¢ºÛ-

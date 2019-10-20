@@ -84,25 +84,7 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         if(!isValidate) {
             createNewDealView.onError(errorMessage);
         } else {
-            RequestBody productNamePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getProductName());
-            RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getDescription());
-            RequestBody locationPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getLocation());
-            RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getUnitPrice());
-            RequestBody amountPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getAmount());
-
-            RequestBody timelineIdPart = null;
-            if(!TextUtils.isEmpty(createNewDealRequest.getTimelineId())){
-                timelineIdPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getTimelineId());
-            }
-
-            File file = new File(createNewDealRequest.getProductImage());
-            RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
-
-            RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userID);
-
-            createNewDealObservable(accessToken, productNamePart, descriptionPart, locationPart,
-                    unitPricePart, amountPart, productImagePart, userIdPart, timelineIdPart).subscribe(createNewDealSubscriber());
+            Objects.requireNonNull(createNewDealObservable(accessToken, createNewDealRequest)).subscribe(createNewDealSubscriber());
         }
     }
 
@@ -120,41 +102,41 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
     @Override
     public void updateDeal(CreateNewDealRequest createNewDealRequest, String dealId) {
-        RequestBody productNamePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getProductName());
-        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getDescription());
-        RequestBody locationPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getLocation());
-        RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getUnitPrice());
-        RequestBody amountPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getAmount());
 
-        RequestBody timelineIdPart = null;
-        if(!TextUtils.isEmpty(createNewDealRequest.getTimelineId())){
-            timelineIdPart = RequestBody.create(MultipartBody.FORM, createNewDealRequest.getTimelineId());
-        }
-
-        MultipartBody.Part productImagePart = null;
-        if(!TextUtils.isEmpty(createNewDealRequest.getProductImage())){
-            File file = new File(createNewDealRequest.getProductImage());
-            RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
-            productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
-
-        }
-
-        updateDealObservable(accessToken, productNamePart, descriptionPart, locationPart,
-                unitPricePart, amountPart, productImagePart, timelineIdPart, dealId).subscribe(updateDealSubscriber());
+        Objects.requireNonNull(updateDealObservable(accessToken, createNewDealRequest, dealId)).subscribe(updateDealSubscriber());
 
     }
 
     @Override
     public void filterDeals(int minPrice, int maxPrice, int minAmount, int maxAmount) {
-        filterDealsObservable(accessToken, minPrice, maxPrice, minAmount, maxAmount).subscribe(filterDealsSubscriber());
+        Objects.requireNonNull(filterDealsObservable(accessToken, minPrice, maxPrice, minAmount, maxAmount)).subscribe(filterDealsSubscriber());
     }
 
-    public Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
-                                                                     RequestBody location, RequestBody unitPrice, RequestBody amount,
-                                                                     MultipartBody.Part productImage, RequestBody userId, RequestBody timelineId) {
+    private Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, CreateNewDealRequest newDealRequest) {
+        RequestBody productNamePart = RequestBody.create(MultipartBody.FORM, newDealRequest.getProductName());
+        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, newDealRequest.getDescription());
+        RequestBody locationPart = RequestBody.create(MultipartBody.FORM, newDealRequest.getLocation());
+        RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, newDealRequest.getUnitPrice());
+        RequestBody amountPart = RequestBody.create(MultipartBody.FORM, newDealRequest.getAmount());
+        RequestBody latitudePart = RequestBody.create(MultipartBody.FORM, String.valueOf(newDealRequest.getLatitude()));
+        RequestBody longitudePart = RequestBody.create(MultipartBody.FORM, String.valueOf(newDealRequest.getLongitude()));
+
+        RequestBody timelineIdPart = null;
+        if(!TextUtils.isEmpty(newDealRequest.getTimelineId())){
+            timelineIdPart = RequestBody.create(MultipartBody.FORM, newDealRequest.getTimelineId());
+        }
+
+        File file = new File(newDealRequest.getProductImage());
+        RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
+
+        RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userID);
+
+
         try {
             return getRetrofitClient().createNewPost(accessToken,
-                    productName, unitPrice, amount, descrption, userId, productImage, location, timelineId)
+                    productNamePart, unitPricePart, amountPart, descriptionPart, userIdPart, productImagePart,
+                    locationPart, timelineIdPart, latitudePart, longitudePart)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
 
@@ -343,12 +325,32 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         };
     }
 
-    private Observable<CommonMessageResponse> updateDealObservable(String accessToken, RequestBody productName, RequestBody descrption,
-                                                                     RequestBody location, RequestBody unitPrice, RequestBody amount,
-                                                                     MultipartBody.Part productImage, RequestBody timelineId, String dealId) {
+    private Observable<CommonMessageResponse> updateDealObservable(String accessToken, CreateNewDealRequest updateDeal , String dealId) {
+
+        RequestBody productNamePart = RequestBody.create(MultipartBody.FORM, updateDeal.getProductName());
+        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, updateDeal.getDescription());
+        RequestBody locationPart = RequestBody.create(MultipartBody.FORM, updateDeal.getLocation());
+        RequestBody unitPricePart = RequestBody.create(MultipartBody.FORM, updateDeal.getUnitPrice());
+        RequestBody amountPart = RequestBody.create(MultipartBody.FORM, updateDeal.getAmount());
+        RequestBody latitudePart = RequestBody.create(MultipartBody.FORM, String.valueOf(updateDeal.getLatitude()));
+        RequestBody longitudePart = RequestBody.create(MultipartBody.FORM, String.valueOf(updateDeal.getLongitude()));
+
+        RequestBody timelineIdPart = null;
+        if(!TextUtils.isEmpty(updateDeal.getTimelineId())){
+            timelineIdPart = RequestBody.create(MultipartBody.FORM, updateDeal.getTimelineId());
+        }
+
+        MultipartBody.Part productImagePart = null;
+        if(!TextUtils.isEmpty(updateDeal.getProductImage())){
+            File file = new File(updateDeal.getProductImage());
+            RequestBody productImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+            productImagePart = MultipartBody.Part.createFormData("productImage", file.getName(), productImageReqBody);
+        }
+
         try {
             return getRetrofitClient().updateDeal(accessToken,
-                    productName, unitPrice, amount, descrption, productImage, location, timelineId, dealId)
+                    productNamePart, unitPricePart, amountPart, descriptionPart, productImagePart, locationPart,
+                    timelineIdPart, latitudePart, longitudePart, dealId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
 

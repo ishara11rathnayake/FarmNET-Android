@@ -42,4 +42,10 @@ public class Deals {
 
     @SerializedName("timelineId")
     private String timelineId;
+
+    @SerializedName("latitude")
+    private double latitude;
+
+    @SerializedName("longitude")
+    private double longitude;
 }

@@ -3,13 +3,22 @@ package com.industrialmaster.farmnet.views.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
@@ -22,16 +31,23 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.DisplayProductView;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class DisplayProductActivity extends BaseActivity implements DisplayProductView {
+public class DisplayProductActivity extends BaseActivity implements DisplayProductView, OnMapReadyCallback {
+
+    private static final String TAG = "DisplayProductActivity";
 
     TimelinePresenter timelinePresenter;
     DealsPresenter dealsPresenter;
     public static final String FARMNET_PREFS_NAME = "FarmnetPrefsFile";
+
+    private GoogleMap mGoogleMap;
+    SupportMapFragment mapFragment;
 
     ImageView image_view_product;
     TextView tv_product_name, tv_description, tv_unit_price, tv_amount, tv_location,
@@ -39,6 +55,8 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     ImageButton img_btn_close, img_btn_view_timeline;
     ImageButton mDeleteImageButton;
     ImageButton mUpdateImageButton;
+
+    private LatLng latLng;
 
     String callingActivity;
 
@@ -55,6 +73,10 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         Deals deal = gson.fromJson(getIntent().getStringExtra("deal"), Deals.class);
 
         callingActivity = getIntent().getStringExtra("activity");
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.google_map);
+        mapFragment.getMapAsync(this);
 
         img_btn_close = findViewById(R.id.img_btn_close);
         img_btn_view_timeline = findViewById(R.id.img_btn_view_timeline);
@@ -100,6 +122,7 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
         tv_amount.setText(": " + deal.getAmount() + "Kg");
         tv_location.setText(": " + deal.getLocation());
         tv_owner.setText(": " + deal.getUser().getName());
+        latLng = new LatLng(deal.getLatitude(), deal.getLongitude());
 
         Date date = deal.getDate();
         DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
@@ -151,5 +174,23 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mGoogleMap = googleMap;
+
+        String myaddress = null;
+        Geocoder geocoder = new Geocoder(DisplayProductActivity.this, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            myaddress = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(myaddress);
+        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
+        mGoogleMap.addMarker(markerOptions);
     }
 }

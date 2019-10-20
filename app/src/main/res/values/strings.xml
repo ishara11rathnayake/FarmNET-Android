@@ -103,4 +103,6 @@
         <item>Knowledge Provider</item>
         <item>Agri Service Provider</item>
     </string-array>
+    <string name="title_activity_select_location">Map</string>
+    <string name="get_location">Get Selected Location</string>
 </resources>
