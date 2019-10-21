@@ -1,21 +1,18 @@
 package com.industrialmaster.farmnet.views.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -25,96 +22,105 @@ import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.activities.CommentActivity;
 import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
-
-import org.w3c.dom.Comment;
+import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPostRecyclerViewAdapter.ViewHolder>{
+public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPostRecyclerViewAdapter.DealViewHolder>{
 
     private static final String TAG = "DealsPostRVAdapter";
 
     private List<Deals> mDeals;
     private Context mContext;
+    private Fragment mFragment;
 
-    public DealsPostRecyclerViewAdapter(Context mContext, List<Deals> mDeals) {
+    public DealsPostRecyclerViewAdapter(Context mContext, List<Deals> mDeals, Fragment mFragment) {
         this.mDeals = mDeals;
         this.mContext = mContext;
+        this.mFragment = mFragment;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public DealViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_post_view, viewGroup,false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new DealViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull DealViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called");
 
         Date date = mDeals.get(i).getDate();
-        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        DateFormat targetDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
         String formattedDate = targetDateFormat.format(date);
 
         Glide.with(mContext)
                 .asBitmap()
                 .load(mDeals.get(i).getProductImageUrl())
                 .centerCrop()
-                .into(viewHolder.imgv_product_pic);
+                .into(viewHolder.mProductPicImageView);
 
         if(!mDeals.get(i).getUser().getProfilePicUrl().isEmpty() && mDeals.get(i).getUser().getProfilePicUrl() != null) {
             Glide.with(mContext)
                     .asBitmap()
                     .load(mDeals.get(i).getUser().getProfilePicUrl())
                     .centerCrop()
-                    .into(viewHolder.circleImageView_profile_pic);
+                    .into(viewHolder.mProfilePicCircleImageView);
         }
 
-        viewHolder.tv_unit_price.setText("Rs. "+Double.toString(mDeals.get(i).getUnitPrice()));
-        viewHolder.tv_user_name.setText(mDeals.get(i).getUser().getName());
-        viewHolder.tv_description.setText(mDeals.get(i).getDescription());
-        viewHolder.tv_amount.setText(Double.toString(mDeals.get(i).getAmount())+"Kg");
-        viewHolder.tv_date.setText(formattedDate);
+        viewHolder.mUnitPriceTextView.setText(String.format("Rs. %s", Double.toString(mDeals.get(i).getUnitPrice())));
+        viewHolder.mUserNameTextView.setText(mDeals.get(i).getUser().getName());
+        viewHolder.mDescriptionTextView.setText(mDeals.get(i).getDescription());
+        viewHolder.mAmountTextView.setText(String.format("%sKg", Double.toString(mDeals.get(i).getAmount())));
+        viewHolder.mDateTextView.setText(formattedDate);
 
-        viewHolder.tv_user_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, OtherProfileActivity.class);
-                intent.putExtra("userId", mDeals.get(i).getUser().getUserId());
-                mContext.startActivity(intent);
-            }
+        viewHolder.mUserNameTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, OtherProfileActivity.class);
+            intent.putExtra("userId", mDeals.get(i).getUser().getUserId());
+            mContext.startActivity(intent);
         });
 
-        viewHolder.imgv_product_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DisplayProductActivity.class);
-                Gson gson = new Gson();
-                String deal = gson.toJson(mDeals.get(i));
-                intent.putExtra("activity", FarmnetConstants.HOME);
-                intent.putExtra("deal", deal);
-//                intent.putExtra("position", String.valueOf(i));
-                mContext.startActivity(intent);
-            }
+        viewHolder.mProductPicImageView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, DisplayProductActivity.class);
+            Gson gson = new Gson();
+            String deal = gson.toJson(mDeals.get(i));
+            intent.putExtra("activity", FarmnetConstants.HOME);
+            intent.putExtra("deal", deal);
+            mContext.startActivity(intent);
         });
 
-        viewHolder.mCommentImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, CommentActivity.class);
-                Gson gson = new Gson();
-                String deal = gson.toJson(mDeals.get(i));
-                intent.putExtra("deal", deal);
-                mContext.startActivity(intent);
+        viewHolder.mCommentImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, CommentActivity.class);
+            Gson gson = new Gson();
+            String deal = gson.toJson(mDeals.get(i));
+            intent.putExtra("deal", deal);
+            mContext.startActivity(intent);
+        });
+
+        viewHolder.mCommentTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, CommentActivity.class);
+            Gson gson = new Gson();
+            String deal = gson.toJson(mDeals.get(i));
+            intent.putExtra("deal", deal);
+            mContext.startActivity(intent);
+        });
+
+        final boolean[] liked = {false};
+        viewHolder.mLikeImageButton.setOnClickListener(v -> {
+            liked[0] = !liked[0];
+            if(liked[0]){
+                viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_filledlike);
+            }else {
+                viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_like);
             }
+            ((DealsFragment)mFragment).likeDeal(mDeals.get(i).getDealId());
         });
     }
 
@@ -124,29 +130,35 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class DealViewHolder extends RecyclerView.ViewHolder {
 
-        CardView post_card_view;
-        CircleImageView circleImageView_profile_pic;
-        TextView tv_user_name;
-        TextView tv_date;
-        ImageView imgv_product_pic;
-        TextView tv_unit_price;
-        TextView tv_amount;
-        TextView tv_description;
+        CardView mPostCardView;
+        CircleImageView mProfilePicCircleImageView;
+        TextView mUserNameTextView;
+        TextView mDateTextView;
+        ImageView mProductPicImageView;
+        TextView mUnitPriceTextView;
+        TextView mAmountTextView;
+        TextView mDescriptionTextView;
         ImageButton mCommentImageButton;
+        ImageButton mLikeImageButton;
+        TextView mCommentTextView;
+        TextView mLikeTextView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public DealViewHolder(@NonNull View itemView) {
             super(itemView);
-            circleImageView_profile_pic = itemView.findViewById(R.id.cimageview_profilepic);
-            tv_user_name = itemView.findViewById(R.id.tv_name);
-            tv_date = itemView.findViewById(R.id.tv_date);
-            imgv_product_pic = itemView.findViewById(R.id.imgv_product_pic);
-            tv_unit_price = itemView.findViewById(R.id.tv_unit_price);
-            tv_amount = itemView.findViewById(R.id.tv_amount);
-            tv_description = itemView.findViewById(R.id.tv_description);
-            post_card_view = itemView.findViewById(R.id.cradview_dealpost);
+            mProfilePicCircleImageView = itemView.findViewById(R.id.cimageview_profilepic);
+            mUserNameTextView = itemView.findViewById(R.id.tv_name);
+            mDateTextView = itemView.findViewById(R.id.tv_date);
+            mProductPicImageView = itemView.findViewById(R.id.imgv_product_pic);
+            mUnitPriceTextView = itemView.findViewById(R.id.tv_unit_price);
+            mAmountTextView = itemView.findViewById(R.id.tv_amount);
+            mDescriptionTextView = itemView.findViewById(R.id.tv_description);
+            mPostCardView = itemView.findViewById(R.id.cradview_dealpost);
             mCommentImageButton = itemView.findViewById(R.id.img_btn_comment);
+            mLikeImageButton = itemView.findViewById(R.id.image_button_like);
+            mCommentTextView = itemView.findViewById(R.id.text_view_comment);
+            mLikeTextView = itemView.findViewById(R.id.text_view_like);
         }
     }
 }

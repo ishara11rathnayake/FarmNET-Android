@@ -15,4 +15,6 @@ public interface DealsPresenter extends Presenter {
     void updateDeal(CreateNewDealRequest createNewDealRequest, String dealId);
 
     void filterDeals(int minPrice, int maxPrice, int minAmount, int maxAmount);
+
+    void likeProduct(String productId);
 }

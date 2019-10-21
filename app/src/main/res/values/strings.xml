@@ -105,4 +105,8 @@
     </string-array>
     <string name="title_activity_select_location">Map</string>
     <string name="get_location">Get Selected Location</string>
+    <string name="unit_price_tag">Unit Price :</string>
+    <string name="amount_tag">Amount :</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
 </resources>

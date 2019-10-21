@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10dp"
@@ -73,10 +75,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Located in Kurunegala and owend by Mr.Rathnayake"
+            android:text=""
             android:gravity="center_vertical"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:layout_marginVertical="5dp"
             android:id="@+id/tv_description"/>
 
@@ -104,20 +106,20 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Unit Price :"
+                    android:text="@string/unit_price_tag"
                     android:gravity="center_vertical"
                     android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"/>
+                    android:textSize="14sp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingLeft="3dp"
-                    android:text="Rs.2145.00"
+                    android:text=""
                     android:gravity="center_vertical"
                     android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:id="@+id/tv_unit_price"/>
 
             </LinearLayout>
@@ -131,20 +133,20 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount :"
+                    android:text="@string/amount_tag"
                     android:gravity="center_vertical"
                     android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"/>
+                    android:textSize="14sp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:paddingLeft="3dp"
-                    android:text="2500Kg"
+                    android:text=""
                     android:gravity="center_vertical"
                     android:fontFamily="@font/ubunturegular"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:id="@+id/tv_amount"/>
 
             </LinearLayout>
@@ -158,54 +160,63 @@
             android:layout_marginVertical="5dp"/>
 
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/image_button_like"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_like"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/text_view_like"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="0.7"
-                android:text=""/>
-
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical|right"
-                android:src="@drawable/ic_like"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="2"
-                android:text="Like"
-                android:textSize="16dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/ubunturegular"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="@string/like"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_button_like"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/img_btn_comment"
-                android:background="@null"
-                android:padding="5dp"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_comment"/>
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text_view_comment"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/text_view_comment"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="2"
-                android:text="Comment"
-                android:textSize="16dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/ubunturegular"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="@string/comment"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 

@@ -165,12 +165,15 @@ public class DealsFragment extends BaseFragment implements DealsView {
         return rootView;
     }
 
+    public void likeDeal(String productId) {
+        dealsPresenter.likeProduct(productId);
+    }
 
     @Override
     public void showDeals(List<Deals> deals) {
         setLoading(false);
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerview_product_post);
-        DealsPostRecyclerViewAdapter adapter = new DealsPostRecyclerViewAdapter(getActivity(), deals);
+        DealsPostRecyclerViewAdapter adapter = new DealsPostRecyclerViewAdapter(getActivity(), deals, DealsFragment.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

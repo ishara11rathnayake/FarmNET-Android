@@ -20,14 +20,9 @@ import com.industrialmaster.farmnet.views.DealsView;
 import com.industrialmaster.farmnet.views.DisplayProductView;
 import com.industrialmaster.farmnet.views.View;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import io.reactivex.Observable;
@@ -73,12 +68,11 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
     @Override
     public void getAllDeals() {
-        getAllDealsObservable().subscribe(getAllDealsSubscriber());
+        Objects.requireNonNull(getAllDealsObservable()).subscribe(getAllDealsSubscriber());
     }
 
     @Override
     public void createNewDeal(CreateNewDealRequest createNewDealRequest) {
-
         boolean isValidate = createDealFielsValidate(createNewDealRequest);
 
         if(!isValidate) {
@@ -90,26 +84,27 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
     @Override
     public void searchProduct(String searchText) {
-
         Objects.requireNonNull(searchDealsObservable(accessToken, searchText)).subscribe(searchDealsSubscriber());
-
     }
 
     @Override
     public void deleteProduct(String productId) {
-        deleteDealsObservable(accessToken, productId).subscribe(deleteDealsSubscriber());
+        Objects.requireNonNull(deleteDealsObservable(accessToken, productId)).subscribe(deleteDealsSubscriber());
     }
 
     @Override
     public void updateDeal(CreateNewDealRequest createNewDealRequest, String dealId) {
-
         Objects.requireNonNull(updateDealObservable(accessToken, createNewDealRequest, dealId)).subscribe(updateDealSubscriber());
-
     }
 
     @Override
     public void filterDeals(int minPrice, int maxPrice, int minAmount, int maxAmount) {
         Objects.requireNonNull(filterDealsObservable(accessToken, minPrice, maxPrice, minAmount, maxAmount)).subscribe(filterDealsSubscriber());
+    }
+
+    @Override
+    public void likeProduct(String productId) {
+        Objects.requireNonNull(likeDealsObservable(accessToken, userID, productId)).subscribe();
     }
 
     private Observable<CreateNewDealResponse> createNewDealObservable(String accessToken, CreateNewDealRequest newDealRequest) {
@@ -146,7 +141,7 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
         return null;
     }
 
-    public Observer<CreateNewDealResponse> createNewDealSubscriber(){
+    private Observer<CreateNewDealResponse> createNewDealSubscriber(){
         return new Observer<CreateNewDealResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -428,6 +423,18 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
             }
         };
+    }
+
+    private Observable<CommonMessageResponse> likeDealsObservable(String accessToken, String userId, String productId) {
+        try {
+            return getRetrofitClient().likeDeal(accessToken, productId, userId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
     }
 
     @Getter

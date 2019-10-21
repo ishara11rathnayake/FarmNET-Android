@@ -263,4 +263,11 @@ public interface FarmnetAPI {
             @Path("userId") String userId,
             @Body ChangePasswordRequest changePasswordRequest
             );
+
+    @PATCH(UrlManager.LIKE_DEAL)
+    Observable<CommonMessageResponse> likeDeal(
+            @Header("Authorization") String authorization,
+            @Query("productId") String productId,
+            @Query("userId") String userId
+    );
 }
