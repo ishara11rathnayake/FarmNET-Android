@@ -1,5 +1,5 @@
 
 Msquid:S1481V"0Remove this unused "myTextViews" local variable.(ÑÖ×8İ®öÜ-
 nsquid:CommentedOutCodeLinem"<This block of commented-out lines of code should be removed.(ÔÅË„üÿÿÿÿ8İ®öÜ-
-Jsquid:S1068%"'Remove this unused "TAG" private field.(ıÊ¥Òúÿÿÿÿ8Ï‘Ğ®Û-
 \squid:S1854V"?Remove this useless assignment to local variable "myTextViews".(ÑÖ×8İ®öÜ-
+Jsquid:S1068%"'Remove this unused "TAG" private field.(ıÊ¥Òúÿÿÿÿ8Ï‘Ğ®Û-

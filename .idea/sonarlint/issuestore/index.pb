@@ -276,3 +276,7 @@ Z
 *app/src/main/res/layout/activity_start.xml,8\3\832a04df3756998416c38e735b87a5d7f507674f
 ^
 .app/src/release/res/values/google_maps_api.xml,8\a\8ad28fcd8d693ab58d4fdb7d36965532163ebfa3
+[
++app/src/main/res/drawable/ic_filledlike.xml,6\0\601615e0297bc20105d3aebce8495bf76935c188
+s
+Capp/src/test/java/com/industrialmaster/farmnet/ExampleUnitTest.java,3\4\346266336cb6e1a7418bf734bcdc79043a3806c3

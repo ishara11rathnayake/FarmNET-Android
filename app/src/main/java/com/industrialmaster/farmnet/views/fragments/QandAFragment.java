@@ -1,6 +1,7 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -42,12 +45,14 @@ public class QandAFragment extends BaseFragment implements QandAView {
 
     QandAPresenter qandAPresenter;
 
-    EditText et_new_question;
+    EditText mNewQuestionEditText;
+    EditText mSearchQuizEditText;
 
     public QandAFragment() {
         // Required empty public constructor
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,14 +63,35 @@ public class QandAFragment extends BaseFragment implements QandAView {
         qandAPresenter.getAllQuestions();
         setLoading(true);
 
-        et_new_question = rootView.findViewById(R.id.et_question);
+        mNewQuestionEditText = rootView.findViewById(R.id.et_question);
+        mSearchQuizEditText = rootView.findViewById(R.id.edit_text_search_quiz);
 
-        et_new_question.setOnClickListener(new View.OnClickListener() {
+        //search questions
+        mSearchQuizEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CreateNewQuestionActivity.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (mSearchQuizEditText.getRight() - mSearchQuizEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        setLoading(true);
+                        String searchText = mSearchQuizEditText.getText().toString();
+
+                        if(!TextUtils.isEmpty(searchText)){
+                            qandAPresenter.searchQuestions(mSearchQuizEditText.getText().toString());
+                            return true;
+                        }else {
+                            qandAPresenter.getAllQuestions();
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
         });
+
+        //directed to new question activity
+        mNewQuestionEditText.setOnClickListener(v -> startActivity(new Intent(getActivity(), CreateNewQuestionActivity.class)));
 
         return rootView;
     }

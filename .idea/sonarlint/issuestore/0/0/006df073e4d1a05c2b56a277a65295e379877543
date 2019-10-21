@@ -1,17 +1,11 @@
 
- squid:S1186«"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8•èÙÕŞ-
- squid:S1186¶"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
-csquid:UselessImportCheck"3Remove this unused import 'org.json.JSONException'.(¹Ó·úÿÿÿÿ8Š¯“ıÚ-
- squid:S1186İ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8¢›“«İ-
-rsquid:S2259L"TA "NullPointerException" could be thrown; "getAllDealsObservable()" can return null.(‰—’¦8ğ•’«İ-
- squid:S1186ñ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
- squid:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
-qsquid:UselessImportCheck,"GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8¾îıÚ-
- squid:S1186Â"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
-`squid:UselessImportCheck"0Remove this unused import 'org.json.JSONObject'.(œÖ´üşÿÿÿÿ8…‹ıÚ-
-Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8î† ıÚ-
-Bsquid:S1148ì"#Use a logger to log this exception.(Ç’Çê8¾îıÚ-
-Msquid:S1125Ç")Remove the literal "false" boolean value.(À×Õÿÿÿÿÿ8¾îıÚ-
- squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8•èÙÕŞ-
-^squid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8½€¤ıÚ-
-qsquid:S2259d"TA "NullPointerException" could be thrown; "deleteDealsObservable()" can return null.(†õ§8¾îıÚ-
+ squid:S1186¦"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8•èÙÕŞ-
+qsquid:UselessImportCheck'"GRemove this unused import 'android.support.constraint.Constraints.TAG'.(´ëÄG8¾îıÚ-
+ squid:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+ squid:S1186Ø"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8¢›“«İ-
+ squid:S1186ü"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8•èÙÕŞ-
+Bsquid:S1148ç"#Use a logger to log this exception.(Ç’Çê8¾îıÚ-
+ squid:S1186ì"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+ squid:S1186•"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+ squid:S1186±"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8¾îıÚ-
+Msquid:S1125Â")Remove the literal "false" boolean value.(À×Õÿÿÿÿÿ8¾îıÚ-

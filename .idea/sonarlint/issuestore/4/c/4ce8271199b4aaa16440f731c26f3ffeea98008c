@@ -1,14 +1,14 @@
 
-Vsquid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ
->squid:S1068,"'Remove this unused "TAG" private field.(·ªæş
-{squid:UselessImportCheck!"WRemove this unused import 'com.industrialmaster.farmnet.views.activities.MainActivity'.(ò•æ
-isquid:UselessImportCheck"ERemove this unused import 'com.industrialmaster.farmnet.models.User'.(®…‚„
-Tsquid:UselessImportCheck$"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-squid:UselessImportCheck "XRemove this unused import 'com.industrialmaster.farmnet.views.activities.LoginActivity'.(™õ÷øøÿÿÿÿ
-usquid:S3776G"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ËÄ•åûÿÿÿÿ8±£ã…İ-
- squid:S1186º"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8Ë¡Ş¸Ù-
-Ÿsquid:S1186b"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8¥“Ó…İ-
-Nsquid:S1066"/Merge this if statement with the enclosing one.(„Øü8Ë¡Ş¸Ù-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Şöà¸Ù-
 ]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8ÉöÛ…İ-
 ‰squid:UselessImportCheck"^Remove this unused import 'com.industrialmaster.farmnet.views.activities.FilterDealsActivity'.(¶ãäñ8ÉöÛ…İ-
+Nsquid:S1066"/Merge this if statement with the enclosing one.(„Øü8Ë¡Ş¸Ù-
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Şöà¸Ù-
+{squid:UselessImportCheck!"WRemove this unused import 'com.industrialmaster.farmnet.views.activities.MainActivity'.(ò•æ
+ squid:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8Ë¡Ş¸Ù-
+Tsquid:UselessImportCheck$"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+>squid:S1068,"'Remove this unused "TAG" private field.(·ªæş
+Ÿsquid:S1186b"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8¥“Ó…İ-
+usquid:S3776G"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ËÄ•åûÿÿÿÿ8±£ã…İ-
+Vsquid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ
+squid:UselessImportCheck "XRemove this unused import 'com.industrialmaster.farmnet.views.activities.LoginActivity'.(™õ÷øøÿÿÿÿ
+isquid:UselessImportCheck"ERemove this unused import 'com.industrialmaster.farmnet.models.User'.(®…‚„

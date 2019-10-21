@@ -7,41 +7,65 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.QandAFragment">
 
+    <EditText
+        android:id="@+id/edit_text_search_quiz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/ic_search_background"
+        android:drawableEnd="@drawable/ic_search"
+        android:drawableTint="@color/color_black"
+        android:elevation="5dp"
+        android:ems="10"
+        android:fontFamily="@font/ubunturegular"
+        android:maxLength="26"
+        android:maxLines="1"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="7dp"
+        android:textColor="@color/color_black"
+        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.CardView
         android:id="@+id/cv_enter_question"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_search_quiz">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cimageview_profilepic"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="15dp"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/cimageview_profilepic"/>
+                android:src="@mipmap/ic_launcher" />
 
             <EditText
                 android:id="@+id/et_question"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:hint="What's on your mind?"
-                android:fontFamily="@font/ubunturegular"
                 android:background="@null"
-                android:focusableInTouchMode="false"/>
+                android:textColor="@color/color_black"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/ubunturegular"
+                android:hint="@string/what_s_on_your_mind" />
 
             <ImageButton
                 android:id="@+id/btn_send"
@@ -49,8 +73,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-                android:src="@drawable/ic_send"
-                android:paddingBottom="5dp"/>
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_send" />
 
         </LinearLayout>
 

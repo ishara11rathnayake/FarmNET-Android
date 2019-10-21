@@ -1,14 +1,15 @@
 
-˜squid:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
-Xsquid:UselessImportCheck"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜
-osquid:UselessImportCheck"KRemove this unused import 'android.support.v4.content.res.ResourcesCompat'.(ˆ˜˜—
-hsquid:UselessImportCheck	"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æşÿÿÿÿ
-hsquid:UselessImportCheck"DRemove this unused import 'com.bumptech.glide.load.engine.Resource'.(¥ÓèË
-wsquid:S00116-"ZRename this field "et_new_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÌ‹Ëûÿÿÿÿ
-asquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ
-]squid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ
-squid:UselessImportCheck"eRemove this unused import 'com.industrialmaster.farmnet.views.adapters.DealsPostRecyclerViewAdapter'.(¬üÍıùÿÿÿÿ
-Tsquid:UselessImportCheck "0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-Vsquid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ
-isquid:UselessImportCheck"ERemove this unused import 'com.industrialmaster.farmnet.models.User'.(®…‚„
-Osquid:UselessImportCheck!"+Remove this unused import 'java.util.Date'.(¸…¼ü
+]squid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ
+osquid:UselessImportCheck	"KRemove this unused import 'android.support.v4.content.res.ResourcesCompat'.(ˆ˜˜—
+hsquid:UselessImportCheck"DRemove this unused import 'com.bumptech.glide.load.engine.Resource'.(¥ÓèË
+Osquid:UselessImportCheck$"+Remove this unused import 'java.util.Date'.(¸…¼ü
+isquid:UselessImportCheck"ERemove this unused import 'com.industrialmaster.farmnet.models.User'.(®…‚„
+˜squid:S1186t"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+Msquid:S1066L"/Merge this if statement with the enclosing one.(íØ±Æ8òÀîŞ-
+Tsquid:UselessImportCheck#"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+asquid:UselessImportCheck"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ
+squid:UselessImportCheck"eRemove this unused import 'com.industrialmaster.farmnet.views.adapters.DealsPostRecyclerViewAdapter'.(¬üÍıùÿÿÿÿ
+Xsquid:UselessImportCheck""4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜
+Vsquid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ
+hsquid:UselessImportCheck
+"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æşÿÿÿÿ

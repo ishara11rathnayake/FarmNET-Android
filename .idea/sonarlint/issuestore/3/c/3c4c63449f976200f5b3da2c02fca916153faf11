@@ -1,13 +1,13 @@
 
-Msquid:S1481R"0Remove this unused "myTextViews" local variable.(ÑÖ×8ëƒ ÎÜ-
-squid:S00116ƒ"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
-\squid:S1854R"?Remove this useless assignment to local variable "myTextViews".(ÑÖ×8ëƒ ÎÜ-
+nsquid:CommentedOutCodeLinei"<This block of commented-out lines of code should be removed.(ÔÅË„üÿÿÿÿ8ëƒ ÎÜ-
+usquid:S00116„"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåþÄüÿÿÿÿ
 rsquid:S00116‡"YRename this field "tv_description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“öÇ—
+squid:S00116ˆ"aRename this field "linear_layout_hashtags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ÅÌìüÿÿÿÿ
+\squid:S1854R"?Remove this useless assignment to local variable "myTextViews".(ÑÖ×8ëƒ ÎÜ-
+{squid:S00116‚"]Rename this field "question_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·–Øãÿÿÿÿÿ
+squid:S00116ƒ"fRename this field "circleImageView_profile_pic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—â÷
 tsquid:S00116†"VRename this field "tv_question" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œæ£ºþÿÿÿÿ
 /squid:S2176€"Rename this class.(Â×žÖúÿÿÿÿ
 ksquid:S00116…"RRename this field "tv_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·À¯Á
-usquid:S00116„"WRename this field "tv_user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁåþÄüÿÿÿÿ
-squid:S00116ˆ"aRename this field "linear_layout_hashtags" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ÅÌìüÿÿÿÿ
-{squid:S00116‚"]Rename this field "question_card_view" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·–Øãÿÿÿÿÿ
 tsquid:S00116‰"[Rename this field "tv_no_of_answers" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Éƒï
-nsquid:CommentedOutCodeLinei"<This block of commented-out lines of code should be removed.(ÔÅË„üÿÿÿÿ8ëƒ ÎÜ-
+Msquid:S1481R"0Remove this unused "myTextViews" local variable.(ÑÖ×8ëƒ ÎÜ-
