@@ -80,6 +80,13 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         viewHolder.mDescriptionTextView.setText(mDeals.get(i).getDescription());
         viewHolder.mAmountTextView.setText(String.format("%sKg", Double.toString(mDeals.get(i).getAmount())));
         viewHolder.mDateTextView.setText(formattedDate);
+        viewHolder.mLikeCountTextView.setText(String.format(Locale.ENGLISH, "%d Likes", mDeals.get(i).getLikeCount()));
+
+        if(mDeals.get(i).isLike()){
+            viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_filledlike);
+        } else {
+            viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_like);
+        }
 
         viewHolder.mUserNameTextView.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, OtherProfileActivity.class);
@@ -112,13 +119,18 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
             mContext.startActivity(intent);
         });
 
-        final boolean[] liked = {false};
+        final boolean[] liked = {mDeals.get(i).isLike()};
+        final int[] likeCount = {mDeals.get(i).getLikeCount()};
         viewHolder.mLikeImageButton.setOnClickListener(v -> {
             liked[0] = !liked[0];
             if(liked[0]){
                 viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_filledlike);
+                likeCount[0]++;
+                viewHolder.mLikeCountTextView.setText(String.format(Locale.ENGLISH, "%d Likes", likeCount[0]));
             }else {
                 viewHolder.mLikeImageButton.setImageResource(R.drawable.ic_like);
+                likeCount[0]--;
+                viewHolder.mLikeCountTextView.setText(String.format(Locale.ENGLISH, "%d Likes", likeCount[0]));
             }
             ((DealsFragment)mFragment).likeDeal(mDeals.get(i).getDealId());
         });
@@ -144,6 +156,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         ImageButton mLikeImageButton;
         TextView mCommentTextView;
         TextView mLikeTextView;
+        TextView mLikeCountTextView;
 
         public DealViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -159,6 +172,7 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
             mLikeImageButton = itemView.findViewById(R.id.image_button_like);
             mCommentTextView = itemView.findViewById(R.id.text_view_comment);
             mLikeTextView = itemView.findViewById(R.id.text_view_like);
+            mLikeCountTextView = itemView.findViewById(R.id.text_view_like_count);
         }
     }
 }

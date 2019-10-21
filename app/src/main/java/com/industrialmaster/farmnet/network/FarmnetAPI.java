@@ -1,7 +1,5 @@
 package com.industrialmaster.farmnet.network;
 
-import android.app.VoiceInteractor;
-
 import com.industrialmaster.farmnet.models.request.ChangePasswordRequest;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
 import com.industrialmaster.farmnet.models.request.CreateNewArticleRequest;
@@ -51,7 +49,9 @@ public interface FarmnetAPI {
     Observable<SignUpResponse> doSignup(@Body SignUpRequest signUpRequest);
 
     @GET(UrlManager.GET_ALL_DEALS)
-    Observable<ProductDealResponse> getAllDeals();
+    Observable<ProductDealResponse> getAllDeals(
+            @Query("userId") String userId
+    );
 
     @Multipart
     @POST(UrlManager.CREATE_NEW_DEAL)

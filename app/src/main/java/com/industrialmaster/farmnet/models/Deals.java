@@ -48,4 +48,10 @@ public class Deals {
 
     @SerializedName("longitude")
     private double longitude;
+
+    @SerializedName("like")
+    private boolean like;
+
+    @SerializedName("likeCount")
+    private int likeCount;
 }

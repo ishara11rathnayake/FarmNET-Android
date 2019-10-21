@@ -200,7 +200,7 @@ public class DealsPresenterImpl extends BasePresenter implements DealsPresenter 
 
     private Observable<ProductDealResponse> getAllDealsObservable() {
         try {
-            return getRetrofitClient().getAllDeals()
+            return getRetrofitClient().getAllDeals(userID)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
 
