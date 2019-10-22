@@ -21,4 +21,12 @@ public class LoginResponse {
     @SerializedName("userType")
     private String userType;
 
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("email")
+    private String email;
+
+    @SerializedName("profileImage")
+    private String profileImage;
 }

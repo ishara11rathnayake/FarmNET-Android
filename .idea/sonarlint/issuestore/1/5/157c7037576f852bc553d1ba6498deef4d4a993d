@@ -1,32 +1,30 @@
 
-rsquid:S00116*"URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
-Gsquid:S16593"+Declare "mReportButton" on a separate line.(¼ª“Áşÿÿÿÿ
-zsquid:S14503"^Remove the "mRateUserButton" field and declare it as a local variable in the relevant methods.(¼ª“Áşÿÿÿÿ
-osquid:S14500"XRemove the "mActivity" field and declare it as a local variable in the relevant methods.(ïĞÔ’
-zsquid:S00116+"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
+zsquid:S14503"^Remove the "mRateUserButton" field and declare it as a local variable in the relevant methods.(¬ÚŞüÿÿÿÿ
 Ksquid:S1659*"/Declare "tv_contact_number" on a separate line.(ˆŒ»Ñüÿÿÿÿ
-jsquid:S00117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÂ»ÿ
-nsquid:HiddenFieldCheckà"FRename "rating_bar_profile" which hides the field declared at line 43.(õÛÁÚøÿÿÿÿ
-Lsquid:S2387("5"presenter" is the name of a field in "BaseActivity".(ıÑ¹°
-psquid:S00116*"SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
-usquid:S00116,"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í’×ßúÿÿÿÿ
-Dsquid:S10680"-Remove this unused "mActivity" private field.(ïĞÔ’
-vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ı§ô
-osquid:S00117†"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ€Ñ°øÿÿÿÿ
-Asquid:S1659*"%Declare "tv_name" on a separate line.(ˆŒ»Ñüÿÿÿÿ
-Isquid:S1602ø",Remove useless curly braces around statement(›Ğ˜ûÿÿÿÿ
-nsquid:S00117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û§®Šşÿÿÿÿ
-osquid:S00117Ò"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û§®Šşÿÿÿÿ
-osquid:S00116*"RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
-xsquid:S14503"\Remove the "mReportButton" field and declare it as a local variable in the relevant methods.(¼ª“Áşÿÿÿÿ
-ysquid:S00116*"\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
-Vsquid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G
-}squid:S00116-"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
-jsquid:S00117ƒ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÕú˜
-esquid:MaximumInheritanceDepth&"<This class has 6 parents which is greater than 5 authorized.(ÛÁåä
-Bsquid:S1659*"&Declare "tv_email" on a separate line.(ˆŒ»Ñüÿÿÿÿ
-Dsquid:S1659*"(Declare "tv_user_id" on a separate line.(ˆŒ»Ñüÿÿÿÿ
-Qsquid:S16592"5Declare "mReportConstraintLayout" on a separate line.(ç­åŸıÿÿÿÿ
+ssquid:S14504"\Remove the "mReportButton" field and declare it as a local variable in the relevant methods.(®Ê„ø
 Wsquid:S10682";Remove this unused "mReportConstraintLayout" private field.(ç­åŸıÿÿÿÿ
+osquid:S00117á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÛÁÚøÿÿÿÿ
 rsquid:S00116*"URename this field "tv_user_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
-osquid:S00117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÛÁÚøÿÿÿÿ
+Dsquid:S10680"-Remove this unused "mActivity" private field.(ïĞÔ’
+jsquid:S00117å"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÂ»ÿ
+Asquid:S1659*"%Declare "tv_name" on a separate line.(ˆŒ»Ñüÿÿÿÿ
+Dsquid:S1659*"(Declare "tv_user_id" on a separate line.(ˆŒ»Ñüÿÿÿÿ
+Bsquid:S1659*"&Declare "tv_email" on a separate line.(ˆŒ»Ñüÿÿÿÿ
+osquid:S00117‡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ€Ñ°øÿÿÿÿ
+Qsquid:S16592"5Declare "mReportConstraintLayout" on a separate line.(ç­åŸıÿÿÿÿ
+Lsquid:S2387("5"presenter" is the name of a field in "BaseActivity".(ıÑ¹°
+zsquid:S00116+"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
+nsquid:S00117t"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û§®Šşÿÿÿÿ
+vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ı§ô
+}squid:S00116-"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
+Vsquid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G
+jsquid:S00117„"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÕú˜
+osquid:S00117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û§®Šşÿÿÿÿ
+ysquid:S00116*"\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
+psquid:S00116*"SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
+nsquid:HiddenFieldChecká"FRename "rating_bar_profile" which hides the field declared at line 43.(õÛÁÚøÿÿÿÿ
+usquid:S00116,"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í’×ßúÿÿÿÿ
+osquid:S14500"XRemove the "mActivity" field and declare it as a local variable in the relevant methods.(ïĞÔ’
+Isquid:S1602ù",Remove useless curly braces around statement(›Ğ˜ûÿÿÿÿ
+rsquid:S00116*"URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ
+osquid:S00116*"RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆŒ»Ñüÿÿÿÿ

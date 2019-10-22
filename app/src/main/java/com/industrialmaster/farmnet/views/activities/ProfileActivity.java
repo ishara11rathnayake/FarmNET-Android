@@ -61,12 +61,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         img_btn_edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
 
         //close create new deal activity
-        img_btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        img_btn_close.setOnClickListener(v -> finish());
 
         //directed to timeline list activity
         img_btn_timeline_list.setOnClickListener(new View.OnClickListener() {

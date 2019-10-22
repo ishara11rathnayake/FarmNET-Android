@@ -8,6 +8,10 @@ public class FarmnetConstants {
     public static final String CANCEL = "CANCEL";
     public static final String USER_ID = "user_id";
     public static final String USER_TYPE = "user_type";
+    public static final String USERNAME = "username";
+    public static final String USER_EMAIL = "email";
+    public static final String PROFILE_PIC = "profile_pic";
+
     public static final String THUMBNAIL_URL_PRES_KEY= "thumbnail_url";
     public static final String HOME = "home";
     public static final String PROFILE = "profile";

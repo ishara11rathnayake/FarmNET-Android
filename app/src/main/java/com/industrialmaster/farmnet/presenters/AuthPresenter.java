@@ -36,4 +36,11 @@ public interface AuthPresenter extends Presenter {
      */
     void changePassword(ChangePasswordRequest changePasswordRequest, String confirmPassword);
 
+    /**
+     * search user by name, email or rating
+     * @param searchText username or email to search
+     * @param rating minimum user rating
+     */
+    void searchUser(String searchText, int rating);
+
 }

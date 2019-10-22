@@ -76,31 +76,31 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
 
 
-        updateUserDetailsObservable(accessToken, userId,profileImagePart, addressPart,
-                phonePart, nicPart, dobPart, namePart).subscribe(updateUserDetailsSubscriber());
+        Objects.requireNonNull(updateUserDetailsObservable(accessToken, userId,profileImagePart, addressPart,
+                phonePart, nicPart, dobPart, namePart)).subscribe(updateUserDetailsSubscriber());
 
     }
 
     @Override
     public void getUserRating() {
-        getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
+        Objects.requireNonNull(getUserRatingObservable(accessToken, userId)).subscribe(getUserRatingSubscriber());
     }
 
     @Override
     public void getOtherUserRating(String userId) {
-        getUserRatingObservable(accessToken, userId).subscribe(getUserRatingSubscriber());
+        Objects.requireNonNull(getUserRatingObservable(accessToken, userId)).subscribe(getUserRatingSubscriber());
     }
 
     @Override
     public void getRatedUserRating(String userId) {
         String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        getRatedUserRatingObservable(accessToken, userId, ratedUserId).subscribe(getRatedUserRatingSubscriber());
+        Objects.requireNonNull(getRatedUserRatingObservable(accessToken, userId, ratedUserId)).subscribe(getRatedUserRatingSubscriber());
     }
 
     @Override
     public void rateUser(String userId, float rating) {
         String ratedUserId = readSharedPreferences(FarmnetConstants.USER_ID, "");
-        rateUserObservable(accessToken, userId, ratedUserId, rating).subscribe(rateUserSubscriber());
+        Objects.requireNonNull(rateUserObservable(accessToken, userId, ratedUserId, rating)).subscribe(rateUserSubscriber());
     }
 
     @Override
@@ -120,6 +120,12 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
     }
 
+    /**
+     * get user details observable
+     * @param accessToken access tokrn
+     * @param userId userId
+     * @return Observable<UserDetailsResponse>
+     */
     private Observable<UserDetailsResponse> getUserDetailsObservable(String accessToken, String userId) {
         try {
             return getRetrofitClient().getUserDetails(accessToken, userId)
@@ -132,6 +138,10 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
         return null;
     }
 
+    /**
+     * get user details subscriber
+     * @return
+     */
     private Observer<UserDetailsResponse> getUserDetailsSubscriber(){
         return new Observer<UserDetailsResponse>() {
             @Override
@@ -151,7 +161,7 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     if(mCommanView instanceof ProfileView) {
                         profileView.onError(handleApiError(e));
@@ -159,7 +169,7 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
                         updateUserView.onError(handleApiError(e));
                     }
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -170,6 +180,18 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
         };
     }
 
+    /**
+     * update user details observable
+     * @param accessToken access token - String
+     * @param userId user id - String
+     * @param profileImage profile Image - MultipartBody.Part
+     * @param address address - RequestBody
+     * @param phone contact number - RequestBody
+     * @param nic NIC - RequestBody
+     * @param dob date of birth - RequestBody
+     * @param name name of user - RequestBody
+     * @return Observable<CommonMessageResponse>
+     */
     private Observable<CommonMessageResponse> updateUserDetailsObservable(String accessToken, String userId, MultipartBody.Part profileImage,
                                                                           RequestBody address, RequestBody phone, RequestBody nic,
                                                                           RequestBody dob, RequestBody name) {
@@ -193,16 +215,19 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onNext(CommonMessageResponse commonMessageResponse) {
+                saveSharedPreferences(FarmnetConstants.USERNAME, commonMessageResponse.getName());
+                saveSharedPreferences(FarmnetConstants.USER_EMAIL, commonMessageResponse.getEmail());
+                saveSharedPreferences(FarmnetConstants.PROFILE_PIC, commonMessageResponse.getProfileImage());
                 updateUserView.onSuccess(commonMessageResponse.getMessage());
             }
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     updateUserView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -239,11 +264,11 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     profileView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -280,11 +305,11 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     profileView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -321,11 +346,11 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     profileView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 
@@ -362,11 +387,11 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
+                Log.e(TAG, e.toString());
                 try {
                     profileView.onError(handleApiError(e));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e(TAG, ex.toString());
                 }
             }
 

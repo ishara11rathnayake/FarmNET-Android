@@ -2,6 +2,7 @@ package com.industrialmaster.farmnet.views.fragments;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.Resource;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Question;
@@ -36,6 +38,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -47,6 +51,10 @@ public class QandAFragment extends BaseFragment implements QandAView {
 
     EditText mNewQuestionEditText;
     EditText mSearchQuizEditText;
+    CircleImageView mProfilePicCircleProfilePic;
+
+    String mProfilePic;
+    private static final String FARMNET_PREFS = "FarmnetPrefsFile";
 
     public QandAFragment() {
         // Required empty public constructor
@@ -63,31 +71,40 @@ public class QandAFragment extends BaseFragment implements QandAView {
         qandAPresenter.getAllQuestions();
         setLoading(true);
 
+        mProfilePic = getActivity().getSharedPreferences(FARMNET_PREFS, Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.PROFILE_PIC, "");
+
         mNewQuestionEditText = rootView.findViewById(R.id.et_question);
         mSearchQuizEditText = rootView.findViewById(R.id.edit_text_search_quiz);
+        mProfilePicCircleProfilePic = rootView.findViewById(R.id.cimageview_profilepic);
+
+        if(!TextUtils.isEmpty(mProfilePic)){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(mProfilePic)
+                    .centerCrop()
+                    .into(mProfilePicCircleProfilePic);
+        }
 
         //search questions
-        mSearchQuizEditText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_RIGHT = 2;
+        mSearchQuizEditText.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (mSearchQuizEditText.getRight() - mSearchQuizEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        setLoading(true);
-                        String searchText = mSearchQuizEditText.getText().toString();
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (mSearchQuizEditText.getRight() - mSearchQuizEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    setLoading(true);
+                    String searchText = mSearchQuizEditText.getText().toString();
 
-                        if(!TextUtils.isEmpty(searchText)){
-                            qandAPresenter.searchQuestions(mSearchQuizEditText.getText().toString());
-                            return true;
-                        }else {
-                            qandAPresenter.getAllQuestions();
-                            return true;
-                        }
+                    if(!TextUtils.isEmpty(searchText)){
+                        qandAPresenter.searchQuestions(mSearchQuizEditText.getText().toString());
+                        return true;
+                    }else {
+                        qandAPresenter.getAllQuestions();
+                        return true;
                     }
                 }
-                return false;
             }
+            return false;
         });
 
         //directed to new question activity

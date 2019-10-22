@@ -9,6 +9,7 @@ import com.industrialmaster.farmnet.models.request.LoginRequest;
 import com.industrialmaster.farmnet.models.request.SignUpRequest;
 import com.industrialmaster.farmnet.models.response.CommonMessageResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
+import com.industrialmaster.farmnet.models.response.SearchUserResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.network.DisposableManager;
 import com.industrialmaster.farmnet.network.RetrofitException;
@@ -17,6 +18,7 @@ import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.AuthView;
 import com.industrialmaster.farmnet.views.ChangePasswordView;
 import com.industrialmaster.farmnet.views.FarmnetHomeView;
+import com.industrialmaster.farmnet.views.FilterUserView;
 import com.industrialmaster.farmnet.views.View;
 
 import java.util.Objects;
@@ -41,6 +43,7 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
     private AuthView authView;
     private FarmnetHomeView homeView;
     private ChangePasswordView changePasswordView;
+    private FilterUserView filterUserView;
 
     private String errorMessage;
 
@@ -52,6 +55,8 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
             homeView = (FarmnetHomeView) view;
         } else if( view instanceof  ChangePasswordView){
             changePasswordView = (ChangePasswordView) view;
+        } else if(view instanceof FilterUserView){
+            filterUserView = (FilterUserView) view;
         }
     }
 
@@ -111,6 +116,11 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         }
     }
 
+    @Override
+    public void searchUser(String searchText, int rating) {
+        Objects.requireNonNull(searchUserObservable(accessToken, searchText, rating)).subscribe(searchUserSubscriber());
+    }
+
     private Observable<LoginResponse> doLoginObservable(LoginRequest loginRequest) {
         try {
             return getRetrofitClient().doLogin(loginRequest)
@@ -135,6 +145,9 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
                 saveSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, loginResponse.getAccess_token());
                 saveSharedPreferences(FarmnetConstants.USER_ID, loginResponse.getUserId());
                 saveSharedPreferences(FarmnetConstants.USER_TYPE, loginResponse.getUserType());
+                saveSharedPreferences(FarmnetConstants.USERNAME, loginResponse.getName());
+                saveSharedPreferences(FarmnetConstants.USER_EMAIL, loginResponse.getEmail());
+                saveSharedPreferences(FarmnetConstants.PROFILE_PIC, loginResponse.getProfileImage());
                 authView.onSuccess(loginResponse.getMessage());
             }
 
@@ -180,6 +193,8 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
                 saveSharedPreferences(FarmnetConstants.TOKEN_PREFS_KEY, signUpResponse.getAccess_token());
                 saveSharedPreferences(FarmnetConstants.USER_ID, signUpResponse.getUserId());
                 saveSharedPreferences(FarmnetConstants.USER_TYPE, signUpResponse.getUserType());
+                saveSharedPreferences(FarmnetConstants.USERNAME, signUpResponse.getName());
+                saveSharedPreferences(FarmnetConstants.USER_EMAIL, signUpResponse.getEmail());
                 authView.onSuccess(signUpResponse.getMessage());
             }
 
@@ -248,7 +263,52 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
         };
     }
 
+    private Observable<SearchUserResponse> searchUserObservable(String accessToken, String searchText, int rating) {
+        try {
+            return getRetrofitClient().searchUser(accessToken, searchText, rating)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
 
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private Observer<SearchUserResponse> searchUserSubscriber(){
+        return new Observer<SearchUserResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.add(d);
+            }
+
+            @Override
+            public void onNext(SearchUserResponse searchUserResponse) {
+                filterUserView.showUserList(searchUserResponse.getUsers());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                try {
+                    filterUserView.onError(handleApiError(e));
+                } catch (Exception ex) {
+                    Log.e(TAG, ex.toString());
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    /**
+     * validate login fields before request send to the server
+     * @param email email
+     * @param password password
+     * @return boolean
+     */
     private boolean loginFieldsValidate(String email, String password){
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
             errorMessage = ErrorMessageHelper.ENTER_EMAIL_AND_PASSWORD;
@@ -262,6 +322,15 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
     }
 
+    /**
+     * validate sign up fields before request send to the server
+     * @param email email
+     * @param name name
+     * @param password password
+     * @param userType user type
+     * @param retypePassword retype password
+     * @return boolean
+     */
     private boolean signUpFieldsValidate(String email, String name, String password, String userType, String retypePassword){
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(name) || TextUtils.isEmpty(password) ||
@@ -275,6 +344,12 @@ public class AuthPresenterImpl extends BasePresenter implements AuthPresenter {
 
     }
 
+    /**
+     * validate password and check two given password match or not
+     * @param password password
+     * @param confirmPassword retype password
+     * @return boolean
+     */
     private boolean validatePassword (String password, String confirmPassword) {
 
         if (!password.matches(REGEX_PASSWRD)) {

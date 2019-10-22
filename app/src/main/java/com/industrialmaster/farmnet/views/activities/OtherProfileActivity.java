@@ -48,7 +48,8 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
     private Activity mActivity;
 
     private ConstraintLayout mRateUserConstraintLayout, mReportConstraintLayout;
-    private Button mRateUserButton, mReportButton;
+    private Button mRateUserButton;
+    private Button mReportButton;
 
     private PopupWindow mRateUserPopupWindow;
     private PopupWindow mReportUserPopupWindow;

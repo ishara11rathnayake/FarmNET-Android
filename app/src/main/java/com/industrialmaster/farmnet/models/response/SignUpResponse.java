@@ -21,4 +21,10 @@ public class SignUpResponse {
     @SerializedName("userType")
     private String userType;
 
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("email")
+    private String email;
+
 }

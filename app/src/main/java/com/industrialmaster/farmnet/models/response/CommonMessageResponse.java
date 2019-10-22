@@ -15,5 +15,13 @@ public class CommonMessageResponse {
     @SerializedName("statusCode")
     private String statusCode;
 
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("email")
+    private String email;
+
+    @SerializedName("profileImage")
+    private String profileImage;
 
 }

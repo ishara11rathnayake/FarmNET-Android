@@ -228,10 +228,6 @@ g
 `app/src/main/java/com/industrialmaster/farmnet/views/adapters/MyQuestionRecyclerViewAdapter.java,4\8\48548aed501c7b36f4bce28c4bce6b16c4c49bf1
 á
 Wapp/src/main/java/com/industrialmaster/farmnet/views/activities/MyQuestionActivity.java,4\6\46b50a6fdf34940e69e63194d21e37f908883569
-à
-Xapp/src/main/java/com/industrialmaster/farmnet/views/activities/FilterDealsActivity.java,7\7\77d04a780dd2a7e507bdb3eb8ff946bae408de59
-a
-1app/src/main/res/layout/activity_filter_deals.xml,3\6\36f5fc566fbf957484dc7e6cf648b07f3378cfde
 }
 Mapp/src/main/java/com/industrialmaster/farmnet/network/DisposableManager.java,a\d\ad0663d47a947d21f6bba5f813fb8bd3488a856d
 à
@@ -280,3 +276,13 @@ Z
 +app/src/main/res/drawable/ic_filledlike.xml,6\0\601615e0297bc20105d3aebce8495bf76935c188
 s
 Capp/src/test/java/com/industrialmaster/farmnet/ExampleUnitTest.java,3\4\346266336cb6e1a7418bf734bcdc79043a3806c3
+[
++app/src/main/res/layout/fragment_qand_a.xml,c\a\ca55d72b06245f07d0b4e501708e3e3c88507d5f
+ê
+`app/src/main/java/com/industrialmaster/farmnet/views/adapters/SearchUserRecyclerViewAdapter.java,a\4\a490ff49077c58c46681a58e2517b7561f331d76
+Ü
+Vapp/src/main/java/com/industrialmaster/farmnet/models/response/SearchUserResponse.java,6\7\677730719207362b570f82b057cfe69934032305
+x
+Happ/src/main/java/com/industrialmaster/farmnet/views/FilterUserView.java,a\e\aee2fbfd677c8df3de5544abb0a8a39c56c73d0a
+á
+Wapp/src/main/java/com/industrialmaster/farmnet/views/activities/FilterUserActivity.java,e\e\eee329a7f9a4d33f49c19fe1ccf1f8cd42423531

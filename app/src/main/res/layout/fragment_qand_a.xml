@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/cimageview_profilepic"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -37,5 +37,6 @@ public class UrlManager {
     public static final String FILTER_PRODUCT = "products/filter/bypriceandamount";
     public static final String CHANGE_PASSWORD = "user/password/{userId}";
     public static final String LIKE_DEAL = "products/like/like";
+    public static final String SEARCH_USER = "user/search/byname";
 
 }

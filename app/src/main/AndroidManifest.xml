@@ -26,7 +26,7 @@
             android:name=".views.activities.SelectLocationActivity"
             android:label="@string/title_activity_select_location"></activity>
         <activity android:name=".views.activities.ChangePasswordActivity" />
-        <activity android:name=".views.activities.FilterDealsActivity" />
+        <activity android:name=".views.activities.FilterUserActivity" />
         <activity android:name=".views.activities.MyQuestionActivity" />
         <!-- Set custom default icon. This is used when no icon is set for incoming notification messages. -->
         <meta-data

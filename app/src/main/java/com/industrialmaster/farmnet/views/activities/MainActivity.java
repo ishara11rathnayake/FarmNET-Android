@@ -11,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.presenters.AuthPresenter;
 import com.industrialmaster.farmnet.presenters.AuthPresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
@@ -29,6 +31,8 @@ import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.views.fragments.NotificationFragment;
 import com.industrialmaster.farmnet.views.fragments.QandAFragment;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 
@@ -42,7 +46,11 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
     NotificationFragment notificationFragment;
     ArticleFragment articleFragment;
 
+    private static final String FARMNET_PREFS = "FarmnetPrefsFile";
     String mUserType;
+    String mUsername;
+    String mUserEmail;
+    String mProfilePic;
 
     private ImageView mNewQuestionImageView;
     private TextView mHeaderTopicTextView;
@@ -58,8 +66,17 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         authPresenter = new AuthPresenterImpl(this, MainActivity.this );
 
-        mUserType = getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
+        mUserType = getSharedPreferences(FARMNET_PREFS, Context.MODE_PRIVATE)
                 .getString(FarmnetConstants.USER_TYPE, "");
+
+        mUsername = getSharedPreferences(FARMNET_PREFS, Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.USERNAME, "");
+
+        mUserEmail = getSharedPreferences(FARMNET_PREFS, Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.USER_EMAIL, "");
+
+        mProfilePic = getSharedPreferences(FARMNET_PREFS, Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.PROFILE_PIC, "");
 
         authPresenter.doCheckAlreadyLogin();
 
@@ -129,6 +146,23 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
 
         mDrawerNavigationView = findViewById(R.id.drawer_nav);
 
+        View headerView = mDrawerNavigationView.getHeaderView(0);
+
+        TextView mNameTextView = headerView.findViewById(R.id.text_view_name);
+        mNameTextView.setText(mUsername);
+
+        TextView mEmailTextView = headerView.findViewById(R.id.text_view_email);
+        mEmailTextView.setText(mUserEmail);
+
+        CircleImageView mProfilePicCircleImageView = headerView.findViewById(R.id.circle_image_view_profile);
+        if(!TextUtils.isEmpty(mProfilePic)){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(mProfilePic)
+                    .centerCrop()
+                    .into(mProfilePicCircleImageView);
+        }
+
         mDrawerToggleImageView.setOnClickListener(v -> mDrawerlayout.openDrawer(Gravity.START));
 
         mBottomNavigationView.setSelectedItemId(R.id.deals);
@@ -165,6 +199,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
             startActivity(new Intent(MainActivity.this, MyQuestionActivity.class));
         } else if(id == R.id.change_password){
             startActivity(new Intent(MainActivity.this, ChangePasswordActivity.class));
+        } else if(id == R.id.find_user){
+            startActivity(new Intent(MainActivity.this, FilterUserActivity.class));
         }
         return false;
     }

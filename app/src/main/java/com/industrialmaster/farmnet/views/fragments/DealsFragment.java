@@ -1,7 +1,6 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
@@ -9,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,22 +16,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appyvet.materialrangebar.RangeBar;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.Deals;
-import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.presenters.DealsPresenter;
 import com.industrialmaster.farmnet.presenters.DealsPresenterImpl;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.DealsView;
-import com.industrialmaster.farmnet.views.activities.FilterDealsActivity;
-import com.industrialmaster.farmnet.views.activities.LoginActivity;
-import com.industrialmaster.farmnet.views.activities.MainActivity;
 import com.industrialmaster.farmnet.views.adapters.DealsPostRecyclerViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

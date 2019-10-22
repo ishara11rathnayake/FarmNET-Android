@@ -16,6 +16,7 @@ import com.industrialmaster.farmnet.models.response.CreateNewQuestionResponse;
 import com.industrialmaster.farmnet.models.response.LoginResponse;
 import com.industrialmaster.farmnet.models.response.ProductDealResponse;
 import com.industrialmaster.farmnet.models.response.QuestionsResponse;
+import com.industrialmaster.farmnet.models.response.SearchUserResponse;
 import com.industrialmaster.farmnet.models.response.SignUpResponse;
 import com.industrialmaster.farmnet.models.response.ThumnailUrlResponse;
 import com.industrialmaster.farmnet.models.response.TimelineByIdResponse;
@@ -269,5 +270,12 @@ public interface FarmnetAPI {
             @Header("Authorization") String authorization,
             @Query("productId") String productId,
             @Query("userId") String userId
+    );
+
+    @GET(UrlManager.SEARCH_USER)
+    Observable<SearchUserResponse> searchUser(
+            @Header("Authorization") String authorization,
+            @Query("searchText") String searchText,
+            @Query("minRating") int minRating
     );
 }

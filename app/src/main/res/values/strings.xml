@@ -84,10 +84,12 @@
     <string name="search">Search</string>
 
     <string name="price_range">Price (Max:3000)</string>
+    <string name="rating_range">Rating (Max:5)</string>
     <string name="range_divider">-</string>
     <string name="min">Min</string>
     <string name="max">Max</string>
     <string name="name_of_farmer">Name of farmer</string>
+    <string name="name_of_user">Name of user</string>
     <string name="change_password">Change Password</string>
     <string name="find_user">Find User</string>
     <string name="reset">Reset</string>
