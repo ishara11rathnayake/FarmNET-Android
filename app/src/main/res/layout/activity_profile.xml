@@ -162,7 +162,7 @@
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/ubunturegular"
                         android:text="@string/sample_text"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imgv_email"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -171,10 +171,11 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/constraint_layout_phone">
 
                     <ImageView
-                        android:id="@+id/imgv_contac_number"
+                        android:id="@+id/imgv_contact_number"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="40dp"
@@ -200,14 +201,15 @@
                         android:text="@string/sample_text"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imgv_contac_number"
+                        app:layout_constraintStart_toEndOf="@+id/imgv_contact_number"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/constraint_layout_address">
 
                     <ImageView
                         android:id="@+id/imgv_address"

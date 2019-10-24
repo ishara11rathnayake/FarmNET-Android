@@ -3,12 +3,14 @@ package com.industrialmaster.farmnet.views.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -43,6 +45,8 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     ImageButton mEditImageButton;
     ImageButton mCloseImageButton;
     ImageButton mTimelineListImageButton;
+    ConstraintLayout mPhoneConstraintLayout;
+    ConstraintLayout mAddressConstraintLayout;
     CircleImageView mProfilePicCircleImageView;
 
     @Override
@@ -62,6 +66,8 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         mEditImageButton = findViewById(R.id.img_btn_edit);
         mCloseImageButton = findViewById(R.id.img_btn_close);
         mTimelineListImageButton = findViewById(R.id.img_btn_timeline_list);
+        mPhoneConstraintLayout = findViewById(R.id.constraint_layout_phone);
+        mAddressConstraintLayout = findViewById(R.id.constraint_layout_address);
         mTimelineListImageButton.setVisibility(View.INVISIBLE);
 
         setLoading(true);
@@ -91,6 +97,14 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         List<Article> articles = null;
         RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
         TextView mProductType = findViewById(R.id.text_view_product_type);
+
+        if(TextUtils.isEmpty(user.getContactNumber())){
+            mPhoneConstraintLayout.setVisibility(View.GONE);
+        }
+
+        if(TextUtils.isEmpty(user.getAddress())){
+            mAddressConstraintLayout.setVisibility(View.GONE);
+        }
 
         switch (user.getUserType()) {
             case FarmnetConstants.UserTypes.FARMER:
