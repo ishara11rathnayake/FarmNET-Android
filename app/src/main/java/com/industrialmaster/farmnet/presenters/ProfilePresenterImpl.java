@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.industrialmaster.farmnet.models.Advertisement;
+import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.models.request.ComplaintRequest;
@@ -152,8 +154,26 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
             @Override
             public void onNext(UserDetailsResponse userDetailsResponse) {
                 if(mCommanView instanceof ProfileView){
-                    List<Deals> deals = userDetailsResponse.getDeals();
-                    profileView.showUserDetails(userDetailsResponse.getUser(), deals);
+                    switch (userDetailsResponse.getUser().getUserType()) {
+                        case FarmnetConstants.UserTypes.FARMER:
+                            List<Deals> deals = userDetailsResponse.getDeals();
+                            profileView.showUserDetails(userDetailsResponse.getUser(), deals);
+                            break;
+                        case FarmnetConstants.UserTypes.SERVICE_PROVIDER:
+                            List<Advertisement> advertisements = userDetailsResponse.getAdvertisements();
+                            profileView.showUserDetails(userDetailsResponse.getUser(), advertisements);
+                            break;
+                        case FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER:
+                            List<Article> articles = userDetailsResponse.getArticles();
+                            profileView.showUserDetails(userDetailsResponse.getUser(), articles);
+                            break;
+                        case FarmnetConstants.UserTypes.BUYER:
+                            profileView.showUserDetails(userDetailsResponse.getUser(), null);
+                            break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + userDetailsResponse.getUser().getUserType());
+                    }
+
                 } else if(mCommanView instanceof UpdateUserView){
                     updateUserView.showUserDetails(userDetailsResponse.getUser());
                 }

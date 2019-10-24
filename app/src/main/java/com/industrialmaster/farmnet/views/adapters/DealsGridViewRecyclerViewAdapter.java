@@ -36,8 +36,7 @@ public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<Deals
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_abstract_deal_view, viewGroup,false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return  new ViewHolder(view);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<Deals
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cardview_absract_deal;
+        CardView mAbsractDealCardview;
         ImageView imageview_product_image;
         TextView tv_product_name, tv_more_details;
 
@@ -77,7 +76,7 @@ public class DealsGridViewRecyclerViewAdapter extends RecyclerView.Adapter<Deals
             super(itemView);
             imageview_product_image = itemView.findViewById(R.id.imgv_product_image);
             tv_product_name = itemView.findViewById(R.id.tv_product_name);
-            cardview_absract_deal = itemView.findViewById(R.id.cardview_abstract_deal);
+            mAbsractDealCardview = itemView.findViewById(R.id.cardview_abstract_deal);
             tv_more_details = itemView.findViewById(R.id.tv_view_more);
         }
     }

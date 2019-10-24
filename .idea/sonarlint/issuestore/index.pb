@@ -286,3 +286,9 @@ x
 Happ/src/main/java/com/industrialmaster/farmnet/views/FilterUserView.java,a\e\aee2fbfd677c8df3de5544abb0a8a39c56c73d0a
 ‡
 Wapp/src/main/java/com/industrialmaster/farmnet/views/activities/FilterUserActivity.java,e\e\eee329a7f9a4d33f49c19fe1ccf1f8cd42423531
+`
+0app/src/main/res/layout/activity_filter_user.xml,9\2\9288d0a88cb01568bcb49512bcbff64ad36728e8
+Y
+)app/src/main/res/layout/drawer_header.xml,4\7\478d33140021dbe675170b10f4b0c2b6c5b7c1d0
+c
+3app/src/main/res/layout/layout_user_search_view.xml,5\1\515be1393624d29431bc7a1775eb9828c47273e8

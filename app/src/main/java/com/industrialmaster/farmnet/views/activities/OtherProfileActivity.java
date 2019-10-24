@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Advertisement;
+import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.presenters.ProfilePresenter;
@@ -29,9 +32,12 @@ import com.industrialmaster.farmnet.presenters.ProfilePresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.ProfileView;
+import com.industrialmaster.farmnet.views.adapters.AdvertisementRecyclerViewAdapter;
+import com.industrialmaster.farmnet.views.adapters.ArticleRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.DealsGridViewRecyclerViewAdapter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -158,8 +164,54 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
     }
 
     @Override
-    public void showUserDetails(User user, List<Deals> deals) {
+    public <T> void showUserDetails(User user, List<T> products) {
         setLoading(false);
+
+        List<Deals> deals = null;
+        List<Advertisement> advertisements = null;
+        List<Article> articles = null;
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
+        TextView mProductType = findViewById(R.id.text_view_product_type);
+
+        switch (user.getUserType()) {
+            case FarmnetConstants.UserTypes.FARMER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    deals = products.stream().filter(element -> element instanceof Deals)
+                            .map(element -> (Deals) element)
+                            .collect(Collectors.toList());
+                }
+                DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setAdapter(adapter);
+                mProductType.setText(FarmnetConstants.DEALS);
+                break;
+            case FarmnetConstants.UserTypes.SERVICE_PROVIDER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    advertisements = products.stream().filter(element -> element instanceof Advertisement)
+                            .map(element -> (Advertisement) element)
+                            .collect(Collectors.toList());
+                }
+                AdvertisementRecyclerViewAdapter adsAdapter = new AdvertisementRecyclerViewAdapter(this, advertisements);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(adsAdapter);
+                mProductType.setText(FarmnetConstants.ADVERTISEMENTS);
+                break;
+            case FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    articles = products.stream().filter(element -> element instanceof Article)
+                            .map(element -> (Article) element)
+                            .collect(Collectors.toList());
+                }
+                ArticleRecyclerViewAdapter articleAdapter = new ArticleRecyclerViewAdapter(this, articles);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(articleAdapter);
+                mProductType.setText(FarmnetConstants.ARTICLES);
+                break;
+            default:
+                mProductType.setVisibility(View.GONE);
+                break;
+        }
+
         tv_name.setText(user.getName());
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
@@ -172,11 +224,6 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                     .centerInside()
                     .into(cimageview_profilepic);
         }
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
-        DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(adapter);
     }
 
     @Override

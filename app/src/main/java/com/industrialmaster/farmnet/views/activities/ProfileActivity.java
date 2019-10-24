@@ -1,39 +1,48 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
+import com.industrialmaster.farmnet.models.Advertisement;
+import com.industrialmaster.farmnet.models.Article;
 import com.industrialmaster.farmnet.models.Deals;
 import com.industrialmaster.farmnet.models.User;
 import com.industrialmaster.farmnet.presenters.ProfilePresenter;
 import com.industrialmaster.farmnet.presenters.ProfilePresenterImpl;
-import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.ProfileView;
+import com.industrialmaster.farmnet.views.adapters.AdvertisementRecyclerViewAdapter;
+import com.industrialmaster.farmnet.views.adapters.ArticleRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.DealsGridViewRecyclerViewAdapter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends BaseActivity implements ProfileView {
 
-    ProfilePresenter presenter;
+    ProfilePresenter profilePresenter;
 
-    TextView tv_address, tv_contact_number, tv_name, tv_email;
+    TextView tv_address;
+    TextView tv_contact_number;
+    TextView tv_name;
+    TextView tv_email;
     RatingBar rating_bar_profile;
-    ImageButton img_btn_edit, img_btn_close, img_btn_timeline_list;
+    ImageButton img_btn_edit;
+    ImageButton img_btn_close;
+    ImageButton mTimelineListImageButton;
     CircleImageView cimageview_profilepic;
 
     @Override
@@ -41,7 +50,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        presenter = new ProfilePresenterImpl(this, ProfileActivity.this);
+        profilePresenter = new ProfilePresenterImpl(this, ProfileActivity.this);
 
         cimageview_profilepic = findViewById(R.id.cimageview_profilepic);
         tv_name = findViewById(R.id.tv_name);
@@ -52,11 +61,12 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
         img_btn_edit = findViewById(R.id.img_btn_edit);
         img_btn_close = findViewById(R.id.img_btn_close);
-        img_btn_timeline_list = findViewById(R.id.img_btn_timeline_list);
+        mTimelineListImageButton = findViewById(R.id.img_btn_timeline_list);
+        mTimelineListImageButton.setVisibility(View.INVISIBLE);
 
         setLoading(true);
-        presenter.getUserDetails();
-        presenter.getUserRating();
+        profilePresenter.getUserDetails();
+        profilePresenter.getUserRating();
 
         img_btn_edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
 
@@ -64,12 +74,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         img_btn_close.setOnClickListener(v -> finish());
 
         //directed to timeline list activity
-        img_btn_timeline_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, ProductTimelineListActivity.class));
-            }
-        });
+        mTimelineListImageButton.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, ProductTimelineListActivity.class)));
     }
 
     @Override
@@ -79,9 +84,57 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         startActivity(getIntent());
     }
 
-    @Override
-    public void showUserDetails(User user, List<Deals> deals) {
+    public <T> void showUserDetails(User user, List<T> products) {
         setLoading(false);
+        List<Deals> deals = null;
+        List<Advertisement> advertisements = null;
+        List<Article> articles = null;
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
+        TextView mProductType = findViewById(R.id.text_view_product_type);
+
+        switch (user.getUserType()) {
+            case FarmnetConstants.UserTypes.FARMER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    deals = products.stream().filter(element -> element instanceof Deals)
+                            .map(element -> (Deals) element)
+                            .collect(Collectors.toList());
+                }
+                DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setAdapter(adapter);
+                mProductType.setText(FarmnetConstants.DEALS);
+                mTimelineListImageButton.setVisibility(View.VISIBLE);
+                break;
+            case FarmnetConstants.UserTypes.SERVICE_PROVIDER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    advertisements = products.stream().filter(element -> element instanceof Advertisement)
+                            .map(element -> (Advertisement) element)
+                            .collect(Collectors.toList());
+                }
+                AdvertisementRecyclerViewAdapter adsAdapter = new AdvertisementRecyclerViewAdapter(this, advertisements);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(adsAdapter);
+                mProductType.setText(FarmnetConstants.ADVERTISEMENTS);
+                mTimelineListImageButton.setVisibility(View.INVISIBLE);
+                break;
+            case FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    articles = products.stream().filter(element -> element instanceof Article)
+                            .map(element -> (Article) element)
+                            .collect(Collectors.toList());
+                }
+                ArticleRecyclerViewAdapter articleAdapter = new ArticleRecyclerViewAdapter(this, articles);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(articleAdapter);
+                mProductType.setText(FarmnetConstants.ARTICLES);
+                mTimelineListImageButton.setVisibility(View.INVISIBLE);
+                break;
+            default:
+                mProductType.setVisibility(View.GONE);
+                mTimelineListImageButton.setVisibility(View.INVISIBLE);
+                break;
+        }
+
         tv_name.setText(user.getName());
         tv_email.setText(user.getEmail());
         tv_contact_number.setText(user.getContactNumber());
@@ -93,11 +146,6 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                     .centerInside()
                     .into(cimageview_profilepic);
         }
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_abstract_deal);
-        DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(adapter);
     }
 
     @Override

@@ -1,22 +1,22 @@
 
-˜squid:S1186x"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
-ysquid:S00116""\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
-osquid:S00116""RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
-usquid:S00116$"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
-Osquid:S1659$"3Declare "img_btn_timeline_list" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
-}squid:S00116%"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
-Lsquid:S2387 "5"presenter" is the name of a field in "BaseActivity".(ıÑ¹°
-Gsquid:S1659$"+Declare "img_btn_close" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
 Asquid:S1659""%Declare "tv_name" on a separate line.(ôĞ£Àùÿÿÿÿ
-rsquid:S00116""URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
-vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ı§ô
-Ksquid:S1659""/Declare "tv_contact_number" on a separate line.(ôĞ£Àùÿÿÿÿ
-hsquid:UselessImportCheck"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æşÿÿÿÿ
-psquid:S00116""SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
-zsquid:S00116#"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
-tsquid:S00116$"WRename this field "img_btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+osquid:S00116""RRename this field "tv_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
 }squid:S00116$"`Rename this field "img_btn_timeline_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
-Bsquid:S1659""&Declare "tv_email" on a separate line.(ôĞ£Àùÿÿÿÿ
+}squid:S00116%"`Rename this field "cimageview_profilepic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÁ°úÿÿÿÿ
+Gsquid:S1659$"+Declare "img_btn_close" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
+hsquid:UselessImportCheck"?Remove this unused import 'android.support.v7.widget.CardView'.(ã£æşÿÿÿÿ
+squid:S1186s"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(äÜ„îüÿÿÿÿ
 [squid:UselessImportCheck
 "2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ
-squid:S1186s"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(äÜ„îüÿÿÿÿ
+rsquid:S00116""URename this field "tv_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
+Lsquid:S2387 "5"presenter" is the name of a field in "BaseActivity".(ıÑ¹°
+zsquid:S00116#"]Rename this field "rating_bar_profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î´‰ûÿÿÿÿ
+Osquid:S1659$"3Declare "img_btn_timeline_list" on a separate line.(ú¿ƒ‹ùÿÿÿÿ
+ysquid:S00116""\Rename this field "tv_contact_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
+vsquid:UselessImportCheck"RRemove this unused import 'com.industrialmaster.farmnet.utils.ErrorMessageHelper'.(‡ı§ô
+psquid:S00116""SRename this field "tv_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôĞ£Àùÿÿÿÿ
+tsquid:S00116$"WRename this field "img_btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+usquid:S00116$"XRename this field "img_btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿ƒ‹ùÿÿÿÿ
+˜squid:S1186x"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù
+Ksquid:S1659""/Declare "tv_contact_number" on a separate line.(ôĞ£Àùÿÿÿÿ
+Bsquid:S1659""&Declare "tv_email" on a separate line.(ôĞ£Àùÿÿÿÿ

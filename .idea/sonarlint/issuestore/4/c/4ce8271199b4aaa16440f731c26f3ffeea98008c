@@ -1,6 +1,6 @@
 
->squid:S1068$"'Remove this unused "TAG" private field.(·ªæş
 usquid:S3776?"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ËÄ•åûÿÿÿÿ8±£ã…İ-
-Nsquid:S1066ˆ"/Merge this if statement with the enclosing one.(„Øü8Ë¡Ş¸Ù-
 Ÿsquid:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8¥“Ó…İ-
  squid:S1186µ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8Ë¡Ş¸Ù-
+>squid:S1068$"'Remove this unused "TAG" private field.(·ªæş
+Nsquid:S1066ˆ"/Merge this if statement with the enclosing one.(„Øü8Ë¡Ş¸Ù-

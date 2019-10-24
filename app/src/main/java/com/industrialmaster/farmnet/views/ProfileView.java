@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProfileView extends View {
 
-    void showUserDetails(User user, List<Deals> deals);
+    <T> void showUserDetails(User user, List<T> products);
 
     void onError(String message);
 
