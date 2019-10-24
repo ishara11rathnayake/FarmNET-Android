@@ -59,19 +59,9 @@ public class AnswerActivity extends BaseActivity implements AnswerView {
         mAnswerEditText = findViewById(R.id.et_write_answer);
         mSendImageButton = findViewById(R.id.img_btn_send);
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mCloseImageButton.setOnClickListener(v -> finish());
 
-        mSendImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                answerPresenter.getAnsweringUserDetails();
-            }
-        });
+        mSendImageButton.setOnClickListener(v -> answerPresenter.getAnsweringUserDetails());
 
         answerRef.child(questionId).addValueEventListener(new ValueEventListener() {
             @Override

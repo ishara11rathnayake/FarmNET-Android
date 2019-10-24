@@ -39,14 +39,14 @@ public class ArticleReaderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_reader);
 
+        Gson gson = new Gson();
+        Article article = gson.fromJson(getIntent().getStringExtra("article"), Article.class);
+
         mArticleTitleTextView = findViewById(R.id.tv_article_title);
         mAuthorNameTextView = findViewById(R.id.tv_name);
         mDateTextView= findViewById(R.id.tv_date);
         mProfileImageCircleImageView = findViewById(R.id.cimageview_profilepic);
         mCloseImageButton = findViewById(R.id.img_btn_close);
-
-        Gson gson = new Gson();
-        Article article = gson.fromJson(getIntent().getStringExtra("article"), Article.class);
 
         mArticleTitleTextView.setText(article.getArticleTitle());
         mAuthorNameTextView.setText(article.getUser().getName());
@@ -78,7 +78,7 @@ public class ArticleReaderActivity extends AppCompatActivity {
             public void onTextChanged(EditText editText, Editable text) {
                 /**
                  * override methods
-                 * **/
+                 */
             }
 
             @Override
@@ -95,11 +95,6 @@ public class ArticleReaderActivity extends AppCompatActivity {
         });
         renderer.render(deserialized);
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mCloseImageButton.setOnClickListener(v -> finish());
     }
 }

@@ -1,115 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10dp"
     android:layout_margin="10dp"
     android:id="@+id/cradview_question">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp">
-
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:id="@+id/cimageview_profilepic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:src="@mipmap/ic_launcher"
-                    android:id="@+id/cimageview_profilepic"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ubunturegular"
+                    android:gravity="bottom"
+                    android:text="@string/sample_text"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_date"
+                    app:layout_constraintEnd_toStartOf="@+id/img_btn_answer"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cimageview_profilepic"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:text="@string/sample_text"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/ubunturegular"
-                        android:textColor="@color/colorPrimary"
-                        android:paddingLeft="10dp"
-                        android:gravity="bottom"
-                        android:id="@+id/tv_name"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:textSize="12dp"
-                        android:text="@string/sample_text"
-                        android:fontFamily="@font/ubunturegular"
-                        android:textColor="@color/colorPrimary"
-                        android:paddingLeft="10dp"
-                        android:gravity="top"
-                        android:id="@+id/tv_date"/>
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ubunturegular"
+                    android:gravity="top"
+                    android:text="@string/sample_text"
+                    android:textColor="@color/color_black"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cimageview_profilepic"
+                    app:layout_constraintEnd_toStartOf="@+id/img_btn_answer"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cimageview_profilepic"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                 <ImageButton
                     android:id="@+id/img_btn_answer"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@null"
+                    android:padding="4dp"
                     android:scaleType="fitCenter"
-                    android:padding="12dp"
-                    android:src="@drawable/ic_answer"/>
+                    android:src="@drawable/ic_answer"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_question"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/ubuntubold"
+                    android:text="@string/sample_text"
+                    android:textColor="@color/color_black"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/ubunturegular"
+                    android:text="@string/sample_text"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_question" />
 
-        <TextView
-            android:id="@+id/tv_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntubold"
-            android:textSize="22dp"
-            android:text="@string/sample_text"/>
+                <LinearLayout
+                    android:id="@+id/linear_layout_hashtags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubunturegular"
-            android:textSize="16dp"
-            android:text="@string/sample_text" />
+                <TextView
+                    android:id="@+id/tv_no_of_answers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/ubuntubold"
+                    android:text="@string/sample_text"
+                    android:textColor="@color/color_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_hashtags" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout_hashtags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"/>
+            </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_no_of_answers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntubold"
-            android:text="@string/sample_text"/>
 
-    </LinearLayout>
+
 
 </android.support.v7.widget.CardView>

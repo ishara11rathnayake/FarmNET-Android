@@ -87,6 +87,12 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
         mCreateNewDealImageButton = findViewById(R.id.img_btn_new_deal);
         mNewArticleImageButton = findViewById(R.id.img_btn_new_article);
 
+        if(mUserType.equals(FarmnetConstants.UserTypes.FARMER)){
+            mCreateNewDealImageButton.setVisibility(View.VISIBLE);
+        } else {
+            mCreateNewDealImageButton.setVisibility(View.INVISIBLE);
+        }
+
         //click on create new deal button
         mCreateNewDealImageButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CreateNewDealActivity.class)));
 

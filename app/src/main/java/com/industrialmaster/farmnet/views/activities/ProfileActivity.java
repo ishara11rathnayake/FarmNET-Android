@@ -35,15 +35,15 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     ProfilePresenter profilePresenter;
 
-    TextView tv_address;
-    TextView tv_contact_number;
-    TextView tv_name;
-    TextView tv_email;
-    RatingBar rating_bar_profile;
-    ImageButton img_btn_edit;
-    ImageButton img_btn_close;
+    TextView mAddressTextView;
+    TextView mContactNumberTextView;
+    TextView mNameTextView;
+    TextView mEmailTextView;
+    RatingBar mProfileRatingBar;
+    ImageButton mEditImageButton;
+    ImageButton mCloseImageButton;
     ImageButton mTimelineListImageButton;
-    CircleImageView cimageview_profilepic;
+    CircleImageView mProfilePicCircleImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +52,15 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
         profilePresenter = new ProfilePresenterImpl(this, ProfileActivity.this);
 
-        cimageview_profilepic = findViewById(R.id.cimageview_profilepic);
-        tv_name = findViewById(R.id.tv_name);
-        rating_bar_profile = findViewById(R.id.rating_bar_profile);
-        tv_email = findViewById(R.id.tv_email);
-        tv_address = findViewById(R.id.tv_address);
-        tv_contact_number = findViewById(R.id.tv_contact_number);
+        mProfilePicCircleImageView = findViewById(R.id.cimageview_profilepic);
+        mNameTextView = findViewById(R.id.tv_name);
+        mProfileRatingBar = findViewById(R.id.rating_bar_profile);
+        mEmailTextView = findViewById(R.id.tv_email);
+        mAddressTextView = findViewById(R.id.tv_address);
+        mContactNumberTextView = findViewById(R.id.tv_contact_number);
 
-        img_btn_edit = findViewById(R.id.img_btn_edit);
-        img_btn_close = findViewById(R.id.img_btn_close);
+        mEditImageButton = findViewById(R.id.img_btn_edit);
+        mCloseImageButton = findViewById(R.id.img_btn_close);
         mTimelineListImageButton = findViewById(R.id.img_btn_timeline_list);
         mTimelineListImageButton.setVisibility(View.INVISIBLE);
 
@@ -68,10 +68,10 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         profilePresenter.getUserDetails();
         profilePresenter.getUserRating();
 
-        img_btn_edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
+        mEditImageButton.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
 
         //close create new deal activity
-        img_btn_close.setOnClickListener(v -> finish());
+        mCloseImageButton.setOnClickListener(v -> finish());
 
         //directed to timeline list activity
         mTimelineListImageButton.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, ProductTimelineListActivity.class)));
@@ -135,16 +135,16 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 break;
         }
 
-        tv_name.setText(user.getName());
-        tv_email.setText(user.getEmail());
-        tv_contact_number.setText(user.getContactNumber());
-        tv_address.setText(user.getAddress());
+        mNameTextView.setText(user.getName());
+        mEmailTextView.setText(user.getEmail());
+        mContactNumberTextView.setText(user.getContactNumber());
+        mAddressTextView.setText(user.getAddress());
         if(!TextUtils.isEmpty(user.getProfilePicUrl())){
             Glide.with(this)
                     .asBitmap()
                     .load(user.getProfilePicUrl())
                     .centerInside()
-                    .into(cimageview_profilepic);
+                    .into(mProfilePicCircleImageView);
         }
     }
 
@@ -156,7 +156,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     @Override
     public void showUserrating(float rating) {
-        rating_bar_profile.setRating(rating);
+        mProfileRatingBar.setRating(rating);
     }
 
     @Override

@@ -91,6 +91,9 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="@color/color_black"
+                        app:boxStrokeColor="@color/color_black"
+                        app:hintTextAppearance="@style/TextInputLayoutHintText"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
@@ -103,6 +106,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ubuntubold"
+                            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                             android:hint="@string/article_title" />
                     </android.support.design.widget.TextInputLayout>
 

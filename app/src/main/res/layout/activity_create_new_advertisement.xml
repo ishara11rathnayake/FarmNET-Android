@@ -15,19 +15,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical">
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:elevation="5dp">
 
         <ImageButton
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:padding="7dp"
             android:layout_marginLeft="10dp"
+            android:tint="@color/color_black"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
-            android:background="@null"
-            />
+            android:background="@null" />
 
         <Button
             android:id="@+id/btn_create_new_ads"
@@ -39,9 +40,9 @@
             android:text="@string/post"
             android:textAllCaps="false"
             android:paddingRight="15dp"
-            android:textColor="@color/white"
+            android:textColor="@color/color_black"
             android:layout_alignParentRight="true"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -71,6 +72,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/color_black"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
@@ -82,6 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubunturegular"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                         android:hint="@string/ads_title" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -103,6 +107,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/color_black"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
@@ -114,6 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubunturegular"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                         android:hint="@string/description" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -123,6 +130,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/color_black"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
@@ -134,6 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubunturegular"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                         android:inputType="phone"
                         android:hint="@string/contact_number" />
 
@@ -144,6 +154,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/color_black"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
@@ -156,6 +168,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubunturegular"
                         android:inputType="numberDecimal"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                         android:hint="@string/price" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -165,6 +178,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/color_black"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
@@ -176,6 +191,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubunturegular"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
                         android:hint="@string/tags" />
 
                 </android.support.design.widget.TextInputLayout>

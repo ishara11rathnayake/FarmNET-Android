@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.request.CreateNewTimelineTaskRequest;
@@ -22,9 +19,11 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.TimelineView;
 
+import java.util.Objects;
+
 public class AddNewTimelineTaskActivity extends BaseActivity implements TimelineView {
 
-    TimelinePresenter presenter;
+    TimelinePresenter timelinePresenter;
     ImageButton mCloseImageButton;
     Button mAddNewTaskButton;
     EditText mContent;
@@ -45,53 +44,42 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
 
         String timelineId = getIntent().getStringExtra("timelineId");
 
-        mAddNewTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateNewTimelineTaskRequest newTimelineTaskRequest = new CreateNewTimelineTaskRequest();
-                newTimelineTaskRequest.setTimelineId(timelineId);
+        mAddNewTaskButton.setOnClickListener(v -> {
+            CreateNewTimelineTaskRequest newTimelineTaskRequest = new CreateNewTimelineTaskRequest();
+            newTimelineTaskRequest.setTimelineId(timelineId);
 
-                newTimelineTaskRequest.setContent(mContent.getText().toString());
+            newTimelineTaskRequest.setContent(mContent.getText().toString());
 
-                String realFilePath;
+            String realFilePath;
 
-                if(hasImage == true) {
-                    realFilePath = convertMediaUriToPath(imageFilePath);
-                    newTimelineTaskRequest.setTimelineImage(realFilePath);
-                }
-
-                presenter.createNewTimelineTask(newTimelineTaskRequest);
+            if(hasImage) {
+                realFilePath = convertMediaUriToPath(imageFilePath);
+                newTimelineTaskRequest.setTimelineImage(realFilePath);
             }
+
+            timelinePresenter.createNewTimelineTask(newTimelineTaskRequest);
         });
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    finish();
-                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
+        mCloseImageButton.setOnClickListener(v -> {
+            String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
         });
 
         //pick image from gallery clicking image view
-        mTaskImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check runtime permission
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        //permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, GALLERY_PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        pickImageFromGallery();
-                    }
+        mTaskImageView.setOnClickListener(v -> {
+            //check runtime permission
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                    //permission not granted, request it.
+                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    requestPermissions(permissions, GALLERY_PERMISSION_CODE);
                 } else {
-                    //system os less than marshmallow
+                    //permission already granted
                     pickImageFromGallery();
                 }
+            } else {
+                //system os less than marshmallow
+                pickImageFromGallery();
             }
         });
     }
@@ -105,9 +93,7 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
     @Override
     public void onSuccess(String message) {
         showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
-                    finish();
-                },
+                (dialog, which) -> finish(),
                 "", (dialog, which) -> dialog.dismiss());
     }
 
@@ -121,8 +107,8 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PIK_CODE){
             //set image to image view
-            mTaskImageView.setImageURI(data.getData());
-            imageFilePath = data.getData();
+            mTaskImageView.setImageURI(Objects.requireNonNull(data).getData());
+            imageFilePath = Objects.requireNonNull(data).getData();
             hasImage = true;
         }
     }

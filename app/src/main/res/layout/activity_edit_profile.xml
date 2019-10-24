@@ -14,13 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <ImageButton
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:padding="7dp"
+            android:tint="@color/color_black"
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/save"
             android:background="@null"
-            android:textColor="@color/white"
+            android:textColor="@color/color_black"
             android:gravity="end|center_vertical"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -61,6 +62,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
+        app:boxStrokeColor="@color/color_black"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -71,6 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cimageview_profilepic">
 
         <android.support.design.widget.TextInputEditText
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:id="@+id/et_name"
             android:inputType="textPersonName"
             android:layout_width="match_parent"
@@ -84,6 +89,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
+        app:boxStrokeColor="@color/color_black"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -94,6 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_input_name">
 
         <android.support.design.widget.TextInputEditText
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:id="@+id/et_nic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,6 +115,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
+        app:boxStrokeColor="@color/color_black"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -116,6 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_input_nic">
 
         <android.support.design.widget.TextInputEditText
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:id="@+id/et_dob"
             android:inputType="date"
             android:layout_width="match_parent"
@@ -131,6 +144,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
+        app:boxStrokeColor="@color/color_black"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -141,6 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_input_dob">
 
         <android.support.design.widget.TextInputEditText
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:id="@+id/et_contact_number"
             android:inputType="phone"
             android:layout_width="match_parent"
@@ -154,6 +171,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
+        app:boxStrokeColor="@color/color_black"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -164,6 +184,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_input_contact_number">
 
         <android.support.design.widget.TextInputEditText
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:id="@+id/et_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

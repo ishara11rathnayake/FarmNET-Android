@@ -19,6 +19,7 @@
         android:background="@drawable/ic_search_background"
         android:drawableEnd="@drawable/ic_search"
         android:fontFamily="@font/ubunturegular"
+        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
         android:maxLength="26"
         android:maxLines="1"
         android:paddingStart="25dp"

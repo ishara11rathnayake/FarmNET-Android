@@ -54,6 +54,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        app:boxStrokeColor="@color/color_black"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/img_btn_send"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubunturegular"
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
             android:hint="@string/write_comment"
             android:textColor="@color/color_black" />
 

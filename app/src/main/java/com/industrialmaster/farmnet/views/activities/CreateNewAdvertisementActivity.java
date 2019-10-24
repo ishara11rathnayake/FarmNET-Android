@@ -1,24 +1,17 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.request.CreateNewAdvertisementRequest;
@@ -28,17 +21,26 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateNewAdsView;
 
+import java.util.Objects;
+
 public class CreateNewAdvertisementActivity extends BaseActivity implements CreateNewAdsView {
 
     AdvertisementPresenter advertisementPresenter;
 
-    ImageView imgv_ads_image;
-    ImageButton btn_add_image_from_gallery, btn_add_image_from_camera, img_btn_close;
-    Button btn_create_new_ads;
+    ImageView mAdsImageView;
+    ImageButton mAddImageFromGalleryImageButton;
+    ImageButton mAddImageFromCameraImageButton;
+    ImageButton mCloseImageButton;
+    Button mCreateNewAdsButton;
 
-    TextInputEditText et_ads_title, et_ads_description, et_contact_number, et_price, et_tags;
+    TextInputEditText mAdsTitleEditText;
+    TextInputEditText mAdsDescriptionEditText;
+    TextInputEditText mContactNumberEditText;
+    TextInputEditText mPriceEditText;
+    TextInputEditText mTagsEditText;
 
-    Uri image_uri, imageFilePath;
+    Uri mImageUri;
+    Uri mImageFilePath;
     boolean hasImage = false;
 
     private static final int IMAGE_PIK_CODE = 1000;
@@ -51,124 +53,37 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_advertisement);
 
-        presenter = new AdvertisementsPresenterImpl(this, CreateNewAdvertisementActivity.this);
+        advertisementPresenter = new AdvertisementsPresenterImpl(this, CreateNewAdvertisementActivity.this);
 
-        imgv_ads_image = findViewById(R.id.imgv_ads_pic);
-        img_btn_close = findViewById(R.id.img_btn_close);
-        btn_add_image_from_gallery = findViewById(R.id.add_image_from_gallery);
-        btn_add_image_from_camera = findViewById(R.id.add_image_from_camera);
-        btn_create_new_ads = findViewById(R.id.btn_create_new_ads);
+        mAdsImageView = findViewById(R.id.imgv_ads_pic);
+        mCloseImageButton = findViewById(R.id.img_btn_close);
+        mAddImageFromGalleryImageButton = findViewById(R.id.add_image_from_gallery);
+        mAddImageFromCameraImageButton = findViewById(R.id.add_image_from_camera);
+        mCreateNewAdsButton = findViewById(R.id.btn_create_new_ads);
 
-        et_ads_title = findViewById(R.id.et_ads_title);
-        et_ads_description = findViewById(R.id.et_desc);
-        et_contact_number = findViewById(R.id.et_phone);
-        et_price = findViewById(R.id.et_price);
-        et_tags =findViewById(R.id.et_tags);
+        mAdsTitleEditText = findViewById(R.id.et_ads_title);
+        mAdsDescriptionEditText = findViewById(R.id.et_desc);
+        mContactNumberEditText = findViewById(R.id.et_phone);
+        mPriceEditText = findViewById(R.id.et_price);
+        mTagsEditText =findViewById(R.id.et_tags);
 
-        btn_create_new_ads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String realFilePath;
-
-                CreateNewAdvertisementRequest newAdsRequest = new CreateNewAdvertisementRequest();
-
-                newAdsRequest.setAdTitle(et_ads_title.getText().toString());
-                newAdsRequest.setAdDescription(et_ads_description.getText().toString());
-                newAdsRequest.setContactNumber(et_contact_number.getText().toString());
-
-                if(!TextUtils.isEmpty(et_contact_number.getText().toString())) {
-                    newAdsRequest.setPrice(Double.parseDouble(et_contact_number.getText().toString()));
-                }
-
-                if(hasImage == true) {
-                    realFilePath = convertMediaUriToPath(imageFilePath);
-                    newAdsRequest.setAdsImage(realFilePath);
-                }
-
-                String tagString = et_tags.getText().toString();
-                String[] tags = tagString.split(" ");
-                newAdsRequest.setTags(tags);
-
-                newAdsRequest.setHasImage(hasImage);
-
-                setLoading(true);
-                advertisementPresenter.createNewAdvertisement(newAdsRequest);
-            }
-        });
+        mCreateNewAdsButton.setOnClickListener(v -> onClickCreateNewAdvertisemet());
 
         //close create new deal activity
-        img_btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    finish();
-                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
+        mCloseImageButton.setOnClickListener(v -> {
+            String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),
+                    FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
         });
 
         //handle btn_add_image_from_gallery button click
-        btn_add_image_from_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check runtime permission
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        //permission not enabled, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, GALLERY_PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        pickImageFromGallery();
-                    }
-                } else {
-                    //system OS < than marshmallow
-                    pickImageFromGallery();
-                }
-            }
-        });
+        mAddImageFromGalleryImageButton.setOnClickListener(v -> onClickPickImageFromGallery());
 
         //handle btn_add_image_from_camera button click
-        btn_add_image_from_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
-                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                        //permission not enabled, request it.
-                        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, CAMERA_PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        openCamera();
-                    }
-                } else {
-                    //system OS < marshmallow
-                    openCamera();
-                }
-            }
-        });
+        mAddImageFromCameraImageButton.setOnClickListener(v -> onClickTakePictureFromCamera());
 
-        //pick image from gallery clecking image view
-        imgv_ads_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check runtime permission
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        //permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, GALLERY_PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        pickImageFromGallery();
-                    }
-                } else {
-                    //system os less than marshmallow
-                    pickImageFromGallery();
-                }
-            }
-        });
+        //pick image from gallery clicking image view
+        mAdsImageView.setOnClickListener(v -> onClickPickImageFromGallery());
     }
 
     //handle result of picked image
@@ -176,13 +91,13 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PIK_CODE){
             //set image to image view
-            imgv_ads_image.setImageURI(data.getData());
-            imageFilePath = data.getData();
+            mAdsImageView.setImageURI(Objects.requireNonNull(data).getData());
+            mImageFilePath = Objects.requireNonNull(data).getData();
             hasImage = true;
         } else if(resultCode == RESULT_OK && requestCode == IMAGE_CAPTURE_CODE){
             //set captured image to image view
-            imgv_ads_image.setImageURI(image_uri);
-            imageFilePath = image_uri;
+            mAdsImageView.setImageURI(mImageUri);
+            mImageFilePath = mImageUri;
             hasImage = true;
         }
     }
@@ -204,6 +119,77 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
     @Override
     public void showMessage(String message) {
 
+    }
+
+    /**
+     * click on create new advertisement button
+     */
+    public void onClickCreateNewAdvertisemet(){
+        String realFilePath;
+
+        CreateNewAdvertisementRequest newAdsRequest = new CreateNewAdvertisementRequest();
+
+        newAdsRequest.setAdTitle(Objects.requireNonNull(mAdsTitleEditText.getText()).toString());
+        newAdsRequest.setAdDescription(Objects.requireNonNull(mAdsDescriptionEditText.getText()).toString());
+        newAdsRequest.setContactNumber(Objects.requireNonNull(mContactNumberEditText.getText()).toString());
+
+        if(!TextUtils.isEmpty(mContactNumberEditText.getText().toString())) {
+            newAdsRequest.setPrice(Double.parseDouble(Objects.requireNonNull(mPriceEditText.getText()).toString()));
+        }
+
+        if(hasImage) {
+            realFilePath = convertMediaUriToPath(mImageFilePath);
+            newAdsRequest.setAdsImage(realFilePath);
+        }
+
+        String tagString = Objects.requireNonNull(mTagsEditText.getText()).toString();
+        String[] tags = tagString.split(" ");
+        newAdsRequest.setTags(tags);
+
+        newAdsRequest.setHasImage(hasImage);
+
+        setLoading(true);
+        advertisementPresenter.createNewAdvertisement(newAdsRequest);
+    }
+
+    /**
+     * click on pick image from gallery button or image view
+     */
+    public void onClickPickImageFromGallery(){
+        //check runtime permission
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                //permission not enabled, request it.
+                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                requestPermissions(permissions, GALLERY_PERMISSION_CODE);
+            } else {
+                //permission already granted
+                pickImageFromGallery();
+            }
+        } else {
+            //system OS < than marshmallow
+            pickImageFromGallery();
+        }
+    }
+
+    /**
+     * click on take picture from camera button
+     */
+    public void onClickTakePictureFromCamera(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                //permission not enabled, request it.
+                String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permissions, CAMERA_PERMISSION_CODE);
+            } else {
+                //permission already granted
+                openCamera();
+            }
+        } else {
+            //system OS < marshmallow
+            openCamera();
+        }
     }
 
 }

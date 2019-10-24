@@ -38,13 +38,9 @@ public class ChangePasswordActivity extends BaseActivity implements ChangePasswo
         mCloseImageButton = findViewById(R.id.image_button_close);
         mResetButton = findViewById(R.id.button_reset);
 
-        mCloseImageButton.setOnClickListener(v -> {
-            finish();
-        });
+        mCloseImageButton.setOnClickListener(v -> finish());
 
-        mResetButton.setOnClickListener(v -> {
-            resetButtonClicked();
-        });
+        mResetButton.setOnClickListener(v -> resetButtonClicked());
     }
 
     /**
