@@ -1,7 +1,9 @@
 package com.industrialmaster.farmnet.views.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.User;
+import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
 
 import java.util.List;
 
@@ -20,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchUserRecyclerViewAdapter extends RecyclerView.Adapter<SearchUserRecyclerViewAdapter.UserViewHolder> {
 
-    List<User> mUsers;
+    private List<User> mUsers;
     private Context mContext;
 
     public SearchUserRecyclerViewAdapter(Context mContext, List<User> mUsers) {
@@ -50,6 +53,11 @@ public class SearchUserRecyclerViewAdapter extends RecyclerView.Adapter<SearchUs
         userViewHolder.mUsernameTextView.setText(user.getName());
         userViewHolder.mUserRatingBar.setRating((float) user.getRating());
 
+        userViewHolder.mSearchUserConstraintLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, OtherProfileActivity.class);
+            intent.putExtra("userId", user.getUserId());
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
@@ -62,12 +70,14 @@ public class SearchUserRecyclerViewAdapter extends RecyclerView.Adapter<SearchUs
         CircleImageView mProfileImageCircleImageView;
         TextView mUsernameTextView;
         RatingBar mUserRatingBar;
+        ConstraintLayout mSearchUserConstraintLayout;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             mProfileImageCircleImageView = itemView.findViewById(R.id.cimgv_profile_image);
             mUsernameTextView = itemView.findViewById(R.id.text_view_name);
             mUserRatingBar = itemView.findViewById(R.id.rating_bar_profile);
+            mSearchUserConstraintLayout = itemView.findViewById(R.id.constraint_layout_search_user);
         }
     }
 }

@@ -3,7 +3,6 @@ package com.industrialmaster.farmnet.views.activities;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageButton;
 
 import com.industrialmaster.farmnet.R;

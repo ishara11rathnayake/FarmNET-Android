@@ -1,9 +1,7 @@
 
-usquid:S1488'"^Immediately return this expression instead of assigning it to the temporary variable "holder".(–à¨Ç
-.squid:S2176F"Rename this class.(Â×žÖúÿÿÿÿ
 >squid:S1068"'Remove this unused "TAG" private field.(¿­™æ
-}squid:S00116H"`Rename this field "cardview_absract_deal" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑäÄ¾úÿÿÿÿ
-Isquid:S1659J"-Declare "tv_more_details" on a separate line.(¨³ÓÛøÿÿÿÿ
-zsquid:S00116I"bRename this field "imageview_product_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úƒ™û
-wsquid:S00116J"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ
-wsquid:S00116J"ZRename this field "tv_more_details" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ
+Isquid:S1659I"-Declare "tv_more_details" on a separate line.(¨³ÓÛøÿÿÿÿ
+wsquid:S00116I"ZRename this field "tv_product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ
+zsquid:S00116H"bRename this field "imageview_product_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úƒ™û
+.squid:S2176E"Rename this class.(Â×žÖúÿÿÿÿ
+wsquid:S00116I"ZRename this field "tv_more_details" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨³ÓÛøÿÿÿÿ

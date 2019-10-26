@@ -30,7 +30,7 @@
             android:fontFamily="@font/ubunturegular"
             android:gravity="bottom"
             android:text="@string/sample_text"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/color_black"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/cimageview_profilepic"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:fontFamily="@font/ubunturegular"
             android:gravity="top"
             android:text="@string/sample_text"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/color_black"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/cimageview_profilepic"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -83,6 +83,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textColor="@color/color_black"
             android:id="@+id/tv_question"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -94,6 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cimageview_profilepic" />
 
         <TextView
+            android:textColor="@color/color_black"
             android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -117,6 +119,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
         <TextView
+            android:textColor="@color/color_black"
             android:id="@+id/tv_no_of_answers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

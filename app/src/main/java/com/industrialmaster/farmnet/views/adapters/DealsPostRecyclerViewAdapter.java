@@ -22,6 +22,7 @@ import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.activities.CommentActivity;
 import com.industrialmaster.farmnet.views.activities.DisplayProductActivity;
 import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
+import com.industrialmaster.farmnet.views.activities.ProfileActivity;
 import com.industrialmaster.farmnet.views.fragments.DealsFragment;
 
 import java.text.DateFormat;
@@ -89,7 +90,12 @@ public class DealsPostRecyclerViewAdapter extends  RecyclerView.Adapter<DealsPos
         }
 
         viewHolder.mUserNameTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, OtherProfileActivity.class);
+            Intent intent;
+            if(!((DealsFragment)mFragment).checkOwnPost(mDeals.get(i).getUser().getUserId())){
+                intent = new Intent(mContext, OtherProfileActivity.class);
+            } else {
+                intent = new Intent(mContext, ProfileActivity.class);
+            }
             intent.putExtra("userId", mDeals.get(i).getUser().getUserId());
             mContext.startActivity(intent);
         });

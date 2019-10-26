@@ -7,7 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/txt_card_bg"
     android:elevation="5dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="4dp"
+    android:id="@+id/constraint_layout_search_user">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cimgv_profile_image"
@@ -26,7 +27,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ubunturegular"
         android:lineSpacingExtra="5dp"
-        android:text="Ishara Rathnayake"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

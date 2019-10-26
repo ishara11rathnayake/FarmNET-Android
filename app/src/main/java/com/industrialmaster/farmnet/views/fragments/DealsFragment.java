@@ -1,6 +1,7 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
@@ -54,6 +55,8 @@ public class DealsFragment extends BaseFragment implements DealsView {
     int mMaxAmount;
     int mMinAmount;
 
+    String mUserId;
+
     public DealsFragment() {
         // Required empty public constructor
     }
@@ -65,6 +68,9 @@ public class DealsFragment extends BaseFragment implements DealsView {
 
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_deals, container, false);
+
+        mUserId = rootView.getContext().getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.USER_ID, "");
 
         mConstraintLayoutFilter = rootView.findViewById(R.id.constraint_layout_filter);
         mPriceRangeSeekbar = rootView.findViewById(R.id.seekbar_price_range);
@@ -127,27 +133,24 @@ public class DealsFragment extends BaseFragment implements DealsView {
         });
 
         mSearchEditText = rootView.findViewById(R.id.etsearchdeals);
-        mSearchEditText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_RIGHT = 2;
+        mSearchEditText.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (mSearchEditText.getRight() - mSearchEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        setLoading(true);
-                        String searchText = mSearchEditText.getText().toString();
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (mSearchEditText.getRight() - mSearchEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    setLoading(true);
+                    String searchText = mSearchEditText.getText().toString();
 
-                        if(!TextUtils.isEmpty(searchText)){
-                            dealsPresenter.searchProduct(searchText);
-                            return true;
-                        }else {
-                            dealsPresenter.getAllDeals();
-                            return true;
-                        }
+                    if(!TextUtils.isEmpty(searchText)){
+                        dealsPresenter.searchProduct(searchText);
+                        return true;
+                    }else {
+                        dealsPresenter.getAllDeals();
+                        return true;
                     }
                 }
-                return false;
             }
+            return false;
         });
 
         dealsPresenter = new DealsPresenterImpl(getActivity(), DealsFragment.this);
@@ -155,6 +158,10 @@ public class DealsFragment extends BaseFragment implements DealsView {
         setLoading(true);
 
         return rootView;
+    }
+
+    public boolean checkOwnPost(String userId){
+        return mUserId.equals(userId);
     }
 
     public void likeDeal(String productId) {

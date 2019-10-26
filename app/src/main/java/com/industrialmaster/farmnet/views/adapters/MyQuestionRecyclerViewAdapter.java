@@ -83,8 +83,6 @@ public class MyQuestionRecyclerViewAdapter extends RecyclerView.Adapter<MyQuesti
 
         if(hastags.length != 0) {
 
-            final TextView[] myTextViews = new TextView[hastags.length];
-
             for (String hastag : hastags) {
                 final TextView rowTextView = new TextView(mContext);
                 rowTextView.setText(String.format("#%s", hastag));
@@ -97,47 +95,33 @@ public class MyQuestionRecyclerViewAdapter extends RecyclerView.Adapter<MyQuesti
                 params.setMargins(5, 0, 5, 0);
                 rowTextView.setLayoutParams(params);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    rowTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                }
+                rowTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                 rowTextView.setPadding(10, 5, 10, 5);
 
-                rowTextView.setTextColor(mContext.getResources().getColor(R.color.white));
+                rowTextView.setTextColor(mContext.getResources().getColor(R.color.white, null));
 
                 rowTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.tags_bg, null));
-//                myTextViews[i] = rowTextView;
             }
 
         }
 
-        questionViewHolder.mEditImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, CreateNewQuestionActivity.class);
-                Gson gson = new Gson();
-                String question = gson.toJson(mQuestions.get(i));
-                intent.putExtra("question", question);
-                mContext.startActivity(intent);
-            }
+        questionViewHolder.mEditImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, CreateNewQuestionActivity.class);
+            Gson gson = new Gson();
+            String question = gson.toJson(mQuestions.get(i));
+            intent.putExtra("question", question);
+            mContext.startActivity(intent);
         });
 
-        questionViewHolder.mDeleteImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MyQuestionActivity)mContext).deleteQuestion(mQuestions.get(i).getQuestionId());
-            }
-        });
+        questionViewHolder.mDeleteImageButton.setOnClickListener(v -> ((MyQuestionActivity)mContext).deleteQuestion(mQuestions.get(i).getQuestionId()));
 
-        questionViewHolder.mAnswerImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, AnswerActivity.class);
-                Gson gson = new Gson();
-                String question = gson.toJson(mQuestions.get(i));
-                intent.putExtra("question", question);
-                mContext.startActivity(intent);
-            }
+        questionViewHolder.mAnswerImageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, AnswerActivity.class);
+            Gson gson = new Gson();
+            String question = gson.toJson(mQuestions.get(i));
+            intent.putExtra("question", question);
+            mContext.startActivity(intent);
         });
 
     }

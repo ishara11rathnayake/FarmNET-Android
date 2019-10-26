@@ -1,8 +1,6 @@
 
+\"squid:SwitchLastCaseIsDefaultCheckW""Add a default case to this switch.(×ö³–úÿÿÿÿ8®™­ìß-
+Ksquid:S1199b"-Extract this nested code block into a method.(§´âÀ8¨å«ìß-
 Isquid:S1199X"-Extract this nested code block into a method.(â¨Œøüÿÿÿÿ
-gsquid:S1301W"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
-g
-squid:S128X"LEnd this switch case with an unconditional break, return or throw statement.(â¨Œøüÿÿÿÿ
-Dsquid:S1199b"-Extract this nested code block into a method.(§´âÀ
-U"squid:SwitchLastCaseIsDefaultCheckW""Add a default case to this switch.(×ö³–úÿÿÿÿ
+nsquid:S1301W"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8®™­ìß-
 lsquid:S00116"TRename this field "image_uri" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‹íÀ

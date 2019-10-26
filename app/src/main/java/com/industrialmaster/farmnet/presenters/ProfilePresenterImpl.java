@@ -362,6 +362,7 @@ public class ProfilePresenterImpl extends BasePresenter implements ProfilePresen
             @Override
             public void onNext(CommonMessageResponse commonMessageResponse) {
                 profileView.showMessage(commonMessageResponse.getMessage());
+                profileView.showUserrating(commonMessageResponse.getRate());
             }
 
             @Override

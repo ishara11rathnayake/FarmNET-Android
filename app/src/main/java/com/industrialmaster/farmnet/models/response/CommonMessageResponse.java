@@ -24,4 +24,6 @@ public class CommonMessageResponse {
     @SerializedName("profileImage")
     private String profileImage;
 
+    @SerializedName("rate")
+    private float rate;
 }

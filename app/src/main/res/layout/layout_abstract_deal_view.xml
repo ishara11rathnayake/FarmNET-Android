@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
+            android:textColor="@color/color_black"
             android:fontFamily="@font/ubunturegular"
             android:text="@string/sample_text"
             android:textSize="14sp" />
@@ -45,8 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
+            android:textColor="@color/color_black"
             android:fontFamily="@font/ubunturegular"
-            android:text="View More>>"
+            android:text="@string/view_more"
             android:textAlignment="center"
             android:textSize="16sp" />
 
