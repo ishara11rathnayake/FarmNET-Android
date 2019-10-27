@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cl_other_profile"
+    android:background="@color/bg_main"
     tools:context=".views.activities.OtherProfileActivity">
 
     <RelativeLayout
@@ -24,7 +25,7 @@
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="@null"
             android:padding="7dp"
             android:tint="@color/color_black"
@@ -58,6 +59,9 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="16dp"
+                    app:civ_border_color="#FF414654"
+                    android:elevation="5dp"
+                    app:civ_border_width="2dp"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
@@ -66,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntubold"
-                    android:text="@string/sample_text"
+                    android:text=""
                     android:textSize="20sp"
                     android:textColor="@color/color_black"
                     android:gravity="center"/>
@@ -95,40 +99,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <Button
+                    <com.omega_r.libs.OmegaCenterIconButton
                         android:id="@+id/btn_rate_user"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:background="@null"
-                        android:drawableStart="@drawable/ic_star"
-                        android:drawableLeft="@drawable/ic_star"
-                        android:drawablePadding="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_button"
+                        android:drawableStart="@drawable/btn_star_drawable_left"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/ubuntubold"
-                        android:text="Rate User"
+                        android:text="@string/rate_user"
                         android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:drawableTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btn_report_user"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
+                    <com.omega_r.libs.OmegaCenterIconButton
                         android:id="@+id/btn_report_user"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@null"
-                        android:drawableStart="@drawable/ic_report"
-                        android:drawableLeft="@drawable/ic_report"
-                        android:drawablePadding="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_button"
+                        android:drawableStart="@drawable/btn_report_draw_left"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/ubuntubold"
-                        android:text="Report User"
+                        android:text="@string/report_user"
                         android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:drawableTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -161,13 +167,12 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="40dp"
-                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_email_black"
+                        app:srcCompat="@drawable/ic_emailfilled"
                         tools:ignore="VectorDrawableCompat" />
 
                     <TextView
@@ -175,11 +180,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/ubunturegular"
-                        android:text="@string/sample_text"
+                        android:text=""
                         android:textSize="18sp"
                         android:textColor="@color/color_black"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -198,13 +202,11 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="40dp"
-                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_phone"
+                        app:srcCompat="@drawable/ic_phonefilled"
                         tools:ignore="VectorDrawableCompat" />
 
                     <TextView
@@ -212,7 +214,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/ubunturegular"
@@ -238,7 +239,7 @@
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:src="@drawable/ic_location"
+                        android:src="@drawable/ic_locationfilled"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"

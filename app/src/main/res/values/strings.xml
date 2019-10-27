@@ -113,4 +113,6 @@
     <string name="comment">Comment</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
     <string name="view_more"><![CDATA[View More>>]]></string>
+    <string name="rate_user">Rate User</string>
+    <string name="report_user">Report User</string>
 </resources>

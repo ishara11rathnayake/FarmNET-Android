@@ -9,4 +9,6 @@
     <color name="card_bg_color">#FBFBFB</color>
     <color name="gray_line_color">#E7E7E7</color>
     <color name="color_black">#000000</color>
+    <color name="splash_screen">#3DC4A2</color>
+    <color name="bg_main">#eeeeee</color>
 </resources>

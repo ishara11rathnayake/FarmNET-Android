@@ -308,3 +308,5 @@ e
 5app/src/main/res/layout-v16/activity_edit_profile.xml,a\5\a5df9b325d4b5bf35f0f034f175f45a301f4f2d2
 \
 ,app/src/main/res/layout/activity_profile.xml,4\f\4feb8df09bb6546108e9d5489cd9c002981d116c
+v
+Fapp/src/main/java/com/industrialmaster/farmnet/views/SplashScreen.java,9\c\9cf3d7665d7e8e21a147049161a7726289c872c3

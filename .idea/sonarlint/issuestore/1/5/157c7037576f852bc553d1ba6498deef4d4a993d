@@ -1,6 +1,6 @@
 
 osquid:S1450:"XRemove the "mActivity" field and declare it as a local variable in the relevant methods.(ïĞÔ’
-Dsquid:S1068:"-Remove this unused "mActivity" private field.(ïĞÔ’
 ˆsquid:S1450@"eRemove the "mReportUserPopupWindow" field and declare it as a local variable in the relevant methods.(µÍÜĞıÿÿÿÿ8¸ñîß-
+Dsquid:S1068:"-Remove this unused "mActivity" private field.(ïĞÔ’
 €squid:S1450?"cRemove the "mRateUserPopupWindow" field and declare it as a local variable in the relevant methods.(¯èó\8ÊÙÃîß-
 Rsquid:S1068=";Remove this unused "mReportConstraintLayout" private field.(ƒ…Ş‚

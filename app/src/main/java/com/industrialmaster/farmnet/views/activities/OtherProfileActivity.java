@@ -33,6 +33,7 @@ import com.industrialmaster.farmnet.views.ProfileView;
 import com.industrialmaster.farmnet.views.adapters.AdvertisementRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.ArticleRecyclerViewAdapter;
 import com.industrialmaster.farmnet.views.adapters.DealsGridViewRecyclerViewAdapter;
+import com.omega_r.libs.OmegaCenterIconButton;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,8 +99,8 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
 
         // Get the widgets reference from XML layout
         mRateUserConstraintLayout = findViewById(R.id.cl_other_profile);
-        Button mRateUserButton = findViewById(R.id.btn_rate_user);
-        Button mReportButton = findViewById(R.id.btn_report_user);
+        OmegaCenterIconButton mRateUserButton = findViewById(R.id.btn_rate_user);
+        OmegaCenterIconButton mReportButton = findViewById(R.id.btn_report_user);
 
         // Set a click listener for the mReportButton
         mReportButton.setOnClickListener(v -> onClickReport());
