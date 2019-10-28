@@ -15,6 +15,8 @@ import com.industrialmaster.farmnet.views.ChangePasswordView;
 
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class ChangePasswordActivity extends BaseActivity implements ChangePasswordView {
 
     AuthPresenter authPresenter;
@@ -66,17 +68,17 @@ public class ChangePasswordActivity extends BaseActivity implements ChangePasswo
     @Override
     public void onError(String error) {
         setLoading(false);
-        showAlertDialog("Error", error,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , error,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
+                null, null);
     }
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> {
                     finish();
                     startActivity(new Intent(ChangePasswordActivity.this, LoginActivity.class));
-                },
-                "", (dialog, which) -> dialog.dismiss());
+                }, null, null);
     }
 }

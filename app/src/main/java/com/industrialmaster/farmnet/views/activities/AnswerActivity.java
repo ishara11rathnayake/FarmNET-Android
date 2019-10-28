@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class AnswerActivity extends BaseActivity implements AnswerView {
 
     AnswerPresenter answerPresenter;
@@ -85,8 +87,8 @@ public class AnswerActivity extends BaseActivity implements AnswerView {
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
+                null, null);
     }
 
     @Override

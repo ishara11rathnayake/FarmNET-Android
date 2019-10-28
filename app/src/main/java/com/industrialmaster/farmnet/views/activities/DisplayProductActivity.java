@@ -38,6 +38,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class DisplayProductActivity extends BaseActivity implements DisplayProductView, OnMapReadyCallback {
 
     private static final String TAG = "DisplayProductActivity";
@@ -90,16 +92,12 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
             mUpdateImageButton.setVisibility(View.INVISIBLE);
         }
 
-        mDeleteImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAlertDialog("Warning", ErrorMessageHelper.DELETE_CONFIRMATION,false, FarmnetConstants.OK ,
-                        (dialog, which) -> {
-                            dealsPresenter.deleteProduct(deal.getDealId());
-                        },
-                        FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
-        });
+        mDeleteImageButton.setOnClickListener(v ->
+                showSweetAlert(SweetAlertDialog.WARNING_TYPE, ErrorMessageHelper.DELETE_CONFIRMATION,null,false,
+                FarmnetConstants.OK, sDialog -> {
+                    setLoading(true);
+                    dealsPresenter.deleteProduct(deal.getDealId());
+                },FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation));
 
         image_view_product = findViewById(R.id.imgv_product_image);
         tv_product_name = findViewById(R.id.tv_product_name);
@@ -157,18 +155,15 @@ public class DisplayProductActivity extends BaseActivity implements DisplayProdu
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
-                    finish();
-                },
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override

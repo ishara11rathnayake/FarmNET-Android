@@ -20,6 +20,8 @@ import com.industrialmaster.farmnet.views.adapters.DealsPostRecyclerViewAdapter;
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -59,8 +61,8 @@ public class ArticleFragment extends BaseFragment implements ArticleView {
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override

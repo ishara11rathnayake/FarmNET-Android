@@ -2,29 +2,21 @@ package com.industrialmaster.farmnet.views.activities;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.User;
-import com.industrialmaster.farmnet.presenters.Presenter;
 import com.industrialmaster.farmnet.presenters.ProfilePresenter;
 import com.industrialmaster.farmnet.presenters.ProfilePresenterImpl;
 import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
@@ -38,11 +30,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileActivity extends BaseActivity implements UpdateUserView {
 
-    ProfilePresenter presenter;
+    ProfilePresenter profilePresenter;
 
     boolean hasImage = false;
 
@@ -51,13 +44,14 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
     EditText et_dob, et_name, et_nic, et_phone, et_address;
     DatePickerDialog picker;
     Button btn_save;
+    private static final String TAG = "EditProfileActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        presenter = new ProfilePresenterImpl(this, EditProfileActivity.this);
+        profilePresenter = new ProfilePresenterImpl(this, EditProfileActivity.this);
 
         circle_image_view_profile_pic = findViewById(R.id.cimageview_profilepic);
         et_dob = findViewById(R.id.et_dob);
@@ -71,36 +65,34 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
         et_dob = findViewById(R.id.et_dob);
 
         setLoading(true);
-        presenter.getUserDetails();
+        profilePresenter.getUserDetails();
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String realFilePath;
+        btn_save.setOnClickListener(v -> {
+            String realFilePath;
 
-                User user = new User();
-                user.setName(et_name.getText().toString());
-                user.setAddress(et_address.getText().toString());
-                user.setNic(et_nic.getText().toString());
-                user.setContactNumber(et_phone.getText().toString());
+            User user = new User();
+            user.setName(et_name.getText().toString());
+            user.setAddress(et_address.getText().toString());
+            user.setNic(et_nic.getText().toString());
+            user.setContactNumber(et_phone.getText().toString());
 
-                String date = et_dob.getText().toString();
-                DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-                Date dob;
-                try {
-                    dob = format.parse(date);
-                    user.setDob(dob);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if(hasImage == true) {
-                    realFilePath = convertMediaUriToPath(imageFilePath);
-                    user.setProfilePicUrl(realFilePath);
-                }
-
-                presenter.updateUserDetails(user);
-
+            String date = et_dob.getText().toString();
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            Date dob;
+            try {
+                dob = format.parse(date);
+                user.setDob(dob);
+            } catch (ParseException e) {
+                Log.e(TAG, e.toString());
             }
+            if(hasImage) {
+                realFilePath = convertMediaUriToPath(imageFilePath);
+                user.setProfilePicUrl(realFilePath);
+            }
+
+            setLoading(true);
+            profilePresenter.updateUserDetails(user);
+
         });
 
         //pick image from gallery clicking image view
@@ -125,33 +117,21 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
         });
 
         //close create new deal activity
-        img_btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    finish();
-                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
+        img_btn_close.setOnClickListener(v -> {
+            String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK ,
+                    sDialog -> finish(),FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
         });
 
-        et_dob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int month = calendar.get(Calendar.MONTH);
-                int year = calendar.get(Calendar.YEAR);
-                // date picker dialog
-                picker = new DatePickerDialog(EditProfileActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                et_dob.setText(String.format(Locale.ENGLISH,"%d/%d/%d", dayOfMonth, monthOfYear + 1, year));
-                            }
-                        }, year, month, day);
-                picker.show();
-            }
+        et_dob.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+            // date picker dialog
+            picker = new DatePickerDialog(EditProfileActivity.this,
+                    (view, year1, monthOfYear, dayOfMonth) -> et_dob.setText(String.format(Locale.ENGLISH,"%d/%d/%d", dayOfMonth, monthOfYear + 1, year1)), year, month, day);
+            picker.show();
         });
     }
 
@@ -192,17 +172,16 @@ public class EditProfileActivity extends BaseActivity implements UpdateUserView 
 
     @Override
     public void onError(String message) {
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
-                    finish();
-                },
-                "", (dialog, which) -> dialog.dismiss());
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!", message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override

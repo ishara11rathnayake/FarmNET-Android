@@ -58,7 +58,7 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
                 realFilePath = convertMediaUriToPath(imageFilePath);
                 newTimelineTaskRequest.setTimelineImage(realFilePath);
             }
-
+            setLoading(true);
             timelinePresenter.createNewTimelineTask(newTimelineTaskRequest);
         });
 
@@ -89,12 +89,14 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
 
     @Override
     public void onError(String message) {
-        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
-                null, null);
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override
     public void onSuccess(String message) {
+        setLoading(false);
         showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
                 sDialog -> finish(), null, null);
     }

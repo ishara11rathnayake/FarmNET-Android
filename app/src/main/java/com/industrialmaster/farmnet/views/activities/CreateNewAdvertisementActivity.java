@@ -23,6 +23,8 @@ import com.industrialmaster.farmnet.views.CreateNewAdsView;
 
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class CreateNewAdvertisementActivity extends BaseActivity implements CreateNewAdsView {
 
     AdvertisementPresenter advertisementPresenter;
@@ -72,8 +74,9 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
         //close create new deal activity
         mCloseImageButton.setOnClickListener(v -> {
             String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),
-                    FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK ,
+                    sDialog -> finish(),FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
+
         });
 
         //handle btn_add_image_from_gallery button click
@@ -105,15 +108,15 @@ public class CreateNewAdvertisementActivity extends BaseActivity implements Crea
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!", message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
+                null, null);
     }
 
     @Override

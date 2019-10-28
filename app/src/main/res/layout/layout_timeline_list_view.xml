@@ -7,7 +7,10 @@
     android:layout_height="wrap_content"
     android:paddingBottom="8dp"
     android:id="@+id/constraint_layout_timeline_list"
-    android:elevation="5dp">
+    android:elevation="5dp"
+    android:background="@drawable/bg_timeline_list"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp">
 
     <TextView
         android:id="@+id/tv_product_name"
@@ -16,7 +19,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/ubuntubold"
-        android:text="Tomato"
+        android:text=""
         android:textColor="@color/color_black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,9 +17,11 @@ import com.industrialmaster.farmnet.utils.ErrorMessageHelper;
 import com.industrialmaster.farmnet.utils.FarmnetConstants;
 import com.industrialmaster.farmnet.views.CreateNewQuestionView;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class CreateNewQuestionActivity extends BaseActivity implements CreateNewQuestionView {
 
-    QandAPresenter presenter;
+    QandAPresenter qandAPresenter;
 
     ImageButton mCloseImageButton;
     Button btn_create_new_question;
@@ -31,7 +33,7 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_question);
 
-        presenter = new QandAPresenterImpl(this, CreateNewQuestionActivity.this);
+        qandAPresenter = new QandAPresenterImpl(this, CreateNewQuestionActivity.this);
 
         Gson gson = new Gson();
         Question question = gson.fromJson(getIntent().getStringExtra("question"), Question.class);
@@ -53,50 +55,40 @@ public class CreateNewQuestionActivity extends BaseActivity implements CreateNew
             }
         }
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-                showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
-                    finish();
-                },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
-            }
+        mCloseImageButton.setOnClickListener(v -> {
+            String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK ,
+                    sDialog -> finish(),FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
         });
 
-        btn_create_new_question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateNewQuestionRequest newQuestionRequest = new CreateNewQuestionRequest();
-                newQuestionRequest.setQuestionTitle(et_question_title.getText().toString());
-                newQuestionRequest.setQuestionBody(et_question_body.getText().toString());
+        btn_create_new_question.setOnClickListener(v -> {
+            CreateNewQuestionRequest newQuestionRequest = new CreateNewQuestionRequest();
+            newQuestionRequest.setQuestionTitle(et_question_title.getText().toString());
+            newQuestionRequest.setQuestionBody(et_question_body.getText().toString());
 
-                String tags = et_tags.getText().toString();
-                String[] tagsArray = tags.split(" ");
+            String tags = et_tags.getText().toString();
+            String[] tagsArray = tags.split(" ");
 
-                newQuestionRequest.setHashtags(tagsArray);
+            newQuestionRequest.setHashtags(tagsArray);
 
-                if(question != null){
-                    presenter.updateQuestion(newQuestionRequest, question.getQuestionId());
-                } else {
-                    presenter.createNewQuestion(newQuestionRequest);
-                }
+            if(question != null){
+                qandAPresenter.updateQuestion(newQuestionRequest, question.getQuestionId());
+            } else {
+                qandAPresenter.createNewQuestion(newQuestionRequest);
             }
         });
     }
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
-                    finish();
-                },
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override
     public void onError(String message) {
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override

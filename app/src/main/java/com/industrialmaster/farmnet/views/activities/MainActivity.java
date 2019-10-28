@@ -32,6 +32,7 @@ import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.views.fragments.NotificationFragment;
 import com.industrialmaster.farmnet.views.fragments.QandAFragment;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
@@ -278,9 +279,8 @@ public class MainActivity extends BaseActivity implements FarmnetHomeView {
      * @param message logout alert message
      */
     public void showLogoutAlert(String message) {
-        showAlertDialog("Logout", message, true,
-                FarmnetConstants.LOGOUT, (dialog, which) -> authPresenter.doLogout(),
-                FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.WARNING_TYPE, "Logout" ,message,false, FarmnetConstants.LOGOUT ,
+                sDialog -> authPresenter.doLogout(), FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
     }
 
     /**

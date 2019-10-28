@@ -67,8 +67,13 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
 
     @Override
     public void createNewTimeline(CreateNewTimelineRequest createNewTimelineRequest) {
-        createNewTimelineRequest.setUserId(userId);
-        createNewTimelineObservable(accessToken, createNewTimelineRequest).subscribe(createNewTimelineSubscriber());
+        if(TextUtils.isEmpty(createNewTimelineRequest.getProductName()) ||
+                TextUtils.isEmpty(createNewTimelineRequest.getDescription())){
+            timelineView.onError(ErrorMessageHelper.FILL_ALL_THE_FIELDS);
+        } else {
+            createNewTimelineRequest.setUserId(userId);
+            createNewTimelineObservable(accessToken, createNewTimelineRequest).subscribe(createNewTimelineSubscriber());
+        }
     }
 
     @Override

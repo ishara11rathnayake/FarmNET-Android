@@ -19,6 +19,8 @@ import com.industrialmaster.farmnet.views.adapters.SearchUserRecyclerViewAdapter
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class FilterUserActivity extends BaseActivity implements FilterUserView {
 
     RangeBar mRatingRangeSeekbar;
@@ -91,15 +93,15 @@ public class FilterUserActivity extends BaseActivity implements FilterUserView {
     @Override
     public void onError(String error) {
         setLoading(false);
-        showAlertDialog("Error", error,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops...", error,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override

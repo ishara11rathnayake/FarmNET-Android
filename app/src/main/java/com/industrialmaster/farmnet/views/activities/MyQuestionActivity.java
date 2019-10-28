@@ -15,6 +15,8 @@ import com.industrialmaster.farmnet.views.MyQuestionsView;
 import com.industrialmaster.farmnet.views.adapters.MyQuestionRecyclerViewAdapter;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MyQuestionActivity extends BaseActivity implements MyQuestionsView {
 
     QandAPresenter qandAPresenter;
@@ -34,12 +36,11 @@ public class MyQuestionActivity extends BaseActivity implements MyQuestionsView 
     }
 
     public void deleteQuestion(String postId){
-        showAlertDialog("Warning", ErrorMessageHelper.DELETE_CONFIRMATION,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
+        showSweetAlert(SweetAlertDialog.WARNING_TYPE, ErrorMessageHelper.DELETE_CONFIRMATION,null,false,
+                FarmnetConstants.OK , sDialog -> {
                     setLoading(true);
                     qandAPresenter.deleteQuestion(postId);
-                },
-                FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+                },FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
     }
 
     @Override
@@ -54,19 +55,18 @@ public class MyQuestionActivity extends BaseActivity implements MyQuestionsView 
     @Override
     public void onError(String error) {
         setLoading(false);
-        showAlertDialog("Error", error,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , error,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
-                        finish();
-                        startActivity(getIntent());
-                    },
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> {
+                    finish();
+                    startActivity(getIntent());
+                }, null, null);
     }
 
     @Override

@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class CreateNewArticleActivity extends BaseActivity implements CreateArticleView {
@@ -62,7 +63,8 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
         mCloseButton = findViewById(R.id.img_btn_close);
         mCloseButton.setOnClickListener(v -> {
             String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK ,
+                    sDialog -> finish(),FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
         });
 
         findViewById(R.id.action_h1).setOnClickListener(v -> editor.updateTextStyle(EditorTextStyle.H1));
@@ -152,19 +154,17 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
 
         editor.render();
 
-        mNewArticleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = editor.getContentAsSerialized();
-                String articleTitle = mArticleTitleEditText.getText().toString();
+        mNewArticleButton.setOnClickListener(v -> {
+            String content = editor.getContentAsSerialized();
+            String articleTitle = mArticleTitleEditText.getText().toString();
 
-                CreateNewArticleRequest createNewArticleRequest = new CreateNewArticleRequest();
-                createNewArticleRequest.setContent(content);
-                createNewArticleRequest.setArticleTitle(articleTitle);
+            CreateNewArticleRequest createNewArticleRequest = new CreateNewArticleRequest();
+            createNewArticleRequest.setContent(content);
+            createNewArticleRequest.setArticleTitle(articleTitle);
 
-                articlePresenter.createNewArticle(createNewArticleRequest);
+            setLoading(true);
+            articlePresenter.createNewArticle(createNewArticleRequest);
 
-            }
         });
     }
 
@@ -206,14 +206,16 @@ public class CreateNewArticleActivity extends BaseActivity implements CreateArti
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override
     public void onError(String message) {
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        setLoading(false);
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override

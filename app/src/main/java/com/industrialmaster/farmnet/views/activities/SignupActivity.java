@@ -23,9 +23,11 @@ import com.industrialmaster.farmnet.views.AuthView;
 import com.industrialmaster.farmnet.views.activities.LoginActivity;
 import com.industrialmaster.farmnet.R;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class SignupActivity extends BaseActivity implements AuthView {
 
-    AuthPresenter presenter;
+    AuthPresenter authPresenter;
 
     Spinner spinner;
     EditText et_email, et_password, et_retype_password, et_name;
@@ -38,7 +40,7 @@ public class SignupActivity extends BaseActivity implements AuthView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        presenter = new AuthPresenterImpl(this, SignupActivity.this);
+        authPresenter = new AuthPresenterImpl(this, SignupActivity.this);
 
         spinner = findViewById(R.id.spinnerusertype);
         et_email = findViewById(R.id.etsignupemail);
@@ -70,8 +72,7 @@ public class SignupActivity extends BaseActivity implements AuthView {
                 signUpRequest.setUser_type(userType);
 
                 setLoading(true);
-
-                presenter.doSignup(signUpRequest, retypePassword);
+                authPresenter.doSignup(signUpRequest, retypePassword);
             }
         });
 
@@ -86,17 +87,18 @@ public class SignupActivity extends BaseActivity implements AuthView {
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message, false, FarmnetConstants.OK , (dialog, which) -> {
-            startActivity(new Intent(SignupActivity.this, MainActivity.class));
-            finish();
-        }, "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> {
+                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                    finish();
+                }, null, null);
     }
 
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message, false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK ,
+                SweetAlertDialog::dismissWithAnimation, null, null);
     }
 
     @Override

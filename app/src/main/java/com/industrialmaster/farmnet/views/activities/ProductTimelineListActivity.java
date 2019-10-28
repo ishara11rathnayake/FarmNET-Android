@@ -39,12 +39,7 @@ public class ProductTimelineListActivity extends BaseActivity implements Timelin
             }
         });
 
-        mCloseImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mCloseImageButton.setOnClickListener(v -> finish());
 
         presenter = new TimelnePresenterImpl(this, ProductTimelineListActivity.this);
         setLoading(true);
