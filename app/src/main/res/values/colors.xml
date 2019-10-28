@@ -11,4 +11,5 @@
     <color name="color_black">#000000</color>
     <color name="splash_screen">#3DC4A2</color>
     <color name="bg_main">#eeeeee</color>
+    <color name="font_color">#424242</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.industrialmaster.farmnet.views.activities;
 
+import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ public class FilterUserActivity extends BaseActivity implements FilterUserView {
     TextInputEditText mUsernameEditText;
     RecyclerView mUserListRecyclerView;
     int mMinrating = 0;
+    String mUserId;
 
     AuthPresenter authPresenter;
 
@@ -33,6 +35,9 @@ public class FilterUserActivity extends BaseActivity implements FilterUserView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_user);
+
+        mUserId = getSharedPreferences("FarmnetPrefsFile", Context.MODE_PRIVATE)
+                .getString(FarmnetConstants.USER_ID, "");
 
         mRatingRangeSeekbar = findViewById(R.id.seekbar_rating_range);
         mCloseImageButton = findViewById(R.id.image_button_close);
@@ -68,6 +73,10 @@ public class FilterUserActivity extends BaseActivity implements FilterUserView {
             authPresenter.searchUser(mUsernameEditText.getText().toString(), mMinrating);
         });
 
+    }
+
+    public boolean checkOwnPost(String userId){
+        return mUserId.equals(userId);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.industrialmaster.farmnet.views.activities;
 
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,9 +16,11 @@ import com.industrialmaster.farmnet.presenters.Presenter;
 
 import java.util.Objects;
 
+import dmax.dialog.SpotsDialog;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private ProgressDialog progressDialog = null;
+    private  android.app.AlertDialog alertDiallog = null;
 
     protected Presenter presenter;
 
@@ -31,18 +32,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected static final int CAMERA_PERMISSION_CODE = 1002;
     protected static final int IMAGE_CAPTURE_CODE = 1003;
 
+
     public void setLoading(boolean flag){
         if(flag) {
-            if(progressDialog != null )progressDialog.show();
-            else {
-                progressDialog = new ProgressDialog(this);
-                progressDialog.setMessage("Its loading.......");
-                progressDialog.setTitle("Please Wait....");
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
+            if(alertDiallog != null ){
+                alertDiallog.show();
             }
+            else {
+                alertDiallog =  new SpotsDialog.Builder().setContext(this).
+                        setMessage("Loading")
+                        .setCancelable(false).build();
+
+                alertDiallog.show();
+            }
+
         } else {
-            if(progressDialog != null) progressDialog.dismiss();
+            if(alertDiallog != null) alertDiallog.dismiss();
         }
     }
 

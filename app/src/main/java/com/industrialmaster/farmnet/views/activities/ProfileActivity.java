@@ -45,9 +45,12 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     ImageButton mEditImageButton;
     ImageButton mCloseImageButton;
     ImageButton mTimelineListImageButton;
-    ConstraintLayout mPhoneConstraintLayout;
-    ConstraintLayout mAddressConstraintLayout;
+    ImageView mPhoneImageView;
+    ImageView mAddressImageView;
+    ImageView mProfilePicBack;
+    ImageView mProductIconImageView;
     CircleImageView mProfilePicCircleImageView;
+    ConstraintLayout mProductConstraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +65,15 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         mEmailTextView = findViewById(R.id.tv_email);
         mAddressTextView = findViewById(R.id.tv_address);
         mContactNumberTextView = findViewById(R.id.tv_contact_number);
+        mProfilePicBack = findViewById(R.id.image_view_profile_back);
+        mProductIconImageView = findViewById(R.id.image_view_deals);
+        mProductConstraintLayout = findViewById(R.id.constraint_layout_product);
 
         mEditImageButton = findViewById(R.id.img_btn_edit);
         mCloseImageButton = findViewById(R.id.img_btn_close);
         mTimelineListImageButton = findViewById(R.id.img_btn_timeline_list);
-        mPhoneConstraintLayout = findViewById(R.id.constraint_layout_phone);
-        mAddressConstraintLayout = findViewById(R.id.constraint_layout_address);
+        mPhoneImageView = findViewById(R.id.imgv_contac_number);
+        mAddressImageView = findViewById(R.id.imgv_address);
         mTimelineListImageButton.setVisibility(View.INVISIBLE);
 
         setLoading(true);
@@ -99,11 +105,13 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
         TextView mProductType = findViewById(R.id.text_view_product_type);
 
         if(TextUtils.isEmpty(user.getContactNumber())){
-            mPhoneConstraintLayout.setVisibility(View.GONE);
+            mPhoneImageView.setVisibility(View.GONE);
+            mContactNumberTextView.setVisibility(View.GONE);
         }
 
         if(TextUtils.isEmpty(user.getAddress())){
-            mAddressConstraintLayout.setVisibility(View.GONE);
+            mAddressImageView.setVisibility(View.GONE);
+            mAddressTextView.setVisibility(View.GONE);
         }
 
         switch (user.getUserType()) {
@@ -114,9 +122,10 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                             .collect(Collectors.toList());
                 }
                 DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
-                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 recyclerView.setAdapter(adapter);
                 mProductType.setText(FarmnetConstants.DEALS);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_moneyrounded);
                 mTimelineListImageButton.setVisibility(View.VISIBLE);
                 break;
             case FarmnetConstants.UserTypes.SERVICE_PROVIDER:
@@ -129,6 +138,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(adsAdapter);
                 mProductType.setText(FarmnetConstants.ADVERTISEMENTS);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_adsrounded);
                 mTimelineListImageButton.setVisibility(View.INVISIBLE);
                 break;
             case FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER:
@@ -141,11 +151,13 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(articleAdapter);
                 mProductType.setText(FarmnetConstants.ARTICLES);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_articlerounded);
                 mTimelineListImageButton.setVisibility(View.INVISIBLE);
                 break;
             default:
                 mProductType.setVisibility(View.GONE);
                 mTimelineListImageButton.setVisibility(View.INVISIBLE);
+                mProductConstraintLayout.setVisibility(View.GONE);
                 break;
         }
 
@@ -159,6 +171,13 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                     .load(user.getProfilePicUrl())
                     .centerInside()
                     .into(mProfilePicCircleImageView);
+        }
+        if(!TextUtils.isEmpty(user.getProfilePicUrl())){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(user.getProfilePicUrl())
+                    .centerInside()
+                    .into(mProfilePicBack);
         }
     }
 

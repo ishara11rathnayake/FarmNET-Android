@@ -1,34 +1,15 @@
 package com.industrialmaster.farmnet.views.fragments;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.widget.ProgressBar;
-
-import com.github.ybq.android.spinkit.style.DoubleBounce;
-import com.industrialmaster.farmnet.R;
 
 import dmax.dialog.SpotsDialog;
 
 public abstract class BaseFragment extends Fragment {
 
-    private ProgressDialog progressDialog = null;
-    android.app.AlertDialog alertDiallog = null;
+    private android.app.AlertDialog alertDiallog = null;
 
-//    public void setLoading(boolean flag){
-//        if(flag) {
-//            if(progressDialog != null )progressDialog.show();
-//            else {
-//                progressDialog = new ProgressDialog(getActivity());
-//                progressDialog.setMessage("Its loading.......");
-//                progressDialog.setTitle("Please Wait....");
-//                progressDialog.show();
-//            }
-//        } else {
-//            if(progressDialog != null) progressDialog.dismiss();
-//        }
-//    }
 
     public void setLoading(boolean flag){
         if(flag) {

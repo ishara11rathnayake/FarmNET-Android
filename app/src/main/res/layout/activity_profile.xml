@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_main"
     tools:context=".views.activities.ProfileActivity">
 
     <RelativeLayout
@@ -22,7 +23,7 @@
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:padding="7dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content"
             android:tint="@color/color_black"
             android:scaleType="fitCenter"
@@ -34,13 +35,13 @@
             android:id="@+id/img_btn_timeline_list"
             android:layout_width="35dp"
             android:padding="7dp"
-            android:layout_marginRight="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_timeline"
             android:background="@null"
             android:textColor="@color/white"
-            android:gravity="right|center_vertical"
+            android:gravity="end|center_vertical"
             android:tint="@color/color_black"
             android:layout_alignEnd="@+id/img_btn_edit"/>
 
@@ -48,15 +49,15 @@
             android:id="@+id/img_btn_edit"
             android:layout_width="35dp"
             android:padding="7dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_edit"
             android:tint="@color/color_black"
             android:background="@null"
             android:textColor="@color/white"
-            android:gravity="right|center_vertical"
-            android:layout_alignParentRight="true"/>
+            android:gravity="end|center_vertical"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 
@@ -72,7 +73,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             android:fillViewport="true">
 
             <TableLayout
@@ -80,75 +80,113 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/cimageview_profilepic"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/color_black"
-                    android:fontFamily="@font/ubuntubold"
-                    android:text="@string/sample_text"
-                    android:textSize="20sp"
-                    android:gravity="center"/>
-
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/image_view_profile_back"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_profile_top"
+                        app:layout_constraintBottom_toBottomOf="@+id/cimageview_profilepic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cimageview_profilepic"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="90dp"
+                        android:layout_marginEnd="8dp"
+                        android:elevation="5dp"
+                        android:src="@mipmap/ic_launcher"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/ubuntubold"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/font_color"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cimageview_profilepic" />
 
                     <RatingBar
                         android:id="@+id/rating_bar_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:isIndicator="true"
-                        android:stepSize="0.01"
                         android:max="5"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
+                        android:stepSize="0.01"
+                        android:theme="@style/RatingBarProfile"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                 </android.support.constraint.ConstraintLayout>
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:background="#c0c0c0"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_rate_user"/>
-
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_popup"
+                    android:elevation="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp">
+
+                    <ImageView
+                        android:id="@+id/image_view_info"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_profilerounded"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_view_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/ubuntubold"
+                        android:text="@string/info"
+                        android:textSize="18sp"
+                        android:textColor="@color/font_color"
+                        app:layout_constraintBottom_toBottomOf="@+id/image_view_info"
+                        app:layout_constraintStart_toEndOf="@+id/image_view_info"
+                        app:layout_constraintTop_toTopOf="@+id/image_view_info" />
 
                     <ImageView
                         android:id="@+id/imgv_email"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:tint="@color/font_color"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_email_black"
+                        app:layout_constraintTop_toBottomOf="@+id/image_view_info"
+                        app:srcCompat="@drawable/ic_emailfilled"
                         tools:ignore="VectorDrawableCompat" />
 
                     <TextView
@@ -156,36 +194,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/color_black"
-                        android:layout_marginBottom="8dp"
                         android:fontFamily="@font/ubunturegular"
-                        android:text="@string/sample_text"
+                        android:text=""
+                        android:textColor="@color/font_color"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imgv_email"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/constraint_layout_phone">
+                        app:layout_constraintBottom_toBottomOf="@+id/imgv_email"
+                        app:layout_constraintStart_toEndOf="@+id/imgv_email" />
 
                     <ImageView
-                        android:id="@+id/imgv_contact_number"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:id="@+id/imgv_contac_number"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:tint="@color/font_color"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_phone"
+                        app:layout_constraintTop_toBottomOf="@+id/imgv_email"
+                        app:srcCompat="@drawable/ic_phonefilled"
                         tools:ignore="VectorDrawableCompat" />
 
                     <TextView
@@ -193,36 +218,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:textColor="@color/color_black"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:fontFamily="@font/ubunturegular"
-                        android:text="@string/sample_text"
+                        android:text=""
+                        android:textColor="@color/font_color"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imgv_contact_number"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/constraint_layout_address">
+                        app:layout_constraintBottom_toBottomOf="@+id/imgv_contac_number"
+                        app:layout_constraintStart_toEndOf="@+id/imgv_contac_number" />
 
                     <ImageView
                         android:id="@+id/imgv_address"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
-                        android:src="@drawable/ic_location"
+                        android:src="@drawable/ic_locationfilled"
+                        android:tint="@color/font_color"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgv_contac_number"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -230,44 +244,62 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="@color/color_black"
                         android:fontFamily="@font/ubunturegular"
-                        android:text="@string/sample_text"
+                        android:text=""
+                        android:textColor="@color/font_color"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imgv_address"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="@+id/imgv_address"
+                        app:layout_constraintStart_toEndOf="@+id/imgv_address" />
 
                 </android.support.constraint.ConstraintLayout>
 
-                <LinearLayout
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_layout_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="10dp">
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_popup">
+
+                    <ImageView
+                        android:id="@+id/image_view_deals"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:tint="@color/font_color"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/text_view_product_type"
-                        android:textColor="@color/color_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="10dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/ubuntubold"
                         android:text=""
+                        android:textColor="@color/font_color"
                         android:textSize="18sp"
-                        tools:ignore="UnusedAttribute"/>
+                        app:layout_constraintBottom_toBottomOf="@+id/image_view_deals"
+                        app:layout_constraintStart_toEndOf="@+id/image_view_deals"
+                        app:layout_constraintTop_toTopOf="@+id/image_view_deals"
+                        tools:ignore="UnusedAttribute" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerview_abstract_deal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_product_type" />
 
-                </LinearLayout>
+                </android.support.constraint.ConstraintLayout>
 
             </TableLayout>
 

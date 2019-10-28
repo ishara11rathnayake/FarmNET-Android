@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -52,8 +53,11 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
     RatingBar mProfileRatingBar;
     ImageButton mCloseImageButton;
     CircleImageView mProfilePicCircleImageView;
-    ConstraintLayout mPhoneConstraintLayout;
-    ConstraintLayout mAddressConstraintLayout;
+    ImageView mPhoneImageView;
+    ImageView mAddressImageView;
+    ImageView mProductIconImageView;
+    ImageView mProfilePicBack;
+    ConstraintLayout mProductConstraintLayout;
 
     private Context mContext;
     private Activity mActivity;
@@ -78,10 +82,13 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
         mAddressTextView = findViewById(R.id.tv_address);
         mContactNumberTextView = findViewById(R.id.tv_contact_number);
         mUserIdTextView = findViewById(R.id.tv_user_id);
-        mPhoneConstraintLayout = findViewById(R.id.constraint_layout_phone);
-        mAddressConstraintLayout = findViewById(R.id.constraint_layout_address);
-
+        mPhoneImageView = findViewById(R.id.imgv_contac_number);
+        mAddressImageView = findViewById(R.id.imgv_address);
         mCloseImageButton = findViewById(R.id.img_btn_close);
+        mProductIconImageView = findViewById(R.id.image_view_deals);
+        mProductConstraintLayout = findViewById(R.id.constraint_layout_product);
+
+        mProfilePicBack = findViewById(R.id.image_view_profile_back);
 
         setLoading(true);
         String userId = getIntent().getStringExtra("userId");
@@ -120,11 +127,13 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
         TextView mProductType = findViewById(R.id.text_view_product_type);
 
         if(TextUtils.isEmpty(user.getContactNumber())){
-            mPhoneConstraintLayout.setVisibility(View.GONE);
+            mPhoneImageView.setVisibility(View.GONE);
+            mContactNumberTextView.setVisibility(View.GONE);
         }
 
         if(TextUtils.isEmpty(user.getAddress())){
-            mAddressConstraintLayout.setVisibility(View.GONE);
+            mAddressImageView.setVisibility(View.GONE);
+            mAddressTextView.setVisibility(View.GONE);
         }
 
         //change profile view according to user type
@@ -136,9 +145,10 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                             .collect(Collectors.toList());
                 }
                 DealsGridViewRecyclerViewAdapter adapter = new DealsGridViewRecyclerViewAdapter(this, deals);
-                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 recyclerView.setAdapter(adapter);
                 mProductType.setText(FarmnetConstants.DEALS);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_moneyrounded);
                 break;
             case FarmnetConstants.UserTypes.SERVICE_PROVIDER:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -147,9 +157,10 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                             .collect(Collectors.toList());
                 }
                 AdvertisementRecyclerViewAdapter adsAdapter = new AdvertisementRecyclerViewAdapter(this, advertisements);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 recyclerView.setAdapter(adsAdapter);
                 mProductType.setText(FarmnetConstants.ADVERTISEMENTS);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_adsrounded);
                 break;
             case FarmnetConstants.UserTypes.KNOWLEDGE_PROVIDER:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -161,9 +172,11 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(articleAdapter);
                 mProductType.setText(FarmnetConstants.ARTICLES);
+                mProductIconImageView.setBackgroundResource(R.drawable.ic_articlerounded);
                 break;
             default:
                 mProductType.setVisibility(View.GONE);
+                mProductConstraintLayout.setVisibility(View.GONE);
                 break;
         }
 
@@ -178,6 +191,14 @@ public class OtherProfileActivity extends BaseActivity implements ProfileView {
                     .load(user.getProfilePicUrl())
                     .centerInside()
                     .into(mProfilePicCircleImageView);
+        }
+
+        if(!TextUtils.isEmpty(user.getProfilePicUrl())){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(user.getProfilePicUrl())
+                    .centerInside()
+                    .into(mProfilePicBack);
         }
     }
 

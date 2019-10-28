@@ -15,7 +15,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.industrialmaster.farmnet.R;
 import com.industrialmaster.farmnet.models.User;
+import com.industrialmaster.farmnet.views.activities.FilterUserActivity;
 import com.industrialmaster.farmnet.views.activities.OtherProfileActivity;
+import com.industrialmaster.farmnet.views.activities.ProfileActivity;
 
 import java.util.List;
 
@@ -54,7 +56,12 @@ public class SearchUserRecyclerViewAdapter extends RecyclerView.Adapter<SearchUs
         userViewHolder.mUserRatingBar.setRating((float) user.getRating());
 
         userViewHolder.mSearchUserConstraintLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, OtherProfileActivity.class);
+            Intent intent;
+            if(!((FilterUserActivity)mContext).checkOwnPost(user.getUserId())){
+                intent = new Intent(mContext, OtherProfileActivity.class);
+            } else {
+                intent = new Intent(mContext, ProfileActivity.class);
+            }
             intent.putExtra("userId", user.getUserId());
             mContext.startActivity(intent);
         });

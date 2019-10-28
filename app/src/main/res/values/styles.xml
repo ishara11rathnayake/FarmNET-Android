@@ -30,4 +30,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="android:progressTint">#2b2b28</item>
+        <item name="android:progressBackgroundTint">#809192</item>
+        <item name="colorControlActivated">#809192</item>
+    </style>
+
+    <style name="RatingBarProfile" parent="Theme.AppCompat">
+        <item name="android:progressTint">#424242</item>
+        <item name="android:progressBackgroundTint">#bdbdbd</item>
+        <item name="colorControlActivated">#bdbdbd</item>
+    </style>
+
 </resources>
