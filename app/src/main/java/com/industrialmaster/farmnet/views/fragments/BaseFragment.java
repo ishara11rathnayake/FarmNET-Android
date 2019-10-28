@@ -1,9 +1,11 @@
 package com.industrialmaster.farmnet.views.fragments;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dmax.dialog.SpotsDialog;
 
 public abstract class BaseFragment extends Fragment {
@@ -41,7 +43,20 @@ public abstract class BaseFragment extends Fragment {
 
         alertDialogBuilder.create();
         alertDialogBuilder.show();
+    }
 
+    public void showSweetAlert(int alertType, String title, String message, boolean setCanceble, String positiveButtonText,
+                               SweetAlertDialog.OnSweetClickListener positiveListener, String negativeButtonText,
+                               SweetAlertDialog.OnSweetClickListener negativeListener){
+
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), alertType);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText(title);
+        pDialog.setContentText(message);
+        pDialog.setCancelable(setCanceble);
+        pDialog.setConfirmButton(positiveButtonText, positiveListener);
+        pDialog.setCancelButton(negativeButtonText, negativeListener);
+        pDialog.show();
     }
 
 }

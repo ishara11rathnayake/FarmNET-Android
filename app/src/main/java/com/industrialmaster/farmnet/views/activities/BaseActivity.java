@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.industrialmaster.farmnet.presenters.Presenter;
 
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dmax.dialog.SpotsDialog;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -64,6 +66,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                 alertDialogBuilder.create();
                 alertDialogBuilder.show();
 
+    }
+
+    public void showSweetAlert(int alertType, String title, String message, boolean setCanceble, String positiveButtonText,
+                               SweetAlertDialog.OnSweetClickListener positiveListener, String negativeButtonText,
+                               SweetAlertDialog.OnSweetClickListener negativeListener){
+
+        SweetAlertDialog pDialog = new SweetAlertDialog(this, alertType);
+//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText(title);
+        pDialog.setContentText(message);
+        pDialog.setCancelable(setCanceble);
+        pDialog.setConfirmButton(positiveButtonText, positiveListener);
+        pDialog.setCancelButton(negativeButtonText, negativeListener);
+        pDialog.show();
     }
 
     protected void openCamera() {

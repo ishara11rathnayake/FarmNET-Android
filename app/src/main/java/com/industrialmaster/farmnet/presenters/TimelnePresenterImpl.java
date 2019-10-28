@@ -73,17 +73,22 @@ public class TimelnePresenterImpl extends BasePresenter implements TimelinePrese
 
     @Override
     public void createNewTimelineTask(CreateNewTimelineTaskRequest createNewTimelineTaskRequest) {
-        RequestBody contentPart = RequestBody.create(MultipartBody.FORM, createNewTimelineTaskRequest.getContent());
 
-        MultipartBody.Part timelineImagePart = null;
-        if(!TextUtils.isEmpty(createNewTimelineTaskRequest.getTimelineImage())){
-            File file = new File(createNewTimelineTaskRequest.getTimelineImage());
-            RequestBody timelineImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
-            timelineImagePart = MultipartBody.Part.createFormData("timelineImage", file.getName(), timelineImageReqBody);
+        if(TextUtils.isEmpty(createNewTimelineTaskRequest.getContent())){
+            timelineView.onError(ErrorMessageHelper.DESC_REQUIRED);
+        } else {
+            RequestBody contentPart = RequestBody.create(MultipartBody.FORM, createNewTimelineTaskRequest.getContent());
+
+            MultipartBody.Part timelineImagePart = null;
+            if(!TextUtils.isEmpty(createNewTimelineTaskRequest.getTimelineImage())){
+                File file = new File(createNewTimelineTaskRequest.getTimelineImage());
+                RequestBody timelineImageReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+                timelineImagePart = MultipartBody.Part.createFormData("timelineImage", file.getName(), timelineImageReqBody);
+            }
+
+            createNewTimelineTaskObservable(accessToken, createNewTimelineTaskRequest.getTimelineId(),
+                    contentPart, timelineImagePart).subscribe(createNewTimelineTaskSubscriber());
         }
-
-        createNewTimelineTaskObservable(accessToken, createNewTimelineTaskRequest.getTimelineId(),
-                contentPart, timelineImagePart).subscribe(createNewTimelineTaskSubscriber());
     }
 
     @Override

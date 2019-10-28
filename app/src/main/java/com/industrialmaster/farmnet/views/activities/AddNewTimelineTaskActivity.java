@@ -21,6 +21,8 @@ import com.industrialmaster.farmnet.views.TimelineView;
 
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class AddNewTimelineTaskActivity extends BaseActivity implements TimelineView {
 
     TimelinePresenter timelinePresenter;
@@ -35,7 +37,7 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_timeline_task);
 
-        presenter = new TimelnePresenterImpl(this, this);
+        timelinePresenter = new TimelnePresenterImpl(this, this);
 
         mCloseImageButton = findViewById(R.id.img_btn_close);
         mAddNewTaskButton = findViewById(R.id.img_btn_create_task);
@@ -62,7 +64,8 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
 
         mCloseImageButton.setOnClickListener(v -> {
             String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> finish(),FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK ,
+                    sDialog -> finish(),FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
         });
 
         //pick image from gallery clicking image view
@@ -86,15 +89,14 @@ public class AddNewTimelineTaskActivity extends BaseActivity implements Timeline
 
     @Override
     public void onError(String message) {
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." , message,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
+                null, null);
     }
 
     @Override
     public void onSuccess(String message) {
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> finish(),
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> finish(), null, null);
     }
 
     @Override

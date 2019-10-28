@@ -21,5 +21,6 @@ public class ErrorMessageHelper {
     public static final String FILL_QUESTION_TITLE = "You need fill at least question title.";
     public static final String FILL_ADS_FIELDS = "You must fill title, description, contact number and image.";
     public static final String NO_TIMELINE_ATTACHED = "No timeline attached for this product.";
+    public static final String DESC_REQUIRED = "Description is required.";
 
 }

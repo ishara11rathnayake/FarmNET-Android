@@ -1,16 +1,11 @@
 package com.industrialmaster.farmnet.views.activities;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -22,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,23 +42,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class CreateNewDealActivity extends BaseActivity implements CreateNewDealView, OnMapReadyCallback {
 
     private static final String TAG = "CreateNewDealActivity";
-    DealsPresenter presenter;
+    DealsPresenter dealsPresenter;
     TimelinePresenter timelinePresenter;
 
     ImageView imgv_product_pic;
-    ImageButton btn_add_image_from_gallery, btn_add_image_from_camera, img_btn_close;
+    ImageButton btn_add_image_from_gallery;
+    ImageButton btn_add_image_from_camera;
+    ImageButton img_btn_close;
     Button btn_create_new_deal;
     Spinner spinner_timelineId;
 
     ImageView mMapImageView;
 
-    //fiels of UI
-    TextInputEditText et_product_name, et_unit_price,
-            et_amount, et_description, et_locaton;
+    //fields of UI
+    TextInputEditText et_product_name;
+    TextInputEditText et_unit_price;
+    TextInputEditText et_amount;
+    TextInputEditText et_description;
+    TextInputEditText et_locaton;
 
     boolean hasImage = false;
     String timelineId = null;
@@ -89,7 +91,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         setContentView(R.layout.activity_create_new_deal);
 
         //initialize presenter
-        presenter = new DealsPresenterImpl(this, CreateNewDealActivity.this);
+        dealsPresenter = new DealsPresenterImpl(this, CreateNewDealActivity.this);
         timelinePresenter = new TimelnePresenterImpl(this, CreateNewDealActivity.this);
 
         Gson gson = new Gson();
@@ -152,10 +154,10 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         //close create new deal activity
         img_btn_close.setOnClickListener(v -> {
             String message = ErrorMessageHelper.DISCARD_CONFIRMATION;
-            showAlertDialog("Warning", message,false, FarmnetConstants.OK , (dialog, which) -> {
+            showSweetAlert(SweetAlertDialog.WARNING_TYPE, message,null,false, FarmnetConstants.OK , sDialog -> {
                 startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
                 finish();
-            },FarmnetConstants.CANCEL, (dialog, which) -> dialog.dismiss());
+            },FarmnetConstants.CANCEL, SweetAlertDialog::dismissWithAnimation);
         });
 
         //save new deal
@@ -187,18 +189,20 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
 
         CreateNewDealRequest createNewDealRequest = new CreateNewDealRequest();
 
-        if(hasImage == true) {
+        if(hasImage) {
             realFilePath = convertMediaUriToPath(imageFilePath);
             createNewDealRequest.setProductImage(realFilePath);
         }
 
-        createNewDealRequest.setProductName(et_product_name.getText().toString());
-        createNewDealRequest.setUnitPrice(et_unit_price.getText().toString());
-        createNewDealRequest.setAmount(et_amount.getText().toString());
-        createNewDealRequest.setDescription(et_description.getText().toString());
-        createNewDealRequest.setLocation(et_locaton.getText().toString());
-        createNewDealRequest.setLatitude(latLng.latitude);
-        createNewDealRequest.setLongitude(latLng.longitude);
+        createNewDealRequest.setProductName(Objects.requireNonNull(et_product_name.getText()).toString());
+        createNewDealRequest.setUnitPrice(Objects.requireNonNull(et_unit_price.getText()).toString());
+        createNewDealRequest.setAmount(Objects.requireNonNull(et_amount.getText()).toString());
+        createNewDealRequest.setDescription(Objects.requireNonNull(et_description.getText()).toString());
+        createNewDealRequest.setLocation(Objects.requireNonNull(et_locaton.getText()).toString());
+        if(latLng != null){
+            createNewDealRequest.setLatitude(latLng.latitude);
+            createNewDealRequest.setLongitude(latLng.longitude);
+        }
         createNewDealRequest.setHasImage(hasImage);
 
         if(!timelineId.equals(FarmnetConstants.DEFAULT)){
@@ -206,9 +210,9 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         }
 
         if(deal != null){
-            presenter.updateDeal(createNewDealRequest, deal.getDealId());
+            dealsPresenter.updateDeal(createNewDealRequest, deal.getDealId());
         } else {
-            presenter.createNewDeal(createNewDealRequest);
+            dealsPresenter.createNewDeal(createNewDealRequest);
         }
     }
 
@@ -268,7 +272,7 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
         }
 
         if(requestCode == GET_LOCATION_CODE && resultCode == RESULT_OK) {
-            et_locaton.setText(data.getStringExtra("address"));
+            et_locaton.setText(Objects.requireNonNull(data.getStringExtra("address")));
             double latitude = data.getDoubleExtra("latitude", 6.93194);
             double longitude = data.getDoubleExtra("longitude", 79.84778);
             mapFragment.getView().setVisibility(View.VISIBLE);
@@ -281,19 +285,19 @@ public class CreateNewDealActivity extends BaseActivity implements CreateNewDeal
     @Override
     public void onSuccess(String message) {
         setLoading(false);
-        showAlertDialog("Success", message,false, FarmnetConstants.OK ,
-                (dialog, which) -> {
+        showSweetAlert(SweetAlertDialog.SUCCESS_TYPE, "Great!" ,message,false, FarmnetConstants.OK ,
+                sDialog -> {
                     finish();
                     startActivity(new Intent(CreateNewDealActivity.this, MainActivity.class));
                 },
-                "", (dialog, which) -> dialog.dismiss());
+                null, null);
     }
 
     @Override
     public void onError(String message) {
         setLoading(false);
-        showAlertDialog("Error", message,false, FarmnetConstants.OK , (dialog, which) -> {},
-                "", (dialog, which) -> dialog.dismiss());
+        showSweetAlert(SweetAlertDialog.ERROR_TYPE, "Oops..." ,message,false, FarmnetConstants.OK , SweetAlertDialog::dismissWithAnimation,
+                null, null);
     }
 
     @Override

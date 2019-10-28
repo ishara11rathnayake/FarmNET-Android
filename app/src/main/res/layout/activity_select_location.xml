@@ -57,8 +57,8 @@
         android:text="@string/get_location"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:background="@drawable/bg_button"
-        android:textColor="@color/color_black"
+        android:background="@drawable/button_bg"
+        android:textColor="@color/white"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent" />

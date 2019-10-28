@@ -70,6 +70,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        app:boxStrokeColor="@color/color_black"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/color_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraint_layout_top">
@@ -79,7 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubunturegular"
-            android:hint="@string/description" />
+            android:hint="@string/description"
+            android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+            android:textColor="@color/color_black" />
     </android.support.design.widget.TextInputLayout>
 
     <ImageView
