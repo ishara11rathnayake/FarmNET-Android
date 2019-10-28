@@ -10,25 +10,25 @@
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:src="@drawable/ic_side_menu_opener"
-        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingTop="14dp"/>
 
     <TextView
         android:id="@+id/txtheadertopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crop Deals"
+        android:text="@string/crop_deals"
         android:fontFamily="@font/ubuntubold"
         android:paddingTop="14dp"
         android:layout_centerHorizontal="true"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/white"
         />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentEnd="true">
 
         <ImageView
             android:id="@+id/img_btn_new_question"

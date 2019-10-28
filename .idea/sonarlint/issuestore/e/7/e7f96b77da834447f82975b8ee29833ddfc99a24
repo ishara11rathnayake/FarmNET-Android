@@ -1,6 +1,6 @@
 
+lsquid:S00116"TRename this field "image_uri" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‹íÀ
 \"squid:SwitchLastCaseIsDefaultCheck\""Add a default case to this switch.(×ö³–úÿÿÿÿ8®™­ìß-
 Isquid:S1199]"-Extract this nested code block into a method.(â¨Œøüÿÿÿÿ
 nsquid:S1301\"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8®™­ìß-
-lsquid:S00116"TRename this field "image_uri" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‹íÀ
 Ksquid:S1199g"-Extract this nested code block into a method.(§´âÀ8¨å«ìß-

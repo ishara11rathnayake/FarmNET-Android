@@ -116,4 +116,20 @@
     <string name="rate_user">Rate User</string>
     <string name="report_user">Report User</string>
     <string name="info">Info</string>
+    <string name="e_mail">E-mail</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="new_task">New Task</string>
+    <string name="new_advertisement">New Advertisement</string>
+    <string name="new_article">New Article</string>
+    <string name="new_deal">New Deal</string>
+    <string name="new_question">New Question</string>
+    <string name="new_timeline">New Timeline</string>
+    <string name="advertisement_info">Advertisement Info</string>
+    <string name="deal_info">Deal Info</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="filter_user">Filter User</string>
+    <string name="timelines">Time lines</string>
+    <string name="timeline">Timeline</string>
+    <string name="answers">Answers</string>
+    <string name="article">Article</string>
 </resources>

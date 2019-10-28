@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <android.support.constraint.ConstraintLayout
                 android:id="@+id/linear_layout_top"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -31,17 +31,34 @@
                 android:elevation="5dp">
 
                 <ImageButton
-                    android:tint="@color/color_black"
                     android:id="@+id/img_btn_close"
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="16dp"
                     android:background="@null"
                     android:padding="7dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_close" />
+                    android:src="@drawable/ic_close"
+                    android:tint="@color/color_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/text_view_topic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:fontFamily="@font/ubuntubold"
+                    android:text="@string/article"
+                    android:textColor="@color/color_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <TextView
                 android:layout_width="wrap_content"

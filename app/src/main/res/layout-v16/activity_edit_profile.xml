@@ -7,7 +7,7 @@
     tools:context=".views.activities.EditProfileActivity"
     android:background="@color/bg_main">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -21,30 +21,48 @@
         <ImageButton
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
-            android:padding="7dp"
-            android:tint="@color/color_black"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
-            android:background="@null"
-            android:layout_marginStart="10dp"
+            android:tint="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
-            android:textAllCaps="false"
             android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:fontFamily="@font/ubuntubold"
+            android:layout_marginEnd="8dp"
             android:background="@null"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/save"
+            android:textAllCaps="false"
             android:textColor="@color/color_black"
-            android:gravity="end|center_vertical"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RelativeOverlap" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/edit_profile"
+            android:textColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cimageview_profilepic"

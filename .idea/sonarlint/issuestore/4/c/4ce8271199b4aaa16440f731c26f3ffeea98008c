@@ -1,6 +1,6 @@
 
 Nsquid:S1066Œ"/Merge this if statement with the enclosing one.(„Øü8ù‚ÏËà-
  squid:S1186¼"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ¿àù8Ë¡Þ¸Ù-
-Ÿsquid:S1186`"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8¥“Ó…Ý-
->squid:S1068%"'Remove this unused "TAG" private field.(·ªæþ
 usquid:S3776B"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ËÄ•åûÿÿÿÿ8±£ã…Ý-
+>squid:S1068%"'Remove this unused "TAG" private field.(·ªæþ
+Ÿsquid:S1186`"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³üâ¹8¥“Ó…Ý-

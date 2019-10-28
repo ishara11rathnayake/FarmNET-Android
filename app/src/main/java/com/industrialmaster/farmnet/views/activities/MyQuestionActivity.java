@@ -29,6 +29,7 @@ public class MyQuestionActivity extends BaseActivity implements MyQuestionsView 
         mCloseImageButton.setOnClickListener(v -> finish());
 
         qandAPresenter = new QandAPresenterImpl(this, this);
+        setLoading(true);
         qandAPresenter.getQuestionByUserId();
     }
 

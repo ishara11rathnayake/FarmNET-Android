@@ -7,7 +7,7 @@
     android:background="@color/bg_main"
     tools:context=".views.activities.ProfileActivity">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -22,44 +22,68 @@
         <ImageButton
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
-            android:padding="7dp"
-            android:layout_marginStart="10dp"
             android:layout_height="wrap_content"
-            android:tint="@color/color_black"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
-            android:background="@null"
-            />
+            android:tint="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/img_btn_timeline_list"
             android:layout_width="35dp"
-            android:padding="7dp"
-            android:layout_marginEnd="35dp"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/img_btn_edit"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="7dp"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_timeline"
-            android:background="@null"
             android:textColor="@color/white"
-            android:gravity="end|center_vertical"
             android:tint="@color/color_black"
-            android:layout_alignEnd="@+id/img_btn_edit"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_btn_edit"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/img_btn_edit"
             android:layout_width="35dp"
-            android:padding="7dp"
-            android:layout_marginEnd="10dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="5dp"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_edit"
-            android:tint="@color/color_black"
-            android:background="@null"
             android:textColor="@color/white"
-            android:gravity="end|center_vertical"
-            android:layout_alignParentEnd="true"/>
+            android:tint="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/profile"
+            android:textColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

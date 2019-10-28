@@ -1,6 +1,7 @@
 
-Rsquid:S1068>";Remove this unused "mReportConstraintLayout" private field.(ƒ…Ş‚
-Dsquid:S1068;"-Remove this unused "mActivity" private field.(ïĞÔ’
-€squid:S1450@"cRemove the "mRateUserPopupWindow" field and declare it as a local variable in the relevant methods.(¯èó\8ÊÙÃîß-
-osquid:S1450;"XRemove the "mActivity" field and declare it as a local variable in the relevant methods.(ïĞÔ’
-ˆsquid:S1450A"eRemove the "mReportUserPopupWindow" field and declare it as a local variable in the relevant methods.(µÍÜĞıÿÿÿÿ8¸ñîß-
+osquid:S1450?"XRemove the "mActivity" field and declare it as a local variable in the relevant methods.(ïĞÔ’
+ˆsquid:S1450E"eRemove the "mReportUserPopupWindow" field and declare it as a local variable in the relevant methods.(µÍÜĞıÿÿÿÿ8¸ñîß-
+€squid:S1450D"cRemove the "mRateUserPopupWindow" field and declare it as a local variable in the relevant methods.(¯èó\8ÊÙÃîß-
+ssquid:UselessImportCheck	"HRemove this unused import 'android.support.v7.widget.GridLayoutManager'.(ŸéÖÚ8™¿ˆá-
+Dsquid:S1068?"-Remove this unused "mActivity" private field.(ïĞÔ’
+Ysquid:S1068B";Remove this unused "mReportConstraintLayout" private field.(ƒ…Ş‚8çÂ›‰á-

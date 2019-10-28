@@ -34,12 +34,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:paddingHorizontal="5dp"
                 android:inputType="textEmailAddress"
                 android:fontFamily="@font/ubunturegular"
                 android:gravity="center"
-                android:hint="E-mail"/>
+                android:hint="@string/e_mail"/>
 
         </LinearLayout>
 
@@ -56,12 +56,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:paddingHorizontal="5dp"
                 android:inputType="text"
                 android:fontFamily="@font/ubunturegular"
                 android:gravity="center"
-                android:hint="Name"/>
+                android:hint="@string/name"/>
 
         </LinearLayout>
 
@@ -81,7 +81,7 @@
                 android:background="@drawable/custom_spinner"
                 android:dropDownWidth="300dp"
                 android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
-                android:paddingRight="14dp"
+                android:paddingEnd="14dp"
                 android:popupBackground="@android:color/white"
                 android:popupElevation="3dp"
                 android:stateListAnimator="@drawable/spinner_sla"/>
@@ -101,12 +101,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/ubunturegular"
                 android:paddingHorizontal="5dp"
                 android:inputType="textPassword"
                 android:gravity="center"
-                android:hint="Password"/>
+                android:hint="@string/password"/>
 
         </LinearLayout>
 
@@ -123,12 +123,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_text_box"
                 android:textColor="@color/startcaption"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:paddingHorizontal="5dp"
                 android:inputType="textPassword"
                 android:gravity="center"
                 android:fontFamily="@font/ubunturegular"
-                android:hint="Re-type Password"/>
+                android:hint="@string/re_type_password"/>
         </LinearLayout>
 
         <LinearLayout
@@ -165,11 +165,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.3"
                 android:fontFamily="@font/verdana"
-                android:gravity="right|top"
+                android:gravity="end|top"
                 android:paddingTop="8dp"
                 android:text="@string/already"
                 android:textColor="@color/startcaption"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtlogin"
@@ -177,12 +177,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/verdana"
-                android:gravity="left|top"
-                android:paddingLeft="7dp"
+                android:gravity="start|top"
+                android:paddingStart="7dp"
                 android:paddingTop="8dp"
                 android:text="@string/account1"
                 android:textColor="@color/texthighlight"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:onClick="clickOnHaveAccount"/>
 
 

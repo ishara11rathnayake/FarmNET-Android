@@ -7,7 +7,7 @@
     tools:context=".views.activities.CreateNewArticleActivity"
     android:background="@color/bg_main">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -23,28 +23,46 @@
             android:id="@+id/btn_create_new_article"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_marginEnd="8dp"
             android:background="@null"
             android:fontFamily="@font/ubunturegular"
-            android:gravity="right|center_vertical"
-            android:paddingRight="15dp"
             android:text="@string/post"
             android:textAllCaps="false"
             android:textColor="@color/color_black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:tint="@color/color_black"
             android:id="@+id/img_btn_close"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="16dp"
             android:background="@null"
             android:padding="7dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close"
+            android:tint="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/ubuntubold"
+            android:text="@string/new_article"
+            android:textColor="@color/color_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
