@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.CreateNewAdvertisementActivity">
-
+    tools:context=".views.activities.CreateNewAdvertisementActivity"
+    android:background="@color/bg_main">
 
     <RelativeLayout
         android:id="@+id/linear_layout_top"

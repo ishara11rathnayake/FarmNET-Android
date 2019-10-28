@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.AnswerActivity">
+    tools:context=".views.activities.AnswerActivity"
+    android:background="@color/bg_main">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraint_layout_top"

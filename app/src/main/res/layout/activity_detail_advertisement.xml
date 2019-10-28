@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.DetailAdvertisementActivity">
+    tools:context=".views.activities.DetailAdvertisementActivity"
+    android:background="@color/bg_main">
 
     <ImageView
         android:id="@+id/img_view_ads"

@@ -1,209 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_main"
     tools:context=".views.activities.LoginActivity">
 
     <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         android:layout_marginTop="-85dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/ic_backtop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_backtop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/etloginemail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="225dp"
-        android:layout_marginBottom="80dp">
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_text_box"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/ubunturegular"
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
+        android:textColor="@color/startcaption"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="10dp">
+    <EditText
+        android:id="@+id/etloginpassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_text_box"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/ubunturegular"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:textColor="@color/startcaption"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etloginemail" />
 
-            <EditText
-                android:id="@+id/etloginemail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_text_box"
-                android:textColor="@color/startcaption"
-                android:textSize="14sp"
-                android:paddingLeft="16dp"
-                android:fontFamily="@font/ubunturegular"
-                android:drawableLeft="@drawable/ic_email"
-                android:drawablePadding="16dp"
-                android:inputType="textEmailAddress"/>
-        </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/verdana"
+        android:gravity="end"
+        android:paddingTop="5dp"
+        android:text="@string/forgot"
+        android:textColor="@color/startcaption"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="10dp">
-            8c8585
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/verdana"
+        android:gravity="start"
+        android:paddingStart="7dp"
+        android:paddingTop="5dp"
+        android:text="@string/password1"
+        android:textColor="@color/texthighlight"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/etloginpassword"
+        app:layout_constraintTop_toBottomOf="@+id/etloginpassword" />
 
-            <EditText
-                android:id="@+id/etloginpassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_text_box"
-                android:textColor="@color/startcaption"
-                android:fontFamily="@font/ubunturegular"
-                android:textSize="14sp"
-                android:paddingLeft="16dp"
-                android:drawableLeft="@drawable/ic_lock"
-                android:drawablePadding="16dp"
-                android:inputType="textPassword"/>
-        </LinearLayout>
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custome_button"
+        android:fontFamily="@font/ubunturegular"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/verdana"
+        android:gravity="end|center"
+        android:paddingTop="5dp"
+        android:text="@string/create"
+        android:textColor="@color/startcaption"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/txtsignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnlogin" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.7"
-                android:fontFamily="@font/verdana"
-                android:gravity="right"
-                android:paddingTop="5dp"
-                android:text="@string/forgot"
-                android:textColor="@color/startcaption"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/verdana"
-                android:gravity="left"
-                android:paddingTop="5dp"
-                android:paddingLeft="7dp"
-                android:text="@string/password1"
-                android:textColor="@color/texthighlight"
-                android:textSize="16dp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/btnlogin"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custome_button"
-                android:fontFamily="@font/ubunturegular"
-                android:text="@string/login"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/verdana"
-            android:gravity="center"
-            android:text="@string/or"
-            android:textAlignment="center"
-            android:textColor="@color/startcaption"
-            android:textSize="18dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_facebooklogo"
-                android:layout_marginHorizontal="20dp"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_googlelogorounded"
-                android:layout_marginHorizontal="20dp" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_twitterlogorounded"
-                android:layout_marginHorizontal="20dp"/>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/verdana"
-                android:gravity="right|center"
-                android:paddingTop="5dp"
-                android:text="@string/create"
-                android:textColor="@color/startcaption"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/txtsignup"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/verdana"
-                android:gravity="left|center"
-                android:paddingLeft="7dp"
-                android:paddingTop="5dp"
-                android:text="@string/account"
-                android:textColor="@color/texthighlight"
-                android:textSize="16dp" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txtsignup"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="@font/verdana"
+        android:gravity="start|center"
+        android:paddingStart="7dp"
+        android:paddingTop="5dp"
+        android:text="@string/account"
+        android:textColor="@color/texthighlight"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <ImageView
+        android:id="@+id/imageView7"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/ic_background_grass" />
+        android:src="@drawable/ic_background_grass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="312dp" />
+
+</android.support.constraint.ConstraintLayout>

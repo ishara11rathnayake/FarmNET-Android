@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.EditProfileActivity">
+    tools:context=".views.activities.EditProfileActivity"
+    android:background="@color/bg_main">
 
     <RelativeLayout
         android:id="@+id/linear_layout_top"
@@ -22,25 +23,22 @@
             android:layout_width="35dp"
             android:padding="7dp"
             android:tint="@color/color_black"
-            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close"
             android:background="@null"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"/>
 
         <Button
             android:id="@+id/img_btn_edit"
             android:layout_width="wrap_content"
             android:textAllCaps="false"
-            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
             android:background="@null"
             android:textColor="@color/color_black"
             android:gravity="end|center_vertical"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginEnd="10dp" />
 
     </RelativeLayout>
