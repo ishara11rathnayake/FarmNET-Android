@@ -35,3 +35,7 @@ $ https://github.com/ishara11rathnayake/FarmNET-Android.git
 
 * [FIREBASE](https://firebase.google.com/docs)
 * [RETROFIT](https://square.github.io/retrofit/) - REST Client for Java and Android.
+
+## Authors
+
+* **Ishara Rathnayake** 
